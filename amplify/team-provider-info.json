@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-opscoach-dev-76005-authRole",
+      "UnauthRoleArn": "arn:aws:iam::954976304902:role/amplify-opscoach-dev-76005-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::954976304902:role/amplify-opscoach-dev-76005-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-opscoach-dev-76005-deployment",
+      "UnauthRoleName": "amplify-opscoach-dev-76005-unauthRole",
+      "StackName": "amplify-opscoach-dev-76005",
+      "StackId": "arn:aws:cloudformation:us-east-2:954976304902:stack/amplify-opscoach-dev-76005/7fddef20-c5bc-11f0-87cd-06d5ad9879e3",
+      "AmplifyAppId": "d11ofil84tkpsw"
+    }
+  }
+}

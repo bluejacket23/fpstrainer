@@ -1,0 +1,61 @@
+{
+  "auth": {
+    "aws_region": "us-east-2",
+    "user_pool_id": "us-east-2_OzESNWPCf",
+    "user_pool_client_id": "1e472p0e8hl9bb1dm4c1e49057",
+    "identity_pool_id": "us-east-2:12345678-1234-1234-1234-123456789012",
+    "mfa_configuration": "OFF",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_uppercase": true,
+      "require_numbers": true,
+      "require_symbols": true
+    },
+    "standard_required_attributes": [
+      "email"
+    ],
+    "username_attributes": [
+      "email"
+    ],
+    "user_verification_types": [
+      "email"
+    ],
+    "unauthenticated_identities_enabled": true
+  },
+  "data": {
+    "url": "https://dummy.appsync-api.us-east-2.amazonaws.com/graphql",
+    "aws_region": "us-east-2",
+    "api_key": "da2-dummy",
+    "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
+    "authorization_types": [
+      "AWS_IAM"
+    ]
+  },
+  "storage": {
+    "aws_region": "us-east-2",
+    "bucket_name": "dummy-bucket",
+    "buckets": [
+      {
+        "name": "opscoach-storage",
+        "bucket_name": "dummy-bucket",
+        "aws_region": "us-east-2",
+        "paths": {
+          "uploads/*": {
+            "guest": [
+              "get",
+              "put",
+              "delete"
+            ],
+            "authenticated": [
+              "get",
+              "put",
+              "delete"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "version": "1"
+}
