@@ -1,0 +1,286 @@
+type OpsCoachReport @aws_iam @aws_cognito_user_pools {
+  userId: String!
+  reportId: String!
+  timestamp: String
+  videoUrl: String
+  frameUrls: [String]
+  thumbnailUrl: String
+  aiReportJson: AWSJSON
+  aiReportMarkdown: String
+  processingStatus: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type Mutation @aws_iam {
+  createOpsCoachReport(input: CreateOpsCoachReportInput!, condition: ModelOpsCoachReportConditionInput): OpsCoachReport @aws_iam @aws_cognito_user_pools
+  updateOpsCoachReport(input: UpdateOpsCoachReportInput!, condition: ModelOpsCoachReportConditionInput): OpsCoachReport @aws_iam @aws_cognito_user_pools
+  deleteOpsCoachReport(input: DeleteOpsCoachReportInput!, condition: ModelOpsCoachReportConditionInput): OpsCoachReport @aws_iam @aws_cognito_user_pools
+  initUpload(filename: String): AWSJSON @aws_iam @aws_cognito_user_pools
+}
+
+type Query @aws_iam {
+  getOpsCoachReport(userId: String!, reportId: String!): OpsCoachReport @aws_iam @aws_cognito_user_pools
+  listOpsCoachReports(userId: String, reportId: ModelStringKeyConditionInput, filter: ModelOpsCoachReportFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelOpsCoachReportConnection @aws_iam @aws_cognito_user_pools
+  getReportCustom(userId: String!, reportId: String!): AWSJSON @aws_iam @aws_cognito_user_pools
+  listReportsCustom: [AWSJSON] @aws_iam @aws_cognito_user_pools
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelOpsCoachReportConnection @aws_iam @aws_cognito_user_pools {
+  items: [OpsCoachReport]!
+  nextToken: String
+}
+
+input ModelOpsCoachReportFilterInput {
+  userId: ModelStringInput
+  reportId: ModelStringInput
+  timestamp: ModelStringInput
+  videoUrl: ModelStringInput
+  frameUrls: ModelStringInput
+  thumbnailUrl: ModelStringInput
+  aiReportJson: ModelStringInput
+  aiReportMarkdown: ModelStringInput
+  processingStatus: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelOpsCoachReportFilterInput]
+  or: [ModelOpsCoachReportFilterInput]
+  not: ModelOpsCoachReportFilterInput
+  owner: ModelStringInput
+}
+
+input ModelOpsCoachReportConditionInput {
+  timestamp: ModelStringInput
+  videoUrl: ModelStringInput
+  frameUrls: ModelStringInput
+  thumbnailUrl: ModelStringInput
+  aiReportJson: ModelStringInput
+  aiReportMarkdown: ModelStringInput
+  processingStatus: ModelStringInput
+  and: [ModelOpsCoachReportConditionInput]
+  or: [ModelOpsCoachReportConditionInput]
+  not: ModelOpsCoachReportConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateOpsCoachReportInput {
+  userId: String!
+  reportId: String!
+  timestamp: String
+  videoUrl: String
+  frameUrls: [String]
+  thumbnailUrl: String
+  aiReportJson: AWSJSON
+  aiReportMarkdown: String
+  processingStatus: String
+}
+
+input UpdateOpsCoachReportInput {
+  userId: String!
+  reportId: String!
+  timestamp: String
+  videoUrl: String
+  frameUrls: [String]
+  thumbnailUrl: String
+  aiReportJson: AWSJSON
+  aiReportMarkdown: String
+  processingStatus: String
+}
+
+input DeleteOpsCoachReportInput {
+  userId: String!
+  reportId: String!
+}
+
+input ModelSubscriptionOpsCoachReportFilterInput {
+  userId: ModelSubscriptionStringInput
+  reportId: ModelSubscriptionStringInput
+  timestamp: ModelSubscriptionStringInput
+  videoUrl: ModelSubscriptionStringInput
+  frameUrls: ModelSubscriptionStringInput
+  thumbnailUrl: ModelSubscriptionStringInput
+  aiReportJson: ModelSubscriptionStringInput
+  aiReportMarkdown: ModelSubscriptionStringInput
+  processingStatus: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionOpsCoachReportFilterInput]
+  or: [ModelSubscriptionOpsCoachReportFilterInput]
+  owner: ModelStringInput
+}
+
+type Subscription {
+  onCreateOpsCoachReport(filter: ModelSubscriptionOpsCoachReportFilterInput, owner: String): OpsCoachReport @aws_subscribe(mutations: ["createOpsCoachReport"]) @aws_iam @aws_cognito_user_pools
+  onUpdateOpsCoachReport(filter: ModelSubscriptionOpsCoachReportFilterInput, owner: String): OpsCoachReport @aws_subscribe(mutations: ["updateOpsCoachReport"]) @aws_iam @aws_cognito_user_pools
+  onDeleteOpsCoachReport(filter: ModelSubscriptionOpsCoachReportFilterInput, owner: String): OpsCoachReport @aws_subscribe(mutations: ["deleteOpsCoachReport"]) @aws_iam @aws_cognito_user_pools
+}
+
+input ModelStringKeyConditionInput {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  between: [String]
+  beginsWith: String
+}

@@ -1,0 +1,180 @@
+{
+    "version": 1,
+    "models": {
+        "OpsCoachReport": {
+            "name": "OpsCoachReport",
+            "fields": {
+                "userId": {
+                    "name": "userId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "reportId": {
+                    "name": "reportId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "timestamp": {
+                    "name": "timestamp",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "videoUrl": {
+                    "name": "videoUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "frameUrls": {
+                    "name": "frameUrls",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "thumbnailUrl": {
+                    "name": "thumbnailUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "aiReportJson": {
+                    "name": "aiReportJson",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "aiReportMarkdown": {
+                    "name": "aiReportMarkdown",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "processingStatus": {
+                    "name": "processingStatus",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "OpsCoachReports",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "fields": [
+                            "userId",
+                            "reportId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "primaryKeyInfo": {
+                "isCustomPrimaryKey": true,
+                "primaryKeyFieldName": "userId",
+                "sortKeyFieldNames": [
+                    "reportId"
+                ]
+            }
+        }
+    },
+    "enums": {},
+    "nonModels": {},
+    "queries": {
+        "getReportCustom": {
+            "name": "getReportCustom",
+            "isArray": false,
+            "type": "AWSJSON",
+            "isRequired": false,
+            "arguments": {
+                "userId": {
+                    "name": "userId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true
+                },
+                "reportId": {
+                    "name": "reportId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true
+                }
+            }
+        },
+        "listReportsCustom": {
+            "name": "listReportsCustom",
+            "isArray": true,
+            "type": "AWSJSON",
+            "isRequired": false,
+            "isArrayNullable": true
+        }
+    },
+    "mutations": {
+        "initUpload": {
+            "name": "initUpload",
+            "isArray": false,
+            "type": "AWSJSON",
+            "isRequired": false,
+            "arguments": {
+                "filename": {
+                    "name": "filename",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false
+                }
+            }
+        }
+    }
+}

@@ -3,29 +3,41 @@
 import Link from "next/link";
 import { 
   ArrowRight, Check, Crosshair, Shield, Zap, Target, Activity, Map, Brain, 
-  Swords, Settings, Eye, BarChart3, Video, UserCheck, Cpu, Disc
+  Swords, Settings, Eye, BarChart3, Video, UserCheck, Cpu, Disc, Upload, FileText
 } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  // We will skip using the targetRef for scroll progress for now to fix the hydration issue
-  // or simply wrap the scroll logic in a way that ensures it runs on client only safely.
-  // For now, let's simplify animations to avoid the specific 'target ref not hydrated' error
-  // by removing the useScroll hook usage on the ref directly in this render pass or checking mount.
-  
-  // However, the error "Target ref is defined but not hydrated" usually means the ref
-  // was passed to useScroll but the element wasn't rendered or the ref wasn't attached
-  // by the time the hook ran.
-  
-  // Let's just remove the scroll-linked parallax for the HUD for stability
-  // and keep the entrance animations.
-  
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'how-it-works', 'features', 'pricing'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main className="flex flex-col min-h-screen bg-background text-white overflow-x-hidden selection:bg-cyber selection:text-white">
       
       {/* HERO SECTION */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Dynamic Background */}
         <div className="absolute inset-0 bg-grid z-0 opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] bg-hero-glow blur-[150px] opacity-20 animate-pulse-slow" />
@@ -67,28 +79,44 @@ export default function Home() {
                   </span>
                 </button>
               </Link>
-              
-              <Link href="#demo">
-                <button className="cyber-button px-10 py-5 font-bold text-xl border border-white/20 hover:border-cyber hover:text-cyber hover:bg-cyber/10 transition-all font-display tracking-widest">
-                  VIEW DEMO
-                </button>
-              </Link>
             </div>
           </motion.div>
         </div>
+      </section>
 
-        {/* Scroll Indicator */}
-        <motion.div 
-          animate={{ y: [0, 10, 0] }} 
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-500 font-mono text-xs"
-        >
-          SCROLL TO DECRYPT
-        </motion.div>
+      {/* HOW IT WORKS SECTION */}
+      <section id="how-it-works" className="py-32 relative bg-surface/50 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-6xl font-black font-display text-white mb-4 uppercase">How It Works</h2>
+            <p className="text-gray-400 font-mono text-sm">AI-POWERED GAMEPLAY ANALYSIS FOR CALL OF DUTY, BATTLEFIELD, APEX LEGENDS, COUNTER-STRIKE, VALORANT & MORE</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <HowItWorksStep
+              number="01"
+              icon={<Upload className="w-12 h-12" />}
+              title="Upload Clip"
+              description="Upload your gameplay clip (up to 60 seconds, max 100MB). Our system supports all major FPS games including Call of Duty, Battlefield, Apex Legends, Counter-Strike, and Valorant."
+            />
+            <HowItWorksStep
+              number="02"
+              icon={<Brain className="w-12 h-12" />}
+              title="AI Analysis"
+              description="Advanced AI analyzes every frame of your gameplay, evaluating aim precision, positioning, movement mechanics, game sense, and decision-making. Get comprehensive metrics and insights."
+            />
+            <HowItWorksStep
+              number="03"
+              icon={<FileText className="w-12 h-12" />}
+              title="Get Scoring & Feedback"
+              description="Receive detailed scoring across 20+ metrics, personalized coaching feedback, key moments breakdown, and actionable training recommendations to elevate your gameplay."
+            />
+          </div>
+        </div>
       </section>
 
       {/* 10-DIMENSION ANALYSIS GRID */}
-      <section className="py-32 relative bg-surface border-t border-white/5">
+      <section id="features" className="py-32 relative bg-surface border-t border-white/5">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -118,7 +146,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BATTLE PASS PRICING */}
+      {/* PRICING SECTION */}
       <section id="pricing" className="py-32 relative overflow-hidden bg-void">
         {/* Gradient Orb */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-electric/10 blur-[150px] rounded-full pointer-events-none" />
@@ -129,32 +157,93 @@ export default function Home() {
             <p className="text-gray-400 font-mono text-sm">UNLOCK ADVANCED TACTICAL DATA</p>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             <PricingCard 
-              title="ROOKIE" 
+              title="RECRUIT" 
               price="$0" 
-              clips="1 Clip" 
+              clips="1 Clip/Month"
+              features={[
+                "No card required",
+                "Basic AI analysis",
+                "20+ metric scorecard",
+                "Key moments breakdown",
+                "Personalized coaching feedback"
+              ]}
               color="border-gray-700"
+              free
             />
             <PricingCard 
-              title="GRINDER" 
-              price="$9" 
-              clips="20 Clips" 
+              title="ROOKIE" 
+              price="$5" 
+              clips="10 Clips/Month"
+              features={[
+                "Metrics Dashboard",
+                "Advanced AI analysis",
+                "Cumulative performance stats",
+                "Training drills with instructions",
+                "Frame-by-frame analysis",
+                "Tier system tracking"
+              ]}
               color="border-neon"
-              glow="shadow-[0_0_30px_rgba(0,255,157,0.2)]"
-              popular
             />
             <PricingCard 
               title="COMPETITIVE" 
-              price="$15" 
-              clips="50 Clips" 
+              price="$10" 
+              clips="25 Clips/Month"
+              features={[
+                "Advanced Statistical analysis",
+                "Personalized drills",
+                "Timeline-based breakdowns",
+                "Engagement quality metrics",
+                "Positioning heatmaps",
+                "Movement mechanics scoring"
+              ]}
               color="border-cyber"
+              glow="shadow-[0_0_30px_rgba(0,255,157,0.2)]"
+            />
+            <PricingCard 
+              title="ELITE" 
+              price="$15" 
+              clips="50 Clips/Month"
+              features={[
+                "Everything in Competitive +",
+                "Custom weekly training plan generator",
+                "Advanced metrics (Lane Pressure, Tempo Rating)",
+                "Predictability score analysis",
+                "Mechanical consistency tracking",
+                "Confidence rating insights"
+              ]}
+              color="border-electric"
+              popular
             />
             <PricingCard 
               title="PRO" 
               price="$29" 
-              clips="150 Clips" 
-              color="border-electric"
+              clips="150 Clips/Month"
+              features={[
+                "Everything in Elite +",
+                "Priority queue / faster processing",
+                "First-shot hit rate tracking",
+                "Engagement win rate analysis",
+                "Average TTK calculations",
+                "Cover usage efficiency metrics"
+              ]}
+              color="border-purple-500"
+            />
+            <PricingCard 
+              title="GOD" 
+              price="$59" 
+              clips="500 Clips/Month"
+              features={[
+                "Everything in Pro +",
+                "No rate limits",
+                "Personalized Branded Reports",
+                "Exclusive customization requests",
+                "Advanced comparison analytics",
+                "Export reports to PDF"
+              ]}
+              color="border-yellow-500"
+              glow="shadow-[0_0_40px_rgba(255,215,0,0.3)]"
             />
           </div>
         </div>
@@ -162,9 +251,14 @@ export default function Home() {
       
       {/* FOOTER */}
       <footer className="py-8 border-t border-white/10 bg-black">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="font-display font-bold text-2xl tracking-widest">
             FPS<span className="text-neon">TRAINER</span>
+          </div>
+          <div className="flex gap-6 font-mono text-xs text-gray-400">
+            <Link href="/terms" className="hover:text-neon transition-colors">Terms of Service</Link>
+            <span>|</span>
+            <Link href="/privacy" className="hover:text-neon transition-colors">Privacy Policy</Link>
           </div>
           <div className="font-mono text-xs text-gray-600">
             SYSTEM STATUS: ONLINE
@@ -172,6 +266,24 @@ export default function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+function HowItWorksStep({ number, icon, title, description }: any) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="cyber-card p-8 border border-white/10 bg-surface/50 flex flex-col items-center text-center"
+    >
+      <div className="text-6xl font-black text-neon/20 mb-4 font-display">{number}</div>
+      <div className="text-neon mb-4">{icon}</div>
+      <h3 className="text-xl font-bold font-display text-white mb-2 tracking-wide">{title}</h3>
+      <p className="text-sm text-gray-500 font-mono leading-relaxed">{description}</p>
+    </motion.div>
   );
 }
 
@@ -194,13 +306,35 @@ function FeatureCard({ icon, title, desc, highlight, index }: any) {
   );
 }
 
-function PricingCard({ title, price, clips, color, glow, popular }: any) {
+function PricingCard({ title, price, clips, features, color, glow, popular, free }: any) {
   return (
-    <div className={`relative p-8 border ${color} bg-surface/50 flex flex-col items-center justify-between min-h-[400px] transition-all hover:-translate-y-2 hover:bg-surface ${glow}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className={`relative p-8 border ${color} bg-surface/50 flex flex-col items-center justify-between min-h-[450px] transition-all hover:bg-surface ${glow || ''} ${popular ? 'overflow-visible' : ''}`}
+    >
       {popular && (
-        <div className="absolute top-0 inset-x-0 bg-neon text-black text-xs font-bold text-center py-1 font-mono tracking-widest">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="absolute -top-2 right-3 text-neon text-xs font-bold px-3 py-1.5 font-mono tracking-widest rounded-sm"
+          style={{ 
+            backgroundColor: '#000000',
+            textShadow: '0 0 10px rgba(0,255,157,0.8)',
+            zIndex: 99999,
+            position: 'absolute',
+            boxShadow: '0 0 20px rgba(0,255,157,0.8)',
+            border: '2px solid #00FF9D',
+            background: '#000000',
+            padding: '6px 12px'
+          }}
+        >
           MOST POPULAR
-        </div>
+        </motion.div>
       )}
       
       <div className="w-full text-center">
@@ -209,24 +343,34 @@ function PricingCard({ title, price, clips, color, glow, popular }: any) {
         <div className="text-xs font-mono text-gray-500 mb-8">PER MONTH</div>
       </div>
 
-      <div className="w-full border-t border-white/10 py-8 space-y-3">
-        <div className="flex items-center justify-center gap-2 text-sm font-mono text-gray-300">
-          <Disc size={14} className={popular ? "text-neon" : "text-gray-500"} />
-          {clips}
+      <div className="w-full border-t border-white/10 py-6 space-y-3 flex-1">
+        <div className="flex items-center justify-center gap-2 text-sm font-mono text-gray-300 mb-4">
+          <Disc size={14} className={popular || free ? "text-neon" : "text-gray-500"} />
+          <span className="font-bold">{clips}</span>
         </div>
-        <div className="flex items-center justify-center gap-2 text-sm font-mono text-gray-300">
-          <Disc size={14} className={popular ? "text-neon" : "text-gray-500"} />
-          AI Analysis
-        </div>
-        <div className="flex items-center justify-center gap-2 text-sm font-mono text-gray-300">
-          <Disc size={14} className={popular ? "text-neon" : "text-gray-500"} />
-          Rank Tracking
-        </div>
+        {features && features.map((feature: string, index: number) => (
+          <div key={index} className="flex items-start gap-2 text-xs font-mono text-gray-400">
+            <Check size={12} className={`mt-1 flex-shrink-0 ${popular || free ? "text-neon" : "text-gray-600"}`} />
+            <span className="text-left">{feature}</span>
+          </div>
+        ))}
       </div>
 
-      <button className={`w-full py-3 font-bold font-display tracking-widest text-sm border ${popular ? 'bg-neon text-black border-neon' : 'border-white/20 text-white hover:bg-white hover:text-black'} transition-all`}>
-        SELECT
-      </button>
-    </div>
+      {free ? (
+        <Link href="/upload" className="w-full">
+          <button className="w-full py-3 font-bold font-display tracking-widest text-sm border-2 border-neon bg-neon/30 text-neon hover:bg-neon/50 rounded-sm transition-all">
+            TRY FREE
+          </button>
+        </Link>
+      ) : (
+        <button className={`w-full py-3 font-bold font-display tracking-widest text-sm border-2 rounded-sm transition-all text-white ${
+          popular 
+            ? 'border-white/50 bg-white/15 hover:bg-white/25 hover:border-white/70' 
+            : 'border-white/50 bg-white/15 hover:bg-white/25 hover:border-white/70'
+        }`}>
+          SELECT
+        </button>
+      )}
+    </motion.div>
   );
 }

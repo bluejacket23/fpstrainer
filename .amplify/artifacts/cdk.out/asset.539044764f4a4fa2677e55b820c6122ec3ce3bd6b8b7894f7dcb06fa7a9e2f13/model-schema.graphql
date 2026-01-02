@@ -1,0 +1,21 @@
+type OpsCoachReport @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  userId: String! @primaryKey(sortKeyFields: ["reportId"])
+  reportId: String!
+  timestamp: String
+  videoUrl: String
+  frameUrls: [String]
+  thumbnailUrl: String
+  aiReportJson: AWSJSON
+  aiReportMarkdown: String
+  processingStatus: String
+}
+
+type Mutation {
+  initUpload(filename: String): AWSJSON @function(name: "FnInitUpload") @auth(rules: [{allow: private}])
+}
+
+type Query {
+  getReportCustom(userId: String!, reportId: String!): AWSJSON @function(name: "FnGetReportCustom") @auth(rules: [{allow: private}])
+  listReportsCustom: [AWSJSON] @function(name: "FnListReportsCustom") @auth(rules: [{allow: private}])
+}

@@ -1,0 +1,2166 @@
+{
+  "version": "48.0.0",
+  "artifacts": {
+    "amplify-opscoach-lukec-sandbox-a38e0e22ed.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "amplify-opscoach-lukec-sandbox-a38e0e22ed.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "amplify-opscoach-lukec-sandbox-a38e0e22ed": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "amplify-opscoach-lukec-sandbox-a38e0e22ed.template.json",
+        "terminationProtection": false,
+        "tags": {
+          "amplify:deployment-type": "sandbox",
+          "created-by": "amplify"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/10a9bf3ecbf62ce7815c59533929bcdfc0c8651044832c61b581068e82824bd6.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "amplify-opscoach-lukec-sandbox-a38e0e22ed.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "amplify-opscoach-lukec-sandbox-a38e0e22ed.assets"
+      ],
+      "metadata": {
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "amplify:deployment-type",
+                "Value": "sandbox"
+              },
+              {
+                "Key": "created-by",
+                "Value": "amplify"
+              }
+            ]
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/deploymentType": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deploymentType"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/region": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "region"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/UserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthUserPool4BA7F805"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/UserPoolAppClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthUserPoolAppClient2626C6F8"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/IdentityPool": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthIdentityPool3FDE84CC"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/authenticatedUserRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthauthenticatedUserRoleD8DA3689"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/unauthenticatedUserRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthunauthenticatedUserRole2B524D9E"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/IdentityPoolRoleAttachment": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthIdentityPoolRoleAttachment045F17C8"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPool0958928ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPool0958928ERef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPoolAppClientF258A94BRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPoolAppClientF258A94BRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth.NestedStack/auth.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "auth179371D7"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/userPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userPoolId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/webClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "webClientId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/identityPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "identityPoolId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/authRegion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "authRegion"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/allowUnauthenticatedIdentities": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "allowUnauthenticatedIdentities"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/signupAttributes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "signupAttributes"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/usernameAttributes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "usernameAttributes"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/verificationMechanisms": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "verificationMechanisms"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/passwordPolicyMinLength": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "passwordPolicyMinLength"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/passwordPolicyRequirements": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "passwordPolicyRequirements"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/mfaConfiguration": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mfaConfiguration"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/mfaTypes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mfaTypes"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/socialProviders": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "socialProviders"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/oauthCognitoDomain": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthCognitoDomain"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/oauthScope": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthScope"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/oauthRedirectSignIn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthRedirectSignIn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/oauthRedirectSignOut": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthRedirectSignOut"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/oauthResponseType": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthResponseType"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/oauthClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "oauthClientId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/groups": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "groups"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/GraphQLAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPI42A6FA33"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/GraphQLAPI/TransformerSchema": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPITransformerSchemaFF50A789"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/GraphQLAPI/NONE_DS": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "NONE_DS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/GraphQLAPI/NONE_DS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataGraphQLAPINONEDS684BF699"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "NONE_DS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/AmplifyManagedTableIsCompleteRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyManagedTableIsCompleteRoleF825222C"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/AmplifyManagedTableOnEventRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyManagedTableOnEventRoleB4E71DEA"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/AmplifyManagedTableOnEventRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyManagedTableOnEventRoleDefaultPolicyF6DABCB6"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/TableManagerCustomProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TableManagerCustomProviderframeworkonEvent1DFC2ECC"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/TableManagerCustomProvider/framework-isComplete/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TableManagerCustomProviderframeworkisComplete2E51021B"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/AmplifyTableWaiterStateMachine/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyTableWaiterStateMachineRole470BE899"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/AmplifyTableWaiterStateMachine/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyTableWaiterStateMachineRoleDefaultPolicy89F3836A"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/AmplifyTableWaiterStateMachine/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifyTableWaiterStateMachine060600BC"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager/amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent6135940EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent6135940EArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyTableManager.NestedStack/AmplifyTableManager.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource86290833"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/DynamoDBModelTableReadIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableReadIOPS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/DynamoDBModelTableWriteIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableWriteIOPS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/DynamoDBBillingMode": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBBillingMode"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/DynamoDBEnablePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnablePointInTimeRecovery"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/DynamoDBEnableServerSideEncryption": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnableServerSideEncryption"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/HasEnvironmentParameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HasEnvironmentParameter"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/ShouldUsePayPerRequestBilling": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ShouldUsePayPerRequestBilling"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/ShouldUsePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ShouldUsePointInTimeRecovery"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportTable": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportTable/Default/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpsCoachReportTable"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/CustomTableOpsCoachReportTable": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/GetAttOpsCoachReportTableStreamArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetAttOpsCoachReportTableStreamArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/GetAttOpsCoachReportTableName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetAttOpsCoachReportTableName"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportIAMRole": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReportIAMRole"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportIAMRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpsCoachReportIAMRoleAA493403"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReportIAMRole"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReportTable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpsCoachReportDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReportTable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerygetOpsCoachReportpreAuth0Function/QuerygetOpsCoachReportpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetOpsCoachReportpreAuth0FunctionQuerygetOpsCoachReportpreAuth0FunctionAppSyncFunctionDB234DB4"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetOpsCoachReportpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerygetOpsCoachReportauth0Function/QuerygetOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetOpsCoachReportauth0FunctionQuerygetOpsCoachReportauth0FunctionAppSyncFunction6A4875BD"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerygetOpsCoachReportpostAuth0Function/QuerygetOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetOpsCoachReportpostAuth0FunctionQuerygetOpsCoachReportpostAuth0FunctionAppSyncFunction83659F21"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QueryGetOpsCoachReportDataResolverFn/QueryGetOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryGetOpsCoachReportDataResolverFnQueryGetOpsCoachReportDataResolverFnAppSyncFunction3FA6209E"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryGetOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/queryGetOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.getOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerylistOpsCoachReportspreAuth0Function/QuerylistOpsCoachReportspreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistOpsCoachReportspreAuth0FunctionQuerylistOpsCoachReportspreAuth0FunctionAppSyncFunction4F0431AA"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistOpsCoachReportspreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerylistOpsCoachReportsauth0Function/QuerylistOpsCoachReportsauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistOpsCoachReportsauth0FunctionQuerylistOpsCoachReportsauth0FunctionAppSyncFunction9FA6A5AD"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistOpsCoachReportsauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerylistOpsCoachReportspostAuth0Function/QuerylistOpsCoachReportspostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistOpsCoachReportspostAuth0FunctionQuerylistOpsCoachReportspostAuth0FunctionAppSyncFunction13816A75"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistOpsCoachReportspostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QueryListOpsCoachReportsDataResolverFn/QueryListOpsCoachReportsDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryListOpsCoachReportsDataResolverFnQueryListOpsCoachReportsDataResolverFnAppSyncFunction21B6B0A3"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryListOpsCoachReportsDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/queryListOpsCoachReportsResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ListOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.listOpsCoachReports"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportinit0Function/MutationcreateOpsCoachReportinit0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateOpsCoachReportinit0FunctionMutationcreateOpsCoachReportinit0FunctionAppSyncFunction8744162C"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateOpsCoachReportinit0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportpreAuth0Function/MutationcreateOpsCoachReportpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateOpsCoachReportpreAuth0FunctionMutationcreateOpsCoachReportpreAuth0FunctionAppSyncFunctionC6786518"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateOpsCoachReportpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportauth0Function/MutationcreateOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateOpsCoachReportauth0FunctionMutationcreateOpsCoachReportauth0FunctionAppSyncFunction9844C397"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportpostAuth0Function/MutationcreateOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateOpsCoachReportpostAuth0FunctionMutationcreateOpsCoachReportpostAuth0FunctionAppSyncFunction7D22BFE0"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationCreateOpsCoachReportDataResolverFn/MutationCreateOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationCreateOpsCoachReportDataResolverFnMutationCreateOpsCoachReportDataResolverFnAppSyncFunction073E6C84"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationCreateOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/mutationCreateOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.createOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportinit0Function/MutationupdateOpsCoachReportinit0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateOpsCoachReportinit0FunctionMutationupdateOpsCoachReportinit0FunctionAppSyncFunction60242F4E"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateOpsCoachReportinit0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportpreAuth0Function/MutationupdateOpsCoachReportpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateOpsCoachReportpreAuth0FunctionMutationupdateOpsCoachReportpreAuth0FunctionAppSyncFunctionB7F744AD"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateOpsCoachReportpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportauth0Function/MutationupdateOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateOpsCoachReportauth0FunctionMutationupdateOpsCoachReportauth0FunctionAppSyncFunctionC421061D"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportpostAuth0Function/MutationupdateOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateOpsCoachReportpostAuth0FunctionMutationupdateOpsCoachReportpostAuth0FunctionAppSyncFunction2CB09D81"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationUpdateOpsCoachReportDataResolverFn/MutationUpdateOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationUpdateOpsCoachReportDataResolverFnMutationUpdateOpsCoachReportDataResolverFnAppSyncFunctionB53B6FB7"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationUpdateOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/mutationUpdateOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.updateOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationdeleteOpsCoachReportpreAuth0Function/MutationdeleteOpsCoachReportpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteOpsCoachReportpreAuth0FunctionMutationdeleteOpsCoachReportpreAuth0FunctionAppSyncFunctionDDD353E8"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteOpsCoachReportpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationdeleteOpsCoachReportauth0Function/MutationdeleteOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteOpsCoachReportauth0FunctionMutationdeleteOpsCoachReportauth0FunctionAppSyncFunctionAEE97451"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationdeleteOpsCoachReportpostAuth0Function/MutationdeleteOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteOpsCoachReportpostAuth0FunctionMutationdeleteOpsCoachReportpostAuth0FunctionAppSyncFunctionD446F68F"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationDeleteOpsCoachReportDataResolverFn/MutationDeleteOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationDeleteOpsCoachReportDataResolverFnMutationDeleteOpsCoachReportDataResolverFnAppSyncFunctionE03137B3"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationDeleteOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/mutationDeleteOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.deleteOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononCreateOpsCoachReportauth0Function/SubscriptiononCreateOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateOpsCoachReportauth0FunctionSubscriptiononCreateOpsCoachReportauth0FunctionAppSyncFunctionE85A0477"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononCreateOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononCreateOpsCoachReportpostAuth0Function/SubscriptiononCreateOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateOpsCoachReportpostAuth0FunctionSubscriptiononCreateOpsCoachReportpostAuth0FunctionAppSyncFunction8870A6BA"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononCreateOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptionOnCreateOpsCoachReportDataResolverFn/SubscriptionOnCreateOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnCreateOpsCoachReportDataResolverFnSubscriptionOnCreateOpsCoachReportDataResolverFnAppSyncFunction32A7D223"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnCreateOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/subscriptionOnCreateOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onCreateOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononUpdateOpsCoachReportauth0Function/SubscriptiononUpdateOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateOpsCoachReportauth0FunctionSubscriptiononUpdateOpsCoachReportauth0FunctionAppSyncFunction1A7990C4"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononUpdateOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononUpdateOpsCoachReportpostAuth0Function/SubscriptiononUpdateOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateOpsCoachReportpostAuth0FunctionSubscriptiononUpdateOpsCoachReportpostAuth0FunctionAppSyncFunction699B03BD"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononUpdateOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptionOnUpdateOpsCoachReportDataResolverFn/SubscriptionOnUpdateOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnUpdateOpsCoachReportDataResolverFnSubscriptionOnUpdateOpsCoachReportDataResolverFnAppSyncFunctionDAEA1EF3"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnUpdateOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/subscriptionOnUpdateOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onUpdateOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononDeleteOpsCoachReportauth0Function/SubscriptiononDeleteOpsCoachReportauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteOpsCoachReportauth0FunctionSubscriptiononDeleteOpsCoachReportauth0FunctionAppSyncFunction6DF9FBEB"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononDeleteOpsCoachReportauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononDeleteOpsCoachReportpostAuth0Function/SubscriptiononDeleteOpsCoachReportpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteOpsCoachReportpostAuth0FunctionSubscriptiononDeleteOpsCoachReportpostAuth0FunctionAppSyncFunction33095240"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononDeleteOpsCoachReportpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptionOnDeleteOpsCoachReportDataResolverFn/SubscriptionOnDeleteOpsCoachReportDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnDeleteOpsCoachReportDataResolverFnSubscriptionOnDeleteOpsCoachReportDataResolverFnAppSyncFunction8154EFF1"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnDeleteOpsCoachReportDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/subscriptionOnDeleteOpsCoachReportResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteOpsCoachReportResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onDeleteOpsCoachReport"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportOwnerDataResolverFn/OpsCoachReportOwnerDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpsCoachReportOwnerDataResolverFnOpsCoachReportOwnerDataResolverFnAppSyncFunctionE6E822AA"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReportOwnerDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/opsCoachReportOwnerResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OpsCoachReportownerResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "OpsCoachReport.owner"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource8EE8FDC1Outputs.amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent6135940EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource8EE8FDC1Outputsamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProvi140AF871"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport.NestedStack/OpsCoachReport.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataOpsCoachReportNestedStackOpsCoachReportNestedStackResourceD6CBFC6D"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/HasEnvironmentParameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HasEnvironmentParameter"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnInitUploadLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnInitUploadLambdaDataSourceServiceRole6F61019C"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnInitUploadLambdaDataSourceServiceRoleDefaultPolicy6BBD29E4"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnInitUploadLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnInitUploadLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnInitUploadLambdaDataSource/InvokeFnInitUploadLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnInitUploadLambdaDataSourceInvokeFnInitUploadLambdaDataSourceAppSyncFunctionE72F706A"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnInitUploadLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationInitUploadResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationinitUploadResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.initUpload"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnGetReportCustomLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGetReportCustomLambdaDataSourceServiceRole48B90732"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGetReportCustomLambdaDataSourceServiceRoleDefaultPolicyEC58FC2E"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGetReportCustomLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnGetReportCustomLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnGetReportCustomLambdaDataSource/InvokeFnGetReportCustomLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnGetReportCustomLambdaDataSourceInvokeFnGetReportCustomLambdaDataSourceAppSyncFunctionD8D6FC3A"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnGetReportCustomLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/queryGetReportCustomResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetReportCustomResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.getReportCustom"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnListReportsCustomLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnListReportsCustomLambdaDataSourceServiceRole3210E71C"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnListReportsCustomLambdaDataSourceServiceRoleDefaultPolicyF488914A"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnListReportsCustomLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnListReportsCustomLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnListReportsCustomLambdaDataSource/InvokeFnListReportsCustomLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnListReportsCustomLambdaDataSourceInvokeFnListReportsCustomLambdaDataSourceAppSyncFunction959BC619"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnListReportsCustomLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/queryListReportsCustomResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistReportsCustomResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.listReportsCustom"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationInitUploadAuthFN/MutationInitUploadAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationInitUploadAuthFNMutationInitUploadAuthFNAppSyncFunctionCEF5EB29"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationInitUploadAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/QueryGetReportCustomAuthFN/QueryGetReportCustomAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryGetReportCustomAuthFNQueryGetReportCustomAuthFNAppSyncFunctionC21899A4"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryGetReportCustomAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/QueryListReportsCustomAuthFN/QueryListReportsCustomAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryListReportsCustomAuthFNQueryListReportsCustomAuthFNAppSyncFunction74B96EAB"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryListReportsCustomAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack.NestedStack/FunctionDirectiveStack.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataFunctionDirectiveStackNestedStackFunctionDirectiveStackNestedStackResource1246A302"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucket9CCB4ACA"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucketPolicyF1C1C548"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsBucketAutoDeleteObjectsCustomResource437F26F5"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentAwsCliLayerE322F905"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/AmplifyCodegenAssets/AmplifyCodegenAssetsDeployment/CustomResource-1536MiB/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB21775929"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/DynamoDBModelTableReadIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableReadIOPS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/DynamoDBModelTableWriteIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableWriteIOPS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/DynamoDBBillingMode": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBBillingMode"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/DynamoDBEnablePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnablePointInTimeRecovery"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/DynamoDBEnableServerSideEncryption": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnableServerSideEncryption"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-singleton",
+            "data": true
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+            "data": 2
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-singleton",
+            "data": true
+          },
+          {
+            "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+            "data": 2
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBServiceRoleA41FC8C2"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBServiceRoleDefaultPolicyFF1C635B"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C1536MiBC5D8AB21"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/modelIntrospectionSchemaBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketF566B665"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/modelIntrospectionSchemaBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketPolicy4DAB0D15"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/modelIntrospectionSchemaBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketAutoDeleteObjectsCustomResourceFE57309F"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/modelIntrospectionSchemaBucketDeployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketDeploymentAwsCliLayer13C432F7"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/modelIntrospectionSchemaBucketDeployment/CustomResource-1536MiB/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "modelIntrospectionSchemaBucketDeploymentCustomResource1536MiB104B97EC"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/AMPLIFY_DATA_GRAPHQL_ENDPOINTParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATAGRAPHQLENDPOINTParameter1C2CBB16"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_BUCKET_NAMEParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATAMODELINTROSPECTIONSCHEMABUCKETNAMEParameter47BF4F44"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_KEYParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATAMODELINTROSPECTIONSCHEMAKEYParameterB6AEAE8A"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/AMPLIFY_DATA_DEFAULT_NAMEParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AMPLIFYDATADEFAULTNAMEParameterE7C23CC4"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPool0958928ERef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPool0958928ERef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FGraphQLUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FGraphQLUrl"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB969CC08CDestinationBucketArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyCodegenAssetsAmplifyCodegenAssetsDeploymentCustomResource1536MiB969CC08CDestinationBucketArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data.NestedStack/data.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "data7552DF31"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/upload-init-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "uploadinitlambdaServiceRole3CBFF4D1"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/upload-init-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "uploadinitlambda87F29C3A"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/get-report-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getreportlambdaServiceRoleB3AD3142"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/get-report-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getreportlambdaB4D2B095"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/list-reports-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "listreportslambdaServiceRoleD285DF91"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/list-reports-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "listreportslambda6875D22C"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/ai-analysis-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "aianalysislambdaServiceRoleB617D3F4"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/ai-analysis-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "aianalysislambdaFD152DDF"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/frame-extractor-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "frameextractorlambdaServiceRoleE9AE733F"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/frame-extractor-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "frameextractorlambda27423743"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionaianalysislambda86E2ADE8Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionaianalysislambda86E2ADE8Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionframeextractorlambdaCB94E623Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionframeextractorlambdaCB94E623Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function.NestedStack/function.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "function1351588B"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/definedFunctions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "definedFunctions"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/awsAppsyncApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncApiId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/awsAppsyncApiEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncApiEndpoint"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/awsAppsyncAuthenticationType": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncAuthenticationType"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/awsAppsyncRegion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncRegion"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/amplifyApiModelSchemaS3Uri": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyApiModelSchemaS3Uri"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/awsAppsyncAdditionalAuthenticationTypes": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "awsAppsyncAdditionalAuthenticationTypes"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/opscoach-storage/Bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "opscoachstorageBucket512AFDB5"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/opscoach-storage/Bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "opscoachstorageBucketPolicyEDF46F01"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/opscoach-storage/Bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "opscoachstorageBucketAutoDeleteObjectsCustomResourceE22DDACC"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+          {
+            "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+            "data": true
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/OPSCOACH_STORAGE_BUCKET_NAMEParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OPSCOACHSTORAGEBUCKETNAMEParameterA2AE994B"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/amplify-opscoach-lukec-sandbox-a38e0e22ed--storageAccess3/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edstorageAccess3B7BDF989"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage/amplifyopscoachlukecsandboxa38e0e22edstorageopscoachstorageBucketAA62014BRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edstorageopscoachstorageBucketAA62014BRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storage.NestedStack/storage.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "storage0EC3F24A"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/storageRegion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "storageRegion"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/bucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "bucketName"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/buckets": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "buckets"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "amplify-opscoach-lukec-sandbox-a38e0e22ed"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "aws-cdk-lib/feature-flag-report": {
+      "type": "cdk:feature-flag-report",
+      "properties": {
+        "module": "aws-cdk-lib",
+        "flags": {
+          "@aws-cdk/aws-signer:signingProfileNamePassedToCfn": {
+            "recommendedValue": true,
+            "explanation": "Pass signingProfileName to CfnSigningProfile"
+          },
+          "@aws-cdk/core:newStyleStackSynthesis": {
+            "recommendedValue": true,
+            "explanation": "Switch to new stack synthesis method which enables CI/CD",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/core:stackRelativeExports": {
+            "recommendedValue": true,
+            "explanation": "Name exports based on the construct paths relative to the stack, rather than the global construct path",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-ecs-patterns:secGroupsDisablesImplicitOpenListener": {
+            "recommendedValue": true,
+            "explanation": "Disable implicit openListener when custom security groups are provided"
+          },
+          "@aws-cdk/aws-rds:lowercaseDbIdentifier": {
+            "recommendedValue": true,
+            "explanation": "Force lowercasing of RDS Cluster names in CDK",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": {
+            "recommendedValue": true,
+            "explanation": "Allow adding/removing multiple UsagePlanKeys independently",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-lambda:recognizeVersionProps": {
+            "recommendedValue": true,
+            "explanation": "Enable this feature flag to opt in to the updated logical id calculation for Lambda Version created using the  `fn.currentVersion`.",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-lambda:recognizeLayerVersion": {
+            "recommendedValue": true,
+            "explanation": "Enable this feature flag to opt in to the updated logical id calculation for Lambda Version created using the `fn.currentVersion`."
+          },
+          "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": {
+            "recommendedValue": true,
+            "explanation": "Enable this feature flag to have cloudfront distributions use the security policy TLSv1.2_2021 by default.",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/core:checkSecretUsage": {
+            "recommendedValue": true,
+            "explanation": "Enable this flag to make it impossible to accidentally use SecretValues in unsafe locations"
+          },
+          "@aws-cdk/core:target-partitions": {
+            "recommendedValue": [
+              "aws",
+              "aws-cn"
+            ],
+            "explanation": "What regions to include in lookup tables of environment agnostic stacks"
+          },
+          "@aws-cdk-containers/ecs-service-extensions:enableDefaultLogDriver": {
+            "recommendedValue": true,
+            "explanation": "ECS extensions will automatically add an `awslogs` driver if no logging is specified"
+          },
+          "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": {
+            "recommendedValue": true,
+            "explanation": "Enable this feature flag to have Launch Templates generated by the `InstanceRequireImdsv2Aspect` use unique names."
+          },
+          "@aws-cdk/aws-ecs:arnFormatIncludesClusterName": {
+            "recommendedValue": true,
+            "explanation": "ARN format used by ECS. In the new ARN format, the cluster name is part of the resource ID."
+          },
+          "@aws-cdk/aws-iam:minimizePolicies": {
+            "recommendedValue": true,
+            "explanation": "Minimize IAM policies by combining Statements"
+          },
+          "@aws-cdk/core:validateSnapshotRemovalPolicy": {
+            "recommendedValue": true,
+            "explanation": "Error on snapshot removal policies on resources that do not support it."
+          },
+          "@aws-cdk/aws-codepipeline:crossAccountKeyAliasStackSafeResourceName": {
+            "recommendedValue": true,
+            "explanation": "Generate key aliases that include the stack name"
+          },
+          "@aws-cdk/aws-s3:createDefaultLoggingPolicy": {
+            "recommendedValue": true,
+            "explanation": "Enable this feature flag to create an S3 bucket policy by default in cases where an AWS service would automatically create the Policy if one does not exist."
+          },
+          "@aws-cdk/aws-sns-subscriptions:restrictSqsDescryption": {
+            "recommendedValue": true,
+            "explanation": "Restrict KMS key policy for encrypted Queues a bit more"
+          },
+          "@aws-cdk/aws-apigateway:disableCloudWatchRole": {
+            "recommendedValue": true,
+            "explanation": "Make default CloudWatch Role behavior safe for multiple API Gateways in one environment"
+          },
+          "@aws-cdk/core:enablePartitionLiterals": {
+            "recommendedValue": true,
+            "explanation": "Make ARNs concrete if AWS partition is known"
+          },
+          "@aws-cdk/aws-events:eventsTargetQueueSameAccount": {
+            "recommendedValue": true,
+            "explanation": "Event Rules may only push to encrypted SQS queues in the same account"
+          },
+          "@aws-cdk/aws-ecs:disableExplicitDeploymentControllerForCircuitBreaker": {
+            "recommendedValue": true,
+            "explanation": "Avoid setting the \"ECS\" deployment controller when adding a circuit breaker"
+          },
+          "@aws-cdk/aws-iam:importedRoleStackSafeDefaultPolicyName": {
+            "recommendedValue": true,
+            "explanation": "Enable this feature to create default policy names for imported roles that depend on the stack the role is in."
+          },
+          "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": {
+            "recommendedValue": true,
+            "explanation": "Use S3 Bucket Policy instead of ACLs for Server Access Logging"
+          },
+          "@aws-cdk/aws-route53-patters:useCertificate": {
+            "recommendedValue": true,
+            "explanation": "Use the official `Certificate` resource instead of `DnsValidatedCertificate`"
+          },
+          "@aws-cdk/customresources:installLatestAwsSdkDefault": {
+            "recommendedValue": false,
+            "explanation": "Whether to install the latest SDK by default in AwsCustomResource"
+          },
+          "@aws-cdk/aws-rds:databaseProxyUniqueResourceName": {
+            "recommendedValue": true,
+            "explanation": "Use unique resource name for Database Proxy"
+          },
+          "@aws-cdk/aws-codedeploy:removeAlarmsFromDeploymentGroup": {
+            "recommendedValue": true,
+            "explanation": "Remove CloudWatch alarms from deployment group"
+          },
+          "@aws-cdk/aws-apigateway:authorizerChangeDeploymentLogicalId": {
+            "recommendedValue": true,
+            "explanation": "Include authorizer configuration in the calculation of the API deployment logical ID."
+          },
+          "@aws-cdk/aws-ec2:launchTemplateDefaultUserData": {
+            "recommendedValue": true,
+            "explanation": "Define user data for a launch template by default when a machine image is provided."
+          },
+          "@aws-cdk/aws-secretsmanager:useAttachedSecretResourcePolicyForSecretTargetAttachments": {
+            "recommendedValue": true,
+            "explanation": "SecretTargetAttachments uses the ResourcePolicy of the attached Secret."
+          },
+          "@aws-cdk/aws-redshift:columnId": {
+            "recommendedValue": true,
+            "explanation": "Whether to use an ID to track Redshift column changes"
+          },
+          "@aws-cdk/aws-stepfunctions-tasks:enableEmrServicePolicyV2": {
+            "recommendedValue": true,
+            "explanation": "Enable AmazonEMRServicePolicy_v2 managed policies"
+          },
+          "@aws-cdk/aws-ec2:restrictDefaultSecurityGroup": {
+            "recommendedValue": true,
+            "explanation": "Restrict access to the VPC default security group"
+          },
+          "@aws-cdk/aws-apigateway:requestValidatorUniqueId": {
+            "recommendedValue": true,
+            "explanation": "Generate a unique id for each RequestValidator added to a method"
+          },
+          "@aws-cdk/aws-kms:aliasNameRef": {
+            "recommendedValue": true,
+            "explanation": "KMS Alias name and keyArn will have implicit reference to KMS Key"
+          },
+          "@aws-cdk/aws-kms:applyImportedAliasPermissionsToPrincipal": {
+            "recommendedValue": true,
+            "explanation": "Enable grant methods on Aliases imported by name to use kms:ResourceAliases condition"
+          },
+          "@aws-cdk/aws-autoscaling:generateLaunchTemplateInsteadOfLaunchConfig": {
+            "recommendedValue": true,
+            "explanation": "Generate a launch template when creating an AutoScalingGroup"
+          },
+          "@aws-cdk/core:includePrefixInUniqueNameGeneration": {
+            "recommendedValue": true,
+            "explanation": "Include the stack prefix in the stack name generation process"
+          },
+          "@aws-cdk/aws-efs:denyAnonymousAccess": {
+            "recommendedValue": true,
+            "explanation": "EFS denies anonymous clients accesses"
+          },
+          "@aws-cdk/aws-opensearchservice:enableOpensearchMultiAzWithStandby": {
+            "recommendedValue": true,
+            "explanation": "Enables support for Multi-AZ with Standby deployment for opensearch domains"
+          },
+          "@aws-cdk/aws-lambda-nodejs:useLatestRuntimeVersion": {
+            "recommendedValue": true,
+            "explanation": "Enables aws-lambda-nodejs.Function to use the latest available NodeJs runtime as the default"
+          },
+          "@aws-cdk/aws-efs:mountTargetOrderInsensitiveLogicalId": {
+            "recommendedValue": true,
+            "explanation": "When enabled, mount targets will have a stable logicalId that is linked to the associated subnet."
+          },
+          "@aws-cdk/aws-rds:auroraClusterChangeScopeOfInstanceParameterGroupWithEachParameters": {
+            "recommendedValue": true,
+            "explanation": "When enabled, a scope of InstanceParameterGroup for AuroraClusterInstance with each parameters will change."
+          },
+          "@aws-cdk/aws-appsync:useArnForSourceApiAssociationIdentifier": {
+            "recommendedValue": true,
+            "explanation": "When enabled, will always use the arn for identifiers for CfnSourceApiAssociation in the GraphqlApi construct rather than id."
+          },
+          "@aws-cdk/aws-rds:preventRenderingDeprecatedCredentials": {
+            "recommendedValue": true,
+            "explanation": "When enabled, creating an RDS database cluster from a snapshot will only render credentials for snapshot credentials."
+          },
+          "@aws-cdk/aws-codepipeline-actions:useNewDefaultBranchForCodeCommitSource": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the CodeCommit source action is using the default branch name 'main'."
+          },
+          "@aws-cdk/aws-cloudwatch-actions:changeLambdaPermissionLogicalIdForLambdaAction": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the logical ID of a Lambda permission for a Lambda action includes an alarm ID."
+          },
+          "@aws-cdk/aws-codepipeline:crossAccountKeysDefaultValueToFalse": {
+            "recommendedValue": true,
+            "explanation": "Enables Pipeline to set the default value for crossAccountKeys to false."
+          },
+          "@aws-cdk/aws-codepipeline:defaultPipelineTypeToV2": {
+            "recommendedValue": true,
+            "explanation": "Enables Pipeline to set the default pipeline type to V2."
+          },
+          "@aws-cdk/aws-kms:reduceCrossAccountRegionPolicyScope": {
+            "recommendedValue": true,
+            "explanation": "When enabled, IAM Policy created from KMS key grant will reduce the resource scope to this key only."
+          },
+          "@aws-cdk/pipelines:reduceAssetRoleTrustScope": {
+            "recommendedValue": true,
+            "explanation": "Remove the root account principal from PipelineAssetsFileRole trust policy",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-eks:nodegroupNameAttribute": {
+            "recommendedValue": true,
+            "explanation": "When enabled, nodegroupName attribute of the provisioned EKS NodeGroup will not have the cluster name prefix."
+          },
+          "@aws-cdk/aws-ec2:ebsDefaultGp3Volume": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the default volume type of the EBS volume will be GP3"
+          },
+          "@aws-cdk/aws-ecs:removeDefaultDeploymentAlarm": {
+            "recommendedValue": true,
+            "explanation": "When enabled, remove default deployment alarm settings"
+          },
+          "@aws-cdk/custom-resources:logApiResponseDataPropertyTrueDefault": {
+            "recommendedValue": false,
+            "explanation": "When enabled, the custom resource used for `AwsCustomResource` will configure the `logApiResponseData` property as true by default"
+          },
+          "@aws-cdk/aws-s3:keepNotificationInImportedBucket": {
+            "recommendedValue": false,
+            "explanation": "When enabled, Adding notifications to a bucket in the current stack will not remove notification from imported stack."
+          },
+          "@aws-cdk/aws-stepfunctions-tasks:useNewS3UriParametersForBedrockInvokeModelTask": {
+            "recommendedValue": true,
+            "explanation": "When enabled, use new props for S3 URI field in task definition of state machine for bedrock invoke model.",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/core:explicitStackTags": {
+            "recommendedValue": true,
+            "explanation": "When enabled, stack tags need to be assigned explicitly on a Stack."
+          },
+          "@aws-cdk/aws-ecs:enableImdsBlockingDeprecatedFeature": {
+            "recommendedValue": false,
+            "explanation": "When set to true along with canContainersAccessInstanceRole=false in ECS cluster, new updated commands will be added to UserData to block container accessing IMDS. **Applicable to Linux only. IMPORTANT: See [details.](#aws-cdkaws-ecsenableImdsBlockingDeprecatedFeature)**"
+          },
+          "@aws-cdk/aws-ecs:disableEcsImdsBlocking": {
+            "recommendedValue": true,
+            "explanation": "When set to true, CDK synth will throw exception if canContainersAccessInstanceRole is false. **IMPORTANT: See [details.](#aws-cdkaws-ecsdisableEcsImdsBlocking)**"
+          },
+          "@aws-cdk/aws-ecs:reduceEc2FargateCloudWatchPermissions": {
+            "recommendedValue": true,
+            "explanation": "When enabled, we will only grant the necessary permissions when users specify cloudwatch log group through logConfiguration"
+          },
+          "@aws-cdk/aws-dynamodb:resourcePolicyPerReplica": {
+            "recommendedValue": true,
+            "explanation": "When enabled will allow you to specify a resource policy per replica, and not copy the source table policy to all replicas"
+          },
+          "@aws-cdk/aws-ec2:ec2SumTImeoutEnabled": {
+            "recommendedValue": true,
+            "explanation": "When enabled, initOptions.timeout and resourceSignalTimeout values will be summed together."
+          },
+          "@aws-cdk/aws-appsync:appSyncGraphQLAPIScopeLambdaPermission": {
+            "recommendedValue": true,
+            "explanation": "When enabled, a Lambda authorizer Permission created when using GraphqlApi will be properly scoped with a SourceArn."
+          },
+          "@aws-cdk/aws-rds:setCorrectValueForDatabaseInstanceReadReplicaInstanceResourceId": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the value of property `instanceResourceId` in construct `DatabaseInstanceReadReplica` will be set to the correct value which is `DbiResourceId` instead of currently `DbInstanceArn`"
+          },
+          "@aws-cdk/core:cfnIncludeRejectComplexResourceUpdateCreatePolicyIntrinsics": {
+            "recommendedValue": true,
+            "explanation": "When enabled, CFN templates added with `cfn-include` will error if the template contains Resource Update or Create policies with CFN Intrinsics that include non-primitive values."
+          },
+          "@aws-cdk/aws-lambda-nodejs:sdkV3ExcludeSmithyPackages": {
+            "recommendedValue": true,
+            "explanation": "When enabled, both `@aws-sdk` and `@smithy` packages will be excluded from the Lambda Node.js 18.x runtime to prevent version mismatches in bundled applications."
+          },
+          "@aws-cdk/aws-stepfunctions-tasks:fixRunEcsTaskPolicy": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the resource of IAM Run Ecs policy generated by SFN EcsRunTask will reference the definition, instead of constructing ARN."
+          },
+          "@aws-cdk/aws-ec2:bastionHostUseAmazonLinux2023ByDefault": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the BastionHost construct will use the latest Amazon Linux 2023 AMI, instead of Amazon Linux 2."
+          },
+          "@aws-cdk/core:aspectStabilization": {
+            "recommendedValue": true,
+            "explanation": "When enabled, a stabilization loop will be run when invoking Aspects during synthesis.",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-route53-targets:userPoolDomainNameMethodWithoutCustomResource": {
+            "recommendedValue": true,
+            "explanation": "When enabled, use a new method for DNS Name of user pool domain target without creating a custom resource."
+          },
+          "@aws-cdk/aws-elasticloadbalancingV2:albDualstackWithoutPublicIpv4SecurityGroupRulesDefault": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the default security group ingress rules will allow IPv6 ingress from anywhere"
+          },
+          "@aws-cdk/aws-iam:oidcRejectUnauthorizedConnections": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the default behaviour of OIDC provider will reject unauthorized connections"
+          },
+          "@aws-cdk/core:enableAdditionalMetadataCollection": {
+            "recommendedValue": true,
+            "explanation": "When enabled, CDK will expand the scope of usage data collected to better inform CDK development and improve communication for security concerns and emerging issues."
+          },
+          "@aws-cdk/aws-lambda:createNewPoliciesWithAddToRolePolicy": {
+            "recommendedValue": false,
+            "explanation": "[Deprecated] When enabled, Lambda will create new inline policies with AddToRolePolicy instead of adding to the Default Policy Statement"
+          },
+          "@aws-cdk/aws-s3:setUniqueReplicationRoleName": {
+            "recommendedValue": true,
+            "explanation": "When enabled, CDK will automatically generate a unique role name that is used for s3 object replication."
+          },
+          "@aws-cdk/pipelines:reduceStageRoleTrustScope": {
+            "recommendedValue": true,
+            "explanation": "Remove the root account principal from Stage addActions trust policy",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-events:requireEventBusPolicySid": {
+            "recommendedValue": true,
+            "explanation": "When enabled, grantPutEventsTo() will use resource policies with Statement IDs for service principals."
+          },
+          "@aws-cdk/core:aspectPrioritiesMutating": {
+            "recommendedValue": true,
+            "explanation": "When set to true, Aspects added by the construct library on your behalf will be given a priority of MUTATING."
+          },
+          "@aws-cdk/aws-dynamodb:retainTableReplica": {
+            "recommendedValue": true,
+            "explanation": "When enabled, table replica will be default to the removal policy of source table unless specified otherwise."
+          },
+          "@aws-cdk/cognito:logUserPoolClientSecretValue": {
+            "recommendedValue": false,
+            "explanation": "When disabled, the value of the user pool client secret will not be logged in the custom resource lambda function logs."
+          },
+          "@aws-cdk/pipelines:reduceCrossAccountActionRoleTrustScope": {
+            "recommendedValue": true,
+            "explanation": "When enabled, scopes down the trust policy for the cross-account action role",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-stepfunctions:useDistributedMapResultWriterV2": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the resultWriterV2 property of DistributedMap will be used insted of resultWriter"
+          },
+          "@aws-cdk/s3-notifications:addS3TrustKeyPolicyForSnsSubscriptions": {
+            "recommendedValue": true,
+            "explanation": "Add an S3 trust policy to a KMS key resource policy for SNS subscriptions."
+          },
+          "@aws-cdk/aws-ec2:requirePrivateSubnetsForEgressOnlyInternetGateway": {
+            "recommendedValue": true,
+            "explanation": "When enabled, the EgressOnlyGateway resource is only created if private subnets are defined in the dual-stack VPC."
+          },
+          "@aws-cdk/aws-ec2-alpha:useResourceIdForVpcV2Migration": {
+            "recommendedValue": false,
+            "explanation": "When enabled, use resource IDs for VPC V2 migration"
+          },
+          "@aws-cdk/aws-s3:publicAccessBlockedByDefault": {
+            "recommendedValue": true,
+            "explanation": "When enabled, setting any combination of options for BlockPublicAccess will automatically set true for any options not defined."
+          },
+          "@aws-cdk/aws-lambda:useCdkManagedLogGroup": {
+            "recommendedValue": true,
+            "explanation": "When enabled, CDK creates and manages loggroup for the lambda function"
+          },
+          "@aws-cdk/aws-elasticloadbalancingv2:networkLoadBalancerWithSecurityGroupByDefault": {
+            "recommendedValue": true,
+            "explanation": "When enabled, Network Load Balancer will be created with a security group by default."
+          },
+          "@aws-cdk/aws-stepfunctions-tasks:httpInvokeDynamicJsonPathEndpoint": {
+            "recommendedValue": true,
+            "explanation": "When enabled, allows using a dynamic apiEndpoint with JSONPath format in HttpInvoke tasks.",
+            "unconfiguredBehavesLike": {
+              "v2": true
+            }
+          },
+          "@aws-cdk/aws-ecs-patterns:uniqueTargetGroupId": {
+            "recommendedValue": true,
+            "explanation": "When enabled, ECS patterns will generate unique target group IDs to prevent conflicts during load balancer replacement"
+          }
+        }
+      }
+    }
+  },
+  "minimumCliVersion": "2.1033.0"
+}

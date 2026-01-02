@@ -1,0 +1,972 @@
+{
+ "Description": "An auto-generated nested stack for the @function directive.",
+ "AWSTemplateFormatVersion": "2010-09-09",
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "FnInitUploadLambdaDataSourceServiceRole6F61019C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource/ServiceRole/Resource"
+   }
+  },
+  "FnInitUploadLambdaDataSourceServiceRoleDefaultPolicy6BBD29E4": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FnInitUploadLambdaDataSourceServiceRoleDefaultPolicy6BBD29E4",
+    "Roles": [
+     {
+      "Ref": "FnInitUploadLambdaDataSourceServiceRole6F61019C"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "FnInitUploadLambdaDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "LambdaConfig": {
+     "LambdaFunctionArn": {
+      "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+     }
+    },
+    "Name": "FnInitUploadLambdaDataSource",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "FnInitUploadLambdaDataSourceServiceRole6F61019C",
+      "Arn"
+     ]
+    },
+    "Type": "AWS_LAMBDA"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnInitUploadLambdaDataSource/Resource"
+   }
+  },
+  "InvokeFnInitUploadLambdaDataSourceInvokeFnInitUploadLambdaDataSourceAppSyncFunctionE72F706A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "FnInitUploadLambdaDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "InvokeFnInitUploadLambdaDataSource",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2c9d6143bf8a26a7b702c80b1e09ca81956ce30ca53630ddd478a0f4fd1cceda.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a20e304512b1fde77dc16ed9d5e0ed03817afcab629ce87ef11c99877b7b1e30.vtl"
+    }
+   },
+   "DependsOn": [
+    "FnInitUploadLambdaDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnInitUploadLambdaDataSource/InvokeFnInitUploadLambdaDataSource.AppSyncFunction"
+   }
+  },
+  "MutationinitUploadResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "initUpload",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationInitUploadAuthFNMutationInitUploadAuthFNAppSyncFunctionCEF5EB29",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "InvokeFnInitUploadLambdaDataSourceInvokeFnInitUploadLambdaDataSourceAppSyncFunctionE72F706A",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"initUpload\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n{}\n## [End] Stash resolver specific context.. **"
+      ]
+     ]
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/387d5992f5fc03d05de27289457dcc374a84c42a889acb504aff1031047dde00.vtl"
+    },
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationInitUploadResolver"
+   }
+  },
+  "FnGetReportCustomLambdaDataSourceServiceRole48B90732": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource/ServiceRole/Resource"
+   }
+  },
+  "FnGetReportCustomLambdaDataSourceServiceRoleDefaultPolicyEC58FC2E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FnGetReportCustomLambdaDataSourceServiceRoleDefaultPolicyEC58FC2E",
+    "Roles": [
+     {
+      "Ref": "FnGetReportCustomLambdaDataSourceServiceRole48B90732"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "FnGetReportCustomLambdaDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "LambdaConfig": {
+     "LambdaFunctionArn": {
+      "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn"
+     }
+    },
+    "Name": "FnGetReportCustomLambdaDataSource",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "FnGetReportCustomLambdaDataSourceServiceRole48B90732",
+      "Arn"
+     ]
+    },
+    "Type": "AWS_LAMBDA"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource/Resource"
+   }
+  },
+  "InvokeFnGetReportCustomLambdaDataSourceInvokeFnGetReportCustomLambdaDataSourceAppSyncFunctionD8D6FC3A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "FnGetReportCustomLambdaDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "InvokeFnGetReportCustomLambdaDataSource",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9eef63b62fdcd0ed66cc1dc0c27cc0a38617c6699076cd4aa39058cd5871e2a2.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a20e304512b1fde77dc16ed9d5e0ed03817afcab629ce87ef11c99877b7b1e30.vtl"
+    }
+   },
+   "DependsOn": [
+    "FnGetReportCustomLambdaDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnGetReportCustomLambdaDataSource/InvokeFnGetReportCustomLambdaDataSource.AppSyncFunction"
+   }
+  },
+  "QuerygetReportCustomResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "getReportCustom",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QueryGetReportCustomAuthFNQueryGetReportCustomAuthFNAppSyncFunctionC21899A4",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "InvokeFnGetReportCustomLambdaDataSourceInvokeFnGetReportCustomLambdaDataSourceAppSyncFunctionD8D6FC3A",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getReportCustom\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n{}\n## [End] Stash resolver specific context.. **"
+      ]
+     ]
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/387d5992f5fc03d05de27289457dcc374a84c42a889acb504aff1031047dde00.vtl"
+    },
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/queryGetReportCustomResolver"
+   }
+  },
+  "FnListReportsCustomLambdaDataSourceServiceRole3210E71C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource/ServiceRole/Resource"
+   }
+  },
+  "FnListReportsCustomLambdaDataSourceServiceRoleDefaultPolicyF488914A": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FnListReportsCustomLambdaDataSourceServiceRoleDefaultPolicyF488914A",
+    "Roles": [
+     {
+      "Ref": "FnListReportsCustomLambdaDataSourceServiceRole3210E71C"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "FnListReportsCustomLambdaDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "LambdaConfig": {
+     "LambdaFunctionArn": {
+      "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn"
+     }
+    },
+    "Name": "FnListReportsCustomLambdaDataSource",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "FnListReportsCustomLambdaDataSourceServiceRole3210E71C",
+      "Arn"
+     ]
+    },
+    "Type": "AWS_LAMBDA"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnListReportsCustomLambdaDataSource/Resource"
+   }
+  },
+  "InvokeFnListReportsCustomLambdaDataSourceInvokeFnListReportsCustomLambdaDataSourceAppSyncFunction959BC619": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "FnListReportsCustomLambdaDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "InvokeFnListReportsCustomLambdaDataSource",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a7e89887b48ef3e5cd33c620571dc91f230f4ea8f51d1df197c7326ee0ebd0ce.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a20e304512b1fde77dc16ed9d5e0ed03817afcab629ce87ef11c99877b7b1e30.vtl"
+    }
+   },
+   "DependsOn": [
+    "FnListReportsCustomLambdaDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnListReportsCustomLambdaDataSource/InvokeFnListReportsCustomLambdaDataSource.AppSyncFunction"
+   }
+  },
+  "QuerylistReportsCustomResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "listReportsCustom",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QueryListReportsCustomAuthFNQueryListReportsCustomAuthFNAppSyncFunction74B96EAB",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "InvokeFnListReportsCustomLambdaDataSourceInvokeFnListReportsCustomLambdaDataSourceAppSyncFunction959BC619",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "## [Start] Stash resolver specific context.. **\n$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listReportsCustom\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n{}\n## [End] Stash resolver specific context.. **"
+      ]
+     ]
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/387d5992f5fc03d05de27289457dcc374a84c42a889acb504aff1031047dde00.vtl"
+    },
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/queryListReportsCustomResolver"
+   }
+  },
+  "MutationInitUploadAuthFNMutationInitUploadAuthFNAppSyncFunctionCEF5EB29": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationInitUploadAuthFN",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8e18f3cebc70282364886a18ce867a8409c5568357ceaed6f86c71740cb443eb.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationInitUploadAuthFN/MutationInitUploadAuthFN.AppSyncFunction"
+   }
+  },
+  "QueryGetReportCustomAuthFNQueryGetReportCustomAuthFNAppSyncFunctionC21899A4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetReportCustomAuthFN",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8e18f3cebc70282364886a18ce867a8409c5568357ceaed6f86c71740cb443eb.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/QueryGetReportCustomAuthFN/QueryGetReportCustomAuthFN.AppSyncFunction"
+   }
+  },
+  "QueryListReportsCustomAuthFNQueryListReportsCustomAuthFNAppSyncFunction74B96EAB": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListReportsCustomAuthFN",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8e18f3cebc70282364886a18ce867a8409c5568357ceaed6f86c71740cb443eb.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/QueryListReportsCustomAuthFN/QueryListReportsCustomAuthFN.AppSyncFunction"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNTY7CMAyFz8I+9UDRaDRLKGKFEGoPgEziVqatg+oEhKrefZSwmtXnJ7+fEsryB9YrfGlhXV8MfIP5TBrINQFtb6pWKi+OA3sx+NLrjI+HvsXCfMLx5vCAARsfJ0vJ+18do9gUrLy03MUJc0vVSk3qhydNi2EcYa79kP2ZFz+wfSf5uRaj2yuqUlDYJRjdwj7ansIelRaTyvJi/jYBO5ZuMeIdwV2/nuUaNr/wvborczFFCTwS1B/+ASFhIoYAAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Parameters": {
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDArn": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name": {
+   "Type": "String"
+  }
+ }
+}

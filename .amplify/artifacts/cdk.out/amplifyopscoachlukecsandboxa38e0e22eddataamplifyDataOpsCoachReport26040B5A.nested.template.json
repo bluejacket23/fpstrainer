@@ -1,0 +1,2319 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource8EE8FDC1Outputsamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProvi140AF871": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": {
+   "Type": "String"
+  },
+  "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "OpsCoachReportTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource8EE8FDC1Outputsamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProvi140AF871"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "OpsCoachReport-",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "userId",
+      "attributeType": "S"
+     },
+     {
+      "attributeName": "reportId",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "userId",
+      "keyType": "HASH"
+     },
+     {
+      "attributeName": "reportId",
+      "keyType": "RANGE"
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportTable/Default/Default"
+   }
+  },
+  "OpsCoachReportIAMRoleAA493403": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "OpsCoachReport-",
+                {
+                 "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "OpsCoachReport-",
+                {
+                 "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "OpsCoachReportIAMRolbc9765-",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportIAMRole/Resource"
+   }
+  },
+  "OpsCoachReportDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "OpsCoachReportTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "OpsCoachReportTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "OpsCoachReportIAMRoleAA493403",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "OpsCoachReportIAMRoleAA493403"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportDataSource/Resource"
+   }
+  },
+  "QuerygetOpsCoachReportpreAuth0FunctionQuerygetOpsCoachReportpreAuth0FunctionAppSyncFunctionDB234DB4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetOpsCoachReportpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/39ea36882509049fbe756b07e1cdc93a39e8f8ec9a3e37648c735f9ac7ec59d2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerygetOpsCoachReportpreAuth0Function/QuerygetOpsCoachReportpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetOpsCoachReportauth0FunctionQuerygetOpsCoachReportauth0FunctionAppSyncFunction6A4875BD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerygetOpsCoachReportauth0Function/QuerygetOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetOpsCoachReportpostAuth0FunctionQuerygetOpsCoachReportpostAuth0FunctionAppSyncFunction83659F21": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerygetOpsCoachReportpostAuth0Function/QuerygetOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetOpsCoachReportDataResolverFnQueryGetOpsCoachReportDataResolverFnAppSyncFunction3FA6209E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QueryGetOpsCoachReportDataResolverFn/QueryGetOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "getOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetOpsCoachReportpreAuth0FunctionQuerygetOpsCoachReportpreAuth0FunctionAppSyncFunctionDB234DB4",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetOpsCoachReportauth0FunctionQuerygetOpsCoachReportauth0FunctionAppSyncFunction6A4875BD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetOpsCoachReportpostAuth0FunctionQuerygetOpsCoachReportpostAuth0FunctionAppSyncFunction83659F21",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetOpsCoachReportDataResolverFnQueryGetOpsCoachReportDataResolverFnAppSyncFunction3FA6209E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "OpsCoachReportTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/queryGetOpsCoachReportResolver"
+   }
+  },
+  "QuerylistOpsCoachReportspreAuth0FunctionQuerylistOpsCoachReportspreAuth0FunctionAppSyncFunction4F0431AA": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistOpsCoachReportspreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0e5436eb1cc6e1e40635b3af4aabd88a9b26e601b915cb2bea0c51d169f2798e.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerylistOpsCoachReportspreAuth0Function/QuerylistOpsCoachReportspreAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistOpsCoachReportsauth0FunctionQuerylistOpsCoachReportsauth0FunctionAppSyncFunction9FA6A5AD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistOpsCoachReportsauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerylistOpsCoachReportsauth0Function/QuerylistOpsCoachReportsauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistOpsCoachReportspostAuth0FunctionQuerylistOpsCoachReportspostAuth0FunctionAppSyncFunction13816A75": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistOpsCoachReportspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QuerylistOpsCoachReportspostAuth0Function/QuerylistOpsCoachReportspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListOpsCoachReportsDataResolverFnQueryListOpsCoachReportsDataResolverFnAppSyncFunction21B6B0A3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListOpsCoachReportsDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/QueryListOpsCoachReportsDataResolverFn/QueryListOpsCoachReportsDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "listOpsCoachReports",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistOpsCoachReportspreAuth0FunctionQuerylistOpsCoachReportspreAuth0FunctionAppSyncFunction4F0431AA",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistOpsCoachReportsauth0FunctionQuerylistOpsCoachReportsauth0FunctionAppSyncFunction9FA6A5AD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistOpsCoachReportspostAuth0FunctionQuerylistOpsCoachReportspostAuth0FunctionAppSyncFunction13816A75",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListOpsCoachReportsDataResolverFnQueryListOpsCoachReportsDataResolverFnAppSyncFunction21B6B0A3",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listOpsCoachReports\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "OpsCoachReportTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/queryListOpsCoachReportsResolver"
+   }
+  },
+  "MutationcreateOpsCoachReportinit0FunctionMutationcreateOpsCoachReportinit0FunctionAppSyncFunction8744162C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateOpsCoachReportinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3cf32e28e3985b88b598dacbcc9a81cbb12cab62b6507082eb20a0702d3c197e.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportinit0Function/MutationcreateOpsCoachReportinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateOpsCoachReportpreAuth0FunctionMutationcreateOpsCoachReportpreAuth0FunctionAppSyncFunctionC6786518": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateOpsCoachReportpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0b3ddac636da70ed2f879c9eb2932707275455a35ff97eb390bfaddcaa548e98.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportpreAuth0Function/MutationcreateOpsCoachReportpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateOpsCoachReportauth0FunctionMutationcreateOpsCoachReportauth0FunctionAppSyncFunction9844C397": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5e66c170f4bb0263c70147c4e72cb1bc35a2406aeaebb33e03d90dde83630ce7.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportauth0Function/MutationcreateOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateOpsCoachReportpostAuth0FunctionMutationcreateOpsCoachReportpostAuth0FunctionAppSyncFunction7D22BFE0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationcreateOpsCoachReportpostAuth0Function/MutationcreateOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateOpsCoachReportDataResolverFnMutationCreateOpsCoachReportDataResolverFnAppSyncFunction073E6C84": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8fafcaac2ca5f1421d157ad09f1e3e40e9bbf225d65063ec94ac2ef81908b2aa.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationCreateOpsCoachReportDataResolverFn/MutationCreateOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "createOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateOpsCoachReportinit0FunctionMutationcreateOpsCoachReportinit0FunctionAppSyncFunction8744162C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateOpsCoachReportpreAuth0FunctionMutationcreateOpsCoachReportpreAuth0FunctionAppSyncFunctionC6786518",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateOpsCoachReportauth0FunctionMutationcreateOpsCoachReportauth0FunctionAppSyncFunction9844C397",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateOpsCoachReportpostAuth0FunctionMutationcreateOpsCoachReportpostAuth0FunctionAppSyncFunction7D22BFE0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateOpsCoachReportDataResolverFnMutationCreateOpsCoachReportDataResolverFnAppSyncFunction073E6C84",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "OpsCoachReportTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/mutationCreateOpsCoachReportResolver"
+   }
+  },
+  "MutationupdateOpsCoachReportinit0FunctionMutationupdateOpsCoachReportinit0FunctionAppSyncFunction60242F4E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateOpsCoachReportinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportinit0Function/MutationupdateOpsCoachReportinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateOpsCoachReportpreAuth0FunctionMutationupdateOpsCoachReportpreAuth0FunctionAppSyncFunctionB7F744AD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateOpsCoachReportpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0b3ddac636da70ed2f879c9eb2932707275455a35ff97eb390bfaddcaa548e98.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportpreAuth0Function/MutationupdateOpsCoachReportpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateOpsCoachReportauth0FunctionMutationupdateOpsCoachReportauth0FunctionAppSyncFunctionC421061D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/985ba542ab3de541d3fa5ae8f28ad67532440b38c3d4e572bdc28a61f2a3a56c.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportauth0Function/MutationupdateOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateOpsCoachReportpostAuth0FunctionMutationupdateOpsCoachReportpostAuth0FunctionAppSyncFunction2CB09D81": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationupdateOpsCoachReportpostAuth0Function/MutationupdateOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateOpsCoachReportDataResolverFnMutationUpdateOpsCoachReportDataResolverFnAppSyncFunctionB53B6FB7": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationUpdateOpsCoachReportDataResolverFn/MutationUpdateOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "updateOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateOpsCoachReportinit0FunctionMutationupdateOpsCoachReportinit0FunctionAppSyncFunction60242F4E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateOpsCoachReportpreAuth0FunctionMutationupdateOpsCoachReportpreAuth0FunctionAppSyncFunctionB7F744AD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateOpsCoachReportauth0FunctionMutationupdateOpsCoachReportauth0FunctionAppSyncFunctionC421061D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateOpsCoachReportpostAuth0FunctionMutationupdateOpsCoachReportpostAuth0FunctionAppSyncFunction2CB09D81",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateOpsCoachReportDataResolverFnMutationUpdateOpsCoachReportDataResolverFnAppSyncFunctionB53B6FB7",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "OpsCoachReportTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/mutationUpdateOpsCoachReportResolver"
+   }
+  },
+  "MutationdeleteOpsCoachReportpreAuth0FunctionMutationdeleteOpsCoachReportpreAuth0FunctionAppSyncFunctionDDD353E8": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteOpsCoachReportpreAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/38a03409ecde0eff9da3dead30a4dc1c80b2d2c0e5e3a48c64b596cfa254c177.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationdeleteOpsCoachReportpreAuth0Function/MutationdeleteOpsCoachReportpreAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteOpsCoachReportauth0FunctionMutationdeleteOpsCoachReportauth0FunctionAppSyncFunctionAEE97451": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/867fb7d7eb8e4127b6d0136b82c5c3f74a52eb410297086859986f8e7e4b02aa.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationdeleteOpsCoachReportauth0Function/MutationdeleteOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteOpsCoachReportpostAuth0FunctionMutationdeleteOpsCoachReportpostAuth0FunctionAppSyncFunctionD446F68F": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationdeleteOpsCoachReportpostAuth0Function/MutationdeleteOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteOpsCoachReportDataResolverFnMutationDeleteOpsCoachReportDataResolverFnAppSyncFunctionE03137B3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "OpsCoachReportDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "OpsCoachReportDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/MutationDeleteOpsCoachReportDataResolverFn/MutationDeleteOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "deleteOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteOpsCoachReportpreAuth0FunctionMutationdeleteOpsCoachReportpreAuth0FunctionAppSyncFunctionDDD353E8",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteOpsCoachReportauth0FunctionMutationdeleteOpsCoachReportauth0FunctionAppSyncFunctionAEE97451",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteOpsCoachReportpostAuth0FunctionMutationdeleteOpsCoachReportpostAuth0FunctionAppSyncFunctionD446F68F",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteOpsCoachReportDataResolverFnMutationDeleteOpsCoachReportDataResolverFnAppSyncFunctionE03137B3",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "OpsCoachReportTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/mutationDeleteOpsCoachReportResolver"
+   }
+  },
+  "SubscriptiononCreateOpsCoachReportauth0FunctionSubscriptiononCreateOpsCoachReportauth0FunctionAppSyncFunctionE85A0477": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononCreateOpsCoachReportauth0Function/SubscriptiononCreateOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateOpsCoachReportpostAuth0FunctionSubscriptiononCreateOpsCoachReportpostAuth0FunctionAppSyncFunction8870A6BA": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononCreateOpsCoachReportpostAuth0Function/SubscriptiononCreateOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateOpsCoachReportDataResolverFnSubscriptionOnCreateOpsCoachReportDataResolverFnAppSyncFunction32A7D223": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptionOnCreateOpsCoachReportDataResolverFn/SubscriptionOnCreateOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "onCreateOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateOpsCoachReportauth0FunctionSubscriptiononCreateOpsCoachReportauth0FunctionAppSyncFunctionE85A0477",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateOpsCoachReportpostAuth0FunctionSubscriptiononCreateOpsCoachReportpostAuth0FunctionAppSyncFunction8870A6BA",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateOpsCoachReportDataResolverFnSubscriptionOnCreateOpsCoachReportDataResolverFnAppSyncFunction32A7D223",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/subscriptionOnCreateOpsCoachReportResolver"
+   }
+  },
+  "SubscriptiononUpdateOpsCoachReportauth0FunctionSubscriptiononUpdateOpsCoachReportauth0FunctionAppSyncFunction1A7990C4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononUpdateOpsCoachReportauth0Function/SubscriptiononUpdateOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateOpsCoachReportpostAuth0FunctionSubscriptiononUpdateOpsCoachReportpostAuth0FunctionAppSyncFunction699B03BD": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononUpdateOpsCoachReportpostAuth0Function/SubscriptiononUpdateOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateOpsCoachReportDataResolverFnSubscriptionOnUpdateOpsCoachReportDataResolverFnAppSyncFunctionDAEA1EF3": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptionOnUpdateOpsCoachReportDataResolverFn/SubscriptionOnUpdateOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "onUpdateOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateOpsCoachReportauth0FunctionSubscriptiononUpdateOpsCoachReportauth0FunctionAppSyncFunction1A7990C4",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateOpsCoachReportpostAuth0FunctionSubscriptiononUpdateOpsCoachReportpostAuth0FunctionAppSyncFunction699B03BD",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateOpsCoachReportDataResolverFnSubscriptionOnUpdateOpsCoachReportDataResolverFnAppSyncFunctionDAEA1EF3",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/subscriptionOnUpdateOpsCoachReportResolver"
+   }
+  },
+  "SubscriptiononDeleteOpsCoachReportauth0FunctionSubscriptiononDeleteOpsCoachReportauth0FunctionAppSyncFunction6DF9FBEB": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteOpsCoachReportauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononDeleteOpsCoachReportauth0Function/SubscriptiononDeleteOpsCoachReportauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteOpsCoachReportpostAuth0FunctionSubscriptiononDeleteOpsCoachReportpostAuth0FunctionAppSyncFunction33095240": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteOpsCoachReportpostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptiononDeleteOpsCoachReportpostAuth0Function/SubscriptiononDeleteOpsCoachReportpostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteOpsCoachReportDataResolverFnSubscriptionOnDeleteOpsCoachReportDataResolverFnAppSyncFunction8154EFF1": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteOpsCoachReportDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/SubscriptionOnDeleteOpsCoachReportDataResolverFn/SubscriptionOnDeleteOpsCoachReportDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteOpsCoachReportResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "onDeleteOpsCoachReport",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteOpsCoachReportauth0FunctionSubscriptiononDeleteOpsCoachReportauth0FunctionAppSyncFunction6DF9FBEB",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteOpsCoachReportpostAuth0FunctionSubscriptiononDeleteOpsCoachReportpostAuth0FunctionAppSyncFunction33095240",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteOpsCoachReportDataResolverFnSubscriptionOnDeleteOpsCoachReportDataResolverFnAppSyncFunction8154EFF1",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteOpsCoachReport\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/subscriptionOnDeleteOpsCoachReportResolver"
+   }
+  },
+  "OpsCoachReportOwnerDataResolverFnOpsCoachReportOwnerDataResolverFnAppSyncFunctionE6E822AA": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "OpsCoachReportOwnerDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/041534e5fd916595f752318f161512d7c7f83b9f2cf32d0f0be381c12253ff68.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/064303962e481067b44300212516363b99aaee539b6bafaf756fdd83ff0b60f0.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/OpsCoachReportOwnerDataResolverFn/OpsCoachReportOwnerDataResolverFn.AppSyncFunction"
+   }
+  },
+  "OpsCoachReportownerResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+    },
+    "FieldName": "owner",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "OpsCoachReportOwnerDataResolverFnOpsCoachReportOwnerDataResolverFnAppSyncFunctionE6E822AA",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"OpsCoachReport\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "OpsCoachReport"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/opsCoachReportOwnerResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOwWrDMAyGn6V3R+tSxthxTehxG8nuRbGV4iaRgyW3lJB3H0lHx06/PvQh/Tnk+StsN3iVzLou630D0weJkqsVbWeKlr8w4kBKcYEisPPqA5uKJKRoyRRJNAx/2PJjxqscJ3djHIJr4BubnvYoZDwOMFWhv9uhp9ngOMqNLUzlqpdNiYr14+R/OiS2S4kicOtPKeLa6Pdzf6E4G9kdUYRU4H0JIzvYJ9uRLgXmxf1MOiY167pWPHk+zYaDIzjL0yXfwvMbvGzO4n0WE6sfCKp7/gDouRV5NgEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttOpsCoachReportTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "OpsCoachReportTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "GetAtt:OpsCoachReportTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttOpsCoachReportTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "OpsCoachReport-",
+      {
+       "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+       },
+       "GetAtt:OpsCoachReportTable:Name"
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

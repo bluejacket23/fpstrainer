@@ -43,8 +43,13 @@ function UploadComponent({ user }: any) {
         filename: file.name
       });
 
-      if (errors || !initData) {
-        throw new Error("Failed to initialize upload");
+      if (errors) {
+        console.error("Upload init errors:", errors);
+        throw new Error(`Failed to initialize upload: ${JSON.stringify(errors)}`);
+      }
+
+      if (!initData) {
+        throw new Error("Failed to initialize upload: No data returned");
       }
 
       // Handle potential stringified JSON return

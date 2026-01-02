@@ -1,17 +1,10 @@
 {
   "auth": {
+    "user_pool_id": "us-east-2_lokf6EDEX",
     "aws_region": "us-east-2",
-    "user_pool_id": "us-east-2_OzESNWPCf",
-    "user_pool_client_id": "1e472p0e8hl9bb1dm4c1e49057",
-    "identity_pool_id": "us-east-2:12345678-1234-1234-1234-123456789012",
-    "mfa_configuration": "OFF",
-    "password_policy": {
-      "min_length": 8,
-      "require_lowercase": true,
-      "require_uppercase": true,
-      "require_numbers": true,
-      "require_symbols": true
-    },
+    "user_pool_client_id": "2i0nt81hrbpj8rjon5fl17qt7a",
+    "identity_pool_id": "us-east-2:baeb69fe-8e4a-4616-b9bb-1dbc12184d8b",
+    "mfa_methods": [],
     "standard_required_attributes": [
       "email"
     ],
@@ -21,35 +14,227 @@
     "user_verification_types": [
       "email"
     ],
+    "groups": [],
+    "mfa_configuration": "NONE",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_numbers": true,
+      "require_symbols": true,
+      "require_uppercase": true
+    },
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://dummy.appsync-api.us-east-2.amazonaws.com/graphql",
+    "url": "https://zwfyx34fwje3nlvos4ma5agd2a.appsync-api.us-east-2.amazonaws.com/graphql",
     "aws_region": "us-east-2",
-    "api_key": "da2-dummy",
     "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
     "authorization_types": [
       "AWS_IAM"
-    ]
+    ],
+    "model_introspection": {
+      "version": 1,
+      "models": {
+        "OpsCoachReport": {
+          "name": "OpsCoachReport",
+          "fields": {
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "reportId": {
+              "name": "reportId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "timestamp": {
+              "name": "timestamp",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "videoUrl": {
+              "name": "videoUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "frameUrls": {
+              "name": "frameUrls",
+              "isArray": true,
+              "type": "String",
+              "isRequired": false,
+              "attributes": [],
+              "isArrayNullable": true
+            },
+            "thumbnailUrl": {
+              "name": "thumbnailUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "aiReportJson": {
+              "name": "aiReportJson",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "aiReportMarkdown": {
+              "name": "aiReportMarkdown",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "processingStatus": {
+              "name": "processingStatus",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "OpsCoachReports",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "userId",
+                  "reportId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "owner",
+                    "allow": "owner",
+                    "identityClaim": "cognito:username",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": true,
+            "primaryKeyFieldName": "userId",
+            "sortKeyFieldNames": [
+              "reportId"
+            ]
+          }
+        }
+      },
+      "enums": {},
+      "nonModels": {},
+      "queries": {
+        "getReportCustom": {
+          "name": "getReportCustom",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "reportId": {
+              "name": "reportId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "listReportsCustom": {
+          "name": "listReportsCustom",
+          "isArray": true,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "isArrayNullable": true
+        }
+      },
+      "mutations": {
+        "initUpload": {
+          "name": "initUpload",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "filename": {
+              "name": "filename",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      }
+    }
   },
   "storage": {
     "aws_region": "us-east-2",
-    "bucket_name": "dummy-bucket",
+    "bucket_name": "amplify-opscoach-lukec-sa-opscoachstoragebucket512-m7jbdrv5wfkw",
     "buckets": [
       {
         "name": "opscoach-storage",
-        "bucket_name": "dummy-bucket",
+        "bucket_name": "amplify-opscoach-lukec-sa-opscoachstoragebucket512-m7jbdrv5wfkw",
         "aws_region": "us-east-2",
         "paths": {
-          "uploads/*": {
-            "guest": [
+          "uploads/${cognito-identity.amazonaws.com:sub}/*": {
+            "entityidentity": [
               "get",
-              "put",
+              "list",
+              "write",
               "delete"
-            ],
-            "authenticated": [
+            ]
+          },
+          "frames/${cognito-identity.amazonaws.com:sub}/*": {
+            "entityidentity": [
               "get",
-              "put",
+              "list",
+              "write",
               "delete"
             ]
           }
@@ -57,5 +242,5 @@
       }
     ]
   },
-  "version": "1"
+  "version": "1.4"
 }

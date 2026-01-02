@@ -6,11 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "auto-config": "node fix-everything.js",
+    "config": "node fix-everything.js",
+    "fix": "node fix-everything.js",
+    "add-s3-trigger": "node add-s3-trigger.js"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.13.1",
     "@aws-sdk/client-dynamodb": "^3.934.0",
+    "@aws-sdk/client-iam": "^3.934.0",
+    "@aws-sdk/client-lambda": "^3.934.0",
     "@aws-sdk/client-s3": "^3.934.0",
     "@aws-sdk/lib-dynamodb": "^3.934.0",
     "@aws-sdk/s3-request-presigner": "^3.934.0",
