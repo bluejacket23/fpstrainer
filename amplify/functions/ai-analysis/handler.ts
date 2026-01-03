@@ -65,21 +65,15 @@ export const handler = async (event: any) => {
     const actualDuration = videoDuration || totalFrames;
     
     const content: any[] = [
-      { type: "text", text: `GAMEPLAY ANALYSIS - ${totalFrames} frames, 1 frame per second.
+      { type: "text", text: `GAMEPLAY ANALYSIS - ${totalFrames} frames from a ${actualDuration}-second clip.
 
-TIMESTAMP = IMAGE NUMBER - 1
-Image 1 = 0:00s, Image 2 = 0:01s, Image 3 = 0:02s, Image 10 = 0:09s, Image 30 = 0:29s
-
-The timestamp in seconds equals the image number minus one.` }
+IMPORTANT: Each frame has the TIMESTAMP BURNED INTO THE TOP-LEFT CORNER of the image.
+Look at the top-left of each frame - you will see "0s", "1s", "2s", etc.
+READ THIS VISIBLE TIMESTAMP to know exactly when each moment happens.` }
     ];
     
-    // Add ALL frames with exact second timestamps
+    // Add ALL frames - timestamps are burned into the images themselves
     for (let i = 0; i < imageUrls.length; i++) {
-      const frameSecond = i; // Each frame = 1 second (frame 0 = 0:00s, frame 1 = 0:01s, etc.)
-      content.push({
-        type: "text", 
-        text: `[${frameSecond}s]`
-      });
       content.push({
         type: "image_url",
         image_url: {
@@ -93,12 +87,12 @@ The timestamp in seconds equals the image number minus one.` }
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
 
 **CRITICAL TIMING INFORMATION:**
-Each image is labeled with its exact timestamp in seconds [0s], [1s], [2s], etc.
-- Image at [5s] = timestamp 0:05s
-- Image at [12s] = timestamp 0:12s  
-- Image at [28s] = timestamp 0:28s
-- USE THE EXACT SECOND SHOWN IN THE LABEL. Each frame = 1 second of gameplay.
-- DO NOT GUESS OR ESTIMATE. Read the timestamp label directly from above each image.
+Each frame has the EXACT TIMESTAMP BURNED INTO THE IMAGE in the TOP-LEFT corner (e.g., "0s", "5s", "12s", "28s").
+- LOOK AT THE TOP-LEFT of each frame - you will SEE the timestamp displayed on the image itself
+- The number shown IS the exact second in the video
+- If you see "12s" in the corner, the timestamp is 0:12s
+- If you see "28s" in the corner, the timestamp is 0:28s
+- DO NOT GUESS. READ THE VISIBLE TIMESTAMP FROM EACH FRAME.
 
 **YOUR ANALYTICAL APPROACH:**
 You analyze gameplay like a professional esports coach reviewing VODs. Be TECHNICAL and SPECIFIC.
@@ -134,20 +128,22 @@ Provide a deeply detailed, pro-level coaching breakdown in the EXACT order speci
 **1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
 Identify SIGNIFICANT gameplay moments - engagements, kills, deaths, positioning decisions, mechanical plays.
 
-**TIMESTAMP ACCURACY:** Read the [Xs] label directly above each image. That IS the timestamp.
-- If you see action in the image labeled [12s], use timestamp 0:12s
-- If you see action in the image labeled [28s], use timestamp 0:28s
+**TIMESTAMP ACCURACY:** READ THE TIMESTAMP FROM THE TOP-LEFT CORNER OF EACH FRAME IMAGE.
+- Each frame has "Xs" burned into the top-left (e.g., "5s", "12s", "28s")
+- If you see action in a frame showing "12s" in the corner, use timestamp 0:12s
+- If you see action in a frame showing "28s" in the corner, use timestamp 0:28s
+- The timestamp is VISIBLE ON THE IMAGE - just read it
 
 **BE TECHNICAL AND SPECIFIC:** Use precise FPS terminology - crosshair placement height, strafe direction, peek timing, TTK, damage trade, angle isolation, etc.
 
-Format (timestamps from image labels, technical analysis):
-> 0:12s - Player executed a 180ms reaction flick to secure the elimination. Crosshair was pre-positioned at head height on the common peek angle, minimizing adjustment distance. Clean trigger discipline with controlled burst fire.
+Format (read timestamps from images, technical analysis):
+> 0:12s - Player executed a clean flick to secure the elimination. Crosshair was pre-positioned at head height on the common peek angle, minimizing adjustment distance. Clean trigger discipline with controlled burst fire.
 
-> 0:28s - Player over-extended past cover while reloading, exposing to a 90-degree cross-angle. The reload cancel came 400ms too late. Should have repositioned to hard cover before the magazine swap to avoid the trade.
+> 0:28s - Player over-extended past cover while reloading, exposing to a 90-degree cross-angle. Should have repositioned to hard cover before the magazine swap to avoid the trade.
 
 REQUIREMENTS:
-- Read timestamps DIRECTLY from the [Xs] labels on each image
-- Include both strong plays and mistakes (natural mix, no labels needed)
+- READ the visible timestamp from the top-left corner of each frame
+- Include both strong plays and mistakes naturally
 - Be TECHNICAL - reference specific mechanics, timings, angles, positioning concepts
 - 5-10 key moments based on actual events
 
