@@ -53,27 +53,30 @@ export const handler = async (event: any) => {
       ExpressionAttributeValues: { ':s': 'ANALYZING' },
     }));
     
-    // Use all frames for accurate timestamps (we already extract 1fps)
+    // Sample every 2nd frame to stay within token limits while maintaining timing accuracy
+    // For a 60-second clip: 30 frames instead of 60, still covers every 2 seconds
+    const sampledKeys = frameKeys.filter((_: any, i: number) => i % 2 === 0);
+    
     // Generate signed URLs in parallel for speed
-    const imageUrls = await Promise.all(frameKeys.map(async (key: string) => {
+    const imageUrls = await Promise.all(sampledKeys.map(async (key: string) => {
       const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: key });
       return getSignedUrl(s3, command, { expiresIn: 3600 });
     }));
     
-    // Calculate timing info - each frame represents 1 second
-    const totalFrames = frameKeys.length;
-    const actualDuration = videoDuration || totalFrames; // Use passed duration or estimate from frames
+    // Calculate timing info - we sample every 2nd frame, so each sampled frame represents 2 seconds
+    const totalSampledFrames = sampledKeys.length;
+    const actualDuration = videoDuration || frameKeys.length; // Use passed duration or estimate from all frames
     
     const content: any[] = [
-      { type: "text", text: `Analyze the following sequence of ${totalFrames} frames from a player's gameplay clip. The clip is approximately ${actualDuration} seconds long. Each frame represents 1 second of gameplay, so Frame 1 = 0:00-0:01, Frame 2 = 0:01-0:02, and so on.` }
+      { type: "text", text: `Analyze the following ${totalSampledFrames} frames from a ${actualDuration}-second gameplay clip. Frames are sampled every 2 seconds for efficiency.` }
     ];
     
-    // Add frame number labels for precise timing
+    // Add frames with timestamp context (sampled every 2 seconds)
     for (let i = 0; i < imageUrls.length; i++) {
-      const frameSecond = i; // Frame index = second in video
+      const frameSecond = i * 2; // Each sampled frame = 2 seconds of video
       content.push({
         type: "text", 
-        text: `[FRAME ${i + 1} - Timestamp: 0:${frameSecond.toString().padStart(2, '0')}s]`
+        text: `[${frameSecond}s]` // Simple timestamp marker for internal reference
       });
       content.push({
         type: "image_url",
@@ -88,13 +91,13 @@ export const handler = async (event: any) => {
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
 
 **CRITICAL TIMING INFORMATION:**
-You have received ${totalFrames} frames from a ${actualDuration}-second gameplay clip. 
-- Each frame represents EXACTLY 1 second of gameplay
-- Frame 1 = Second 0 (0:00s), Frame 2 = Second 1 (0:01s), Frame 3 = Second 2 (0:02s), etc.
-- When referencing timestamps, use the EXACT frame number to determine the second
-- Example: If you see action in Frame 5, the timestamp is 0:04s (since Frame 1 = 0:00s)
-- ALWAYS cross-reference your timestamp with which frame number you observed the action in
-- DO NOT estimate or guess timestamps - they must match the frame numbers provided
+You have received ${totalSampledFrames} frames sampled every 2 seconds from a ${actualDuration}-second gameplay clip. 
+- Frame 1 = 0:00s, Frame 2 = 0:02s, Frame 3 = 0:04s, Frame 4 = 0:06s, etc.
+- Each frame number multiplied by 2 minus 2 gives you the timestamp: Frame N = (N-1)*2 seconds
+- Example: Frame 5 = timestamp 0:08s, Frame 10 = timestamp 0:18s, Frame 15 = timestamp 0:28s
+- When you see action in a frame, calculate: timestamp = (frame_number - 1) * 2 seconds
+- ALWAYS cross-reference your timestamp with the frame number you observed the action in
+- DO NOT estimate or guess timestamps - calculate them from the frame numbers
 
 **YOUR ANALYTICAL APPROACH:**
 You analyze gameplay with the expectation of PROFESSIONAL-LEVEL performance. Be CRITICAL, DETAILED, and CONSTRUCTIVE. You're coaching players who want to compete at the highest level. Point out mistakes, missed opportunities, and areas for improvement with SPECIFIC REASONING and EXPLANATIONS. Also acknowledge strong plays and good decision-making, but be honest about what needs work. Provide DETAILED EXPLANATIONS for WHY something is good or bad, not just what happened. Scores should reflect a balanced but STRICT assessment - recognize excellent play when you see it, but don't inflate scores for average performance. Be slightly more critical than overly generous - players need honest feedback to improve.
@@ -113,24 +116,30 @@ You analyze gameplay with the expectation of PROFESSIONAL-LEVEL performance. Be 
 - **CRITICAL: Individual scores MUST vary significantly from the overall score.** If overallScore is 80.0, individual scores should range from approximately 70-90, with some higher and some lower. Do NOT make all scores cluster around the overall score. Each category should reflect its own performance level independently.
 - **IMPORTANT: Be slightly more critical with scoring. If you're unsure between two score ranges, choose the lower one. Players need honest feedback to improve.**
 
-Analyze the ${totalFrames} frames from this ${actualDuration}-second gameplay clip.
+Analyze the ${totalSampledFrames} frames from this ${actualDuration}-second gameplay clip.
 Provide a deeply detailed, pro-level coaching breakdown in the EXACT order specified below:
 
 **1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
-**CRITICAL: Match timestamps EXACTLY to frame numbers. Frame 1 = 0:00s, Frame 2 = 0:01s, etc.**
-Provide specific timestamps in EXACT format based on the frame numbers you observed. Each moment must be on its own line starting with "> " followed by the timestamp, then " - ", then a DETAILED description with REASONING. You MUST provide multiple moments (at least 8-12) covering different frames throughout the clip. For each moment, explain:
-- Which FRAME NUMBER you observed this action in (to verify timestamp accuracy)
+Identify the SIGNIFICANT moments where something important happened - kills, deaths, mistakes, good plays, positioning errors, clutch moments, etc. Do NOT include a moment at 0:00s unless something truly significant happens right at the start. Key moments should be based on ACTUAL GAMEPLAY EVENTS, not evenly distributed across the clip.
+
+For each moment, provide:
+- The timestamp (calculate from frame position: Frame N = (N-1)*2 seconds)
 - WHAT happened
 - WHY it was good or bad
 - WHAT the player should have done differently (if it was a mistake)
 - The CONSEQUENCE or IMPACT of the decision
 
-Format examples (note how frame numbers map to timestamps):
-> 0:04s (Frame 5) - Player engaged with enemy but had poor crosshair placement. Crosshair was positioned at chest level instead of head height, resulting in missed initial shots. This forced the player to readjust mid-fight, losing the advantage. Should have pre-aimed at head height before peeking the corner, as this is a common engagement point. The missed shots allowed the enemy to return fire and deal significant damage.
+Format (timestamps only, NO frame references in output):
+> 0:08s - Player engaged with enemy but had poor crosshair placement. Crosshair was positioned at chest level instead of head height, resulting in missed initial shots. This forced the player to readjust mid-fight, losing the advantage. Should have pre-aimed at head height before peeking the corner, as this is a common engagement point.
 
-> 0:12-0:14s (Frames 13-15) - Player was caught in the open without cover for approximately 2 seconds, leading to taking heavy damage. The player sprinted across an open lane without checking for enemies or having an escape route. This positioning error exposed them to multiple angles simultaneously. Should have used the nearby cover to move more safely, or at minimum, checked the common enemy positions before committing to the rotation. This mistake nearly resulted in elimination.
+> 0:24s - Player was caught in the open without cover, leading to taking heavy damage. The player sprinted across an open lane without checking for enemies. Should have used the nearby cover to move more safely, or checked common enemy positions before committing.
 
-Each moment should be DETAILED with specific reasoning and explanations. Reference the exact frame numbers to ensure timestamp accuracy. Include many moments covering the full clip duration.
+IMPORTANT:
+- Only include moments where something SIGNIFICANT happened (engagements, kills, deaths, major mistakes, good plays)
+- Do NOT start with 0:00s unless there's immediate action
+- Timestamps should be IRREGULAR based on when events actually occur, not evenly spaced
+- Include 5-10 key moments depending on how much action is in the clip
+- Some clips may have more action than others - adjust accordingly
 
 **2. AIM & ACCURACY PERFORMANCE**
 For each aspect, provide DETAILED analysis with:
@@ -208,12 +217,12 @@ The markdownReport MUST follow this EXACT format and order. Use ">" for ALL bull
 
 KEY MOMENTS BREAKDOWN
 
-> 0:04s (Frame 5) - [First detailed moment description with frame reference]
-> 0:12-0:14s (Frames 13-15) - [Second detailed moment description]
-> 0:18s (Frame 19) - [Third detailed moment description]
-> 0:25s (Frame 26) - [Fourth detailed moment description]
-> 0:33s (Frame 34) - [Fifth detailed moment description]
-[Continue with many more moments - reference frame numbers for accuracy]
+> 0:06s - [Moment when first significant action occurs - NOT at 0:00]
+> 0:14s - [Another key moment - timestamp based on actual event]
+> 0:23s - [Key moment - irregular timing based on gameplay]
+> 0:31s - [Important play or mistake]
+> 0:47s - [Another significant event]
+[Include 5-10 moments based on ACTUAL events - timestamps should be irregular, not evenly spaced]
 
 AIM & ACCURACY PERFORMANCE
 
