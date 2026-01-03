@@ -111,10 +111,9 @@ export const handler = async (event: any) => {
       
       await new Promise((resolve, reject) => {
         ffmpeg(localInput)
-          // OPTIMIZED: Scale to 720p max, burn timestamp into each frame
-          // %{n} = frame number (0-indexed), which equals seconds since fps=1
+          // OPTIMIZED: Scale to 720p max, lower quality for faster processing
           .outputOptions([
-            '-vf', `fps=1,scale=1280:720:force_original_aspect_ratio=decrease,drawtext=text='%{n}s':x=20:y=20:fontsize=64:fontcolor=white:borderw=3:bordercolor=black`,
+            '-vf', 'fps=1,scale=1280:720:force_original_aspect_ratio=decrease',
             '-q:v', '8', // JPEG quality (2-31, lower is better quality, 8 is good balance)
             '-threads', '4' // Use multiple threads for faster encoding
           ])
