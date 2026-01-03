@@ -24,7 +24,7 @@ export default function Navbar() {
     } else if (pathname === '/') {
       // Handle scroll-based active links on home page
       const handleScroll = () => {
-        const sections = ['hero', 'how-it-works', 'features', 'pricing'];
+        const sections = ['hero', 'how-it-works', 'features', 'pricing', 'faq'];
         const scrollPosition = window.scrollY + 100;
 
         for (const section of sections) {
@@ -67,6 +67,7 @@ export default function Navbar() {
                 <NavLink href="#how-it-works" isActive={activeLink === 'how-it-works'}>HOW IT WORKS</NavLink>
                 <NavLink href="#features" isActive={activeLink === 'features'}>MODULES</NavLink>
                 <NavLink href="#pricing" isActive={activeLink === 'pricing'}>PRICING</NavLink>
+                <NavLink href="#faq" isActive={activeLink === 'faq'}>FAQ</NavLink>
               </>
             )}
             
@@ -114,6 +115,7 @@ export default function Navbar() {
                   <MobileLink href="#how-it-works" onClick={() => setIsOpen(false)}>HOW IT WORKS</MobileLink>
                   <MobileLink href="#features" onClick={() => setIsOpen(false)}>MODULES</MobileLink>
                   <MobileLink href="#pricing" onClick={() => setIsOpen(false)}>PRICING</MobileLink>
+                  <MobileLink href="#faq" onClick={() => setIsOpen(false)}>FAQ</MobileLink>
                 </>
               )}
               {user ? (

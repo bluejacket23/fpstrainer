@@ -5,15 +5,24 @@ import {
   ArrowRight, Check, Crosshair, Shield, Zap, Target, Activity, Map, Brain, 
   Swords, Settings, Eye, BarChart3, Video, UserCheck, Cpu, Disc, Upload, FileText
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+
+// Wrapper component for sections with scroll animations
+function SectionWrapper({ id, className, children }: { id: string; className?: string; children: React.ReactNode }) {
+  return (
+    <section id={id} className={className}>
+      {children}
+    </section>
+  );
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'how-it-works', 'features', 'pricing'];
+      const sections = ['hero', 'how-it-works', 'features', 'pricing', 'faq'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -152,14 +161,26 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS SECTION */}
-      <section id="how-it-works" className="py-32 relative bg-surface/50 border-t border-white/5">
+      <SectionWrapper id="how-it-works" className="py-32 relative bg-surface/50 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
             <h2 className="text-6xl font-black font-display text-white mb-4 uppercase">How It Works</h2>
             <p className="text-gray-400 font-mono text-sm">AI-POWERED GAMEPLAY ANALYSIS FOR CALL OF DUTY, BATTLEFIELD, APEX LEGENDS, COUNTER-STRIKE, VALORANT & MORE</p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid md:grid-cols-3 gap-8 mb-12"
+          >
             <HowItWorksStep
               number="01"
               icon={<Upload className="w-12 h-12" />}
@@ -178,7 +199,7 @@ export default function Home() {
               title="Get Scoring & Feedback"
               description="Receive detailed scoring across 20+ metrics, personalized coaching feedback, key moments breakdown with timestamps, and actionable training recommendations. Track your progress over time with cumulative statistics."
             />
-          </div>
+          </motion.div>
           
           <div className="mt-16 bg-surface/30 border border-white/10 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-6 text-center">What You Get</h3>
@@ -232,20 +253,26 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* 10-DIMENSION ANALYSIS GRID */}
-      <section id="features" className="py-32 relative bg-surface border-t border-white/5">
+      <SectionWrapper id="features" className="py-32 relative bg-surface border-t border-white/5">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="mb-20 flex items-end justify-between border-b border-white/10 pb-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-20 flex items-end justify-between border-b border-white/10 pb-6"
+          >
             <div>
               <h2 className="text-5xl font-black font-display text-white mb-2">SYSTEM MODULES</h2>
               <p className="text-cyber font-mono text-sm tracking-widest">/// COMPREHENSIVE GAMEPLAY DECONSTRUCTION</p>
             </div>
             <Cpu className="text-white/20 w-16 h-16" />
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -263,20 +290,32 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* PRICING SECTION */}
-      <section id="pricing" className="py-32 relative overflow-hidden bg-void">
+      <SectionWrapper id="pricing" className="py-32 relative overflow-hidden bg-void">
         {/* Gradient Orb */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-electric/10 blur-[150px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
             <h2 className="text-6xl font-black font-display text-white mb-4 uppercase">Select Tier</h2>
             <p className="text-gray-400 font-mono text-sm">UNLOCK ADVANCED TACTICAL DATA</p>
-          </div>
+          </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             <PricingCard 
               title="RECRUIT" 
               price="$0" 
@@ -365,19 +404,31 @@ export default function Home() {
               color="border-yellow-500"
               glow="shadow-[0_0_40px_rgba(255,215,0,0.3)]"
             />
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* FAQ SECTION */}
-      <section id="faq" className="py-32 relative bg-surface/30 border-t border-white/5">
+      <SectionWrapper id="faq" className="py-32 relative bg-surface/30 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h2 className="text-6xl font-black font-display text-white mb-4 uppercase">FAQ</h2>
             <p className="text-gray-400 font-mono text-sm">FREQUENTLY ASKED QUESTIONS</p>
-          </div>
+          </motion.div>
 
-          <div className="space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6"
+          >
             <FAQItem 
               question="What games does FPSTrainer support?"
               answer="FPSTrainer works with all major tactical FPS games including Call of Duty (Warzone, Modern Warfare, Black Ops), Battlefield, Apex Legends, Counter-Strike 2, Valorant, Rainbow Six Siege, and more. As long as you can record gameplay footage, we can analyze it."
@@ -426,9 +477,9 @@ export default function Home() {
               question="What if I'm not satisfied with my analysis?"
               answer="We're constantly improving our AI analysis. If you have feedback or concerns about a specific report, please contact us at fpstrainer@email.com. We take quality seriously and want to ensure you get valuable insights."
             />
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </SectionWrapper>
       
       {/* FOOTER */}
       <footer className="py-8 border-t border-white/10 bg-black">
