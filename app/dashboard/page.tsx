@@ -501,7 +501,7 @@ function ReportCard({ report }: any) {
         </div>
 
         <div className="mt-4 pt-4 border-t border-white/5 flex items-center gap-2 text-sm text-gray-400">
-          <Clock size={14} /> 60s Clip
+          <Clock size={14} /> Video Clip
         </div>
       </div>
     </Link>

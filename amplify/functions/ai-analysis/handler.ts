@@ -53,31 +53,45 @@ export const handler = async (event: any) => {
       ExpressionAttributeValues: { ':s': 'ANALYZING' },
     }));
     
-    // Use ALL frames (1 per second) for maximum timestamp accuracy
+    // Sample every 2nd frame to stay within gpt-4o token limits
+    // This gives us ~22 frames for a 44s clip, covering every 2 seconds
+    const sampledFrameKeys = frameKeys.filter((_: any, i: number) => i % 2 === 0);
+    
+    console.log(`Sampling ${sampledFrameKeys.length} frames from ${frameKeys.length} total (every 2nd frame)`);
+    
     // Generate signed URLs in parallel for speed
-    const imageUrls = await Promise.all(frameKeys.map(async (key: string) => {
+    const imageUrls = await Promise.all(sampledFrameKeys.map(async (key: string) => {
       const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: key });
       return getSignedUrl(s3, command, { expiresIn: 3600 });
     }));
     
-    // Calculate timing info - each frame = 1 second
-    const totalFrames = frameKeys.length;
-    const actualDuration = videoDuration || totalFrames;
+    // Calculate timing info
+    const totalOriginalFrames = frameKeys.length;
+    const actualDuration = Math.round(videoDuration || totalOriginalFrames);
+    const sampledFrameCount = sampledFrameKeys.length;
+    
+    console.log(`Video duration: ${actualDuration}s, Sampled frames: ${sampledFrameCount}`);
     
     const content: any[] = [
-      { type: "text", text: `GAMEPLAY ANALYSIS - ${totalFrames} frames from a ${actualDuration}-second clip.
+      { type: "text", text: `GAMEPLAY ANALYSIS - ${sampledFrameCount} frames sampled every 2 seconds from a ${actualDuration}-second clip.
 
-TIMING RULE: Image #N = timestamp (N-1) seconds. Count the image, subtract 1, that's the second.
-MAXIMUM TIMESTAMP: ${actualDuration - 1}s (clip is ${actualDuration}s long)` }
+CRITICAL TIMING RULE:
+- Each image represents 2 seconds of gameplay
+- Image 1 = 0:00s, Image 2 = 0:02s, Image 3 = 0:04s, Image 4 = 0:06s, etc.
+- Formula: (Image number - 1) × 2 = timestamp in seconds
+- Example: Image 10 = (10-1)×2 = 18 seconds = 0:18s
+- Example: Image 15 = (15-1)×2 = 28 seconds = 0:28s
+
+MAXIMUM TIMESTAMP ALLOWED: ${actualDuration - 1}s (clip is ${actualDuration} seconds)
+DO NOT give any timestamp equal to or exceeding ${actualDuration}s.` }
     ];
     
-    // Add frames with EXPLICIT numbering
+    // Add frames with EXPLICIT timing labels
     for (let i = 0; i < imageUrls.length; i++) {
-      const timestamp = i; // 0-indexed = seconds
-      // Add clear text marker before each image
+      const timestamp = i * 2; // Each sampled frame = 2 seconds (0, 2, 4, 6, ...)
       content.push({
         type: "text",
-        text: `[IMG#${i + 1}=${timestamp}s]`
+        text: `[FRAME ${i + 1} = ${timestamp}s]`
       });
       content.push({
         type: "image_url",
@@ -88,22 +102,25 @@ MAXIMUM TIMESTAMP: ${actualDuration - 1}s (clip is ${actualDuration}s long)` }
       });
     }
     
+    console.log(`Content prepared: ${content.length} items (${sampledFrameCount} images + text labels)`);
+    
     const promptText = `
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
 
-**CRITICAL TIMING - YOU MUST FOLLOW THIS EXACTLY:**
-Images are sent in CHRONOLOGICAL ORDER, one per second.
-- 1st image = 0 seconds (0:00s)
-- 2nd image = 1 second (0:01s)  
-- 5th image = 4 seconds (0:04s)
-- 10th image = 9 seconds (0:09s)
-- 20th image = 19 seconds (0:19s)
-- 30th image = 29 seconds (0:29s)
+**CRITICAL TIMING - READ CAREFULLY:**
+Images are sampled every 2 SECONDS from the video.
+- Frame 1 = 0:00s (start)
+- Frame 2 = 0:02s  
+- Frame 3 = 0:04s
+- Frame 5 = 0:08s
+- Frame 10 = 0:18s
+- Frame 15 = 0:28s
+- Frame 20 = 0:38s
 
-Formula: IMAGE POSITION minus 1 = TIMESTAMP IN SECONDS
-Count which image number you see the action in, subtract 1, that's the timestamp.
+Formula: (FRAME NUMBER - 1) × 2 = TIMESTAMP IN SECONDS
+Each frame label shows [FRAME X = Ys] - USE THE Ys VALUE AS THE TIMESTAMP.
 
-THE CLIP IS ${actualDuration} SECONDS LONG. Do NOT give timestamps beyond ${actualDuration}s.
+THE CLIP IS ${actualDuration} SECONDS LONG. Do NOT give timestamps >= ${actualDuration}s.
 
 **YOUR ANALYTICAL APPROACH:**
 You analyze gameplay like a professional esports coach reviewing VODs. Be TECHNICAL and SPECIFIC.
@@ -133,30 +150,32 @@ You analyze gameplay like a professional esports coach reviewing VODs. Be TECHNI
 5. DO NOT cluster all scores within 5-10 points of each other
 6. A player might have 85 aim but 62 positioning - scores should reflect actual skill differences
 
-Analyze the ${totalFrames} frames from this ${actualDuration}-second gameplay clip.
+Analyze the ${sampledFrameCount} frames from this ${actualDuration}-second gameplay clip.
 Provide a deeply detailed, pro-level coaching breakdown in the EXACT order specified below:
 
 **1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
-Identify SIGNIFICANT gameplay moments - engagements, kills, deaths, positioning decisions, mechanical plays.
+Identify SIGNIFICANT gameplay moments you ACTUALLY SEE in the frames - engagements, kills, deaths, positioning decisions.
 
-**TIMESTAMP ACCURACY:** Each image has a label like [IMG#12=11s] directly before it. The number after = IS the timestamp.
-- If you see action in an image labeled [IMG#12=11s], the timestamp is 0:11s
-- If you see action in an image labeled [IMG#30=29s], the timestamp is 0:29s
-- USE THE EXACT SECOND FROM THE LABEL. Do NOT exceed ${actualDuration}s.
+**TIMESTAMP ACCURACY:** Each frame has a label [FRAME X = Ys]. USE THE Ys VALUE as your timestamp.
+- [FRAME 5 = 8s] means the timestamp is 0:08s
+- [FRAME 10 = 18s] means the timestamp is 0:18s
+- [FRAME 15 = 28s] means the timestamp is 0:28s
+- MAXIMUM allowed timestamp: ${actualDuration - 1}s
 
-**BE TECHNICAL AND SPECIFIC:** Use precise FPS terminology - crosshair placement, strafe direction, peek timing, trade potential, angle isolation.
+**ONLY REPORT WHAT YOU SEE:** Do not invent events. If you see a kill feed, report it. If you see the player taking damage, report it. If you see crosshair on an enemy, report it. Do NOT hallucinate events.
 
-Format (use timestamps from image labels):
-> 0:11s - Player executed a clean flick to secure the elimination. Crosshair was pre-positioned at head height, minimizing adjustment distance. Clean trigger discipline with controlled burst fire.
+**BE TECHNICAL AND SPECIFIC:** Use FPS terminology - crosshair placement, strafe direction, peek timing, angle isolation.
 
-> 0:29s - Player over-extended past cover while reloading, exposing to a cross-angle. Should have repositioned to hard cover before reloading.
+Format:
+> 0:08s - [Describe what you ACTUALLY SEE in Frame 5]
+
+> 0:18s - [Describe what you ACTUALLY SEE in Frame 10]
 
 REQUIREMENTS:
-- USE timestamps from the [IMG#X=Ys] labels before each image
+- READ the timestamp from [FRAME X = Ys] labels
+- ONLY describe what you can ACTUALLY SEE in the frames
 - Max timestamp is ${actualDuration - 1}s
-- Include both strong plays and mistakes naturally
-- Be TECHNICAL - reference specific mechanics, angles, positioning
-- 5-10 key moments based on actual events
+- 5-10 key moments based on VISIBLE events
 
 **2. AIM & ACCURACY PERFORMANCE**
 For each aspect, provide DETAILED analysis with:
@@ -428,7 +447,7 @@ CRITICAL FORMATTING RULES:
     
     console.log('Calling OpenAI API...');
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-4o",
       messages: [
         {
           role: "user",
