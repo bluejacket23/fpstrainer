@@ -5,7 +5,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import { useParams } from "next/navigation";
-import { Loader2, AlertTriangle, CheckCircle, Target, Activity, Map, Brain, Swords, Shield } from "lucide-react";
+import { Loader2, AlertTriangle, CheckCircle, Target, Activity, Map, Brain, Swords, Shield, Share2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 const client = generateClient<Schema>();
@@ -332,37 +332,15 @@ function ReportContent({ user }: { user: any }) {
           <div className="bg-surface p-8 rounded-2xl border border-white/10">
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-3xl font-bold text-white">Coaching Report</h1>
-              <div className="flex gap-3">
-                <button
-                  onClick={async () => {
-                    try {
-                      const scorecard = report.aiReportJson || {};
-                      if (!scorecard || Object.keys(scorecard).length === 0) {
-                        alert('No scorecard data available to generate graphic.');
-                        return;
-                      }
-                      
-                      // Generate shareable graphic client-side
-                      await generateShareableGraphic(scorecard);
-                    } catch (error: any) {
-                      console.error('Error generating graphic:', error);
-                      alert('Failed to generate graphic: ' + error.message);
-                    }
-                  }}
-                  className="px-4 py-2 bg-neon/20 border border-neon text-neon rounded font-bold hover:bg-neon/30 transition-colors text-sm"
-                >
-                  Share Graphic
-                </button>
-                <button
-                  onClick={() => {
-                    // TODO: Check user plan and implement 8-week program
-                    alert('8-Week Training Program feature coming soon! Available for Elite plan and above.');
-                  }}
-                  className="px-4 py-2 bg-purple-500/20 border border-purple-500 text-purple-400 rounded font-bold hover:bg-purple-500/30 transition-colors text-sm"
-                >
-                  8-Week Program
-                </button>
-              </div>
+              <button
+                onClick={() => {
+                  // TODO: Check user plan and implement 8-week program
+                  alert('8-Week Training Program feature coming soon! Available for Elite plan and above.');
+                }}
+                className="px-4 py-2 bg-purple-500/20 border border-purple-500 text-purple-400 rounded font-bold hover:bg-purple-500/30 transition-colors text-sm"
+              >
+                8-Week Program
+              </button>
             </div>
             <div className="prose prose-invert max-w-none whitespace-pre-wrap">
               {renderMarkdown(report.aiReportMarkdown || 'No report content available.')}
@@ -374,7 +352,28 @@ function ReportContent({ user }: { user: any }) {
         {hasScorecard && (
           <div className="lg:col-span-1">
             <div className="bg-surface p-6 rounded-2xl border border-white/10 sticky top-4">
-              <h2 className="text-xl font-bold text-white mb-6">Performance Scorecard</h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-white">Performance Scorecard</h2>
+                <button
+                  onClick={async () => {
+                    try {
+                      const scorecard = report.aiReportJson || {};
+                      if (!scorecard || Object.keys(scorecard).length === 0) {
+                        alert('No scorecard data available to generate graphic.');
+                        return;
+                      }
+                      await generateShareableGraphic(scorecard);
+                    } catch (error: any) {
+                      console.error('Error generating graphic:', error);
+                      alert('Failed to generate graphic: ' + error.message);
+                    }
+                  }}
+                  className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
+                  title="Share Scorecard"
+                >
+                  <Share2 size={20} />
+                </button>
+              </div>
               
               <div className="space-y-3 grid grid-cols-2 gap-3">
                 {/* Overall Score */}
@@ -671,94 +670,375 @@ function renderMarkdown(markdown: string): JSX.Element {
   return <div>{processedLines}</div>;
 }
 
+// Helper function to get performance color based on score
+function getPerformanceColor(score: number): string {
+  if (score >= 85) return '#2FFFD5'; // Neon teal/green for elite
+  if (score >= 75) return '#00E5FF'; // Soft cyan for strong
+  if (score >= 65) return '#FFB84D'; // Amber for needs work
+  return '#FF8C42'; // Orange for below average
+}
+
+// Helper function to draw corner brackets (HUD element)
+function drawCornerBrackets(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, color: string) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  // Top-left corner
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + size, y);
+  ctx.moveTo(x, y);
+  ctx.lineTo(x, y + size);
+  ctx.stroke();
+  // Top-right corner
+  ctx.beginPath();
+  ctx.moveTo(x + size, y);
+  ctx.lineTo(x, y);
+  ctx.moveTo(x + size, y);
+  ctx.lineTo(x + size, y + size);
+  ctx.stroke();
+}
+
+// Helper function to draw circular progress gauge
+function drawCircularGauge(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, score: number, color: string) {
+  const startAngle = -Math.PI / 2; // Start at top
+  const endAngle = startAngle + (2 * Math.PI * score / 100);
+  
+  // Background circle
+  ctx.strokeStyle = 'rgba(139, 148, 158, 0.2)';
+  ctx.lineWidth = 12;
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.stroke();
+  
+  // Progress arc with glow
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 20;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 12;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.arc(x, y, radius, startAngle, endAngle);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  
+  // Score text in center
+  ctx.fillStyle = '#E6EDF3';
+  ctx.font = `bold ${radius * 0.5}px "Inter", sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(score.toFixed(1), x, y);
+  
+  // Label below
+  ctx.fillStyle = '#8B949E';
+  ctx.font = `14px "Inter", sans-serif`;
+  ctx.textBaseline = 'top';
+  ctx.fillText('OVERALL', x, y + radius * 0.6);
+}
+
 async function generateShareableGraphic(scorecard: any) {
-  // Create canvas
+  // Create canvas - optimized for social media
   const canvas = document.createElement('canvas');
   canvas.width = 1200;
-  canvas.height = 1600;
+  canvas.height = 1500;
   const ctx = canvas.getContext('2d');
   if (!ctx) {
     throw new Error('Could not get canvas context');
   }
   
-  // Dark background
-  ctx.fillStyle = '#050505';
+  // Color system
+  const colors = {
+    bg: '#0B0F14',
+    accent: '#00E5FF',
+    accentSecondary: '#7C7CFF',
+    textPrimary: '#E6EDF3',
+    textSecondary: '#8B949E',
+  };
+  
+  // Deep charcoal background
+  ctx.fillStyle = colors.bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  // Add grid pattern
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+  // Subtle diagonal grid texture (5-10% opacity)
+  ctx.strokeStyle = 'rgba(0, 229, 255, 0.05)';
   ctx.lineWidth = 1;
-  for (let i = 0; i < canvas.width; i += 50) {
+  for (let i = -canvas.height; i < canvas.width + canvas.height; i += 60) {
     ctx.beginPath();
     ctx.moveTo(i, 0);
-    ctx.lineTo(i, canvas.height);
-    ctx.stroke();
-  }
-  for (let i = 0; i < canvas.height; i += 50) {
-    ctx.beginPath();
-    ctx.moveTo(0, i);
-    ctx.lineTo(canvas.width, i);
+    ctx.lineTo(i + canvas.height, canvas.height);
     ctx.stroke();
   }
   
-  // Title
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 72px Arial';
+  // HUD corner brackets
+  const bracketSize = 40;
+  const bracketColor = colors.accent;
+  drawCornerBrackets(ctx, 60, 60, bracketSize, bracketColor);
+  drawCornerBrackets(ctx, canvas.width - 60 - bracketSize, 60, bracketSize, bracketColor);
+  drawCornerBrackets(ctx, 60, canvas.height - 60 - bracketSize, bracketSize, bracketColor);
+  drawCornerBrackets(ctx, canvas.width - 60 - bracketSize, canvas.height - 60 - bracketSize, bracketSize, bracketColor);
+  
+  // Logo (top center, matching navbar style)
+  const logoY = 60;
+  const iconSize = 24;
+  const iconGap = 12;
+  
+  // Set font to measure text widths
+  ctx.font = 'bold 32px "Inter", sans-serif';
+  ctx.textAlign = 'left';
+  const fpsWidth = ctx.measureText('FPS').width;
+  const trainerWidth = ctx.measureText('TRAINER').width;
+  
+  // Calculate total logo width (icon + gap + text)
+  const totalLogoWidth = iconSize + iconGap + fpsWidth + trainerWidth;
+  const logoStartX = (canvas.width / 2) - (totalLogoWidth / 2);
+  
+  // Draw CPU icon (simplified geometric representation) - centered
+  const iconX = logoStartX;
+  const iconY = logoY + 12;
+  
+  // CPU chip icon - outer rectangle
+  ctx.strokeStyle = colors.accent;
+  ctx.lineWidth = 2;
+  ctx.strokeRect(iconX, iconY, iconSize, iconSize);
+  
+  // CPU chip icon - inner lines (circuit pattern)
+  ctx.strokeStyle = colors.accent;
+  ctx.lineWidth = 1;
+  // Horizontal lines
+  ctx.beginPath();
+  ctx.moveTo(iconX + 6, iconY + iconSize / 3);
+  ctx.lineTo(iconX + iconSize - 6, iconY + iconSize / 3);
+  ctx.moveTo(iconX + 6, iconY + (iconSize * 2) / 3);
+  ctx.lineTo(iconX + iconSize - 6, iconY + (iconSize * 2) / 3);
+  ctx.stroke();
+  // Vertical lines
+  ctx.beginPath();
+  ctx.moveTo(iconX + iconSize / 3, iconY + 6);
+  ctx.lineTo(iconX + iconSize / 3, iconY + iconSize - 6);
+  ctx.moveTo(iconX + (iconSize * 2) / 3, iconY + 6);
+  ctx.lineTo(iconX + (iconSize * 2) / 3, iconY + iconSize - 6);
+  ctx.stroke();
+  
+  // Logo text: "FPS" in white, "TRAINER" in neon - centered
+  const logoTextX = iconX + iconSize + iconGap;
+  const logoTextY = logoY + 20;
+  
+  ctx.textBaseline = 'middle';
+  
+  // "FPS" in white
+  ctx.fillStyle = colors.textPrimary;
+  ctx.fillText('FPS', logoTextX, logoTextY);
+  
+  // "TRAINER" in neon
+  ctx.fillStyle = colors.accent;
+  ctx.fillText('TRAINER', logoTextX + fpsWidth, logoTextY);
+  
+  // Subtitle below logo (centered)
+  ctx.fillStyle = colors.textSecondary;
+  ctx.font = '12px "Inter", sans-serif';
+  ctx.letterSpacing = '0.08em';
   ctx.textAlign = 'center';
-  ctx.fillText('FPS TRAINER', canvas.width / 2, 100);
+  ctx.textBaseline = 'top';
+  ctx.fillText('PERFORMANCE SCORECARD', canvas.width / 2, logoTextY + 20);
+  ctx.letterSpacing = '0';
   
-  ctx.fillStyle = '#00ff9d';
-  ctx.font = 'bold 48px Arial';
-  ctx.fillText('PERFORMANCE SCORECARD', canvas.width / 2, 180);
-  
-  // Overall Score (large)
+  // Hero Overall Score - Circular Gauge (top center)
   const overallScore = scorecard.overallScore || scorecard.scorecard?.overallScore || 0;
-  const overallColor = getScoreColor(overallScore);
-  ctx.fillStyle = overallColor;
-  ctx.font = 'bold 120px Arial';
-  ctx.fillText(overallScore.toFixed(1), canvas.width / 2, 320);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '36px Arial';
-  ctx.fillText('OVERALL SCORE', canvas.width / 2, 380);
+  const overallColor = getPerformanceColor(overallScore);
+  const gaugeX = canvas.width / 2;
+  const gaugeY = 240;
+  const gaugeRadius = 90;
   
-  // Key metrics grid
-  let yPos = 480;
-  const metrics = [
-    { label: 'Aim Accuracy', value: scorecard.aimAccuracy || scorecard.scorecard?.aimAccuracy },
-    { label: 'Movement', value: scorecard.movementMechanics || scorecard.scorecard?.movementMechanics },
-    { label: 'Positioning', value: scorecard.positioning || scorecard.scorecard?.positioning },
-    { label: 'Game Sense', value: scorecard.gameSense || scorecard.scorecard?.gameSense },
-    { label: 'Engagement', value: scorecard.engagementQuality || scorecard.scorecard?.engagementQuality },
-  ].filter(m => m.value !== undefined);
+  drawCircularGauge(ctx, gaugeX, gaugeY, gaugeRadius, overallScore, overallColor);
   
-  metrics.forEach((metric, index) => {
-    const x = index % 2 === 0 ? canvas.width / 4 : (canvas.width * 3) / 4;
-    if (index % 2 === 0 && index > 0) yPos += 180;
+  // Label below gauge
+  ctx.fillStyle = colors.textSecondary;
+  ctx.font = '11px "Inter", sans-serif';
+  ctx.letterSpacing = '0.1em';
+  ctx.textAlign = 'center';
+  ctx.fillText('OVERALL PERFORMANCE SCORE', gaugeX, gaugeY + gaugeRadius + 25);
+  ctx.letterSpacing = '0';
+  
+  // Collect and group ALL metrics
+  const sc = scorecard.scorecard || scorecard;
+  
+  const skillGroups = {
+    'AIM & MECHANICS': [] as Array<{ label: string; value: number }>,
+    'MOVEMENT & CONTROL': [] as Array<{ label: string; value: number }>,
+    'GAME INTELLIGENCE': [] as Array<{ label: string; value: number }>,
+    'SURVIVABILITY & ENGAGEMENT': [] as Array<{ label: string; value: number }>,
+  };
+  
+  // Aim & Mechanics
+  if (sc.aimAccuracy !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Aim Accuracy', value: sc.aimAccuracy });
+  if (sc.firstShotAccuracy !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'First Shot Accuracy', value: sc.firstShotAccuracy });
+  if (sc.crosshairPlacement !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Crosshair Placement', value: sc.crosshairPlacement });
+  if (sc.trackingStability !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Tracking Stability', value: sc.trackingStability });
+  if (sc.reactionTime !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Reaction Time', value: sc.reactionTime });
+  if (sc.recoilControl !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Recoil Control', value: sc.recoilControl });
+  if (sc.flickTiming !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Flick Timing', value: sc.flickTiming });
+  if (sc.adsTiming !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'ADS Timing', value: sc.adsTiming });
+  if (sc.strafingAimQuality !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Strafing Aim', value: sc.strafingAimQuality });
+  
+  // Movement & Control
+  if (sc.movementMechanics !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Movement', value: sc.movementMechanics });
+  if (sc.strafingTechnique !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Strafing Technique', value: sc.strafingTechnique });
+  if (sc.rotationEfficiency !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Rotation Efficiency', value: sc.rotationEfficiency });
+  if (sc.mechanicalConsistency !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Mechanical Consistency', value: sc.mechanicalConsistency });
+  if (sc.slideTiming !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Slide Timing', value: sc.slideTiming });
+  if (sc.jumpShotUsage !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Jump Shot Usage', value: sc.jumpShotUsage });
+  if (sc.peekingTechnique !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Peeking Technique', value: sc.peekingTechnique });
+  
+  // Game Intelligence
+  if (sc.gameSense !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Game Sense', value: sc.gameSense });
+  if (sc.mapAwareness !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Map Awareness', value: sc.mapAwareness });
+  if (sc.positioning !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Positioning', value: sc.positioning });
+  if (sc.situationalAwareness !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Situational Awareness', value: sc.situationalAwareness });
+  if (sc.coverUsage !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Cover Usage', value: sc.coverUsage });
+  if (sc.angleSelection !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Angle Selection', value: sc.angleSelection });
+  if (sc.predictability !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Predictability', value: sc.predictability });
+  if (sc.awarenessChecks !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Awareness Checks', value: sc.awarenessChecks });
+  if (sc.rotationTiming !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Rotation Timing', value: sc.rotationTiming });
+  
+  // Survivability & Engagement
+  if (sc.engagementQuality !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Engagement', value: sc.engagementQuality });
+  if (sc.survivability !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Survivability', value: sc.survivability });
+  if (sc.confidenceRating !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Confidence Rating', value: sc.confidenceRating });
+  if (sc.openingShotTiming !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Opening Shot Timing', value: sc.openingShotTiming });
+  if (sc.fightInitiations !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Fight Initiations', value: sc.fightInitiations });
+  if (sc.weaponSwapSpeed !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Weapon Swap Speed', value: sc.weaponSwapSpeed });
+  if (sc.reloadTiming !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Reload Timing', value: sc.reloadTiming });
+  if (sc.disengagementTiming !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Disengagement Timing', value: sc.disengagementTiming });
+  if (sc.lanePressure !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Lane Pressure', value: sc.lanePressure });
+  if (sc.tempoRating !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Tempo Rating', value: sc.tempoRating });
+  
+  // Render skill groups in card-based layout
+  let currentY = 400;
+  const cardPadding = 30;
+  const sectionSpacing = 30; // Space between sections
+  const headerToCardSpacing = 24; // Minimum spacing between header and card (enforced)
+  const cardWidth = canvas.width - (cardPadding * 2);
+  const cardCornerRadius = 12;
+  
+  Object.entries(skillGroups).forEach(([groupName, metrics]) => {
+    if (metrics.length === 0) return;
     
-    const color = getScoreColor(metric.value);
-    ctx.fillStyle = color;
-    ctx.font = 'bold 64px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(metric.value.toFixed(1), x, yPos);
+    // Group header - OUTSIDE and ABOVE the card
+    ctx.fillStyle = colors.accent;
+    ctx.font = 'bold 18px "Inter", sans-serif';
+    ctx.letterSpacing = '0.08em';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(groupName, cardPadding, currentY);
+    ctx.letterSpacing = '0';
     
-    ctx.fillStyle = '#888888';
-    ctx.font = '24px Arial';
-    ctx.fillText(metric.label, x, yPos + 50);
+    // Enforce minimum 24px spacing between header and card
+    currentY += 18 + headerToCardSpacing; // Header height + enforced spacing
     
-    // Progress bar
-    const barWidth = 200;
-    const barHeight = 8;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-    ctx.fillRect(x - barWidth / 2, yPos + 70, barWidth, barHeight);
-    ctx.fillStyle = color;
-    ctx.fillRect(x - barWidth / 2, yPos + 70, (barWidth * metric.value) / 100, barHeight);
+    // Calculate card dimensions
+    const metricCols = 3;
+    const metricRows = Math.ceil(metrics.length / metricCols);
+    const metricCardHeight = 75; // Fixed height per metric card
+    const cardInternalPadding = 20; // Padding inside card
+    const cardHeight = (metricRows * metricCardHeight) + (cardInternalPadding * 2);
+    const cardX = cardPadding;
+    const cardY = currentY;
+    
+    // Card shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+    roundRect(ctx, cardX + 4, cardY + 4, cardWidth, cardHeight, cardCornerRadius);
+    ctx.fill();
+    
+    // Card background
+    ctx.fillStyle = 'rgba(230, 237, 243, 0.03)';
+    roundRect(ctx, cardX, cardY, cardWidth, cardHeight, cardCornerRadius);
+    ctx.fill();
+    
+    // Card border (subtle)
+    ctx.strokeStyle = 'rgba(0, 229, 255, 0.15)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, cardX, cardY, cardWidth, cardHeight, cardCornerRadius);
+    ctx.stroke();
+    
+    // Render metrics in 3-column grid within card
+    const metricColWidth = cardWidth / metricCols;
+    
+    metrics.forEach((metric, index) => {
+      const col = index % metricCols;
+      const row = Math.floor(index / metricCols);
+      
+      // Calculate metric card boundaries (strict container)
+      const metricCardX = cardX + (col * metricColWidth);
+      const metricCardY = cardY + cardInternalPadding + (row * metricCardHeight);
+      const metricCardWidth = metricColWidth;
+      
+      // Center point within THIS metric card only
+      const metricX = metricCardX + (metricCardWidth / 2);
+      
+      const metricColor = getPerformanceColor(metric.value);
+      
+      // TOP ZONE: Label (metric name only)
+      const labelY = metricCardY + 8; // Fixed position from top of card
+      ctx.fillStyle = colors.textSecondary;
+      ctx.font = '10px "Inter", sans-serif';
+      ctx.letterSpacing = '0.08em';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(metric.label.toUpperCase(), metricX, labelY);
+      ctx.letterSpacing = '0';
+      
+      // MIDDLE ZONE: Numeric score (vertically centered within THIS card)
+      const scoreY = metricCardY + (metricCardHeight / 2); // True vertical center of THIS card
+      ctx.fillStyle = metricColor;
+      ctx.font = `bold 30px "Inter", sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(metric.value.toFixed(1), metricX, scoreY);
+      
+      // BOTTOM ZONE: Thin accent divider line
+      const dividerY = metricCardY + metricCardHeight - 12; // Fixed position from bottom
+      const dividerWidth = metricCardWidth - 20;
+      const dividerHeight = 1;
+      const dividerX = metricCardX + 10;
+      
+      // Background line
+      ctx.fillStyle = 'rgba(139, 148, 158, 0.1)';
+      ctx.fillRect(dividerX, dividerY, dividerWidth, dividerHeight);
+      
+      // Progress line (only add glow for elite scores 85+)
+      if (metric.value >= 85) {
+        ctx.shadowColor = metricColor;
+        ctx.shadowBlur = 8;
+      }
+      ctx.fillStyle = metricColor;
+      ctx.fillRect(dividerX, dividerY, (dividerWidth * metric.value) / 100, dividerHeight);
+      ctx.shadowBlur = 0;
+    });
+    
+    // Move to next section (card height + spacing)
+    currentY += cardHeight + sectionSpacing;
   });
   
-  // FPSTrainer branding (small, bottom)
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-  ctx.font = '20px Arial';
+  // Branding at bottom
+  ctx.fillStyle = colors.textSecondary;
+  ctx.font = '14px "Inter", sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('FPSTrainer.com', canvas.width / 2, canvas.height - 40);
+  ctx.textBaseline = 'bottom';
+  ctx.fillText('fpstrainer.io', canvas.width / 2, canvas.height - 40);
+  
+  // Helper function for rounded rectangles
+  function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+  }
   
   // Convert to image and download
   canvas.toBlob((blob) => {

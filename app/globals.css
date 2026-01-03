@@ -96,7 +96,7 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
 }
 
-/* Scrolling text animation - seamless loop */
+/* Scrolling text animation - seamless loop (Ferris wheel effect) */
 @keyframes scroll-up {
   0% {
     transform: translateY(0);
@@ -107,7 +107,13 @@ body {
 }
 
 .animate-scroll-up {
-  animation: scroll-up 16s linear infinite;
+  animation: scroll-up 48s linear infinite;
+}
+
+/* Force font-normal on all scrolling text to prevent bold glitch */
+.animate-scroll-up > div {
+  font-weight: normal !important;
+  font-style: normal;
 }
 
 /* Fade mask for smooth top/bottom fade - each line fades individually as it enters/exits */

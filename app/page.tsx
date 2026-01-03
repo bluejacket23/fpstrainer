@@ -66,82 +66,82 @@ export default function Home() {
             </h2>
             
             <div className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto font-mono text-left h-32 overflow-hidden relative mask-fade">
-              <div className="absolute inset-0 flex flex-col justify-center space-y-2 animate-scroll-up">
+              <div className="absolute top-0 left-0 right-0 flex flex-col space-y-2 animate-scroll-up">
                 {/* First set - will loop seamlessly */}
-                <div>&gt; ANALYZING GAMEPLAY...</div>
-                <div>&gt; EXTRACTING FRAMES FROM VIDEO...</div>
-                <div>&gt; PROCESSING VISUAL DATA...</div>
-                <div>&gt; CALCULATING AIM ACCURACY METRICS...</div>
-                <div>&gt; EVALUATING MOVEMENT PATTERNS...</div>
-                <div>&gt; ASSESSING POSITIONING STRATEGY...</div>
-                <div>&gt; ANALYZING ENGAGEMENT QUALITY...</div>
-                <div>&gt; SCANNING FOR IMPROVEMENT OPPORTUNITIES...</div>
-                <div>&gt; PROCESSING ADVANCED METRICS...</div>
-                <div>&gt; GENERATING COACHING INSIGHTS...</div>
-                <div>&gt; COMPILING PERFORMANCE SCORECARD...</div>
-                <div>&gt; IDENTIFYING KEY MOMENTS...</div>
-                <div>&gt; EVALUATING GAME SENSE...</div>
-                <div>&gt; ANALYZING WEAPON HANDLING...</div>
-                <div>&gt; ASSESSING SURVIVABILITY FACTORS...</div>
-                <div>&gt; PROCESSING TACTICAL DECISIONS...</div>
-                <div>&gt; CALCULATING PREDICTABILITY SCORE...</div>
-                <div>&gt; EVALUATING MECHANICAL CONSISTENCY...</div>
-                <div>&gt; GENERATING PERSONALIZED FEEDBACK...</div>
-                <div>&gt; FINALIZING ANALYSIS REPORT...</div>
-                <div>&gt; COMPUTING CROSSHAIR PLACEMENT ACCURACY...</div>
-                <div>&gt; ANALYZING RECOIL CONTROL PATTERNS...</div>
-                <div>&gt; EVALUATING FIRST-SHOT HIT RATE...</div>
-                <div>&gt; PROCESSING STRAFING MECHANICS...</div>
-                <div>&gt; CALCULATING ROTATION EFFICIENCY...</div>
-                <div>&gt; ASSESSING COVER UTILIZATION...</div>
-                <div>&gt; ANALYZING PEEKING TECHNIQUES...</div>
-                <div>&gt; EVALUATING LANE PRESSURE METRICS...</div>
-                <div>&gt; PROCESSING TEMPO RATING ANALYSIS...</div>
-                <div>&gt; CALCULATING ENGAGEMENT WIN RATE...</div>
-                <div>&gt; ASSESSING DISENGAGEMENT TIMING...</div>
-                <div>&gt; ANALYZING WEAPON SWAP EFFICIENCY...</div>
-                <div>&gt; EVALUATING RELOAD TIMING OPTIMIZATION...</div>
+                <div className="font-normal">&gt; ANALYZING GAMEPLAY...</div>
+                <div className="font-normal">&gt; EXTRACTING FRAMES FROM VIDEO...</div>
+                <div className="font-normal">&gt; PROCESSING VISUAL DATA...</div>
+                <div className="font-normal">&gt; CALCULATING AIM ACCURACY METRICS...</div>
+                <div className="font-normal">&gt; EVALUATING MOVEMENT PATTERNS...</div>
+                <div className="font-normal">&gt; ASSESSING POSITIONING STRATEGY...</div>
+                <div className="font-normal">&gt; ANALYZING ENGAGEMENT QUALITY...</div>
+                <div className="font-normal">&gt; SCANNING FOR IMPROVEMENT OPPORTUNITIES...</div>
+                <div className="font-normal">&gt; PROCESSING ADVANCED METRICS...</div>
+                <div className="font-normal">&gt; GENERATING COACHING INSIGHTS...</div>
+                <div className="font-normal">&gt; COMPILING PERFORMANCE SCORECARD...</div>
+                <div className="font-normal">&gt; IDENTIFYING KEY MOMENTS...</div>
+                <div className="font-normal">&gt; EVALUATING GAME SENSE...</div>
+                <div className="font-normal">&gt; ANALYZING WEAPON HANDLING...</div>
+                <div className="font-normal">&gt; ASSESSING SURVIVABILITY FACTORS...</div>
+                <div className="font-normal">&gt; PROCESSING TACTICAL DECISIONS...</div>
+                <div className="font-normal">&gt; CALCULATING PREDICTABILITY SCORE...</div>
+                <div className="font-normal">&gt; EVALUATING MECHANICAL CONSISTENCY...</div>
+                <div className="font-normal">&gt; GENERATING PERSONALIZED FEEDBACK...</div>
+                <div className="font-normal">&gt; FINALIZING ANALYSIS REPORT...</div>
+                <div className="font-normal">&gt; COMPUTING CROSSHAIR PLACEMENT ACCURACY...</div>
+                <div className="font-normal">&gt; ANALYZING RECOIL CONTROL PATTERNS...</div>
+                <div className="font-normal">&gt; EVALUATING FIRST-SHOT HIT RATE...</div>
+                <div className="font-normal">&gt; PROCESSING STRAFING MECHANICS...</div>
+                <div className="font-normal">&gt; CALCULATING ROTATION EFFICIENCY...</div>
+                <div className="font-normal">&gt; ASSESSING COVER UTILIZATION...</div>
+                <div className="font-normal">&gt; ANALYZING PEEKING TECHNIQUES...</div>
+                <div className="font-normal">&gt; EVALUATING LANE PRESSURE METRICS...</div>
+                <div className="font-normal">&gt; PROCESSING TEMPO RATING ANALYSIS...</div>
+                <div className="font-normal">&gt; CALCULATING ENGAGEMENT WIN RATE...</div>
+                <div className="font-normal">&gt; ASSESSING DISENGAGEMENT TIMING...</div>
+                <div className="font-normal">&gt; ANALYZING WEAPON SWAP EFFICIENCY...</div>
+                <div className="font-normal">&gt; EVALUATING RELOAD TIMING OPTIMIZATION...</div>
                 {/* Duplicate set for seamless loop */}
-                <div>&gt; ANALYZING GAMEPLAY...</div>
-                <div>&gt; EXTRACTING FRAMES FROM VIDEO...</div>
-                <div>&gt; PROCESSING VISUAL DATA...</div>
-                <div>&gt; CALCULATING AIM ACCURACY METRICS...</div>
-                <div>&gt; EVALUATING MOVEMENT PATTERNS...</div>
-                <div>&gt; ASSESSING POSITIONING STRATEGY...</div>
-                <div>&gt; ANALYZING ENGAGEMENT QUALITY...</div>
-                <div>&gt; SCANNING FOR IMPROVEMENT OPPORTUNITIES...</div>
-                <div>&gt; PROCESSING ADVANCED METRICS...</div>
-                <div>&gt; GENERATING COACHING INSIGHTS...</div>
-                <div>&gt; COMPILING PERFORMANCE SCORECARD...</div>
-                <div>&gt; IDENTIFYING KEY MOMENTS...</div>
-                <div>&gt; EVALUATING GAME SENSE...</div>
-                <div>&gt; ANALYZING WEAPON HANDLING...</div>
-                <div>&gt; ASSESSING SURVIVABILITY FACTORS...</div>
-                <div>&gt; PROCESSING TACTICAL DECISIONS...</div>
-                <div>&gt; CALCULATING PREDICTABILITY SCORE...</div>
-                <div>&gt; EVALUATING MECHANICAL CONSISTENCY...</div>
-                <div>&gt; GENERATING PERSONALIZED FEEDBACK...</div>
-                <div>&gt; FINALIZING ANALYSIS REPORT...</div>
-                <div>&gt; COMPUTING CROSSHAIR PLACEMENT ACCURACY...</div>
-                <div>&gt; ANALYZING RECOIL CONTROL PATTERNS...</div>
-                <div>&gt; EVALUATING FIRST-SHOT HIT RATE...</div>
-                <div>&gt; PROCESSING STRAFING MECHANICS...</div>
-                <div>&gt; CALCULATING ROTATION EFFICIENCY...</div>
-                <div>&gt; ASSESSING COVER UTILIZATION...</div>
-                <div>&gt; ANALYZING PEEKING TECHNIQUES...</div>
-                <div>&gt; EVALUATING LANE PRESSURE METRICS...</div>
-                <div>&gt; PROCESSING TEMPO RATING ANALYSIS...</div>
-                <div>&gt; CALCULATING ENGAGEMENT WIN RATE...</div>
-                <div>&gt; ASSESSING DISENGAGEMENT TIMING...</div>
-                <div>&gt; ANALYZING WEAPON SWAP EFFICIENCY...</div>
-                <div>&gt; EVALUATING RELOAD TIMING OPTIMIZATION...</div>
+                <div className="font-normal">&gt; ANALYZING GAMEPLAY...</div>
+                <div className="font-normal">&gt; EXTRACTING FRAMES FROM VIDEO...</div>
+                <div className="font-normal">&gt; PROCESSING VISUAL DATA...</div>
+                <div className="font-normal">&gt; CALCULATING AIM ACCURACY METRICS...</div>
+                <div className="font-normal">&gt; EVALUATING MOVEMENT PATTERNS...</div>
+                <div className="font-normal">&gt; ASSESSING POSITIONING STRATEGY...</div>
+                <div className="font-normal">&gt; ANALYZING ENGAGEMENT QUALITY...</div>
+                <div className="font-normal">&gt; SCANNING FOR IMPROVEMENT OPPORTUNITIES...</div>
+                <div className="font-normal">&gt; PROCESSING ADVANCED METRICS...</div>
+                <div className="font-normal">&gt; GENERATING COACHING INSIGHTS...</div>
+                <div className="font-normal">&gt; COMPILING PERFORMANCE SCORECARD...</div>
+                <div className="font-normal">&gt; IDENTIFYING KEY MOMENTS...</div>
+                <div className="font-normal">&gt; EVALUATING GAME SENSE...</div>
+                <div className="font-normal">&gt; ANALYZING WEAPON HANDLING...</div>
+                <div className="font-normal">&gt; ASSESSING SURVIVABILITY FACTORS...</div>
+                <div className="font-normal">&gt; PROCESSING TACTICAL DECISIONS...</div>
+                <div className="font-normal">&gt; CALCULATING PREDICTABILITY SCORE...</div>
+                <div className="font-normal">&gt; EVALUATING MECHANICAL CONSISTENCY...</div>
+                <div className="font-normal">&gt; GENERATING PERSONALIZED FEEDBACK...</div>
+                <div className="font-normal">&gt; FINALIZING ANALYSIS REPORT...</div>
+                <div className="font-normal">&gt; COMPUTING CROSSHAIR PLACEMENT ACCURACY...</div>
+                <div className="font-normal">&gt; ANALYZING RECOIL CONTROL PATTERNS...</div>
+                <div className="font-normal">&gt; EVALUATING FIRST-SHOT HIT RATE...</div>
+                <div className="font-normal">&gt; PROCESSING STRAFING MECHANICS...</div>
+                <div className="font-normal">&gt; CALCULATING ROTATION EFFICIENCY...</div>
+                <div className="font-normal">&gt; ASSESSING COVER UTILIZATION...</div>
+                <div className="font-normal">&gt; ANALYZING PEEKING TECHNIQUES...</div>
+                <div className="font-normal">&gt; EVALUATING LANE PRESSURE METRICS...</div>
+                <div className="font-normal">&gt; PROCESSING TEMPO RATING ANALYSIS...</div>
+                <div className="font-normal">&gt; CALCULATING ENGAGEMENT WIN RATE...</div>
+                <div className="font-normal">&gt; ASSESSING DISENGAGEMENT TIMING...</div>
+                <div className="font-normal">&gt; ANALYZING WEAPON SWAP EFFICIENCY...</div>
+                <div className="font-normal">&gt; EVALUATING RELOAD TIMING OPTIMIZATION...</div>
               </div>
             </div>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link href="/upload">
-                <button className="relative group px-10 py-5 font-bold text-xl transition-all duration-200 hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.4)]" style={{ backgroundColor: '#00ff9d', color: '#000000' }}>
-                  <span className="relative z-10 flex items-center gap-2 font-display tracking-widest">
+                <button className="relative group px-10 py-5 font-bold text-xl transition-all duration-200 hover:scale-105 border-2 border-neon bg-neon/10 text-neon hover:bg-neon/20 hover:border-neon/80 font-display tracking-widest">
+                  <span className="relative z-10 flex items-center gap-2">
                     INITIATE ANALYSIS <ArrowRight size={20} />
                   </span>
                 </button>
@@ -325,7 +325,7 @@ export default function Home() {
               clips="50 Clips/Month"
               features={[
                 "Everything in Competitive +",
-                "8-Week Training Program",
+                "Personalized 8-Week Training Program",
                 "Advanced metrics (Lane Pressure, Tempo Rating)",
                 "Predictability score analysis",
                 "Mechanical consistency tracking",
@@ -340,7 +340,7 @@ export default function Home() {
               clips="150 Clips/Month"
               features={[
                 "Everything in Elite +",
-                "8-Week Training Program",
+                "Personalized 8-Week Training Program",
                 "Priority queue / faster processing",
                 "First-shot hit rate tracking",
                 "Engagement win rate analysis",
@@ -355,7 +355,7 @@ export default function Home() {
               clips="500 Clips/Month"
               features={[
                 "Everything in Pro +",
-                "8-Week Training Program",
+                "Personalized 8-Week Training Program",
                 "No rate limits",
                 "Personalized Branded Reports",
                 "Exclusive customization requests",
@@ -557,7 +557,7 @@ function PricingCard({ title, price, clips, features, color, glow, popular, free
         {features && features.map((feature: string, index: number) => (
           <div key={index} className="flex items-start gap-2 text-xs font-mono text-gray-400">
             <Check size={12} className={`mt-1 flex-shrink-0 ${popular || free ? "text-neon" : "text-gray-600"}`} />
-            <span className={`text-left ${feature.includes('8-Week Training Program') ? 'font-bold text-neon' : ''}`}>
+            <span className={`text-left ${feature.includes('8-Week Training Program') || feature.includes('Personalized 8-Week') ? 'font-bold text-neon' : ''}`}>
               {feature}
             </span>
           </div>

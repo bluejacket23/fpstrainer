@@ -187,8 +187,8 @@ function AccountContent() {
                     {planFeatures && planFeatures.map((feature: string, index: number) => (
                       <div key={index} className="flex items-start gap-2 text-xs font-mono text-gray-400">
                         <Check size={12} className={`mt-1 flex-shrink-0 ${plan.name === currentPlan.name || plan.popular ? "text-neon" : "text-gray-600"}`} />
-                        <span className={`text-left ${feature.includes('**8-Week Training Program**') ? 'font-bold text-neon' : ''}`}>
-                          {feature.replace(/\*\*/g, '')}
+                        <span className={`text-left ${feature.includes('Personalized 8-Week Training Program') || feature.includes('8-Week Training Program') ? 'font-bold text-neon' : ''}`}>
+                          {feature}
                         </span>
                       </div>
                     ))}
@@ -306,7 +306,7 @@ function getPlanFeatures(planName: string): string[] {
     ],
     "ELITE": [
       "Everything in Competitive +",
-      "**8-Week Training Program**",
+      "Personalized 8-Week Training Program",
       "Advanced metrics (Lane Pressure, Tempo Rating)",
       "Predictability score analysis",
       "Mechanical consistency tracking",
@@ -314,7 +314,7 @@ function getPlanFeatures(planName: string): string[] {
     ],
     "PRO": [
       "Everything in Elite +",
-      "**8-Week Training Program**",
+      "Personalized 8-Week Training Program",
       "Priority queue / faster processing",
       "First-shot hit rate tracking",
       "Engagement win rate analysis",
@@ -323,7 +323,7 @@ function getPlanFeatures(planName: string): string[] {
     ],
     "GOD": [
       "Everything in Pro +",
-      "**8-Week Training Program**",
+      "Personalized 8-Week Training Program",
       "No rate limits",
       "Personalized Branded Reports",
       "Exclusive customization requests",
