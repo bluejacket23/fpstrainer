@@ -411,7 +411,7 @@ CRITICAL FORMATTING RULES:
     
     console.log('Calling OpenAI API...');
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-5.2-vision",
       messages: [
         {
           role: "user",
