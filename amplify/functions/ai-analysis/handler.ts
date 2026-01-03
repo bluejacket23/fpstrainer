@@ -53,39 +53,32 @@ export const handler = async (event: any) => {
       ExpressionAttributeValues: { ':s': 'ANALYZING' },
     }));
     
-    // Sample every 2nd frame to stay within token limits while maintaining timing accuracy
-    // For a 60-second clip: 30 frames instead of 60, still covers every 2 seconds
-    const sampledKeys = frameKeys.filter((_: any, i: number) => i % 2 === 0);
-    
+    // Use ALL frames (1 per second) for maximum timestamp accuracy
     // Generate signed URLs in parallel for speed
-    const imageUrls = await Promise.all(sampledKeys.map(async (key: string) => {
+    const imageUrls = await Promise.all(frameKeys.map(async (key: string) => {
       const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: key });
       return getSignedUrl(s3, command, { expiresIn: 3600 });
     }));
     
-    // Calculate timing info - we sample every 2nd frame, so each sampled frame represents 2 seconds
-    const totalSampledFrames = sampledKeys.length;
-    const actualDuration = videoDuration || frameKeys.length; // Use passed duration or estimate from all frames
+    // Calculate timing info - each frame = 1 second
+    const totalFrames = frameKeys.length;
+    const actualDuration = videoDuration || totalFrames;
     
     const content: any[] = [
-      { type: "text", text: `GAMEPLAY ANALYSIS - ${totalSampledFrames} frames from a ${actualDuration}-second clip.
+      { type: "text", text: `GAMEPLAY ANALYSIS - ${totalFrames} frames, 1 frame per second.
 
-TIMESTAMP REFERENCE TABLE (MEMORIZE THIS):
-${Array.from({length: Math.min(totalSampledFrames, 30)}, (_, i) => `Image #${i+1} = ${i*2} seconds into the video`).join('\n')}
+TIMESTAMP = IMAGE NUMBER - 1
+Image 1 = 0:00s, Image 2 = 0:01s, Image 3 = 0:02s, Image 10 = 0:09s, Image 30 = 0:29s
 
-When you see something happen in Image #5, the timestamp is 0:08s.
-When you see something happen in Image #10, the timestamp is 0:18s.
-When you see something happen in Image #15, the timestamp is 0:28s.
-
-USE THE IMAGE NUMBER TO DETERMINE THE EXACT TIMESTAMP. DO NOT GUESS.` }
+The timestamp in seconds equals the image number minus one.` }
     ];
     
-    // Add frames with CLEAR image numbering for timestamp accuracy
+    // Add ALL frames with exact second timestamps
     for (let i = 0; i < imageUrls.length; i++) {
-      const frameSecond = i * 2; // Each sampled frame = 2 seconds of video
+      const frameSecond = i; // Each frame = 1 second (frame 0 = 0:00s, frame 1 = 0:01s, etc.)
       content.push({
         type: "text", 
-        text: `--- IMAGE #${i + 1} (TIMESTAMP: 0:${frameSecond.toString().padStart(2, '0')}s) ---`
+        text: `[${frameSecond}s]`
       });
       content.push({
         type: "image_url",
@@ -100,23 +93,24 @@ USE THE IMAGE NUMBER TO DETERMINE THE EXACT TIMESTAMP. DO NOT GUESS.` }
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
 
 **CRITICAL TIMING INFORMATION:**
-Each image has a TIMESTAMP label above it. USE THAT EXACT TIMESTAMP when referencing events.
-- Image #1 = 0:00s, Image #2 = 0:02s, Image #3 = 0:04s, Image #5 = 0:08s, Image #10 = 0:18s
-- Formula: Image #N = (N-1) × 2 seconds
-- LOOK at which IMAGE NUMBER you see the action in, then use that image's timestamp
-- If you see a kill in Image #6, the timestamp is 0:10s (because (6-1)×2 = 10)
-- DO NOT GUESS. Use the image numbers provided above each frame.
+Each image is labeled with its exact timestamp in seconds [0s], [1s], [2s], etc.
+- Image at [5s] = timestamp 0:05s
+- Image at [12s] = timestamp 0:12s  
+- Image at [28s] = timestamp 0:28s
+- USE THE EXACT SECOND SHOWN IN THE LABEL. Each frame = 1 second of gameplay.
+- DO NOT GUESS OR ESTIMATE. Read the timestamp label directly from above each image.
 
 **YOUR ANALYTICAL APPROACH:**
-You analyze gameplay with the expectation of PROFESSIONAL-LEVEL performance. Be BALANCED - include BOTH positive observations AND constructive criticism. 
+You analyze gameplay like a professional esports coach reviewing VODs. Be TECHNICAL and SPECIFIC.
 
-**IMPORTANT: MIX POSITIVE AND NEGATIVE FEEDBACK**
-- For every 2-3 criticisms, include at least 1 positive observation
-- Acknowledge good plays, smart decisions, and strong mechanics when you see them
-- Don't be only negative - players need to know what they're doing RIGHT too
-- Balance criticism with encouragement - "Good aim here, but positioning could improve"
+**USE FPS TERMINOLOGY:**
+- Crosshair placement (head height, pre-aim angles, micro-adjustments)
+- Movement mechanics (counter-strafe, jiggle peek, wide swing, shoulder peek)
+- Positioning (off-angle, trade position, isolation, cross-fire setup)
+- Timing (TTK, reaction time, peek timing, reload timing, rotation timing)
+- Engagement quality (first-bullet accuracy, spray control, trade potential)
 
-Provide DETAILED EXPLANATIONS for WHY something is good or bad, not just what happened. Scores should reflect a balanced assessment - recognize excellent play AND identify weaknesses.
+**BALANCED ANALYSIS:** Include both strong mechanics and areas for improvement naturally. No need for labels like "GOOD:" - just describe what happened technically.
 
 **SCORING STANDARDS:**
 - 90-100: Exceptional, professional tournament level (rare)
@@ -134,29 +128,28 @@ Provide DETAILED EXPLANATIONS for WHY something is good or bad, not just what ha
 5. DO NOT cluster all scores within 5-10 points of each other
 6. A player might have 85 aim but 62 positioning - scores should reflect actual skill differences
 
-Analyze the ${totalSampledFrames} frames from this ${actualDuration}-second gameplay clip.
+Analyze the ${totalFrames} frames from this ${actualDuration}-second gameplay clip.
 Provide a deeply detailed, pro-level coaching breakdown in the EXACT order specified below:
 
 **1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
-Identify SIGNIFICANT moments - kills, deaths, mistakes, AND GOOD PLAYS. 
+Identify SIGNIFICANT gameplay moments - engagements, kills, deaths, positioning decisions, mechanical plays.
 
-**TIMESTAMP ACCURACY:** Look at which IMAGE NUMBER you see the action in, then use that timestamp.
-- If you see it in Image #6, timestamp is 0:10s
-- If you see it in Image #12, timestamp is 0:22s
-- USE THE IMAGE NUMBERS PROVIDED ABOVE EACH FRAME
+**TIMESTAMP ACCURACY:** Read the [Xs] label directly above each image. That IS the timestamp.
+- If you see action in the image labeled [12s], use timestamp 0:12s
+- If you see action in the image labeled [28s], use timestamp 0:28s
 
-**MIX POSITIVE AND NEGATIVE:** Include BOTH good plays AND mistakes. At least 30-40% of moments should highlight something the player did WELL.
+**BE TECHNICAL AND SPECIFIC:** Use precise FPS terminology - crosshair placement height, strafe direction, peek timing, TTK, damage trade, angle isolation, etc.
 
-Format (use exact timestamps from image labels):
-> 0:10s - GOOD: Player executed a clean headshot with excellent crosshair placement. The pre-aim was at head height and the reaction time was fast. This is the kind of precision that wins fights.
+Format (timestamps from image labels, technical analysis):
+> 0:12s - Player executed a 180ms reaction flick to secure the elimination. Crosshair was pre-positioned at head height on the common peek angle, minimizing adjustment distance. Clean trigger discipline with controlled burst fire.
 
-> 0:22s - Player was caught rotating without checking corners. Should have cleared the angle before pushing through. This resulted in taking unnecessary damage.
+> 0:28s - Player over-extended past cover while reloading, exposing to a 90-degree cross-angle. The reload cancel came 400ms too late. Should have repositioned to hard cover before the magazine swap to avoid the trade.
 
 REQUIREMENTS:
-- Do NOT start with 0:00s unless there's immediate significant action
-- Include BOTH positive and negative moments (aim for 40% positive, 60% constructive criticism)
-- Timestamps must match the IMAGE NUMBERS where you see the action
-- 5-10 key moments based on actual events in the clip
+- Read timestamps DIRECTLY from the [Xs] labels on each image
+- Include both strong plays and mistakes (natural mix, no labels needed)
+- Be TECHNICAL - reference specific mechanics, timings, angles, positioning concepts
+- 5-10 key moments based on actual events
 
 **2. AIM & ACCURACY PERFORMANCE**
 For each aspect, provide DETAILED analysis with:
