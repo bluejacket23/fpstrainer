@@ -22,7 +22,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/10a9bf3ecbf62ce7815c59533929bcdfc0c8651044832c61b581068e82824bd6.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9b13e8208143b0d1aabe95294229f780dd27b5de184779e9918485ebc1d804d2.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -373,6 +373,584 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource86290833"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/DynamoDBModelTableReadIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableReadIOPS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/DynamoDBModelTableWriteIOPS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBModelTableWriteIOPS"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/DynamoDBBillingMode": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBBillingMode"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/DynamoDBEnablePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnablePointInTimeRecovery"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/DynamoDBEnableServerSideEncryption": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBEnableServerSideEncryption"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/HasEnvironmentParameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HasEnvironmentParameter"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/ShouldUsePayPerRequestBilling": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ShouldUsePayPerRequestBilling"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/ShouldUsePointInTimeRecovery": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ShouldUsePointInTimeRecovery"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserTable": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "User"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserTable/Default/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserTable"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "User"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/CustomTableUserTable": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "User"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/GetAttUserTableStreamArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetAttUserTableStreamArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/GetAttUserTableName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetAttUserTableName"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserIAMRole": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "UserIAMRole"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserIAMRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserIAMRole93CEE926"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "UserIAMRole"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "UserTable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "UserTable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QuerygetUserpreAuth0Function/QuerygetUserpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetUserpreAuth0FunctionQuerygetUserpreAuth0FunctionAppSyncFunction20420340"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetUserpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QuerygetUserauth0Function/QuerygetUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetUserauth0FunctionQuerygetUserauth0FunctionAppSyncFunction9E6250B0"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QuerygetUserpostAuth0Function/QuerygetUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerygetUserpostAuth0FunctionQuerygetUserpostAuth0FunctionAppSyncFunction2792AC60"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerygetUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QueryGetUserDataResolverFn/QueryGetUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryGetUserDataResolverFnQueryGetUserDataResolverFnAppSyncFunction36A3E4CF"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryGetUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/queryGetUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.getUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QuerylistUserspreAuth0Function/QuerylistUserspreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistUserspreAuth0FunctionQuerylistUserspreAuth0FunctionAppSyncFunctionAB63F07E"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistUserspreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QuerylistUsersauth0Function/QuerylistUsersauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistUsersauth0FunctionQuerylistUsersauth0FunctionAppSyncFunctionA1FF61AB"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistUsersauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QuerylistUserspostAuth0Function/QuerylistUserspostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QuerylistUserspostAuth0FunctionQuerylistUserspostAuth0FunctionAppSyncFunction37C5583D"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QuerylistUserspostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/QueryListUsersDataResolverFn/QueryListUsersDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueryListUsersDataResolverFnQueryListUsersDataResolverFnAppSyncFunction83574EBA"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "QueryListUsersDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/queryListUsersResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ListUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Query.listUsers"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationcreateUserinit0Function/MutationcreateUserinit0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateUserinit0FunctionMutationcreateUserinit0FunctionAppSyncFunctionEDF87EC6"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateUserinit0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationcreateUserpreAuth0Function/MutationcreateUserpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateUserpreAuth0FunctionMutationcreateUserpreAuth0FunctionAppSyncFunction7F885F8E"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateUserpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationcreateUserauth0Function/MutationcreateUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateUserauth0FunctionMutationcreateUserauth0FunctionAppSyncFunction30556A6C"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationcreateUserpostAuth0Function/MutationcreateUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateUserpostAuth0FunctionMutationcreateUserpostAuth0FunctionAppSyncFunction176E20CB"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationcreateUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationCreateUserDataResolverFn/MutationCreateUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationCreateUserDataResolverFnMutationCreateUserDataResolverFnAppSyncFunction22E7974E"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationCreateUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/mutationCreateUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.createUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationupdateUserinit0Function/MutationupdateUserinit0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateUserinit0FunctionMutationupdateUserinit0FunctionAppSyncFunctionC2E8A924"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateUserinit0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationupdateUserpreAuth0Function/MutationupdateUserpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateUserpreAuth0FunctionMutationupdateUserpreAuth0FunctionAppSyncFunction8073FE5C"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateUserpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationupdateUserauth0Function/MutationupdateUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateUserauth0FunctionMutationupdateUserauth0FunctionAppSyncFunctionDF95DA65"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationupdateUserpostAuth0Function/MutationupdateUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationupdateUserpostAuth0FunctionMutationupdateUserpostAuth0FunctionAppSyncFunctionD4B80000"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationupdateUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationUpdateUserDataResolverFn/MutationUpdateUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationUpdateUserDataResolverFnMutationUpdateUserDataResolverFnAppSyncFunction6ADF3910"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationUpdateUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/mutationUpdateUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.updateUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationdeleteUserpreAuth0Function/MutationdeleteUserpreAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteUserpreAuth0FunctionMutationdeleteUserpreAuth0FunctionAppSyncFunction0A75CEC7"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteUserpreAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationdeleteUserauth0Function/MutationdeleteUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteUserauth0FunctionMutationdeleteUserauth0FunctionAppSyncFunction9B900ACD"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationdeleteUserpostAuth0Function/MutationdeleteUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationdeleteUserpostAuth0FunctionMutationdeleteUserpostAuth0FunctionAppSyncFunction9B804910"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationdeleteUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/MutationDeleteUserDataResolverFn/MutationDeleteUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationDeleteUserDataResolverFnMutationDeleteUserDataResolverFnAppSyncFunction0B4F366A"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationDeleteUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/mutationDeleteUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.deleteUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptiononCreateUserauth0Function/SubscriptiononCreateUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateUserauth0FunctionSubscriptiononCreateUserauth0FunctionAppSyncFunctionE9B4721A"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononCreateUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptiononCreateUserpostAuth0Function/SubscriptiononCreateUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateUserpostAuth0FunctionSubscriptiononCreateUserpostAuth0FunctionAppSyncFunction62AE12DA"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononCreateUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptionOnCreateUserDataResolverFn/SubscriptionOnCreateUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnCreateUserDataResolverFnSubscriptionOnCreateUserDataResolverFnAppSyncFunction23B2F1B9"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnCreateUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/subscriptionOnCreateUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononCreateUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onCreateUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptiononUpdateUserauth0Function/SubscriptiononUpdateUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateUserauth0FunctionSubscriptiononUpdateUserauth0FunctionAppSyncFunction78530C9F"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononUpdateUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptiononUpdateUserpostAuth0Function/SubscriptiononUpdateUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateUserpostAuth0FunctionSubscriptiononUpdateUserpostAuth0FunctionAppSyncFunctionF3EF85D1"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononUpdateUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptionOnUpdateUserDataResolverFn/SubscriptionOnUpdateUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnUpdateUserDataResolverFnSubscriptionOnUpdateUserDataResolverFnAppSyncFunction93FA5DF6"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnUpdateUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/subscriptionOnUpdateUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononUpdateUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onUpdateUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptiononDeleteUserauth0Function/SubscriptiononDeleteUserauth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteUserauth0FunctionSubscriptiononDeleteUserauth0FunctionAppSyncFunction0C5B7186"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononDeleteUserauth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptiononDeleteUserpostAuth0Function/SubscriptiononDeleteUserpostAuth0Function.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteUserpostAuth0FunctionSubscriptiononDeleteUserpostAuth0FunctionAppSyncFunction24A5E815"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptiononDeleteUserpostAuth0Function"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/SubscriptionOnDeleteUserDataResolverFn/SubscriptionOnDeleteUserDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptionOnDeleteUserDataResolverFnSubscriptionOnDeleteUserDataResolverFnAppSyncFunction2BEB0972"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "SubscriptionOnDeleteUserDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/subscriptionOnDeleteUserResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SubscriptiononDeleteUserResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Subscription.onDeleteUser"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/UserOwnerDataResolverFn/UserOwnerDataResolverFn.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserOwnerDataResolverFnUserOwnerDataResolverFnAppSyncFunction78EE3B72"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "UserOwnerDataResolverFn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/userOwnerResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserownerResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "User.owner"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource8EE8FDC1Outputs.amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProviderframeworkonEvent6135940EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource8EE8FDC1Outputsamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataAmplifyTableManagerTableManagerCustomProvi140AF871"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPI95C0B82FApiId"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/reference-to-amplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22eddataamplifyDataGraphQLAPINONEDS4D4CE666Name"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthunauthenticatedUserRole023CCAFCRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User/reference-to-amplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/User.NestedStack/User.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyDataUserNestedStackUserNestedStackResource9488907F"
           }
         ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/OpsCoachReport/DynamoDBModelTableReadIOPS": [
@@ -1007,6 +1585,246 @@
             "data": "Mutation.initUpload"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateShareableGraphicLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnGenerateShareableGraphicLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateShareableGraphicLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGenerateShareableGraphicLambdaDataSourceServiceRole53B4EE74"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateShareableGraphicLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGenerateShareableGraphicLambdaDataSourceServiceRoleDefaultPolicy7F96D9AF"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateShareableGraphicLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGenerateShareableGraphicLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnGenerateShareableGraphicLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnGenerateShareableGraphicLambdaDataSource/InvokeFnGenerateShareableGraphicLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnGenerateShareableGraphicLambdaDataSourceInvokeFnGenerateShareableGraphicLambdaDataSourceAppSyncFunction467B9D79"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnGenerateShareableGraphicLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationGenerateShareableGraphicResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationgenerateShareableGraphicResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.generateShareableGraphic"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateTrainingProgramLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnGenerateTrainingProgramLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateTrainingProgramLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGenerateTrainingProgramLambdaDataSourceServiceRoleCB89D88A"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateTrainingProgramLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGenerateTrainingProgramLambdaDataSourceServiceRoleDefaultPolicy43F17817"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGenerateTrainingProgramLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnGenerateTrainingProgramLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnGenerateTrainingProgramLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnGenerateTrainingProgramLambdaDataSource/InvokeFnGenerateTrainingProgramLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnGenerateTrainingProgramLambdaDataSourceInvokeFnGenerateTrainingProgramLambdaDataSourceAppSyncFunctionA24D8701"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnGenerateTrainingProgramLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationGenerateTrainingProgramResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationgenerateTrainingProgramResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.generateTrainingProgram"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCreateCheckoutSessionLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCreateCheckoutSessionLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCreateCheckoutSessionLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCreateCheckoutSessionLambdaDataSourceServiceRole1BCCC2D0"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCreateCheckoutSessionLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCreateCheckoutSessionLambdaDataSourceServiceRoleDefaultPolicy9130E0C7"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCreateCheckoutSessionLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCreateCheckoutSessionLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCreateCheckoutSessionLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnCreateCheckoutSessionLambdaDataSource/InvokeFnCreateCheckoutSessionLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnCreateCheckoutSessionLambdaDataSourceInvokeFnCreateCheckoutSessionLambdaDataSourceAppSyncFunction513456E4"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnCreateCheckoutSessionLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationCreateCheckoutSessionResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcreateCheckoutSessionResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.createCheckoutSession"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCancelSubscriptionLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCancelSubscriptionLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCancelSubscriptionLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCancelSubscriptionLambdaDataSourceServiceRoleB7DE574C"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCancelSubscriptionLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCancelSubscriptionLambdaDataSourceServiceRoleDefaultPolicyCA0AB7EF"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCancelSubscriptionLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCancelSubscriptionLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCancelSubscriptionLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnCancelSubscriptionLambdaDataSource/InvokeFnCancelSubscriptionLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnCancelSubscriptionLambdaDataSourceInvokeFnCancelSubscriptionLambdaDataSourceAppSyncFunction21047B5B"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnCancelSubscriptionLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationCancelSubscriptionResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcancelSubscriptionResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.cancelSubscription"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCustomerPortalLambdaDataSource": [
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCustomerPortalLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCustomerPortalLambdaDataSource/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCustomerPortalLambdaDataSourceServiceRole432A008F"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCustomerPortalLambdaDataSource/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCustomerPortalLambdaDataSourceServiceRoleDefaultPolicy1EBA7626"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnCustomerPortalLambdaDataSource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FnCustomerPortalLambdaDataSource"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "FnCustomerPortalLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/InvokeFnCustomerPortalLambdaDataSource/InvokeFnCustomerPortalLambdaDataSource.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "InvokeFnCustomerPortalLambdaDataSourceInvokeFnCustomerPortalLambdaDataSourceAppSyncFunction1A179B11"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "InvokeFnCustomerPortalLambdaDataSource"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/mutationCustomerPortalResolver": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationcustomerPortalResolver"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "Mutation.customerPortal"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/FnGetReportCustomLambdaDataSource": [
           {
             "type": "graphqltransformer:resourceName",
@@ -1113,6 +1931,56 @@
             "data": "MutationInitUploadAuthFN"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationGenerateShareableGraphicAuthFN/MutationGenerateShareableGraphicAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationGenerateShareableGraphicAuthFNMutationGenerateShareableGraphicAuthFNAppSyncFunctionFBA01081"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationGenerateShareableGraphicAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationGenerateTrainingProgramAuthFN/MutationGenerateTrainingProgramAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationGenerateTrainingProgramAuthFNMutationGenerateTrainingProgramAuthFNAppSyncFunctionBBA1AB4E"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationGenerateTrainingProgramAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationCreateCheckoutSessionAuthFN/MutationCreateCheckoutSessionAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationCreateCheckoutSessionAuthFNMutationCreateCheckoutSessionAuthFNAppSyncFunction38226A9B"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationCreateCheckoutSessionAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationCancelSubscriptionAuthFN/MutationCancelSubscriptionAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationCancelSubscriptionAuthFNMutationCancelSubscriptionAuthFNAppSyncFunction1A8B3A9C"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationCancelSubscriptionAuthFN"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/MutationCustomerPortalAuthFN/MutationCustomerPortalAuthFN.AppSyncFunction": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MutationCustomerPortalAuthFNMutationCustomerPortalAuthFNAppSyncFunction633AC6B9"
+          },
+          {
+            "type": "graphqltransformer:resourceName",
+            "data": "MutationCustomerPortalAuthFN"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/QueryGetReportCustomAuthFN/QueryGetReportCustomAuthFN.AppSyncFunction": [
           {
             "type": "aws:cdk:logicalId",
@@ -1173,6 +2041,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edauthNestedStackauthNestedStackResource07E47A7BOutputsamplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn"
           }
         ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/amplifyData/FunctionDirectiveStack/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": [
@@ -1409,6 +2307,36 @@
             "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/data/reference-to-amplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -1481,6 +2409,66 @@
             "data": "listreportslambda6875D22C"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-shareable-graphic-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "generateshareablegraphiclambdaServiceRole3EF3BDD7"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-shareable-graphic-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "generateshareablegraphiclambda86853A29"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-training-program-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "generatetrainingprogramlambdaServiceRole0E94966F"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-training-program-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "generatetrainingprogramlambdaC117C83C"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/create-checkout-session-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "createcheckoutsessionlambdaServiceRole18B20717"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/create-checkout-session-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "createcheckoutsessionlambdaA25511C7"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cancel-subscription-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cancelsubscriptionlambdaServiceRole580248FD"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cancel-subscription-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cancelsubscriptionlambda83D94710"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/customer-portal-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "customerportallambdaServiceRoleDABC3F4B"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/customer-portal-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "customerportallambda07D21F01"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/ai-analysis-lambda/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -1505,6 +2493,54 @@
             "data": "frameextractorlambda27423743"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/get-thumbnail-url-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getthumbnailurllambdaServiceRoleA7C38C90"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/get-thumbnail-url-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getthumbnailurllambdaC7FDD45E"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cleanup-resources-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cleanupresourceslambdaServiceRole30329C50"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cleanup-resources-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cleanupresourceslambda2C86CEA8"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/stripe-webhook-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stripewebhooklambdaServiceRole81EC8172"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/stripe-webhook-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stripewebhooklambdaF97E31A6"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/handle-referral-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "handlereferrallambdaServiceRole994C1018"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/handle-referral-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "handlereferrallambda7CF7EED0"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
@@ -1521,6 +2557,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn"
           }
         ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": [
@@ -1553,6 +2619,36 @@
             "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionlistreportslambdaA75B68FDRef"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DRef"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionaianalysislambda86E2ADE8Ref": [
           {
             "type": "aws:cdk:logicalId",
@@ -1563,6 +2659,30 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionframeextractorlambdaCB94E623Ref"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctiongetthumbnailurllambdaCAA4136CRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctiongetthumbnailurllambdaCAA4136CRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctioncleanupresourceslambdaE25B6A9BRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctioncleanupresourceslambdaE25B6A9BRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionstripewebhooklambdaFBC1CBABRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionstripewebhooklambdaFBC1CBABRef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function/amplifyopscoachlukecsandboxa38e0e22edfunctionhandlereferrallambda2997815ARef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edfunctionhandlereferrallambda2997815ARef"
           }
         ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/function.NestedStack/function.NestedStackResource": [

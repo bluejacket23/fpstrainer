@@ -180,6 +180,41 @@
       {
        "Fn::GetAtt": [
         "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Ref"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Ref"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Ref"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Ref"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DRef"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
         "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionaianalysislambda86E2ADE8Ref"
        ]
       },
@@ -188,6 +223,34 @@
        "Fn::GetAtt": [
         "function1351588B",
         "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionframeextractorlambdaCB94E623Ref"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongetthumbnailurllambdaCAA4136CRef"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncleanupresourceslambdaE25B6A9BRef"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionstripewebhooklambdaFBC1CBABRef"
+       ]
+      },
+      "\",\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionhandlereferrallambda2997815ARef"
        ]
       },
       "\"]"
@@ -371,6 +434,36 @@
        "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctionuploadinitlambdaE44F19ACArn"
       ]
      },
+     "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn": {
+      "Fn::GetAtt": [
+       "function1351588B",
+       "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn"
+      ]
+     },
+     "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn": {
+      "Fn::GetAtt": [
+       "function1351588B",
+       "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn"
+      ]
+     },
+     "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn": {
+      "Fn::GetAtt": [
+       "function1351588B",
+       "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn"
+      ]
+     },
+     "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn": {
+      "Fn::GetAtt": [
+       "function1351588B",
+       "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn"
+      ]
+     },
+     "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn": {
+      "Fn::GetAtt": [
+       "function1351588B",
+       "Outputs.amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn"
+      ]
+     },
      "referencetoamplifyopscoachlukecsandboxa38e0e22edfunctionNestedStackfunctionNestedStackResource98F3D9C5Outputsamplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": {
       "Fn::GetAtt": [
        "function1351588B",
@@ -410,7 +503,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
        },
-       "/6541697380a51939b3fd9bbfb3f8b0a53543e6bf1681bfdc79f2b6c462edd5a7.json"
+       "/e4a4ada69a280d1846b5f9327ed5b63519223c9e98cfd72905630d90cb5b2450.json"
       ]
      ]
     }
@@ -452,7 +545,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
        },
-       "/7cd11ea7993b9d78a28f69edec693470d8326edec02eee82b501935e33ed77f6.json"
+       "/0ef3db647f7d09ef0e7ff9e805370e33f9458452134cbc8e16707e73f9d61baf.json"
       ]
      ]
     }

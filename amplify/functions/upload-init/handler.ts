@@ -67,6 +67,9 @@ async function getOrCreateUser(userId: string, email?: string) {
     const plan = isTestUser ? 'GOD' : 'RECRUIT';
     const clipsLimit = PLAN_LIMITS[plan];
     
+    // Set owner field for Amplify authorization (format: sub::username)
+    const owner = `${userId}::${userId}`;
+    
     const newUser = {
       userId,
       email: userEmail,
@@ -76,6 +79,7 @@ async function getOrCreateUser(userId: string, email?: string) {
       monthStartDate: now,
       createdAt: now,
       updatedAt: now,
+      owner, // Required for Amplify owner() authorization
     };
     
     await docClient.send(new PutCommand({

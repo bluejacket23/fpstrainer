@@ -61,7 +61,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "f8c92ec52f1858ee9f74991bf5e32b7829072a6424b9ae4d1b6d2c7d8065633a.zip"
+     "S3Key": "8724f0452031dc67b825c99bd0702e961ae7f5653f7485277254bdd01fe60cef.zip"
     },
     "Environment": {
      "Variables": {
@@ -103,7 +103,7 @@
    "DeletionPolicy": "Delete",
    "Metadata": {
     "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/upload-init-lambda/Resource",
-    "aws:asset:path": "asset.f8c92ec52f1858ee9f74991bf5e32b7829072a6424b9ae4d1b6d2c7d8065633a",
+    "aws:asset:path": "asset.8724f0452031dc67b825c99bd0702e961ae7f5653f7485277254bdd01fe60cef",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -322,6 +322,541 @@
     "aws:asset:property": "Code"
    }
   },
+  "generateshareablegraphiclambdaServiceRole3EF3BDD7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "generate-shareable-graphic"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-shareable-graphic-lambda/ServiceRole/Resource"
+   }
+  },
+  "generateshareablegraphiclambda86853A29": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "81cae6fc5e8bc026bcce7ac12574b08b03a388f017057cd430ed329cd30af00d.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "generateshareablegraphiclambdaServiceRole3EF3BDD7",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "generate-shareable-graphic"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 60
+   },
+   "DependsOn": [
+    "generateshareablegraphiclambdaServiceRole3EF3BDD7"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-shareable-graphic-lambda/Resource",
+    "aws:asset:path": "asset.81cae6fc5e8bc026bcce7ac12574b08b03a388f017057cd430ed329cd30af00d",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "generatetrainingprogramlambdaServiceRole0E94966F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "generate-training-program"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-training-program-lambda/ServiceRole/Resource"
+   }
+  },
+  "generatetrainingprogramlambdaC117C83C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "ec34c1f9a0a58ca99ee72aef319a4d289978e29f4d7246cb16be08e36bb1e232.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "generatetrainingprogramlambdaServiceRole0E94966F",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "generate-training-program"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "generatetrainingprogramlambdaServiceRole0E94966F"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/generate-training-program-lambda/Resource",
+    "aws:asset:path": "asset.ec34c1f9a0a58ca99ee72aef319a4d289978e29f4d7246cb16be08e36bb1e232",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "createcheckoutsessionlambdaServiceRole18B20717": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "create-checkout-session"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/create-checkout-session-lambda/ServiceRole/Resource"
+   }
+  },
+  "createcheckoutsessionlambdaA25511C7": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "54af160718296c3552e2cedf10a57d78b681e0f304da8ab1b36c3d8d214b11c5.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "createcheckoutsessionlambdaServiceRole18B20717",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "create-checkout-session"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "createcheckoutsessionlambdaServiceRole18B20717"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/create-checkout-session-lambda/Resource",
+    "aws:asset:path": "asset.54af160718296c3552e2cedf10a57d78b681e0f304da8ab1b36c3d8d214b11c5",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "cancelsubscriptionlambdaServiceRole580248FD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "cancel-subscription"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cancel-subscription-lambda/ServiceRole/Resource"
+   }
+  },
+  "cancelsubscriptionlambda83D94710": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "42dacb47f704819c4d9d49660d07d089d2cd67aac56d44e25258dd0bb34e9300.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "cancelsubscriptionlambdaServiceRole580248FD",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "cancel-subscription"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "cancelsubscriptionlambdaServiceRole580248FD"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cancel-subscription-lambda/Resource",
+    "aws:asset:path": "asset.42dacb47f704819c4d9d49660d07d089d2cd67aac56d44e25258dd0bb34e9300",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "customerportallambdaServiceRoleDABC3F4B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "customer-portal"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/customer-portal-lambda/ServiceRole/Resource"
+   }
+  },
+  "customerportallambda07D21F01": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "0ae4724a93a6ed28db2f66cae5b20fa4f590018733b19767b6f5496531fb2b40.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "customerportallambdaServiceRoleDABC3F4B",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "customer-portal"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "customerportallambdaServiceRoleDABC3F4B"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/customer-portal-lambda/Resource",
+    "aws:asset:path": "asset.0ae4724a93a6ed28db2f66cae5b20fa4f590018733b19767b6f5496531fb2b40",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
   "aianalysislambdaServiceRoleB617D3F4": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -382,7 +917,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "6c8f51c5ba182bdb0097697e98d7b14fb5138dfa412a9594c8a05bef8c60d714.zip"
+     "S3Key": "e27fe9a4d579e283d08c9f493a23036657642e82d0dd45fef00e45273b9d6d5a.zip"
     },
     "Environment": {
      "Variables": {
@@ -424,7 +959,7 @@
    "DeletionPolicy": "Delete",
    "Metadata": {
     "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/ai-analysis-lambda/Resource",
-    "aws:asset:path": "asset.6c8f51c5ba182bdb0097697e98d7b14fb5138dfa412a9594c8a05bef8c60d714",
+    "aws:asset:path": "asset.e27fe9a4d579e283d08c9f493a23036657642e82d0dd45fef00e45273b9d6d5a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -532,6 +1067,434 @@
    "Metadata": {
     "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/frame-extractor-lambda/Resource",
     "aws:asset:path": "asset.47f6cf390256cffbb8327e1f17f6c28d24829d413110c25522d859b354c2602f",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "getthumbnailurllambdaServiceRoleA7C38C90": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "get-thumbnail-url"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/get-thumbnail-url-lambda/ServiceRole/Resource"
+   }
+  },
+  "getthumbnailurllambdaC7FDD45E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "897fd4de268b1c584e6359515badaf9e8f1d83d1d99be7a5963b3babc3553d7e.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "getthumbnailurllambdaServiceRoleA7C38C90",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "get-thumbnail-url"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "getthumbnailurllambdaServiceRoleA7C38C90"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/get-thumbnail-url-lambda/Resource",
+    "aws:asset:path": "asset.897fd4de268b1c584e6359515badaf9e8f1d83d1d99be7a5963b3babc3553d7e",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "cleanupresourceslambdaServiceRole30329C50": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "cleanup-resources"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cleanup-resources-lambda/ServiceRole/Resource"
+   }
+  },
+  "cleanupresourceslambda2C86CEA8": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "8d52d2ea2097c281eb822b9e241c5412b62353c878877f1c7f24f50d33ac28d2.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "cleanupresourceslambdaServiceRole30329C50",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "cleanup-resources"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 300
+   },
+   "DependsOn": [
+    "cleanupresourceslambdaServiceRole30329C50"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/cleanup-resources-lambda/Resource",
+    "aws:asset:path": "asset.8d52d2ea2097c281eb822b9e241c5412b62353c878877f1c7f24f50d33ac28d2",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "stripewebhooklambdaServiceRole81EC8172": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "stripe-webhook"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/stripe-webhook-lambda/ServiceRole/Resource"
+   }
+  },
+  "stripewebhooklambdaF97E31A6": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "79aab4a470a6a3d5535e7372bf1abb4c5ed488d1003c32973f2f16b7de4dbc91.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "stripewebhooklambdaServiceRole81EC8172",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "stripe-webhook"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "stripewebhooklambdaServiceRole81EC8172"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/stripe-webhook-lambda/Resource",
+    "aws:asset:path": "asset.79aab4a470a6a3d5535e7372bf1abb4c5ed488d1003c32973f2f16b7de4dbc91",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "handlereferrallambdaServiceRole994C1018": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "handle-referral"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/handle-referral-lambda/ServiceRole/Resource"
+   }
+  },
+  "handlereferrallambda7CF7EED0": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "e28379a1ff5c28ce3850fcac93855395b4d0b6d9a0d4f050a793b2b574a9bc81.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "AMPLIFY_SSM_ENV_CONFIG": "{}"
+     }
+    },
+    "EphemeralStorage": {
+     "Size": 512
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "handlereferrallambdaServiceRole994C1018",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "handle-referral"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "handlereferrallambdaServiceRole994C1018"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/handle-referral-lambda/Resource",
+    "aws:asset:path": "asset.e28379a1ff5c28ce3850fcac93855395b4d0b6d9a0d4f050a793b2b574a9bc81",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -822,6 +1785,46 @@
     ]
    }
   },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "generateshareablegraphiclambda86853A29",
+     "Arn"
+    ]
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "generatetrainingprogramlambdaC117C83C",
+     "Arn"
+    ]
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "createcheckoutsessionlambdaA25511C7",
+     "Arn"
+    ]
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "cancelsubscriptionlambda83D94710",
+     "Arn"
+    ]
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "customerportallambda07D21F01",
+     "Arn"
+    ]
+   }
+  },
   "amplifyopscoachlukecsandboxa38e0e22edfunctiongetreportlambda88540CA7Arn": {
    "Value": {
     "Fn::GetAtt": [
@@ -853,6 +1856,31 @@
     "Ref": "listreportslambda6875D22C"
    }
   },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctiongenerateshareablegraphiclambdaE8450979Ref": {
+   "Value": {
+    "Ref": "generateshareablegraphiclambda86853A29"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctiongeneratetrainingprogramlambda9DFB1B76Ref": {
+   "Value": {
+    "Ref": "generatetrainingprogramlambdaC117C83C"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncreatecheckoutsessionlambda131A2796Ref": {
+   "Value": {
+    "Ref": "createcheckoutsessionlambdaA25511C7"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncancelsubscriptionlambda70DC4704Ref": {
+   "Value": {
+    "Ref": "cancelsubscriptionlambda83D94710"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncustomerportallambdaAB32FA4DRef": {
+   "Value": {
+    "Ref": "customerportallambda07D21F01"
+   }
+  },
   "amplifyopscoachlukecsandboxa38e0e22edfunctionaianalysislambda86E2ADE8Ref": {
    "Value": {
     "Ref": "aianalysislambdaFD152DDF"
@@ -861,6 +1889,26 @@
   "amplifyopscoachlukecsandboxa38e0e22edfunctionframeextractorlambdaCB94E623Ref": {
    "Value": {
     "Ref": "frameextractorlambda27423743"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctiongetthumbnailurllambdaCAA4136CRef": {
+   "Value": {
+    "Ref": "getthumbnailurllambdaC7FDD45E"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctioncleanupresourceslambdaE25B6A9BRef": {
+   "Value": {
+    "Ref": "cleanupresourceslambda2C86CEA8"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctionstripewebhooklambdaFBC1CBABRef": {
+   "Value": {
+    "Ref": "stripewebhooklambdaF97E31A6"
+   }
+  },
+  "amplifyopscoachlukecsandboxa38e0e22edfunctionhandlereferrallambda2997815ARef": {
+   "Value": {
+    "Ref": "handlereferrallambda7CF7EED0"
    }
   }
  }

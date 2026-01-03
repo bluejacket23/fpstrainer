@@ -5,6 +5,8 @@ import { listReports } from '../functions/list-reports/resource';
 import { generateShareableGraphic } from '../functions/generate-shareable-graphic/resource';
 import { generateTrainingProgram } from '../functions/generate-training-program/resource';
 import { createCheckoutSession } from '../functions/create-checkout-session/resource';
+import { cancelSubscription } from '../functions/cancel-subscription/resource';
+import { customerPortal } from '../functions/customer-portal/resource';
 
 const schema = a.schema({
   User: a
@@ -19,6 +21,7 @@ const schema = a.schema({
       stripeSubscriptionId: a.string(),
       referralCode: a.string(), // Unique code for referrals
       referredBy: a.string(), // userId of referrer
+      subscriptionCancelAt: a.string(), // ISO date when subscription will cancel
       createdAt: a.datetime(),
       updatedAt: a.datetime(),
     })
@@ -82,14 +85,28 @@ const schema = a.schema({
     .returns(a.json())
     .authorization((allow) => [allow.authenticated()])
     .handler(a.handler.function(generateTrainingProgram)),
+  
+  // Stripe Payment Mutations
   createCheckoutSession: a
     .mutation()
     .arguments({
-      planName: a.string().required(),
+      planName: a.string().required(), // 'ROOKIE', 'COMPETITIVE', 'ELITE', 'PRO', 'GOD'
     })
     .returns(a.json())
     .authorization((allow) => [allow.authenticated()])
     .handler(a.handler.function(createCheckoutSession)),
+  
+  cancelSubscription: a
+    .mutation()
+    .returns(a.json())
+    .authorization((allow) => [allow.authenticated()])
+    .handler(a.handler.function(cancelSubscription)),
+  
+  customerPortal: a
+    .mutation()
+    .returns(a.json())
+    .authorization((allow) => [allow.authenticated()])
+    .handler(a.handler.function(customerPortal)),
 });
 
 export const data = defineData({
@@ -100,4 +117,3 @@ export const data = defineData({
 });
 
 export type Schema = ClientSchema<typeof schema>;
-

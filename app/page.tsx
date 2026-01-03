@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { 
   ArrowRight, Check, Crosshair, Shield, Zap, Target, Activity, Map, Brain, 
-  Swords, Settings, Eye, BarChart3, Video, UserCheck, Cpu, Disc, Upload, FileText
+  Swords, Settings, Eye, BarChart3, Video, UserCheck, Cpu, Disc, Upload, FileText, Loader2
 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { generateClient } from "aws-amplify/data";
+import { type Schema } from "@/amplify/data/resource";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+
+const client = generateClient<Schema>();
 
 // Wrapper component for sections with scroll animations
 function SectionWrapper({ id, className, children }: { id: string; className?: string; children: React.ReactNode }) {
@@ -320,6 +325,7 @@ export default function Home() {
               title="RECRUIT" 
               price="$0" 
               clips="1 Clip/Month"
+              planKey="RECRUIT"
               features={[
                 "No card required",
                 "Basic AI analysis",
@@ -334,6 +340,7 @@ export default function Home() {
               title="ROOKIE" 
               price="$5" 
               clips="10 Clips/Month"
+              planKey="ROOKIE"
               features={[
                 "Metrics Dashboard",
                 "Advanced AI analysis",
@@ -348,6 +355,7 @@ export default function Home() {
               title="COMPETITIVE" 
               price="$10" 
               clips="25 Clips/Month"
+              planKey="COMPETITIVE"
               features={[
                 "Advanced Statistical analysis",
                 "Personalized drills",
@@ -362,6 +370,7 @@ export default function Home() {
               title="ELITE" 
               price="$15" 
               clips="50 Clips/Month"
+              planKey="ELITE"
               features={[
                 "Everything in Competitive +",
                 "Personalized 8-Week Training Program",
@@ -377,6 +386,7 @@ export default function Home() {
               title="PRO" 
               price="$29" 
               clips="150 Clips/Month"
+              planKey="PRO"
               features={[
                 "Everything in Elite +",
                 "Personalized 8-Week Training Program",
@@ -392,6 +402,7 @@ export default function Home() {
               title="GOD" 
               price="$59" 
               clips="500 Clips/Month"
+              planKey="GOD"
               features={[
                 "Everything in Pro +",
                 "Personalized 8-Week Training Program",
@@ -563,7 +574,64 @@ function FeatureCard({ icon, title, desc, highlight, index }: any) {
   );
 }
 
-function PricingCard({ title, price, clips, features, color, glow, popular, free }: any) {
+function PricingCard({ title, price, clips, features, color, glow, popular, free, planKey }: any) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  // Get auth state - user will be undefined if not logged in
+  const { user } = useAuthenticator((context) => [context.user]);
+
+  const handleSelectPlan = async () => {
+    // For free plan, just redirect to upload
+    if (free) {
+      window.location.href = '/upload';
+      return;
+    }
+    
+    // If not logged in, redirect to login first
+    if (!user) {
+      // Save the intended plan to localStorage so we can redirect after login
+      localStorage.setItem('pendingPlan', planKey);
+      window.location.href = '/login?redirect=/account';
+      return;
+    }
+    
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const result = await client.mutations.createCheckoutSession({
+        planName: planKey,
+      });
+      
+      // Handle both direct object and stringified JSON response
+      let data = result.data as any;
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch (e) {
+          console.error('Failed to parse response:', data);
+        }
+      }
+      
+      console.log('Checkout response:', data);
+      
+      if (data?.success && data?.url) {
+        // Redirect to Stripe checkout or portal
+        window.location.href = data.url;
+      } else if (data?.error) {
+        setError(data.error);
+      } else {
+        setError('Failed to create checkout session');
+      }
+    } catch (err: any) {
+      console.error('Checkout error:', err);
+      setError(err.message || 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -615,21 +683,34 @@ function PricingCard({ title, price, clips, features, color, glow, popular, free
         ))}
       </div>
 
-      {free ? (
-        <Link href="/upload" className="w-full">
-          <button className="w-full py-3 font-bold font-display tracking-widest text-sm border-2 border-neon bg-neon/30 text-neon hover:bg-neon/50 rounded-sm transition-all">
-            TRY FREE
-          </button>
-        </Link>
-      ) : (
-        <button className={`w-full py-3 font-bold font-display tracking-widest text-sm border-2 rounded-sm transition-all text-white ${
-          popular 
-            ? 'border-white/50 bg-white/15 hover:bg-white/25 hover:border-white/70' 
-            : 'border-white/50 bg-white/15 hover:bg-white/25 hover:border-white/70'
-        }`}>
-          SELECT
-        </button>
+      {error && (
+        <div className="w-full mb-2 text-xs text-red-400 text-center font-mono">
+          {error}
+        </div>
       )}
+
+      <button 
+        onClick={handleSelectPlan}
+        disabled={loading}
+        className={`w-full py-3 font-bold font-display tracking-widest text-sm border-2 rounded-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+          free 
+            ? 'border-neon bg-neon/30 text-neon hover:bg-neon/50' 
+            : popular
+              ? 'border-white/50 bg-white/15 text-white hover:bg-white/25 hover:border-white/70'
+              : 'border-white/50 bg-white/15 text-white hover:bg-white/25 hover:border-white/70'
+        }`}
+      >
+        {loading ? (
+          <span className="flex items-center justify-center gap-2">
+            <Loader2 className="animate-spin" size={16} />
+            PROCESSING...
+          </span>
+        ) : free ? (
+          "TRY FREE"
+        ) : (
+          "SELECT"
+        )}
+      </button>
     </motion.div>
   );
 }
