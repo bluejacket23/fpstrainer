@@ -417,6 +417,18 @@ function ReportContent({ user }: { user: any }) {
                 {scorecard.strafingAimQuality !== undefined && (
                   <ScoreItem label="Strafing Aim Quality" value={scorecard.strafingAimQuality} icon={<Target />} />
                 )}
+                {scorecard.targetAcquisitionSpeed !== undefined && (
+                  <ScoreItem label="Target Acquisition" value={scorecard.targetAcquisitionSpeed} icon={<Target />} />
+                )}
+                {scorecard.headLevelConsistency !== undefined && (
+                  <ScoreItem label="Head Level Consistency" value={scorecard.headLevelConsistency} icon={<Target />} />
+                )}
+                {scorecard.preAimAccuracy !== undefined && (
+                  <ScoreItem label="Pre-Aim Accuracy" value={scorecard.preAimAccuracy} icon={<Target />} />
+                )}
+                {scorecard.sprayTransferControl !== undefined && (
+                  <ScoreItem label="Spray Transfer" value={scorecard.sprayTransferControl} icon={<Target />} />
+                )}
 
                 {/* Movement & Mechanics */}
                 {scorecard.movementMechanics !== undefined && (
@@ -437,6 +449,21 @@ function ReportContent({ user }: { user: any }) {
                 {scorecard.peekingTechnique !== undefined && (
                   <ScoreItem label="Peeking Technique" value={scorecard.peekingTechnique} icon={<Activity />} />
                 )}
+                {scorecard.counterStrafing !== undefined && (
+                  <ScoreItem label="Counter Strafing" value={scorecard.counterStrafing} icon={<Activity />} />
+                )}
+                {scorecard.jigglePeeking !== undefined && (
+                  <ScoreItem label="Jiggle Peeking" value={scorecard.jigglePeeking} icon={<Activity />} />
+                )}
+                {scorecard.movementUnpredictability !== undefined && (
+                  <ScoreItem label="Movement Unpredictability" value={scorecard.movementUnpredictability} icon={<Activity />} />
+                )}
+                {scorecard.sprintManagement !== undefined && (
+                  <ScoreItem label="Sprint Management" value={scorecard.sprintManagement} icon={<Activity />} />
+                )}
+                {scorecard.bunnyHopEfficiency !== undefined && (
+                  <ScoreItem label="Bunny Hop Efficiency" value={scorecard.bunnyHopEfficiency} icon={<Activity />} />
+                )}
 
                 {/* Positioning */}
                 {scorecard.positioning !== undefined && (
@@ -450,6 +477,21 @@ function ReportContent({ user }: { user: any }) {
                 )}
                 {scorecard.mapAwareness !== undefined && (
                   <ScoreItem label="Map Awareness" value={scorecard.mapAwareness} icon={<Map />} />
+                )}
+                {scorecard.offAngleUsage !== undefined && (
+                  <ScoreItem label="Off-Angle Usage" value={scorecard.offAngleUsage} icon={<Map />} />
+                )}
+                {scorecard.tradeability !== undefined && (
+                  <ScoreItem label="Tradeability" value={scorecard.tradeability} icon={<Map />} />
+                )}
+                {scorecard.utilityAvoidance !== undefined && (
+                  <ScoreItem label="Utility Avoidance" value={scorecard.utilityAvoidance} icon={<Map />} />
+                )}
+                {scorecard.sightlineManagement !== undefined && (
+                  <ScoreItem label="Sightline Management" value={scorecard.sightlineManagement} icon={<Map />} />
+                )}
+                {scorecard.verticality !== undefined && (
+                  <ScoreItem label="Verticality" value={scorecard.verticality} icon={<Map />} />
                 )}
 
                 {/* Game Sense */}
@@ -468,6 +510,18 @@ function ReportContent({ user }: { user: any }) {
                 {scorecard.situationalAwareness !== undefined && (
                   <ScoreItem label="Situational Awareness" value={scorecard.situationalAwareness} icon={<Brain />} />
                 )}
+                {scorecard.informationUsage !== undefined && (
+                  <ScoreItem label="Information Usage" value={scorecard.informationUsage} icon={<Brain />} />
+                )}
+                {scorecard.economyAwareness !== undefined && (
+                  <ScoreItem label="Economy Awareness" value={scorecard.economyAwareness} icon={<Brain />} />
+                )}
+                {scorecard.clutchPotential !== undefined && (
+                  <ScoreItem label="Clutch Potential" value={scorecard.clutchPotential} icon={<Brain />} />
+                )}
+                {scorecard.adaptability !== undefined && (
+                  <ScoreItem label="Adaptability" value={scorecard.adaptability} icon={<Brain />} />
+                )}
 
                 {/* Engagement Quality */}
                 {scorecard.engagementQuality !== undefined && (
@@ -484,6 +538,18 @@ function ReportContent({ user }: { user: any }) {
                 )}
                 {scorecard.reloadTiming !== undefined && (
                   <ScoreItem label="Reload Timing" value={scorecard.reloadTiming} icon={<Swords />} />
+                )}
+                {scorecard.peekCommitment !== undefined && (
+                  <ScoreItem label="Peek Commitment" value={scorecard.peekCommitment} icon={<Swords />} />
+                )}
+                {scorecard.isolationSkill !== undefined && (
+                  <ScoreItem label="Isolation Skill" value={scorecard.isolationSkill} icon={<Swords />} />
+                )}
+                {scorecard.tradePrevention !== undefined && (
+                  <ScoreItem label="Trade Prevention" value={scorecard.tradePrevention} icon={<Swords />} />
+                )}
+                {scorecard.multiKillPotential !== undefined && (
+                  <ScoreItem label="Multi-Kill Potential" value={scorecard.multiKillPotential} icon={<Swords />} />
                 )}
 
                 {/* Survivability */}
@@ -506,6 +572,18 @@ function ReportContent({ user }: { user: any }) {
                 )}
                 {scorecard.confidenceRating !== undefined && (
                   <ScoreItem label="Confidence Rating" value={scorecard.confidenceRating} icon={<Brain />} />
+                )}
+                {scorecard.healthManagement !== undefined && (
+                  <ScoreItem label="Health Management" value={scorecard.healthManagement} icon={<Shield />} />
+                )}
+                {scorecard.escapeRouting !== undefined && (
+                  <ScoreItem label="Escape Routing" value={scorecard.escapeRouting} icon={<Shield />} />
+                )}
+                {scorecard.damageTradingEfficiency !== undefined && (
+                  <ScoreItem label="Damage Trading" value={scorecard.damageTradingEfficiency} icon={<Shield />} />
+                )}
+                {scorecard.timeAliveEfficiency !== undefined && (
+                  <ScoreItem label="Time Alive Efficiency" value={scorecard.timeAliveEfficiency} icon={<Shield />} />
                 )}
               </div>
         </div>
@@ -868,7 +946,7 @@ async function generateShareableGraphic(scorecard: any) {
     'SURVIVABILITY & ENGAGEMENT': [] as Array<{ label: string; value: number }>,
   };
   
-  // Aim & Mechanics
+  // Aim & Mechanics (Original + 4 New)
   if (sc.aimAccuracy !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Aim Accuracy', value: sc.aimAccuracy });
   if (sc.firstShotAccuracy !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'First Shot Accuracy', value: sc.firstShotAccuracy });
   if (sc.crosshairPlacement !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Crosshair Placement', value: sc.crosshairPlacement });
@@ -878,8 +956,13 @@ async function generateShareableGraphic(scorecard: any) {
   if (sc.flickTiming !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Flick Timing', value: sc.flickTiming });
   if (sc.adsTiming !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'ADS Timing', value: sc.adsTiming });
   if (sc.strafingAimQuality !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Strafing Aim', value: sc.strafingAimQuality });
+  // NEW Aim Metrics
+  if (sc.targetAcquisitionSpeed !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Target Acquisition', value: sc.targetAcquisitionSpeed });
+  if (sc.headLevelConsistency !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Head Level Consistency', value: sc.headLevelConsistency });
+  if (sc.preAimAccuracy !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Pre-Aim Accuracy', value: sc.preAimAccuracy });
+  if (sc.sprayTransferControl !== undefined) skillGroups['AIM & MECHANICS'].push({ label: 'Spray Transfer', value: sc.sprayTransferControl });
   
-  // Movement & Control
+  // Movement & Control (Original + 5 New)
   if (sc.movementMechanics !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Movement', value: sc.movementMechanics });
   if (sc.strafingTechnique !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Strafing Technique', value: sc.strafingTechnique });
   if (sc.rotationEfficiency !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Rotation Efficiency', value: sc.rotationEfficiency });
@@ -887,8 +970,14 @@ async function generateShareableGraphic(scorecard: any) {
   if (sc.slideTiming !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Slide Timing', value: sc.slideTiming });
   if (sc.jumpShotUsage !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Jump Shot Usage', value: sc.jumpShotUsage });
   if (sc.peekingTechnique !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Peeking Technique', value: sc.peekingTechnique });
+  // NEW Movement Metrics
+  if (sc.counterStrafing !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Counter Strafing', value: sc.counterStrafing });
+  if (sc.jigglePeeking !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Jiggle Peeking', value: sc.jigglePeeking });
+  if (sc.movementUnpredictability !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Movement Unpredictability', value: sc.movementUnpredictability });
+  if (sc.sprintManagement !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Sprint Management', value: sc.sprintManagement });
+  if (sc.bunnyHopEfficiency !== undefined) skillGroups['MOVEMENT & CONTROL'].push({ label: 'Bunny Hop Efficiency', value: sc.bunnyHopEfficiency });
   
-  // Game Intelligence
+  // Game Intelligence (Original + 9 New: 4 game sense + 5 positioning)
   if (sc.gameSense !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Game Sense', value: sc.gameSense });
   if (sc.mapAwareness !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Map Awareness', value: sc.mapAwareness });
   if (sc.positioning !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Positioning', value: sc.positioning });
@@ -898,8 +987,19 @@ async function generateShareableGraphic(scorecard: any) {
   if (sc.predictability !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Predictability', value: sc.predictability });
   if (sc.awarenessChecks !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Awareness Checks', value: sc.awarenessChecks });
   if (sc.rotationTiming !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Rotation Timing', value: sc.rotationTiming });
+  // NEW Game Sense Metrics
+  if (sc.informationUsage !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Information Usage', value: sc.informationUsage });
+  if (sc.economyAwareness !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Economy Awareness', value: sc.economyAwareness });
+  if (sc.clutchPotential !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Clutch Potential', value: sc.clutchPotential });
+  if (sc.adaptability !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Adaptability', value: sc.adaptability });
+  // NEW Positioning Metrics
+  if (sc.offAngleUsage !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Off-Angle Usage', value: sc.offAngleUsage });
+  if (sc.tradeability !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Tradeability', value: sc.tradeability });
+  if (sc.utilityAvoidance !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Utility Avoidance', value: sc.utilityAvoidance });
+  if (sc.sightlineManagement !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Sightline Management', value: sc.sightlineManagement });
+  if (sc.verticality !== undefined) skillGroups['GAME INTELLIGENCE'].push({ label: 'Verticality', value: sc.verticality });
   
-  // Survivability & Engagement
+  // Survivability & Engagement (Original + 8 New)
   if (sc.engagementQuality !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Engagement', value: sc.engagementQuality });
   if (sc.survivability !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Survivability', value: sc.survivability });
   if (sc.confidenceRating !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Confidence Rating', value: sc.confidenceRating });
@@ -910,6 +1010,16 @@ async function generateShareableGraphic(scorecard: any) {
   if (sc.disengagementTiming !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Disengagement Timing', value: sc.disengagementTiming });
   if (sc.lanePressure !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Lane Pressure', value: sc.lanePressure });
   if (sc.tempoRating !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Tempo Rating', value: sc.tempoRating });
+  // NEW Engagement Metrics
+  if (sc.peekCommitment !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Peek Commitment', value: sc.peekCommitment });
+  if (sc.isolationSkill !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Isolation Skill', value: sc.isolationSkill });
+  if (sc.tradePrevention !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Trade Prevention', value: sc.tradePrevention });
+  if (sc.multiKillPotential !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Multi-Kill Potential', value: sc.multiKillPotential });
+  // NEW Survivability Metrics
+  if (sc.healthManagement !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Health Management', value: sc.healthManagement });
+  if (sc.escapeRouting !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Escape Routing', value: sc.escapeRouting });
+  if (sc.damageTradingEfficiency !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Damage Trading', value: sc.damageTradingEfficiency });
+  if (sc.timeAliveEfficiency !== undefined) skillGroups['SURVIVABILITY & ENGAGEMENT'].push({ label: 'Time Alive Efficiency', value: sc.timeAliveEfficiency });
   
   // Render skill groups in card-based layout
   let currentY = 400;

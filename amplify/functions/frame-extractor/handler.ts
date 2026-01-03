@@ -94,9 +94,29 @@ export const handler = async (event: any) => {
         ffmpeg.setFfmpegPath('/opt/bin/ffmpeg');
       }
       
+      // Get video duration first
+      let videoDuration = 0;
+      await new Promise<void>((resolve, reject) => {
+        ffmpeg.ffprobe(localInput, (err: any, metadata: any) => {
+          if (err) {
+            console.warn('Could not get video duration, will estimate from frames:', err);
+            resolve();
+            return;
+          }
+          videoDuration = metadata?.format?.duration || 0;
+          console.log('Video duration:', videoDuration, 'seconds');
+          resolve();
+        });
+      });
+      
       await new Promise((resolve, reject) => {
         ffmpeg(localInput)
-          .outputOptions('-vf', 'fps=1') // 1 frame per second
+          // OPTIMIZED: Scale to 720p max, lower quality for faster processing
+          .outputOptions([
+            '-vf', 'fps=1,scale=1280:720:force_original_aspect_ratio=decrease',
+            '-q:v', '8', // JPEG quality (2-31, lower is better quality, 8 is good balance)
+            '-threads', '4' // Use multiple threads for faster encoding
+          ])
           .output(`${outputDir}/frame_%03d.jpg`)
           .on('end', resolve)
           .on('error', (err: any) => {
@@ -153,24 +173,36 @@ export const handler = async (event: any) => {
         }
       }
       
-      // 4. Upload All Frames
+      // 4. Upload All Frames in PARALLEL for faster processing
       const frameKeys: string[] = [];
+      const PARALLEL_UPLOADS = 10; // Upload 10 frames at a time
       
-      for (const file of files) {
-        const fileStream = fs.createReadStream(path.join(outputDir, file));
+      // Create all frame upload promises
+      const uploadFrame = async (file: string): Promise<string> => {
+        const frameData = fs.readFileSync(path.join(outputDir, file));
         const frameKey = `frames/${userId}/${reportId}/${file}`;
         
         await s3.send(new PutObjectCommand({
           Bucket: bucketToUse,
           Key: frameKey,
-          Body: fileStream,
+          Body: frameData,
           ContentType: 'image/jpeg',
         }));
         
-        frameKeys.push(frameKey);
+        return frameKey;
+      };
+      
+      // Process frames in batches for controlled parallelism
+      for (let i = 0; i < files.length; i += PARALLEL_UPLOADS) {
+        const batch = files.slice(i, i + PARALLEL_UPLOADS);
+        const batchResults = await Promise.all(batch.map(uploadFrame));
+        frameKeys.push(...batchResults);
       }
       
-      console.log(`Uploaded ${frameKeys.length} frames`);
+      // Sort frame keys to ensure correct order
+      frameKeys.sort();
+      
+      console.log(`Uploaded ${frameKeys.length} frames in parallel`);
       
       // 5. Update database with frame URLs and status
       if (TABLE_NAME) {
@@ -200,8 +232,11 @@ export const handler = async (event: any) => {
       
       // 7. Invoke AI Analysis
       try {
+        // Estimate duration from frames if ffprobe failed
+        const estimatedDuration = videoDuration || frameKeys.length;
+        
         console.log(`Invoking AI Analysis function: ${AI_FUNCTION_NAME}`);
-        console.log(`Payload: ${JSON.stringify({ userId, reportId, frameKeys: frameKeys.length })}`);
+        console.log(`Payload: ${JSON.stringify({ userId, reportId, frameKeys: frameKeys.length, videoDuration: estimatedDuration })}`);
         
         const invokeResponse = await lambda.send(new InvokeCommand({
           FunctionName: AI_FUNCTION_NAME,
@@ -210,6 +245,7 @@ export const handler = async (event: any) => {
             userId,
             reportId,
             frameKeys,
+            videoDuration: estimatedDuration, // Pass duration for accurate timestamps
           }),
         }));
         

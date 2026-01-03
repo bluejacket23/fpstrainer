@@ -15,7 +15,7 @@ const BUCKET_NAME = process.env.BUCKET_NAME;
 const CLEANUP_FUNCTION_NAME = process.env.CLEANUP_FUNCTION_NAME;
 
 export const handler = async (event: any) => {
-  const { userId, reportId, frameKeys } = event;
+  const { userId, reportId, frameKeys, videoDuration } = event;
   
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   
@@ -53,22 +53,32 @@ export const handler = async (event: any) => {
       ExpressionAttributeValues: { ':s': 'ANALYZING' },
     }));
     
-    // Sample frames (every 2nd frame)
-    const sampledKeys = frameKeys.filter((_: any, i: number) => i % 2 === 0);
-    const imageUrls = await Promise.all(sampledKeys.map(async (key: string) => {
+    // Use all frames for accurate timestamps (we already extract 1fps)
+    // Generate signed URLs in parallel for speed
+    const imageUrls = await Promise.all(frameKeys.map(async (key: string) => {
       const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: key });
       return getSignedUrl(s3, command, { expiresIn: 3600 });
     }));
     
+    // Calculate timing info - each frame represents 1 second
+    const totalFrames = frameKeys.length;
+    const actualDuration = videoDuration || totalFrames; // Use passed duration or estimate from frames
+    
     const content: any[] = [
-      { type: "text", text: "Analyze the following sequence of frames from a player's gameplay clip." }
+      { type: "text", text: `Analyze the following sequence of ${totalFrames} frames from a player's gameplay clip. The clip is approximately ${actualDuration} seconds long. Each frame represents 1 second of gameplay, so Frame 1 = 0:00-0:01, Frame 2 = 0:01-0:02, and so on.` }
     ];
     
-    for (const url of imageUrls) {
+    // Add frame number labels for precise timing
+    for (let i = 0; i < imageUrls.length; i++) {
+      const frameSecond = i; // Frame index = second in video
+      content.push({
+        type: "text", 
+        text: `[FRAME ${i + 1} - Timestamp: 0:${frameSecond.toString().padStart(2, '0')}s]`
+      });
       content.push({
         type: "image_url",
         image_url: {
-          url: url,
+          url: imageUrls[i],
           detail: "low"
         }
       });
@@ -76,6 +86,15 @@ export const handler = async (event: any) => {
     
     const promptText = `
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
+
+**CRITICAL TIMING INFORMATION:**
+You have received ${totalFrames} frames from a ${actualDuration}-second gameplay clip. 
+- Each frame represents EXACTLY 1 second of gameplay
+- Frame 1 = Second 0 (0:00s), Frame 2 = Second 1 (0:01s), Frame 3 = Second 2 (0:02s), etc.
+- When referencing timestamps, use the EXACT frame number to determine the second
+- Example: If you see action in Frame 5, the timestamp is 0:04s (since Frame 1 = 0:00s)
+- ALWAYS cross-reference your timestamp with which frame number you observed the action in
+- DO NOT estimate or guess timestamps - they must match the frame numbers provided
 
 **YOUR ANALYTICAL APPROACH:**
 You analyze gameplay with the expectation of PROFESSIONAL-LEVEL performance. Be CRITICAL, DETAILED, and CONSTRUCTIVE. You're coaching players who want to compete at the highest level. Point out mistakes, missed opportunities, and areas for improvement with SPECIFIC REASONING and EXPLANATIONS. Also acknowledge strong plays and good decision-making, but be honest about what needs work. Provide DETAILED EXPLANATIONS for WHY something is good or bad, not just what happened. Scores should reflect a balanced but STRICT assessment - recognize excellent play when you see it, but don't inflate scores for average performance. Be slightly more critical than overly generous - players need honest feedback to improve.
@@ -94,22 +113,24 @@ You analyze gameplay with the expectation of PROFESSIONAL-LEVEL performance. Be 
 - **CRITICAL: Individual scores MUST vary significantly from the overall score.** If overallScore is 80.0, individual scores should range from approximately 70-90, with some higher and some lower. Do NOT make all scores cluster around the overall score. Each category should reflect its own performance level independently.
 - **IMPORTANT: Be slightly more critical with scoring. If you're unsure between two score ranges, choose the lower one. Players need honest feedback to improve.**
 
-Analyze the following sequence of frames from a player's clip (max 60s). 
+Analyze the ${totalFrames} frames from this ${actualDuration}-second gameplay clip.
 Provide a deeply detailed, pro-level coaching breakdown in the EXACT order specified below:
 
 **1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
-Provide specific timestamps in EXACT format. Each moment must be on its own line starting with "> " followed by the timestamp, then " - ", then a DETAILED description with REASONING. You MUST provide multiple moments (at least 8-12) covering different seconds throughout the clip. For each moment, explain:
+**CRITICAL: Match timestamps EXACTLY to frame numbers. Frame 1 = 0:00s, Frame 2 = 0:01s, etc.**
+Provide specific timestamps in EXACT format based on the frame numbers you observed. Each moment must be on its own line starting with "> " followed by the timestamp, then " - ", then a DETAILED description with REASONING. You MUST provide multiple moments (at least 8-12) covering different frames throughout the clip. For each moment, explain:
+- Which FRAME NUMBER you observed this action in (to verify timestamp accuracy)
 - WHAT happened
 - WHY it was good or bad
 - WHAT the player should have done differently (if it was a mistake)
 - The CONSEQUENCE or IMPACT of the decision
 
-Format examples:
-> 0:13s - Player engaged with enemy but had poor crosshair placement. Crosshair was positioned at chest level instead of head height, resulting in missed initial shots. This forced the player to readjust mid-fight, losing the advantage. Should have pre-aimed at head height before peeking the corner, as this is a common engagement point. The missed shots allowed the enemy to return fire and deal significant damage.
+Format examples (note how frame numbers map to timestamps):
+> 0:04s (Frame 5) - Player engaged with enemy but had poor crosshair placement. Crosshair was positioned at chest level instead of head height, resulting in missed initial shots. This forced the player to readjust mid-fight, losing the advantage. Should have pre-aimed at head height before peeking the corner, as this is a common engagement point. The missed shots allowed the enemy to return fire and deal significant damage.
 
-> 0:19-0:21s - Player was caught in the open without cover for approximately 2 seconds, leading to taking heavy damage. The player sprinted across an open lane without checking for enemies or having an escape route. This positioning error exposed them to multiple angles simultaneously. Should have used the nearby cover to move more safely, or at minimum, checked the common enemy positions before committing to the rotation. This mistake nearly resulted in elimination.
+> 0:12-0:14s (Frames 13-15) - Player was caught in the open without cover for approximately 2 seconds, leading to taking heavy damage. The player sprinted across an open lane without checking for enemies or having an escape route. This positioning error exposed them to multiple angles simultaneously. Should have used the nearby cover to move more safely, or at minimum, checked the common enemy positions before committing to the rotation. This mistake nearly resulted in elimination.
 
-Each moment should be DETAILED with specific reasoning and explanations. Include many moments throughout the 60-second clip.
+Each moment should be DETAILED with specific reasoning and explanations. Reference the exact frame numbers to ensure timestamp accuracy. Include many moments covering the full clip duration.
 
 **2. AIM & ACCURACY PERFORMANCE**
 For each aspect, provide DETAILED analysis with:
@@ -179,7 +200,7 @@ Provide specific drills with step-by-step instructions for improvement.
 **OUTPUT FORMAT:**
 You must output a JSON object containing a "scorecard" with decimal ratings out of 100 (e.g., 77.8, 68.3) for the categories below, and a "markdownReport" string.
 
-IMPORTANT: Provide scores for as many categories as you can reasonably evaluate from the frames. If you cannot evaluate a specific metric, you may omit it, but always include: overallScore, aimAccuracy, movementMechanics, positioning, gameSense, engagementQuality, and survivability as minimum required scores.
+IMPORTANT: Provide scores for ALL categories listed below. Each metric should be evaluated independently based on what you observed. Scores should vary significantly - don't cluster them around the same value. Aim for at least 15-20 point variance between your highest and lowest individual scores.
 
 The markdownReport MUST follow this EXACT format and order. Use ">" for ALL bullet points (NO dashes, NO asterisks, ONLY ">"), NO emojis anywhere, and include a blank line between each major section:
 
@@ -187,12 +208,12 @@ The markdownReport MUST follow this EXACT format and order. Use ">" for ALL bull
 
 KEY MOMENTS BREAKDOWN
 
-> 0:13s - [First detailed moment description]
-> 0:19-0:21s - [Second detailed moment description]
-> 0:31s - [Third detailed moment description]
-> 0:41s - [Fourth detailed moment description]
-> 0:45s - [Fifth detailed moment description]
-[Continue with many more moments throughout the clip - at least 5-10 moments covering different seconds]
+> 0:04s (Frame 5) - [First detailed moment description with frame reference]
+> 0:12-0:14s (Frames 13-15) - [Second detailed moment description]
+> 0:18s (Frame 19) - [Third detailed moment description]
+> 0:25s (Frame 26) - [Fourth detailed moment description]
+> 0:33s (Frame 34) - [Fifth detailed moment description]
+[Continue with many more moments - reference frame numbers for accuracy]
 
 AIM & ACCURACY PERFORMANCE
 
@@ -282,46 +303,85 @@ TRAINING DRILLS:
 > Goal: [What to achieve]
 > [Repeat for multiple drills]
 
-Required JSON Structure (include as many metrics as you can evaluate):
+Required JSON Structure (PROVIDE ALL SCORES - evaluate each independently):
 {
   "scorecard": {
-    "overallScore": number (one decimal place, REQUIRED),
-    "aimAccuracy": number (REQUIRED),
-    "movementMechanics": number (REQUIRED),
-    "positioning": number (REQUIRED),
-    "gameSense": number (REQUIRED),
-    "engagementQuality": number (REQUIRED),
-    "survivability": number (REQUIRED),
-    "crosshairPlacement": number (optional but recommended),
-    "firstShotAccuracy": number (optional),
-    "trackingStability": number (optional),
-    "flickTiming": number (optional),
-    "recoilControl": number (optional),
-    "adsTiming": number (optional),
-    "reactionTime": number (optional),
-    "reticleDiscipline": number (optional),
-    "strafingAimQuality": number (optional),
-    "strafingTechnique": number (optional),
-    "slideTiming": number (optional),
-    "jumpShotUsage": number (optional),
-    "rotationEfficiency": number (optional),
-    "peekingTechnique": number (optional),
-    "angleSelection": number (optional),
-    "coverUsage": number (optional),
-    "mapAwareness": number (optional),
-    "predictability": number (optional),
-    "awarenessChecks": number (optional),
-    "rotationTiming": number (optional),
-    "situationalAwareness": number (optional),
-    "openingShotTiming": number (optional),
-    "fightInitiations": number (optional),
-    "weaponSwapSpeed": number (optional),
-    "reloadTiming": number (optional),
-    "disengagementTiming": number (optional),
-    "lanePressure": number (optional),
-    "tempoRating": number (optional),
-    "mechanicalConsistency": number (optional),
-    "confidenceRating": number (optional)
+    // CORE METRICS (REQUIRED)
+    "overallScore": number (one decimal place),
+    "aimAccuracy": number,
+    "movementMechanics": number,
+    "positioning": number,
+    "gameSense": number,
+    "engagementQuality": number,
+    "survivability": number,
+    
+    // AIM & ACCURACY METRICS
+    "crosshairPlacement": number,
+    "firstShotAccuracy": number,
+    "trackingStability": number,
+    "flickTiming": number,
+    "recoilControl": number,
+    "adsTiming": number,
+    "reactionTime": number,
+    "reticleDiscipline": number,
+    "strafingAimQuality": number,
+    "targetAcquisitionSpeed": number,     // NEW: How fast player acquires new targets
+    "headLevelConsistency": number,       // NEW: How consistently crosshair stays at head level
+    "preAimAccuracy": number,             // NEW: Quality of pre-aiming common angles
+    "sprayTransferControl": number,       // NEW: Ability to transfer spray between targets
+    
+    // MOVEMENT & MECHANICS METRICS
+    "strafingTechnique": number,
+    "slideTiming": number,
+    "jumpShotUsage": number,
+    "rotationEfficiency": number,
+    "peekingTechnique": number,
+    "counterStrafing": number,            // NEW: Quality of counter-strafe before shooting
+    "jigglePeeking": number,              // NEW: Effectiveness of jiggle peek information gathering
+    "movementUnpredictability": number,   // NEW: How hard to track/predict movement
+    "sprintManagement": number,           // NEW: Smart use of tactical vs regular sprint
+    "bunnyHopEfficiency": number,         // NEW: Effectiveness of bunny hop chains
+    
+    // POSITIONING & MAP CONTROL METRICS
+    "angleSelection": number,
+    "coverUsage": number,
+    "mapAwareness": number,
+    "offAngleUsage": number,              // NEW: Creative use of unexpected angles
+    "tradeability": number,               // NEW: How easy teammates can trade if player dies
+    "utilityAvoidance": number,           // NEW: Skill at avoiding/dodging utility
+    "sightlineManagement": number,        // NEW: Managing multiple sightlines safely
+    "verticality": number,                // NEW: Use of vertical space/height advantages
+    
+    // GAME SENSE & DECISION METRICS
+    "predictability": number,
+    "awarenessChecks": number,
+    "rotationTiming": number,
+    "situationalAwareness": number,
+    "informationUsage": number,           // NEW: How well player uses gathered info
+    "economyAwareness": number,           // NEW: Awareness of enemy/team economy decisions
+    "clutchPotential": number,            // NEW: Composure and decision-making under pressure
+    "adaptability": number,               // NEW: Ability to adapt to unexpected situations
+    
+    // ENGAGEMENT & COMBAT METRICS
+    "openingShotTiming": number,
+    "fightInitiations": number,
+    "weaponSwapSpeed": number,
+    "reloadTiming": number,
+    "peekCommitment": number,             // NEW: Decisiveness when peeking (not half-peeking)
+    "isolationSkill": number,             // NEW: Ability to take 1v1 fights
+    "tradePrevention": number,            // NEW: Avoiding being traded after a kill
+    "multiKillPotential": number,         // NEW: Ability to chain kills efficiently
+    
+    // SURVIVABILITY & UTILITY METRICS
+    "disengagementTiming": number,
+    "lanePressure": number,
+    "tempoRating": number,
+    "mechanicalConsistency": number,
+    "confidenceRating": number,
+    "healthManagement": number,           // NEW: Smart decisions based on health state
+    "escapeRouting": number,              // NEW: Quality of escape routes when retreating
+    "damageTradingEfficiency": number,    // NEW: Getting more damage than taking
+    "timeAliveEfficiency": number         // NEW: Impact during time alive
   },
   "markdownReport": "The full markdown report text following the exact format above..."
 }
