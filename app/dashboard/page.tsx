@@ -23,6 +23,7 @@ function DashboardContent() {
   const [reports, setReports] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<any>(null);
+  const [clipsRemaining, setClipsRemaining] = useState<number | null>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -140,7 +141,14 @@ function DashboardContent() {
             })
             .filter((r: any) => r !== null && r !== undefined && r.reportId);
 
-          setReports(normalizedReports);
+          // Sort by timestamp (newest first)
+          const sortedReports = normalizedReports.sort((a: any, b: any) => {
+            const timeA = a.timestamp || a.createdAt || '0';
+            const timeB = b.timestamp || b.createdAt || '0';
+            return new Date(timeB).getTime() - new Date(timeA).getTime();
+          });
+          
+          setReports(sortedReports);
 
           // Calculate statistics
           const completedReports = normalizedReports.filter(
@@ -155,7 +163,6 @@ function DashboardContent() {
               positioning: 0,
               gameSense: 0,
               engagementQuality: 0,
-              survivability: 0,
             };
 
             let highScore = 0;
@@ -174,7 +181,6 @@ function DashboardContent() {
                 totals.positioning += scorecard.positioning || 0;
                 totals.gameSense += scorecard.gameSense || 0;
                 totals.engagementQuality += scorecard.engagementQuality || 0;
-                totals.survivability += scorecard.survivability || 0;
               }
             });
 
@@ -186,7 +192,6 @@ function DashboardContent() {
               positioningAvg: totals.positioning / count,
               gameSenseAvg: totals.gameSense / count,
               engagementAvg: totals.engagementQuality / count,
-              survivabilityAvg: totals.survivability / count,
               totalReports: normalizedReports.length,
               completedReports: completedReports.length,
               highScore: highScore,
@@ -207,6 +212,28 @@ function DashboardContent() {
     };
 
     fetchReports();
+    
+    // Auto-refresh every 10 seconds to catch new reports
+    const refreshInterval = setInterval(() => {
+      fetchReports();
+    }, 10000);
+    
+    // Fetch clips remaining from User model
+    const fetchClipsRemaining = async () => {
+      try {
+        const userId = user.userId || user.sub;
+        const userResult = await client.models.User.get({ userId });
+        if (userResult.data) {
+          setClipsRemaining(userResult.data.clipsRemaining ?? 0);
+        }
+      } catch (error) {
+        console.error('Error fetching clips remaining:', error);
+      }
+    };
+    
+    fetchClipsRemaining();
+    
+    return () => clearInterval(refreshInterval);
   }, [user]);
 
   if (loading) {
@@ -226,89 +253,76 @@ function DashboardContent() {
     <div className="min-h-screen p-4 py-12 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-white">Your Reports</h1>
+          <div>
+            <h1 className="text-3xl font-bold text-white">Your Reports</h1>
+            {clipsRemaining !== null && (
+              <p className="text-sm text-gray-400 font-mono mt-1">
+                Clips Remaining: <span className="text-neon font-bold">{clipsRemaining}</span>
+              </p>
+            )}
+          </div>
           <Link href="/upload">
-            <button className="bg-neon text-black px-4 py-2 rounded font-bold hover:bg-neon/90 transition-colors">
-              New Analysis
+            <button 
+              className="bg-neon text-black px-4 py-2 rounded font-bold hover:bg-neon/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={clipsRemaining !== null && clipsRemaining <= 0}
+            >
+              {clipsRemaining !== null && clipsRemaining <= 0 ? 'No Clips Remaining' : 'New Analysis'}
             </button>
           </Link>
         </div>
 
         {/* Scoring Section at Top */}
         {stats && stats.completedReports > 0 && (
-          <div className="mb-8 grid lg:grid-cols-4 gap-6">
-            {/* Average Score - Left Side */}
-            <div className="lg:col-span-3 bg-surface rounded-2xl border border-white/10 p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Cumulative Performance Statistics</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                <StatCard
-                  label="Overall Avg"
-                  value={stats.overallAvg?.toFixed(1) || '0.0'}
-                  icon={<Target />}
-                  tier={stats.overallAvg ? getTier(stats.overallAvg) : null}
-                />
-                <StatCard 
-                  label="Aim Avg" 
-                  value={stats.aimAvg?.toFixed(1) || '0.0'} 
-                  icon={<Target />}
-                  score={stats.aimAvg}
-                />
-                <StatCard 
-                  label="Movement Avg" 
-                  value={stats.movementAvg?.toFixed(1) || '0.0'} 
-                  icon={<Activity />}
-                  score={stats.movementAvg}
-                />
-                <StatCard 
-                  label="Positioning Avg" 
-                  value={stats.positioningAvg?.toFixed(1) || '0.0'} 
-                  icon={<Map />}
-                  score={stats.positioningAvg}
-                />
-                <StatCard 
-                  label="Game Sense Avg" 
-                  value={stats.gameSenseAvg?.toFixed(1) || '0.0'} 
-                  icon={<Brain />}
-                  score={stats.gameSenseAvg}
-                />
-                <StatCard 
-                  label="Engagement Avg" 
-                  value={stats.engagementAvg?.toFixed(1) || '0.0'} 
-                  icon={<Swords />}
-                  score={stats.engagementAvg}
-                />
-                <StatCard 
-                  label="Survivability Avg" 
-                  value={stats.survivabilityAvg?.toFixed(1) || '0.0'} 
-                  icon={<Shield />}
-                  score={stats.survivabilityAvg}
-                />
-              </div>
+          <div className="mb-8 bg-surface rounded-2xl border border-white/10 p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Cumulative Performance Statistics</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
+              <StatCard
+                label="Overall Avg"
+                value={stats.overallAvg?.toFixed(1) || '0.0'}
+                icon={<Target />}
+                tier={stats.overallAvg ? getTier(stats.overallAvg) : null}
+                score={stats.overallAvg}
+                isHighlighted={true}
+              />
+              <StatCard 
+                label="Aim Avg" 
+                value={stats.aimAvg?.toFixed(1) || '0.0'} 
+                icon={<Target />}
+                score={stats.aimAvg}
+              />
+              <StatCard 
+                label="Movement Avg" 
+                value={stats.movementAvg?.toFixed(1) || '0.0'} 
+                icon={<Activity />}
+                score={stats.movementAvg}
+              />
+              <StatCard 
+                label="Positioning Avg" 
+                value={stats.positioningAvg?.toFixed(1) || '0.0'} 
+                icon={<Map />}
+                score={stats.positioningAvg}
+              />
+              <StatCard 
+                label="Game Sense Avg" 
+                value={stats.gameSenseAvg?.toFixed(1) || '0.0'} 
+                icon={<Brain />}
+                score={stats.gameSenseAvg}
+              />
+              <StatCard 
+                label="Engagement Avg" 
+                value={stats.engagementAvg?.toFixed(1) || '0.0'} 
+                icon={<Swords />}
+                score={stats.engagementAvg}
+              />
+              <StatCard
+                label="Overall High Score"
+                value={stats.highScore?.toFixed(1) || '0.0'}
+                icon={<Target />}
+                tier={stats.highScoreTier}
+                score={stats.highScore}
+                isHighlighted={true}
+              />
             </div>
-
-            {/* High Score Box - Right Side (Emphasized) */}
-            {stats.highScore !== undefined && stats.highScore > 0 && (
-              <div className="lg:col-span-1 bg-surface rounded-2xl border-2 border-neon/50 p-6 shadow-[0_0_20px_rgba(0,255,157,0.2)]">
-                <div className="text-center">
-                  <div className="text-sm font-mono text-gray-400 mb-2">HIGH SCORE</div>
-                  <div className="text-5xl font-black text-neon mb-2">{stats.highScore.toFixed(1)}</div>
-                  {stats.highScoreTier && (
-                    <div className={`text-xs font-bold px-3 py-1 rounded inline-block ${
-                      stats.highScoreTier.color === 'blue' ? 'bg-blue-500/20 text-blue-400' :
-                      stats.highScoreTier.color === 'green' ? 'bg-green-500/20 text-green-400' :
-                      stats.highScoreTier.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400' :
-                      stats.highScoreTier.color === 'orange' ? 'bg-orange-500/20 text-orange-400' :
-                      stats.highScoreTier.color === 'red' ? 'bg-red-500/20 text-red-400' :
-                      stats.highScoreTier.color === 'purple' ? 'bg-purple-500/20 text-purple-400' :
-                      stats.highScoreTier.color === 'gold' ? 'bg-yellow-500/20 text-yellow-400' :
-                      'bg-gray-500/20 text-gray-400'
-                    }`}>
-                      {stats.highScoreTier.name}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
         )}
 
@@ -334,15 +348,39 @@ function DashboardContent() {
   );
 }
 
-function StatCard({ label, value, icon, tier, score }: any) {
+function StatCard({ label, value, icon, tier, score, isHighlighted }: any) {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [animatedScore, setAnimatedScore] = useState(0);
   const scoreColor = score !== undefined && score !== null ? getScoreColor(score) : '#ffffff';
   const cardTier = tier || (score !== undefined && score !== null ? getTier(score) : null);
+  const numericValue = parseFloat(value) || 0;
+
+  // Animate score on mount
+  useEffect(() => {
+    const duration = 1000; // 1 second
+    const steps = 60;
+    const increment = numericValue / steps;
+    let current = 0;
+    let step = 0;
+
+    const timer = setInterval(() => {
+      step++;
+      current = Math.min(numericValue, increment * step);
+      setAnimatedScore(current);
+      
+      if (step >= steps) {
+        clearInterval(timer);
+        setAnimatedScore(numericValue);
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [numericValue]);
 
   return (
     <div className="relative">
       <div
-        className={`bg-white/5 rounded-lg p-4 border border-white/10 ${cardTier ? 'tier-tooltip-parent' : ''}`}
+        className={`bg-white/5 rounded-lg p-4 border ${isHighlighted ? 'border-neon/50 shadow-[0_0_10px_rgba(0,255,157,0.2)]' : 'border-white/10'} ${cardTier ? 'tier-tooltip-parent' : ''}`}
         onMouseEnter={() => cardTier && setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
@@ -352,7 +390,8 @@ function StatCard({ label, value, icon, tier, score }: any) {
         </div>
         <div className="flex items-baseline gap-2">
           <span className="text-2xl font-bold" style={{ color: scoreColor }}>{value}</span>
-          {cardTier && (
+          {/* Only show tier badge for overall average, not high score */}
+          {isHighlighted && cardTier && label === 'Overall Avg' && (
             <span
               className={`text-xs font-bold px-2 py-1 rounded ${
                 cardTier.color === 'blue' ? 'bg-blue-500/20 text-blue-400' :
@@ -370,14 +409,30 @@ function StatCard({ label, value, icon, tier, score }: any) {
           )}
         </div>
         {score !== undefined && score !== null && (
-          <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all"
-              style={{
-                width: `${Math.min(100, Math.max(0, score))}%`,
-                backgroundColor: scoreColor,
-              }}
-            />
+          <div className="mt-3 relative">
+            {/* Circular progress */}
+            <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke="rgba(255,255,255,0.1)"
+                strokeWidth="4"
+              />
+              <circle
+                cx="32"
+                cy="32"
+                r="28"
+                fill="none"
+                stroke={scoreColor}
+                strokeWidth="4"
+                strokeDasharray={`${2 * Math.PI * 28}`}
+                strokeDashoffset={`${2 * Math.PI * 28 * (1 - animatedScore / 100)}`}
+                strokeLinecap="round"
+                className="transition-all duration-300"
+              />
+            </svg>
           </div>
         )}
       </div>
@@ -389,14 +444,14 @@ function StatCard({ label, value, icon, tier, score }: any) {
         >
           <h3 className="text-white font-bold mb-2 text-sm">Tier System</h3>
           <div className="space-y-1 text-xs font-mono">
-            <div className="text-gray-300">Rookie: 0-49.9 (Blue)</div>
-            <div className="text-gray-300">Skilled: 50-59.9 (Green)</div>
-            <div className="text-gray-300">Competent: 60-69.9 (Yellow)</div>
-            <div className="text-gray-300">Advanced: 70-79.9 (Orange)</div>
-            <div className="text-gray-300">Elite: 80-89.9 (Red)</div>
-            <div className="text-gray-300">Master: 90-94.9 (Purple)</div>
-            <div className="text-gray-300">Legendary: 95-97.9 (Gold)</div>
             <div className="text-gray-300">God: 98-100 (Black/Flame)</div>
+            <div className="text-gray-300">Legendary: 95-97.9 (Gold)</div>
+            <div className="text-gray-300">Master: 90-94.9 (Purple)</div>
+            <div className="text-gray-300">Elite: 80-89.9 (Red)</div>
+            <div className="text-gray-300">Advanced: 70-79.9 (Orange)</div>
+            <div className="text-gray-300">Competent: 60-69.9 (Yellow)</div>
+            <div className="text-gray-300">Skilled: 50-59.9 (Green)</div>
+            <div className="text-gray-300">Rookie: 0-49.9 (Blue)</div>
           </div>
         </div>
       )}
@@ -422,8 +477,15 @@ function ReportCard({ report }: any) {
               src={report.thumbnailUrl}
               alt="Report thumbnail"
               className="w-full h-32 object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
+              onError={async (e) => {
+                // If thumbnail URL expired, try to regenerate it
+                try {
+                  // TODO: Call get-thumbnail-url Lambda to regenerate URL
+                  // For now, just hide the broken image
+                  (e.target as HTMLImageElement).style.display = 'none';
+                } catch (error) {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }
               }}
             />
           </div>
@@ -461,12 +523,8 @@ function StatusBadge({ status }: { status: string }) {
       </span>
     );
   }
-  // Processing - use pulsing dot instead of spinner
-  return (
-    <span className="px-2 py-1 rounded text-xs font-bold bg-blue-500/20 text-blue-400 flex items-center gap-1">
-      <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" /> Processing
-    </span>
-  );
+  // Don't show processing status - just show nothing or a subtle indicator
+  return null;
 }
 
 function getTier(score: number): { name: string; color: string } {

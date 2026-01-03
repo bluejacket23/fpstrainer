@@ -30,9 +30,56 @@ function UploadComponent({ user }: any) {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // File size validation (100MB max)
     if (file.size > 100 * 1024 * 1024) { 
-      alert("File too large. Max 100MB.");
+      alert("File too large. Maximum file size is 100MB.");
       return;
+    }
+
+    // File type validation
+    if (!file.type.startsWith('video/')) {
+      alert("Invalid file type. Please upload a video file (MP4 format recommended).");
+      return;
+    }
+
+    // Video length validation - create video element to check duration
+    const video = document.createElement('video');
+    video.preload = 'metadata';
+    
+    const checkDuration = (): Promise<number> => {
+      return new Promise((resolve, reject) => {
+        video.onloadedmetadata = () => {
+          window.URL.revokeObjectURL(video.src);
+          resolve(video.duration);
+        };
+        video.onerror = () => {
+          window.URL.revokeObjectURL(video.src);
+          reject(new Error('Could not load video metadata'));
+        };
+        video.src = URL.createObjectURL(file);
+      });
+    };
+
+    try {
+      const duration = await checkDuration();
+      
+      // Check if video is longer than 60 seconds
+      if (duration > 60) {
+        alert(`Video is too long. Maximum duration is 60 seconds. Your video is ${Math.round(duration)} seconds.`);
+        return;
+      }
+
+      // Check if video is too short (less than 5 seconds)
+      if (duration < 5) {
+        alert("Video is too short. Minimum duration is 5 seconds.");
+        return;
+      }
+    } catch (error) {
+      console.error('Error checking video duration:', error);
+      // Continue with upload if we can't check duration, but warn user
+      if (!confirm("Could not verify video length. Please ensure your video is 60 seconds or less. Continue anyway?")) {
+        return;
+      }
     }
 
     setUploading(true);
@@ -45,7 +92,16 @@ function UploadComponent({ user }: any) {
 
       if (errors) {
         console.error("Upload init errors:", errors);
-        throw new Error(`Failed to initialize upload: ${JSON.stringify(errors)}`);
+        const errorMessage = errors[0]?.message || JSON.stringify(errors);
+        
+        // Check if it's a clip limit error
+        if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining')) {
+          alert('You have no clips remaining for this month. Please upgrade your plan to continue.');
+          setUploading(false);
+          return;
+        }
+        
+        throw new Error(`Failed to initialize upload: ${errorMessage}`);
       }
 
       if (!initData) {
@@ -84,9 +140,17 @@ function UploadComponent({ user }: any) {
 
       xhr.send(file);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Error uploading file");
+      const errorMessage = error?.message || 'Error uploading file';
+      
+      // Check if it's a clip limit error
+      if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining')) {
+        alert('You have no clips remaining for this month. Please upgrade your plan to continue.');
+      } else {
+        alert(errorMessage);
+      }
+      
       setUploading(false);
     }
   };
@@ -117,7 +181,6 @@ function UploadComponent({ user }: any) {
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="text-sm text-gray-500 mt-4">Processing will start automatically.</p>
         </div>
       )}
     </div>

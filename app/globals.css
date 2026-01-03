@@ -3,6 +3,9 @@
 :root {
   --background: #050505;
   --foreground: #ffffff;
+  --amplify-primary-color: #00ff9d;
+  --amplify-primary-tint: #00ff9d;
+  --amplify-primary-shade: #00cc7d;
 }
 
 body {
@@ -91,4 +94,78 @@ body {
 
 .cyber-card {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+}
+
+/* Scrolling text animation - seamless loop */
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-up {
+  animation: scroll-up 16s linear infinite;
+}
+
+/* Fade mask for smooth top/bottom fade - each line fades individually as it enters/exits */
+.mask-fade {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 8%,
+    black 12%,
+    black 88%,
+    rgba(0, 0, 0, 0.3) 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 8%,
+    black 12%,
+    black 88%,
+    rgba(0, 0, 0, 0.3) 92%,
+    transparent 100%
+  );
+}
+
+/* Amplify UI Custom Styling */
+[data-amplify-authenticator] {
+  --amplify-primary-color: #00ff9d;
+  --amplify-primary-tint: #00ff9d;
+  --amplify-primary-shade: #00cc7d;
+  --amplify-background-color: #050505;
+  --amplify-font-family: var(--font-inter);
+}
+
+[data-amplify-authenticator] [data-amplify-container] {
+  background: #050505;
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  border-radius: 8px;
+}
+
+[data-amplify-authenticator] button[type="submit"] {
+  background: #00ff9d;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  transition: all 0.2s;
+}
+
+[data-amplify-authenticator] button[type="submit"]:hover {
+  background: #00cc7d;
+}
+
+[data-amplify-authenticator] input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+[data-amplify-authenticator] input:focus {
+  border-color: #00ff9d;
+  box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.2);
 }

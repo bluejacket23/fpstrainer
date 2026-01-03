@@ -7,16 +7,28 @@ const outputs = JSON.parse(fs.readFileSync('amplify_outputs.json', 'utf8'));
 const region = outputs.auth.aws_region;
 const bucketName = outputs.storage.bucket_name;
 
-// Get table name
+// Get table names
 let tableName;
+let userTableName;
 try {
   const tables = execSync(`aws dynamodb list-tables --region ${region}`, { encoding: 'utf8' });
-  const tableMatch = tables.match(/OpsCoachReport[^\s"]*/);
-  if (tableMatch) {
-    tableName = tableMatch[0];
+  const opsCoachMatch = tables.match(/OpsCoachReport[^\s"]*/);
+  if (opsCoachMatch) {
+    tableName = opsCoachMatch[0];
+  }
+  // Find User table - it might be User-xxx or Users-xxx
+  const userMatch = tables.match(/User-[^\s"]*/);
+  if (userMatch) {
+    userTableName = userMatch[0];
+  } else {
+    // Fallback to Users if User- not found
+    const usersMatch = tables.match(/Users[^\s"]*/);
+    if (usersMatch) {
+      userTableName = usersMatch[0];
+    }
   }
 } catch (e) {
-  console.error('Could not find table');
+  console.error('Could not find tables');
   process.exit(1);
 }
 
@@ -36,6 +48,9 @@ try {
     }
     if (name.includes('listreports') || name.includes('list-reports')) {
       functions['list-reports'] = fn.FunctionName;
+    }
+    if (name.includes('uploadinit') || name.includes('upload-init')) {
+      functions['upload-init'] = fn.FunctionName;
     }
   });
 } catch (e) {
@@ -161,6 +176,54 @@ async function main() {
       });
     } catch (e) {
       console.error('Error configuring ai-analysis IAM:', e.message);
+    }
+  }
+  
+  // Fix upload-init permissions
+  if (functions['upload-init']) {
+    console.log('\nConfiguring upload-init IAM...');
+    try {
+      const funcInfo = execSync(`aws lambda get-function --function-name ${functions['upload-init']} --region ${region}`, { encoding: 'utf8' });
+      const funcData = JSON.parse(funcInfo);
+      const roleArn = funcData.Configuration.Role;
+      const roleName = roleArn.split('/').pop();
+      const accountId = roleArn.split(':')[4];
+      
+      // DynamoDB policy for OpsCoachReport table
+      if (tableName) {
+        await addIAMPolicy(roleName, 'DynamoDBReportAccess', {
+          Version: '2012-10-17',
+          Statement: [{
+            Effect: 'Allow',
+            Action: ['dynamodb:PutItem', 'dynamodb:GetItem', 'dynamodb:UpdateItem'],
+            Resource: `arn:aws:dynamodb:${region}:${accountId}:table/${tableName}`
+          }]
+        });
+      }
+      
+      // DynamoDB policy for User table (for clip tracking)
+      if (userTableName) {
+        await addIAMPolicy(roleName, 'DynamoDBUserAccess', {
+          Version: '2012-10-17',
+          Statement: [{
+            Effect: 'Allow',
+            Action: ['dynamodb:GetItem', 'dynamodb:PutItem', 'dynamodb:UpdateItem'],
+            Resource: `arn:aws:dynamodb:${region}:${accountId}:table/${userTableName}`
+          }]
+        });
+      }
+      
+      // S3 policy
+      await addIAMPolicy(roleName, 'S3Access', {
+        Version: '2012-10-17',
+        Statement: [{
+          Effect: 'Allow',
+          Action: ['s3:PutObject', 's3:GetObject'],
+          Resource: `arn:aws:s3:::${bucketName}/*`
+        }]
+      });
+    } catch (e) {
+      console.error('Error configuring upload-init IAM:', e.message);
     }
   }
   

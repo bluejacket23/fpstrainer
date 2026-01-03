@@ -65,15 +65,82 @@ export default function Home() {
               DOMINATE THE SERVER
             </h2>
             
-            <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto font-mono border-l-2 border-cyber pl-6 text-left">
-              &gt; ANALYZING GAMEPLAY... <br/>
-              &gt; DETECTING FLAWS... <br/>
-              &gt; OPTIMIZING PERFORMANCE...
-            </p>
+            <div className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto font-mono text-left h-32 overflow-hidden relative mask-fade">
+              <div className="absolute inset-0 flex flex-col justify-center space-y-2 animate-scroll-up">
+                {/* First set - will loop seamlessly */}
+                <div>&gt; ANALYZING GAMEPLAY...</div>
+                <div>&gt; EXTRACTING FRAMES FROM VIDEO...</div>
+                <div>&gt; PROCESSING VISUAL DATA...</div>
+                <div>&gt; CALCULATING AIM ACCURACY METRICS...</div>
+                <div>&gt; EVALUATING MOVEMENT PATTERNS...</div>
+                <div>&gt; ASSESSING POSITIONING STRATEGY...</div>
+                <div>&gt; ANALYZING ENGAGEMENT QUALITY...</div>
+                <div>&gt; SCANNING FOR IMPROVEMENT OPPORTUNITIES...</div>
+                <div>&gt; PROCESSING ADVANCED METRICS...</div>
+                <div>&gt; GENERATING COACHING INSIGHTS...</div>
+                <div>&gt; COMPILING PERFORMANCE SCORECARD...</div>
+                <div>&gt; IDENTIFYING KEY MOMENTS...</div>
+                <div>&gt; EVALUATING GAME SENSE...</div>
+                <div>&gt; ANALYZING WEAPON HANDLING...</div>
+                <div>&gt; ASSESSING SURVIVABILITY FACTORS...</div>
+                <div>&gt; PROCESSING TACTICAL DECISIONS...</div>
+                <div>&gt; CALCULATING PREDICTABILITY SCORE...</div>
+                <div>&gt; EVALUATING MECHANICAL CONSISTENCY...</div>
+                <div>&gt; GENERATING PERSONALIZED FEEDBACK...</div>
+                <div>&gt; FINALIZING ANALYSIS REPORT...</div>
+                <div>&gt; COMPUTING CROSSHAIR PLACEMENT ACCURACY...</div>
+                <div>&gt; ANALYZING RECOIL CONTROL PATTERNS...</div>
+                <div>&gt; EVALUATING FIRST-SHOT HIT RATE...</div>
+                <div>&gt; PROCESSING STRAFING MECHANICS...</div>
+                <div>&gt; CALCULATING ROTATION EFFICIENCY...</div>
+                <div>&gt; ASSESSING COVER UTILIZATION...</div>
+                <div>&gt; ANALYZING PEEKING TECHNIQUES...</div>
+                <div>&gt; EVALUATING LANE PRESSURE METRICS...</div>
+                <div>&gt; PROCESSING TEMPO RATING ANALYSIS...</div>
+                <div>&gt; CALCULATING ENGAGEMENT WIN RATE...</div>
+                <div>&gt; ASSESSING DISENGAGEMENT TIMING...</div>
+                <div>&gt; ANALYZING WEAPON SWAP EFFICIENCY...</div>
+                <div>&gt; EVALUATING RELOAD TIMING OPTIMIZATION...</div>
+                {/* Duplicate set for seamless loop */}
+                <div>&gt; ANALYZING GAMEPLAY...</div>
+                <div>&gt; EXTRACTING FRAMES FROM VIDEO...</div>
+                <div>&gt; PROCESSING VISUAL DATA...</div>
+                <div>&gt; CALCULATING AIM ACCURACY METRICS...</div>
+                <div>&gt; EVALUATING MOVEMENT PATTERNS...</div>
+                <div>&gt; ASSESSING POSITIONING STRATEGY...</div>
+                <div>&gt; ANALYZING ENGAGEMENT QUALITY...</div>
+                <div>&gt; SCANNING FOR IMPROVEMENT OPPORTUNITIES...</div>
+                <div>&gt; PROCESSING ADVANCED METRICS...</div>
+                <div>&gt; GENERATING COACHING INSIGHTS...</div>
+                <div>&gt; COMPILING PERFORMANCE SCORECARD...</div>
+                <div>&gt; IDENTIFYING KEY MOMENTS...</div>
+                <div>&gt; EVALUATING GAME SENSE...</div>
+                <div>&gt; ANALYZING WEAPON HANDLING...</div>
+                <div>&gt; ASSESSING SURVIVABILITY FACTORS...</div>
+                <div>&gt; PROCESSING TACTICAL DECISIONS...</div>
+                <div>&gt; CALCULATING PREDICTABILITY SCORE...</div>
+                <div>&gt; EVALUATING MECHANICAL CONSISTENCY...</div>
+                <div>&gt; GENERATING PERSONALIZED FEEDBACK...</div>
+                <div>&gt; FINALIZING ANALYSIS REPORT...</div>
+                <div>&gt; COMPUTING CROSSHAIR PLACEMENT ACCURACY...</div>
+                <div>&gt; ANALYZING RECOIL CONTROL PATTERNS...</div>
+                <div>&gt; EVALUATING FIRST-SHOT HIT RATE...</div>
+                <div>&gt; PROCESSING STRAFING MECHANICS...</div>
+                <div>&gt; CALCULATING ROTATION EFFICIENCY...</div>
+                <div>&gt; ASSESSING COVER UTILIZATION...</div>
+                <div>&gt; ANALYZING PEEKING TECHNIQUES...</div>
+                <div>&gt; EVALUATING LANE PRESSURE METRICS...</div>
+                <div>&gt; PROCESSING TEMPO RATING ANALYSIS...</div>
+                <div>&gt; CALCULATING ENGAGEMENT WIN RATE...</div>
+                <div>&gt; ASSESSING DISENGAGEMENT TIMING...</div>
+                <div>&gt; ANALYZING WEAPON SWAP EFFICIENCY...</div>
+                <div>&gt; EVALUATING RELOAD TIMING OPTIMIZATION...</div>
+              </div>
+            </div>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link href="/upload">
-                <button className="cyber-button relative group bg-neon text-black px-10 py-5 font-bold text-xl hover:bg-white transition-all duration-200 hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.4)]">
+                <button className="relative group px-10 py-5 font-bold text-xl transition-all duration-200 hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.4)]" style={{ backgroundColor: '#00ff9d', color: '#000000' }}>
                   <span className="relative z-10 flex items-center gap-2 font-display tracking-widest">
                     INITIATE ANALYSIS <ArrowRight size={20} />
                   </span>
@@ -92,25 +159,77 @@ export default function Home() {
             <p className="text-gray-400 font-mono text-sm">AI-POWERED GAMEPLAY ANALYSIS FOR CALL OF DUTY, BATTLEFIELD, APEX LEGENDS, COUNTER-STRIKE, VALORANT & MORE</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <HowItWorksStep
               number="01"
               icon={<Upload className="w-12 h-12" />}
               title="Upload Clip"
-              description="Upload your gameplay clip (up to 60 seconds, max 100MB). Our system supports all major FPS games including Call of Duty, Battlefield, Apex Legends, Counter-Strike, and Valorant."
+              description="Upload your gameplay clip (up to 60 seconds, max 100MB). Our system supports all major FPS games including Call of Duty, Battlefield, Apex Legends, Counter-Strike, and Valorant. Fast, secure uploads with automatic processing."
             />
             <HowItWorksStep
               number="02"
               icon={<Brain className="w-12 h-12" />}
               title="AI Analysis"
-              description="Advanced AI analyzes every frame of your gameplay, evaluating aim precision, positioning, movement mechanics, game sense, and decision-making. Get comprehensive metrics and insights."
+              description="Advanced AI analyzes every frame of your gameplay, evaluating aim precision, positioning, movement mechanics, game sense, and decision-making. Our GPT-4o powered system provides professional-level coaching insights with 20+ detailed metrics."
             />
             <HowItWorksStep
               number="03"
               icon={<FileText className="w-12 h-12" />}
               title="Get Scoring & Feedback"
-              description="Receive detailed scoring across 20+ metrics, personalized coaching feedback, key moments breakdown, and actionable training recommendations to elevate your gameplay."
+              description="Receive detailed scoring across 20+ metrics, personalized coaching feedback, key moments breakdown with timestamps, and actionable training recommendations. Track your progress over time with cumulative statistics."
             />
+          </div>
+          
+          <div className="mt-16 bg-surface/30 border border-white/10 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">What You Get</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Check className="text-neon mt-1 flex-shrink-0" size={20} />
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Comprehensive Scorecard</h4>
+                    <p className="text-sm text-gray-400">20+ metrics including aim accuracy, movement mechanics, positioning, game sense, engagement quality, and more.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="text-neon mt-1 flex-shrink-0" size={20} />
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Key Moments Breakdown</h4>
+                    <p className="text-sm text-gray-400">Timestamped analysis of critical plays, mistakes, and opportunities with specific recommendations.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="text-neon mt-1 flex-shrink-0" size={20} />
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Personalized Coaching</h4>
+                    <p className="text-sm text-gray-400">Tailored feedback with top habits to fix, easy wins, and weekly improvement plans.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <Check className="text-neon mt-1 flex-shrink-0" size={20} />
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Training Drills</h4>
+                    <p className="text-sm text-gray-400">Step-by-step training exercises designed to improve your specific weaknesses.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="text-neon mt-1 flex-shrink-0" size={20} />
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Progress Tracking</h4>
+                    <p className="text-sm text-gray-400">Monitor your improvement over time with cumulative statistics and tier rankings.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="text-neon mt-1 flex-shrink-0" size={20} />
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Advanced Metrics</h4>
+                    <p className="text-sm text-gray-400">Lane pressure, tempo rating, predictability score, mechanical consistency, and confidence rating.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -157,7 +276,7 @@ export default function Home() {
             <p className="text-gray-400 font-mono text-sm">UNLOCK ADVANCED TACTICAL DATA</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <PricingCard 
               title="RECRUIT" 
               price="$0" 
@@ -199,7 +318,6 @@ export default function Home() {
                 "Movement mechanics scoring"
               ]}
               color="border-cyber"
-              glow="shadow-[0_0_30px_rgba(0,255,157,0.2)]"
             />
             <PricingCard 
               title="ELITE" 
@@ -207,7 +325,7 @@ export default function Home() {
               clips="50 Clips/Month"
               features={[
                 "Everything in Competitive +",
-                "Custom weekly training plan generator",
+                "8-Week Training Program",
                 "Advanced metrics (Lane Pressure, Tempo Rating)",
                 "Predictability score analysis",
                 "Mechanical consistency tracking",
@@ -222,6 +340,7 @@ export default function Home() {
               clips="150 Clips/Month"
               features={[
                 "Everything in Elite +",
+                "8-Week Training Program",
                 "Priority queue / faster processing",
                 "First-shot hit rate tracking",
                 "Engagement win rate analysis",
@@ -236,6 +355,7 @@ export default function Home() {
               clips="500 Clips/Month"
               features={[
                 "Everything in Pro +",
+                "8-Week Training Program",
                 "No rate limits",
                 "Personalized Branded Reports",
                 "Exclusive customization requests",
@@ -244,6 +364,67 @@ export default function Home() {
               ]}
               color="border-yellow-500"
               glow="shadow-[0_0_40px_rgba(255,215,0,0.3)]"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section id="faq" className="py-32 relative bg-surface/30 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-6xl font-black font-display text-white mb-4 uppercase">FAQ</h2>
+            <p className="text-gray-400 font-mono text-sm">FREQUENTLY ASKED QUESTIONS</p>
+          </div>
+
+          <div className="space-y-6">
+            <FAQItem 
+              question="What games does FPSTrainer support?"
+              answer="FPSTrainer works with all major tactical FPS games including Call of Duty (Warzone, Modern Warfare, Black Ops), Battlefield, Apex Legends, Counter-Strike 2, Valorant, Rainbow Six Siege, and more. As long as you can record gameplay footage, we can analyze it."
+            />
+            <FAQItem 
+              question="How long does the analysis take?"
+              answer="Typically 1-2 minutes after upload. The AI processes your clip frame-by-frame, extracts key moments, and generates a comprehensive report with 20+ metrics. You'll be redirected to your report page automatically once processing begins."
+            />
+            <FAQItem 
+              question="What video format and length do you accept?"
+              answer="We accept MP4 video files up to 60 seconds in length and 100MB in size. The video should be clear enough to see gameplay details. Most screen recording software (OBS, NVIDIA ShadowPlay, Xbox Game Bar) works perfectly."
+            />
+            <FAQItem 
+              question="How accurate is the AI analysis?"
+              answer="Our AI uses GPT-4o with vision capabilities to analyze gameplay at a professional coaching level. It evaluates aim precision, movement mechanics, positioning, game sense, and decision-making. Scores are based on professional standards - excellent players typically score 85-95, good competitive players score 75-84."
+            />
+            <FAQItem 
+              question="Can I track my progress over time?"
+              answer="Yes! Your dashboard shows cumulative statistics across all your reports, including average scores, high scores, and tier rankings. You can see how you're improving across different metrics over time."
+            />
+            <FAQItem 
+              question="What happens to my video after analysis?"
+              answer="For cost efficiency, we only store the thumbnail image from your clip. The original video and extracted frames are automatically deleted after the report is generated. Your report data (scores, analysis, metrics) is permanently stored in your account."
+            />
+            <FAQItem 
+              question="How do clips per month work?"
+              answer="Each plan includes a monthly clip allowance. Clips reset at the start of each month based on when you first uploaded a clip or created your account. Unused clips do not carry over. You can upgrade your plan at any time to get more clips."
+            />
+            <FAQItem 
+              question="What is the 8-Week Training Program?"
+              answer="Available for Elite plan and above, this feature generates a personalized 8-week training program based on your gameplay analysis. It includes detailed step-by-step drills, setup instructions, and a structured improvement plan tailored to your specific weaknesses."
+            />
+            <FAQItem 
+              question="Can I share my reports?"
+              answer="Yes! Each report includes a shareable graphic button that creates a styled image with all your scores. Perfect for sharing on social media or with teammates. The graphic includes FPSTrainer branding."
+            />
+            <FAQItem 
+              question="How do I cancel my subscription?"
+              answer="You can cancel your subscription at any time from your Account page. Cancellation stops automatic renewals but you retain access until the end of your current billing period. After cancellation, you'll be moved to the free RECRUIT plan."
+            />
+            <FAQItem 
+              question="Is my data secure?"
+              answer="Yes. We use AWS Amplify with industry-standard security practices. Your videos are processed securely and deleted after analysis. Only you can access your reports. We never share your data with third parties."
+            />
+            <FAQItem 
+              question="What if I'm not satisfied with my analysis?"
+              answer="We're constantly improving our AI analysis. If you have feedback or concerns about a specific report, please contact us at fpstrainer@email.com. We take quality seriously and want to ensure you get valuable insights."
             />
           </div>
         </div>
@@ -259,6 +440,8 @@ export default function Home() {
             <Link href="/terms" className="hover:text-neon transition-colors">Terms of Service</Link>
             <span>|</span>
             <Link href="/privacy" className="hover:text-neon transition-colors">Privacy Policy</Link>
+            <span>|</span>
+            <a href="mailto:fpstrainer@email.com" className="hover:text-neon transition-colors">Contact Us</a>
           </div>
           <div className="font-mono text-xs text-gray-600">
             SYSTEM STATUS: ONLINE
@@ -284,6 +467,29 @@ function HowItWorksStep({ number, icon, title, description }: any) {
       <h3 className="text-xl font-bold font-display text-white mb-2 tracking-wide">{title}</h3>
       <p className="text-sm text-gray-500 font-mono leading-relaxed">{description}</p>
     </motion.div>
+  );
+}
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div className="bg-surface/50 border border-white/10 rounded-lg overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-surface/30 transition-colors"
+      >
+        <span className="font-bold text-white font-mono text-sm">{question}</span>
+        <span className={`text-neon transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+          <ArrowRight size={20} className="transform -rotate-90" />
+        </span>
+      </button>
+      {isOpen && (
+        <div className="px-6 pb-4 text-gray-400 font-mono text-sm leading-relaxed">
+          {answer}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -351,7 +557,9 @@ function PricingCard({ title, price, clips, features, color, glow, popular, free
         {features && features.map((feature: string, index: number) => (
           <div key={index} className="flex items-start gap-2 text-xs font-mono text-gray-400">
             <Check size={12} className={`mt-1 flex-shrink-0 ${popular || free ? "text-neon" : "text-gray-600"}`} />
-            <span className="text-left">{feature}</span>
+            <span className={`text-left ${feature.includes('8-Week Training Program') ? 'font-bold text-neon' : ''}`}>
+              {feature}
+            </span>
           </div>
         ))}
       </div>

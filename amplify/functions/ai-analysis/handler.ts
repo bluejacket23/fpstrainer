@@ -1,15 +1,18 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
+import { LambdaClient, InvokeCommand } from '@aws-sdk/client-lambda';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import OpenAI from 'openai';
 
 const ddb = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(ddb);
 const s3 = new S3Client({});
+const lambda = new LambdaClient({});
 
 const TABLE_NAME = process.env.TABLE_NAME;
 const BUCKET_NAME = process.env.BUCKET_NAME;
+const CLEANUP_FUNCTION_NAME = process.env.CLEANUP_FUNCTION_NAME;
 
 export const handler = async (event: any) => {
   const { userId, reportId, frameKeys } = event;
@@ -88,12 +91,20 @@ You analyze gameplay with the expectation of PROFESSIONAL-LEVEL performance. Be 
 - Be HONEST and BALANCED. Acknowledge strong plays and good decisions, but also point out mistakes and areas for improvement.
 - Professional/excellent players typically score 85-95. Good competitive players score 75-84. Average players score 65-74.
 - ALL scores MUST be decimals with ONE decimal place (72.3, 68.7, NOT 72.0, 68.0)
+- **CRITICAL: Individual scores MUST vary significantly from the overall score.** If overallScore is 80.0, individual scores should range from approximately 70-90, with some higher and some lower. Do NOT make all scores cluster around the overall score. Each category should reflect its own performance level independently.
 
 Analyze the following sequence of frames from a player's clip (max 60s). 
 Provide a deeply detailed, pro-level coaching breakdown in the EXACT order specified below:
 
 **1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
-Provide specific timestamps (e.g., "At 0:13s...", "Between 0:19-0:21s...") identifying critical moments, mistakes, and strong plays. Format each moment with what happened and what should have been done differently.
+Provide specific timestamps in EXACT format. Each moment must be on its own line starting with "> " followed by the timestamp, then " - ", then the description. You MUST provide multiple moments (at least 5-10) covering different seconds throughout the clip. Format examples:
+> 0:13s - Player engaged with enemy but had poor crosshair placement
+> 0:19-0:21s - Player was caught in the open without cover, leading to taking heavy damage
+> 0:31s - Revived a teammate under fire without ensuring the area was clear
+> 0:41s - Effective tracking and enemy suppression; however, reaction time could improve
+> 0:45s - Successful round conclusion leveraging teammate support
+
+Each moment should be detailed and specific. Include many moments throughout the 60-second clip.
 
 **2. AIM & ACCURACY PERFORMANCE**
 - Crosshair placement (height, centering, pre-aiming)
@@ -161,41 +172,108 @@ You must output a JSON object containing a "scorecard" with decimal ratings out 
 
 IMPORTANT: Provide scores for as many categories as you can reasonably evaluate from the frames. If you cannot evaluate a specific metric, you may omit it, but always include: overallScore, aimAccuracy, movementMechanics, positioning, gameSense, engagementQuality, and survivability as minimum required scores.
 
-The markdownReport MUST follow this EXACT format and order:
+The markdownReport MUST follow this EXACT format and order. Use ">" for ALL bullet points (NO dashes, NO asterisks, ONLY ">"), NO emojis anywhere, and include a blank line between each major section:
+
 > PERFORMANCE ANALYSIS REPORT
 
-🎯 KEY MOMENTS BREAKDOWN
-[Your key moments with timestamps]
+[Add a quirky, one-sentence playstyle summary here based on the gameplay observed. Make it memorable and fun, like "A calculated risk-taker who plays like they're always one step ahead, but sometimes that step is off a cliff."]
 
-🎯 AIM & ACCURACY PERFORMANCE
-[Detailed breakdown]
+KEY MOMENTS BREAKDOWN
 
-⚡ MOVEMENT & MECHANICS
-[Detailed breakdown]
+> 0:13s - [First detailed moment description]
+> 0:19-0:21s - [Second detailed moment description]
+> 0:31s - [Third detailed moment description]
+> 0:41s - [Fourth detailed moment description]
+> 0:45s - [Fifth detailed moment description]
+[Continue with many more moments throughout the clip - at least 5-10 moments covering different seconds]
 
-🗺️ POSITIONING & MAP CONTROL
-[Detailed breakdown]
+AIM & ACCURACY PERFORMANCE
 
-🧠 GAME SENSE & DECISION-MAKING
-[Detailed breakdown]
+> Crosshair Placement: [Detailed analysis]
+> First-Shot Accuracy: [Detailed analysis]
+> Tracking Stability: [Detailed analysis]
+> Recoil Control: [Detailed analysis]
+> ADS Timing: [Detailed analysis]
+> Reaction Time: [Detailed analysis]
+> Reticle Discipline: [Detailed analysis]
+> Strafing Aim Quality: [Detailed analysis]
+> Overflicking/Underflicking Patterns: [Detailed analysis]
 
-⚔️ ENGAGEMENT QUALITY
-[Detailed breakdown]
+MOVEMENT & MECHANICS
 
-🔫 WEAPON & LOADOUT OPTIMIZATION
-[Detailed breakdown]
+> Strafing Technique: [Detailed analysis]
+> Slide Timing: [Detailed analysis]
+> Jump-Shot Usage: [Detailed analysis]
+> Rotation Efficiency: [Detailed analysis]
+> Peeking Technique: [Detailed analysis]
+> Sprint-to-fire: [Detailed analysis]
+> Movement Predictability: [Detailed analysis]
 
-🛡️ DEFENSE & SURVIVABILITY
-[Detailed breakdown]
+POSITIONING & MAP CONTROL
 
-📊 ADVANCED METRICS
-[Detailed breakdown with specific scores]
+> Angle Selection: [Detailed analysis]
+> Cover Usage: [Detailed analysis]
+> Map Awareness: [Detailed analysis]
+> Distance Control: [Detailed analysis]
+> Elevation Advantages: [Detailed analysis]
 
-💡 PERSONALIZED COACHING FEEDBACK
-[Weekly plan, habits, wins, playstyle summary, priority focus]
+GAME SENSE & DECISION-MAKING
+
+> Predictability: [Detailed analysis]
+> Angle Checking: [Detailed analysis]
+> Push Timing: [Detailed analysis]
+> Sound Cues: [Detailed analysis]
+> Rotation Timing: [Detailed analysis]
+> Situational Awareness: [Detailed analysis]
+
+ENGAGEMENT QUALITY
+
+> Opening Shot Timing: [Detailed analysis]
+> Fight Initiations: [Detailed analysis]
+> Cover Mid-fight: [Detailed analysis]
+> Re-challenges: [Detailed analysis]
+> Weapon Swap Speed: [Detailed analysis]
+> Reload Timing: [Detailed analysis]
+
+WEAPON & LOADOUT OPTIMIZATION
+
+> Weapon Choice: [Detailed analysis]
+> Attachment Usage: [Detailed analysis]
+> FOV & Sensitivity: [Detailed analysis]
+> Recommendations: [Detailed analysis]
+
+DEFENSE & SURVIVABILITY
+
+> Survival Opportunities: [Detailed analysis]
+> Open Exposure: [Detailed analysis]
+> Blind Spots: [Detailed analysis]
+> Disengagement Timing: [Detailed analysis]
+
+ADVANCED METRICS
+
+> Lane Pressure Analysis: [Percentage and analysis]
+> Time Exposed vs Cover: [Percentage and analysis]
+> Tempo Rating: [Rating and analysis]
+> Predictability Score: [Score and analysis]
+> Mechanical Consistency: [Score and analysis]
+> Confidence Rating: [Score and analysis]
+
+PERSONALIZED COACHING FEEDBACK
+
+> Weekly Improvement Plan: [Detailed plan]
+> Top 5 Habits Hurting Performance: [List and analysis]
+> Top 5 Easy Wins: [List and analysis]
+> Playstyle Summary: [One sentence summary]
+> Priority Focus: [Main focus area]
 
 TRAINING DRILLS:
-[Specific drills with steps]
+
+> [Drill Name] Drill: [Description]
+> Step 1: [First step]
+> Step 2: [Second step]
+> Step 3: [Third step]
+> Goal: [What to achieve]
+> [Repeat for multiple drills]
 
 Required JSON Structure (include as many metrics as you can evaluate):
 {
@@ -241,7 +319,16 @@ Required JSON Structure (include as many metrics as you can evaluate):
   "markdownReport": "The full markdown report text following the exact format above..."
 }
 
-The Markdown report should be professionally formatted with clear headers, bullet points, and bold text. Use emojis sparingly and only for section headers. Maintain a serious, analytical tone throughout.
+CRITICAL FORMATTING RULES:
+- Use ">" (greater than symbol followed by space) for EVERY single bullet point. NO dashes, NO asterisks, NO other bullet symbols.
+- Each line that is a bullet point MUST start with "> "
+- Include MANY key moments (at least 5-10) covering different seconds throughout the clip
+- NO emojis anywhere in the entire report
+- Include a blank line between each major section header and its content
+- Include a blank line after each major section before the next section header
+- Maintain a serious, analytical tone throughout
+- Ensure timing in key moments is accurate based on the frame sequence provided
+- Make sure every analysis point uses "> " format, not regular bullets
 `;
     
     content.push({ type: "text", text: promptText });
@@ -316,6 +403,24 @@ The Markdown report should be professionally formatted with clear headers, bulle
     }));
     
     console.log('Analysis completed successfully');
+    
+    // Invoke cleanup function to delete video and frames
+    if (CLEANUP_FUNCTION_NAME) {
+      try {
+        console.log('Invoking cleanup function...');
+        await lambda.send(new InvokeCommand({
+          FunctionName: CLEANUP_FUNCTION_NAME,
+          InvocationType: 'Event', // Async invocation
+          Payload: JSON.stringify({ userId, reportId }),
+        }));
+        console.log('Cleanup function invoked successfully');
+      } catch (cleanupError: any) {
+        console.error('Failed to invoke cleanup function:', cleanupError);
+        // Don't fail the whole process if cleanup fails
+      }
+    } else {
+      console.warn('CLEANUP_FUNCTION_NAME not set, skipping cleanup');
+    }
   } catch (error: any) {
     console.error('AI Analysis failed:', error);
     console.error('Error details:', {
