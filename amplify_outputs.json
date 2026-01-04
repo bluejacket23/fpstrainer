@@ -23,6 +23,33 @@
       "require_symbols": true,
       "require_uppercase": true
     },
+    "oauth": {
+      "identity_providers": [
+        "GOOGLE"
+      ],
+      "redirect_sign_in_uri": [
+        "http://localhost:3000/",
+        "http://localhost:3000/login",
+        "https://fpstrainer.com/",
+        "https://fpstrainer.com/login",
+        "https://www.fpstrainer.com/",
+        "https://www.fpstrainer.com/login"
+      ],
+      "redirect_sign_out_uri": [
+        "http://localhost:3000/",
+        "https://fpstrainer.com/",
+        "https://www.fpstrainer.com/"
+      ],
+      "response_type": "code",
+      "scopes": [
+        "phone",
+        "email",
+        "openid",
+        "profile",
+        "aws.cognito.signin.user.admin"
+      ],
+      "domain": "fa2534a6212cbb90c751.auth.us-east-2.amazoncognito.com"
+    },
     "unauthenticated_identities_enabled": true
   },
   "data": {

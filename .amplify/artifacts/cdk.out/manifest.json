@@ -22,7 +22,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a92941a5777d92b06e7633302b6591db0a312666da19b7a6a03925beb51e58c8.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5eef2089569c3faf26ba535af2b8146c733696f0ce5556e5e8ca48c7ee99f6c5.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -65,10 +65,64 @@
             "data": "region"
           }
         ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResourceProviderLambdaServiceRole3F02FB0D"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResourceProviderLambdaServiceRoleDefaultPolicy080657DD"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResourceProviderLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResourceProviderLambda27823B35"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResourceProviderframeworkonEventServiceRole0941C6B4"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResourceProviderframeworkonEventServiceRoleDefaultPolicy749EBE05"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResourceProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResourceProviderframeworkonEventA62AE3A8"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/AmplifySecretFetcherResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AmplifySecretFetcherResource"
+          }
+        ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/UserPool/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyAuthUserPool4BA7F805"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/UserPool/UserPoolDomain/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthUserPoolUserPoolDomain1F688B5B"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/GoogleIdP/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyAuthGoogleIdPA9736819"
           }
         ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyAuth/UserPoolAppClient/Resource": [
@@ -129,6 +183,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthIdentityPool683408DARef"
+          }
+        ],
+        "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPoolUserPoolDomainB0D8B7FCRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPoolUserPoolDomainB0D8B7FCRef"
           }
         ],
         "/amplify-opscoach-lukec-sandbox-a38e0e22ed/auth/amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthauthenticatedUserRoleCE30F213Ref": [

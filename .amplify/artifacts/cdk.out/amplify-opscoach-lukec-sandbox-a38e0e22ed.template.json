@@ -122,19 +122,36 @@
    "Value": "[]"
   },
   "socialProviders": {
-   "Value": ""
+   "Value": "[\"GOOGLE\"]"
   },
   "oauthCognitoDomain": {
-   "Value": ""
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Fn::GetAtt": [
+        "auth179371D7",
+        "Outputs.amplifyopscoachlukecsandboxa38e0e22edauthamplifyAuthUserPoolUserPoolDomainB0D8B7FCRef"
+       ]
+      },
+      ".auth.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".amazoncognito.com"
+     ]
+    ]
+   }
   },
   "oauthScope": {
-   "Value": "[\"profile\",\"phone\",\"email\",\"openid\",\"aws.cognito.signin.user.admin\"]"
+   "Value": "[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"]"
   },
   "oauthRedirectSignIn": {
-   "Value": "https://example.com"
+   "Value": "http://localhost:3000/,http://localhost:3000/login,https://fpstrainer.com/,https://fpstrainer.com/login,https://www.fpstrainer.com/,https://www.fpstrainer.com/login"
   },
   "oauthRedirectSignOut": {
-   "Value": ""
+   "Value": "http://localhost:3000/,https://fpstrainer.com/,https://www.fpstrainer.com/"
   },
   "oauthResponseType": {
    "Value": "code"
@@ -387,7 +404,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
        },
-       "/23b1f1cc5882f0fa09fe024ab50ba0f477af4983ecd0d475cf5cdc167d403177.json"
+       "/1d8ed2f1407a34e786fa31ba1a4858e2328706cfb13b6ba77357f8c4787805cf.json"
       ]
      ]
     }
@@ -545,7 +562,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
        },
-       "/8989b340c115ab77e3ab168aa8e08b9d187555f615fa90d5cfd220eae2a9e680.json"
+       "/38ab81dbb93995d56f3988c33a75e12273f4129b44db58ea1f91c4a7e0749690.json"
       ]
      ]
     }
