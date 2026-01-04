@@ -251,6 +251,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "originalFilename": {
+              "name": "originalFilename",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
             "aiReportJson": {
               "name": "aiReportJson",
               "isArray": false,

@@ -857,6 +857,8 @@ function ReportContent({ user }: { user: any }) {
         console.error('Error fetching user plan:', error);
       }
     };
+    fetchUserPlan();
+  }, [user]);
 
   // Auto-print when opened with ?print=true query param (from dashboard)
   useEffect(() => {
@@ -868,8 +870,6 @@ function ReportContent({ user }: { user: any }) {
       return () => clearTimeout(printTimeout);
     }
   }, [shouldPrint, report, loading]);
-    fetchUserPlan();
-  }, [user]);
 
   // Generate training program
   const handleGenerateTrainingProgram = async () => {
