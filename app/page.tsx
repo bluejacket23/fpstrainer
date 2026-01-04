@@ -685,15 +685,11 @@ export default function Home() {
             />
             <FAQItem 
               question="How accurate is the AI analysis?"
-              answer="Our AI uses GPT-4o with vision capabilities to analyze gameplay at a professional coaching level. It evaluates aim precision, movement mechanics, positioning, game sense, and decision-making. Scores are based on professional standards - excellent players typically score 85-95, good competitive players score 75-84."
+              answer="Our AI uses advanced LLMs with vision capabilities to analyze gameplay at a professional coaching level. It evaluates aim precision, movement mechanics, positioning, game sense, and decision-making. Scores are based on professional standards - excellent players typically score 85-95, good competitive players score 75-84."
             />
             <FAQItem 
               question="Can I track my progress over time?"
               answer="Yes! Your dashboard shows cumulative statistics across all your reports, including average scores, high scores, and tier rankings. You can see how you're improving across different metrics over time."
-            />
-            <FAQItem 
-              question="What happens to my video after analysis?"
-              answer="For cost efficiency, we only store the thumbnail image from your clip. The original video and extracted frames are automatically deleted after the report is generated. Your report data (scores, analysis, metrics) is permanently stored in your account."
             />
             <FAQItem 
               question="How do clips per month work?"

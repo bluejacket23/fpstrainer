@@ -94,16 +94,18 @@ async function getOrCreateUser(userId: string, email?: string) {
   }
 }
 
-// Helper function to check and reset monthly clips if needed
+// Helper function to check and reset clips if 30 days have passed (rolling window)
 function shouldResetMonth(monthStartDate: string): boolean {
   if (!monthStartDate) return true;
   
   const startDate = new Date(monthStartDate);
   const now = new Date();
   
-  // Reset if different month
-  return startDate.getMonth() !== now.getMonth() || 
-         startDate.getFullYear() !== now.getFullYear();
+  // Calculate days since month started
+  const daysSinceStart = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+  
+  // Reset if 30 or more days have passed
+  return daysSinceStart >= 30;
 }
 
 // Helper function to check clips and decrement

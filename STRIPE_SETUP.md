@@ -325,17 +325,19 @@ User clicks "SELECT" → Frontend calls createCheckoutSession mutation
 
 ---
 
-## Monthly Clip Reset Logic
+## Monthly Clip Reset Logic (30-Day Rolling Window)
 
 The system handles clip resets in two ways:
 
-1. **On Upload**: The `upload-init` function checks if the month has changed since `monthStartDate`. If so, it resets clips before checking limits.
+1. **On Upload**: The `upload-init` function checks if **30 days have passed** since `monthStartDate`. If so, it resets clips before checking limits. This is a rolling 30-day window from the user's first upload (or last reset).
 
-2. **On Payment**: The `stripe-webhook` handles `invoice.payment_succeeded` events. When a subscription renews, it resets the user's clips to their plan limit.
+2. **On Payment**: The `stripe-webhook` handles `invoice.payment_succeeded` events. When a subscription renews, it resets the user's clips to their plan limit and starts a new 30-day window.
 
 This ensures users always get their full monthly allocation when:
 - A new billing period starts (automatic via webhook)
-- The calendar month changes (checked on upload)
+- 30 days have passed since their last clip reset (checked on upload)
+
+**Note**: This is NOT calendar-month-based. If a user signs up on January 15th, their clips reset on February 14th (30 days later), not February 1st.
 
 ---
 
