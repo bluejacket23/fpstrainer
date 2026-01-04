@@ -14,8 +14,53 @@ const TABLE_NAME = process.env.TABLE_NAME;
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const CLEANUP_FUNCTION_NAME = process.env.CLEANUP_FUNCTION_NAME;
 
+// Game-specific context for better analysis
+const GAME_CONTEXTS: { [key: string]: string } = {
+  'valorant': `GAME: VALORANT (Tactical 5v5 FPS)
+- Focus on: Agent abilities, spike plant/defuse timing, economy management, ability usage timing
+- Key mechanics: Counter-strafe shooting, ability combos, site executes, post-plant positioning
+- Terminology: Lurk, Entry, Op (Operator), Spike, Ultimate economy, Wall-bangs, Lineups`,
+
+  'cs2': `GAME: COUNTER-STRIKE 2 (Tactical 5v5 FPS)  
+- Focus on: Utility usage (smokes, flashes, molotovs), economy/buy decisions, trade fragging
+- Key mechanics: Counter-strafe, spray patterns, shoulder peeks, flash timing, smoke lineups
+- Terminology: AWP, Eco round, Force buy, Anti-eco, Molly, Pop flash, One-way smoke`,
+
+  'apex': `GAME: APEX LEGENDS (Battle Royale)
+- Focus on: Legend abilities, team coordination, looting efficiency, ring rotation, third-party awareness
+- Key mechanics: Slide jumping, wall bouncing, armor swaps, revive timing, ability combos
+- Terminology: Knock, Thirst, Rez, Evo shield, Care package, Hot drop, Rat, Ape`,
+
+  'cod': `GAME: CALL OF DUTY (Fast-paced FPS)
+- Focus on: Spawn awareness, map flow, streaks management, loadout optimization
+- Key mechanics: Slide canceling, jump shots, pre-aiming lanes, mounting, tactical sprint
+- Terminology: Streaks, Mounting, Tac sprint, Drop shot, Bunny hop, Hardpoint rotation`,
+
+  'overwatch': `GAME: OVERWATCH 2 (Hero-based FPS)
+- Focus on: Ultimate economy, team composition, ability cooldowns, objective play
+- Key mechanics: Ability combos, ult tracking, peeling for supports, high ground control
+- Terminology: Dive, Poke, Ult economy, Cooldown trading, Peeling, Off-angle, Main tank/Off tank`,
+
+  'battlefield': `GAME: BATTLEFIELD (Large-scale FPS)
+- Focus on: Objective play, squad coordination, vehicle usage, class role fulfillment
+- Key mechanics: Spotting, reviving, suppression, vehicle combat, flag capturing
+- Terminology: PTFO, Squad spawn, Suppression, Revive train, Armor, Chopper, Breakthrough`,
+
+  'other': `GAME: GENERIC FPS
+- Focus on: Universal FPS fundamentals - aim, movement, positioning, game sense
+- Analyze based on general tactical shooter principles`,
+
+  'auto': `GAME: AUTO-DETECTED FPS
+- Analyze the visual elements to identify the game if possible
+- Apply relevant game-specific insights based on UI elements, weapons, and mechanics visible
+- If game cannot be identified, use general tactical FPS principles`,
+};
+
 export const handler = async (event: any) => {
-  const { userId, reportId, frameKeys, videoDuration } = event;
+  const { userId, reportId, frameKeys, videoDuration, gameType = 'auto' } = event;
+  
+  // Get game-specific context
+  const gameContext = GAME_CONTEXTS[gameType] || GAME_CONTEXTS['auto'];
   
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   
@@ -105,6 +150,8 @@ DO NOT give any timestamp equal to or exceeding ${actualDuration}s.` }
     
     const promptText = `
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
+
+${gameContext}
 
 **CRITICAL TIMING - READ CAREFULLY:**
 Images are sampled every 2 SECONDS from the video.

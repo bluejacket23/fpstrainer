@@ -39,6 +39,7 @@ const schema = a.schema({
       thumbnailUrl: a.string(),
       videoDuration: a.integer(), // Duration in seconds
       originalFilename: a.string(), // Original filename from upload
+      gameType: a.string(), // Selected game: 'auto', 'valorant', 'cs2', 'apex', 'cod', 'overwatch', 'battlefield', 'other'
       aiReportJson: a.json(),
       aiReportMarkdown: a.string(),
       processingStatus: a.string(), // 'UPLOADING', 'PROCESSING', 'COMPLETED', 'FAILED'
@@ -53,6 +54,7 @@ const schema = a.schema({
     .mutation()
     .arguments({
       filename: a.string(), // Just for metadata if needed
+      gameType: a.string(), // Selected game type for AI context
     })
     .returns(a.json())
     .authorization((allow) => [allow.authenticated()])

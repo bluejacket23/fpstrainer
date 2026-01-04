@@ -5,9 +5,21 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import { useRouter } from "next/navigation";
-import { UploadCloud, Loader2 } from "lucide-react";
+import { UploadCloud, Loader2, ChevronDown, Gamepad2 } from "lucide-react";
 
 const client = generateClient<Schema>();
+
+// Game options for the selector
+const GAME_OPTIONS = [
+  { value: 'auto', label: 'Auto-Detect', description: 'AI will identify the game' },
+  { value: 'valorant', label: 'Valorant', description: 'Tactical 5v5' },
+  { value: 'cs2', label: 'CS2 / CS:GO', description: 'Counter-Strike' },
+  { value: 'apex', label: 'Apex Legends', description: 'Battle Royale' },
+  { value: 'cod', label: 'Call of Duty', description: 'Warzone / MP' },
+  { value: 'overwatch', label: 'Overwatch 2', description: 'Hero Shooter' },
+  { value: 'battlefield', label: 'Battlefield', description: 'Large-scale FPS' },
+  { value: 'other', label: 'Other FPS', description: 'Generic analysis' },
+];
 
 export default function UploadPage() {
   return (
@@ -24,6 +36,7 @@ export default function UploadPage() {
 function UploadComponent({ user }: any) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [selectedGame, setSelectedGame] = useState('auto');
   const router = useRouter();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +100,8 @@ function UploadComponent({ user }: any) {
     try {
       // 1. Init Upload
       const { data: initData, errors } = await client.mutations.initUpload({
-        filename: file.name
+        filename: file.name,
+        gameType: selectedGame,
       });
 
       if (errors) {
@@ -158,7 +172,35 @@ function UploadComponent({ user }: any) {
   return (
     <div className="w-full max-w-xl bg-surface p-8 rounded-2xl border border-white/10 text-center">
       <h1 className="text-3xl font-bold text-white mb-2">Upload Gameplay</h1>
-      <p className="text-gray-400 mb-8">Max 60 seconds. MP4 format.</p>
+      <p className="text-gray-400 mb-6">Max 60 seconds. MP4 format.</p>
+
+      {/* Game Selector */}
+      <div className="mb-6">
+        <label className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-2">
+          <Gamepad2 size={16} />
+          Select Game (Optional)
+        </label>
+        <div className="relative">
+          <select
+            value={selectedGame}
+            onChange={(e) => setSelectedGame(e.target.value)}
+            disabled={uploading}
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white 
+                       appearance-none cursor-pointer hover:border-neon/50 transition-colors
+                       focus:outline-none focus:border-neon disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {GAME_OPTIONS.map((game) => (
+              <option key={game.value} value={game.value} className="bg-gray-900">
+                {game.label} — {game.description}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={20} />
+        </div>
+        <p className="text-xs text-gray-500 mt-1">
+          Helps AI provide game-specific coaching tips
+        </p>
+      </div>
 
       {!uploading ? (
         <div className="border-2 border-dashed border-white/20 rounded-xl p-12 hover:border-neon/50 transition-colors relative">

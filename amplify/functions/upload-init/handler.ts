@@ -205,10 +205,11 @@ export const handler = async (event: any) => {
     const reportId = uuidv4();
     const key = `uploads/${userId}/${reportId}.mp4`;
     
-    // Get original filename from arguments
+    // Get original filename and game type from arguments
     const originalFilename = event.arguments?.filename || null;
+    const gameType = event.arguments?.gameType || 'auto';
     
-    console.log('Creating DB record for:', { userId, reportId, tableName: TABLE_NAME, originalFilename });
+    console.log('Creating DB record for:', { userId, reportId, tableName: TABLE_NAME, originalFilename, gameType });
     
     // 1. Create DB Record
     // Note: Set owner field for Amplify owner() authorization
@@ -227,6 +228,7 @@ export const handler = async (event: any) => {
         videoUrl: `s3://${BUCKET_NAME}/${key}`,
         frameUrls: [],
         originalFilename, // Store original filename for dashboard display
+        gameType, // Store selected game for AI context
         owner, // Required for Amplify owner() authorization
       }
     }));

@@ -1,7 +1,7 @@
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { LambdaClient, InvokeCommand } from '@aws-sdk/client-lambda';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, UpdateCommand } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBDocumentClient, UpdateCommand, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -236,8 +236,23 @@ export const handler = async (event: any) => {
         // Estimate duration from frames if ffprobe failed
         const estimatedDuration = videoDuration || frameKeys.length;
         
+        // Fetch report to get gameType
+        let gameType = 'auto';
+        if (TABLE_NAME) {
+          try {
+            const reportData = await docClient.send(new GetCommand({
+              TableName: TABLE_NAME,
+              Key: { userId, reportId },
+            }));
+            gameType = reportData.Item?.gameType || 'auto';
+            console.log(`Game type for analysis: ${gameType}`);
+          } catch (fetchError) {
+            console.warn('Could not fetch gameType, using auto:', fetchError);
+          }
+        }
+        
         console.log(`Invoking AI Analysis function: ${AI_FUNCTION_NAME}`);
-        console.log(`Payload: ${JSON.stringify({ userId, reportId, frameKeys: frameKeys.length, videoDuration: estimatedDuration })}`);
+        console.log(`Payload: ${JSON.stringify({ userId, reportId, frameKeys: frameKeys.length, videoDuration: estimatedDuration, gameType })}`);
         
         const invokeResponse = await lambda.send(new InvokeCommand({
           FunctionName: AI_FUNCTION_NAME,
@@ -247,6 +262,7 @@ export const handler = async (event: any) => {
             reportId,
             frameKeys,
             videoDuration: estimatedDuration, // Pass duration for accurate timestamps
+            gameType, // Pass game type for AI context
           }),
         }));
         
