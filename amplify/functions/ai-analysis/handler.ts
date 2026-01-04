@@ -165,6 +165,11 @@ Analyze each significant moment with PRECISION. For each key moment, provide:
 - [FRAME 10 = 18s] = timestamp 0:18s
 - MAXIMUM allowed timestamp: ${actualDuration - 1}s
 
+**CRITICAL: TIMESTAMPS MUST BE EVEN NUMBERS ONLY!**
+Because frames are sampled every 2 seconds, valid timestamps are: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42...
+You CANNOT output odd-second timestamps like 0:05s, 0:11s, 0:31s, 0:37s - these are INVALID.
+If you see action, find the nearest EVEN timestamp from the frame label.
+
 **ANALYSIS DEPTH:** Use precise FPS terminology:
 - Crosshair placement (head height, pre-aim, micro-adjustments)
 - Movement (counter-strafe, wide swing, jiggle peek, over-peek)
