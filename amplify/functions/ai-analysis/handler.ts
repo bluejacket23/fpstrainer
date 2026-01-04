@@ -53,39 +53,41 @@ export const handler = async (event: any) => {
       ExpressionAttributeValues: { ':s': 'ANALYZING' },
     }));
     
-    // Use ALL frames (1 per second) for maximum timestamp accuracy
-    const frameCount = frameKeys.length;
+    // Sample every 2nd frame to stay within gpt-4o token limits (30k TPM)
+    // This gives us ~22 frames for a 44s clip, covering every 2 seconds
+    const sampledFrameKeys = frameKeys.filter((_: any, i: number) => i % 2 === 0);
+    const frameCount = sampledFrameKeys.length;
     
-    console.log(`Using all ${frameCount} frames (1 per second)`);
+    console.log(`Sampling ${frameCount} frames from ${frameKeys.length} total (every 2nd frame)`);
     
     // Generate signed URLs in parallel for speed
-    const imageUrls = await Promise.all(frameKeys.map(async (key: string) => {
+    const imageUrls = await Promise.all(sampledFrameKeys.map(async (key: string) => {
       const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: key });
       return getSignedUrl(s3, command, { expiresIn: 3600 });
     }));
     
-    // Calculate timing info - each frame = 1 second
-    const actualDuration = Math.round(videoDuration || frameCount);
+    // Calculate timing info - each sampled frame = 2 seconds
+    const actualDuration = Math.round(videoDuration || frameKeys.length);
     
-    console.log(`Video duration: ${actualDuration}s, Total frames: ${frameCount}`);
+    console.log(`Video duration: ${actualDuration}s, Sampled frames: ${frameCount}`);
     
     const content: any[] = [
-      { type: "text", text: `GAMEPLAY ANALYSIS - ${frameCount} frames, 1 frame per second from a ${actualDuration}-second clip.
+      { type: "text", text: `GAMEPLAY ANALYSIS - ${frameCount} frames sampled every 2 seconds from a ${actualDuration}-second clip.
 
 CRITICAL TIMING RULE:
-- Each image represents exactly 1 second of gameplay
-- Image 1 = 0:00s, Image 2 = 0:01s, Image 3 = 0:02s, Image 10 = 0:09s, etc.
-- Formula: Image number - 1 = timestamp in seconds
-- Example: Image 10 = 10-1 = 9 seconds = 0:09s
-- Example: Image 25 = 25-1 = 24 seconds = 0:24s
+- Each image represents 2 seconds of gameplay
+- Image 1 = 0:00s, Image 2 = 0:02s, Image 3 = 0:04s, Image 4 = 0:06s, etc.
+- Formula: (Image number - 1) × 2 = timestamp in seconds
+- Example: Image 5 = (5-1)×2 = 8 seconds = 0:08s
+- Example: Image 15 = (15-1)×2 = 28 seconds = 0:28s
 
 MAXIMUM TIMESTAMP ALLOWED: ${actualDuration - 1}s (clip is ${actualDuration} seconds)
 DO NOT give any timestamp equal to or exceeding ${actualDuration}s.` }
     ];
     
-    // Add ALL frames with EXPLICIT timing labels (1 second each)
+    // Add sampled frames with EXPLICIT timing labels (2 seconds each)
     for (let i = 0; i < imageUrls.length; i++) {
-      const timestamp = i; // Each frame = 1 second (0, 1, 2, 3, ...)
+      const timestamp = i * 2; // Each sampled frame = 2 seconds (0, 2, 4, 6, ...)
       content.push({
         type: "text",
         text: `[FRAME ${i + 1} = ${timestamp}s]`
@@ -105,16 +107,16 @@ DO NOT give any timestamp equal to or exceeding ${actualDuration}s.` }
 You are FpsTrainer, an elite AI gameplay analyst for tactical FPS games.
 
 **CRITICAL TIMING - READ CAREFULLY:**
-Images are captured every 1 SECOND from the video (1 frame per second).
+Images are sampled every 2 SECONDS from the video.
 - Frame 1 = 0:00s (start)
-- Frame 2 = 0:01s  
-- Frame 3 = 0:02s
-- Frame 5 = 0:04s
-- Frame 10 = 0:09s
-- Frame 20 = 0:19s
-- Frame 30 = 0:29s
+- Frame 2 = 0:02s  
+- Frame 3 = 0:04s
+- Frame 5 = 0:08s
+- Frame 10 = 0:18s
+- Frame 15 = 0:28s
+- Frame 20 = 0:38s
 
-Formula: FRAME NUMBER - 1 = TIMESTAMP IN SECONDS
+Formula: (FRAME NUMBER - 1) × 2 = TIMESTAMP IN SECONDS
 Each frame label shows [FRAME X = Ys] - USE THE Ys VALUE AS THE TIMESTAMP.
 
 THE CLIP IS ${actualDuration} SECONDS LONG. Do NOT give timestamps >= ${actualDuration}s.
@@ -154,9 +156,9 @@ Provide a deeply detailed, pro-level coaching breakdown in the EXACT order speci
 Identify SIGNIFICANT gameplay moments you ACTUALLY SEE in the frames - engagements, kills, deaths, positioning decisions.
 
 **TIMESTAMP ACCURACY:** Each frame has a label [FRAME X = Ys]. USE THE Ys VALUE as your timestamp.
-- [FRAME 5 = 4s] means the timestamp is 0:04s
-- [FRAME 10 = 9s] means the timestamp is 0:09s
-- [FRAME 25 = 24s] means the timestamp is 0:24s
+- [FRAME 5 = 8s] means the timestamp is 0:08s
+- [FRAME 10 = 18s] means the timestamp is 0:18s
+- [FRAME 15 = 28s] means the timestamp is 0:28s
 - MAXIMUM allowed timestamp: ${actualDuration - 1}s
 
 **ONLY REPORT WHAT YOU SEE:** Do not invent events. If you see a kill feed, report it. If you see the player taking damage, report it. If you see crosshair on an enemy, report it. Do NOT hallucinate events.
