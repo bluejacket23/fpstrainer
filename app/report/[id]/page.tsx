@@ -1018,9 +1018,6 @@ function ReportContent({ user }: { user: any }) {
           
           <div className="space-y-2">
             <p className="text-gray-400 font-mono text-sm">
-              &gt; STATUS: {statusMessage}
-            </p>
-            <p className="text-gray-400 font-mono text-sm">
               &gt; ESTIMATED TIME: 1-2 MINUTES
             </p>
             <div className="flex items-center justify-center gap-2 text-xs text-gray-500 font-mono">
