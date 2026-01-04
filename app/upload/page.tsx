@@ -125,16 +125,17 @@ function UploadComponent({ user }: any) {
       });
 
       if (errors) {
-        console.error("Upload init errors:", errors);
         const errorMessage = errors[0]?.message || JSON.stringify(errors);
         
-        // Check if it's a clip limit error
+        // Check if it's a clip limit error - show modal instead of error
         if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining') || errorMessage.includes('used all your clips')) {
           setShowLimitModal(true);
           setUploading(false);
           return;
         }
         
+        // Only log unexpected errors
+        console.error("Upload init errors:", errors);
         throw new Error(`Failed to initialize upload: ${errorMessage}`);
       }
 
