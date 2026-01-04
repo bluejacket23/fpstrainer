@@ -1068,25 +1068,34 @@ function ReportContent({ user }: { user: any }) {
             <div className="bg-surface p-6 rounded-2xl border border-white/10 sticky top-4">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-white">Performance Scorecard</h2>
-                <button
-                  onClick={async () => {
-                    try {
-                      const scorecard = report.aiReportJson || {};
-                      if (!scorecard || Object.keys(scorecard).length === 0) {
-                        alert('No scorecard data available to generate graphic.');
-                        return;
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => window.print()}
+                    className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
+                    title="Export to PDF"
+                  >
+                    <Download size={20} />
+                  </button>
+                  <button
+                    onClick={async () => {
+                      try {
+                        const scorecard = report.aiReportJson || {};
+                        if (!scorecard || Object.keys(scorecard).length === 0) {
+                          alert('No scorecard data available to generate graphic.');
+                          return;
+                        }
+                        await generateShareableGraphic(scorecard);
+                      } catch (error: any) {
+                        console.error('Error generating graphic:', error);
+                        alert('Failed to generate graphic: ' + error.message);
                       }
-                      await generateShareableGraphic(scorecard);
-                    } catch (error: any) {
-                      console.error('Error generating graphic:', error);
-                      alert('Failed to generate graphic: ' + error.message);
-                    }
-                  }}
-                  className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
-                  title="Share Scorecard"
-                >
-                  <Share2 size={20} />
-                </button>
+                    }}
+                    className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
+                    title="Share Scorecard"
+                  >
+                    <Share2 size={20} />
+                  </button>
+                </div>
               </div>
               
               <div className="space-y-3 grid grid-cols-2 gap-3">
@@ -1772,10 +1781,51 @@ function drawCircularGauge(ctx: CanvasRenderingContext2D, x: number, y: number, 
 }
 
 async function generateShareableGraphic(scorecard: any) {
-  // Create canvas - optimized for social media
+  // First, calculate the required height based on content
+  const scData = scorecard.scorecard || scorecard;
+  
+  // Count metrics in each group to calculate height
+  const skillGroupsCounts = {
+    'AIM & MECHANICS': 0,
+    'MOVEMENT & CONTROL': 0,
+    'GAME INTELLIGENCE': 0,
+    'SURVIVABILITY & ENGAGEMENT': 0,
+  };
+  
+  // Count all metrics per group
+  const aimMetrics = ['aimAccuracy', 'firstShotAccuracy', 'crosshairPlacement', 'trackingStability', 'reactionTime', 'recoilControl', 'flickTiming', 'adsTiming', 'strafingAimQuality', 'targetAcquisitionSpeed', 'headLevelConsistency', 'preAimAccuracy', 'sprayTransferControl'];
+  const movementMetrics = ['movementMechanics', 'strafingTechnique', 'rotationEfficiency', 'mechanicalConsistency', 'slideTiming', 'jumpShotUsage', 'peekingTechnique', 'counterStrafing', 'jigglePeeking', 'movementUnpredictability', 'sprintManagement', 'bunnyHopEfficiency'];
+  const intelligenceMetrics = ['gameSense', 'mapAwareness', 'positioning', 'situationalAwareness', 'coverUsage', 'angleSelection', 'predictability', 'awarenessChecks', 'rotationTiming', 'informationUsage', 'economyAwareness', 'clutchPotential', 'adaptability', 'offAngleUsage', 'tradeability', 'utilityAvoidance', 'sightlineManagement', 'verticality'];
+  const engagementMetrics = ['engagementQuality', 'survivability', 'confidenceRating', 'openingShotTiming', 'fightInitiations', 'weaponSwapSpeed', 'reloadTiming', 'disengagementTiming', 'lanePressure', 'tempoRating', 'peekCommitment', 'isolationSkill', 'tradePrevention', 'multiKillPotential', 'healthManagement', 'escapeRouting', 'damageTradingEfficiency', 'timeAliveEfficiency'];
+  
+  aimMetrics.forEach(m => { if (scData[m] !== undefined) skillGroupsCounts['AIM & MECHANICS']++; });
+  movementMetrics.forEach(m => { if (scData[m] !== undefined) skillGroupsCounts['MOVEMENT & CONTROL']++; });
+  intelligenceMetrics.forEach(m => { if (scData[m] !== undefined) skillGroupsCounts['GAME INTELLIGENCE']++; });
+  engagementMetrics.forEach(m => { if (scData[m] !== undefined) skillGroupsCounts['SURVIVABILITY & ENGAGEMENT']++; });
+  
+  // Calculate required height
+  const calcHeaderHeight = 400; // Logo, gauge, etc
+  const calcFooterHeight = 80; // Branding at bottom
+  const calcSectionSpacing = 30;
+  const calcHeaderToCardSpacing = 24;
+  const calcMetricCardHeight = 75;
+  const calcCardInternalPadding = 20;
+  const calcGroupHeaderHeight = 18;
+  
+  let totalContentHeight = calcHeaderHeight;
+  Object.values(skillGroupsCounts).forEach(count => {
+    if (count > 0) {
+      const rows = Math.ceil(count / 3);
+      const cardHeight = (rows * calcMetricCardHeight) + (calcCardInternalPadding * 2);
+      totalContentHeight += calcGroupHeaderHeight + calcHeaderToCardSpacing + cardHeight + calcSectionSpacing;
+    }
+  });
+  totalContentHeight += calcFooterHeight;
+  
+  // Create canvas with calculated height (minimum 1500, max 2500)
   const canvas = document.createElement('canvas');
   canvas.width = 1200;
-  canvas.height = 1500;
+  canvas.height = Math.min(2500, Math.max(1500, totalContentHeight));
   const ctx = canvas.getContext('2d');
   if (!ctx) {
     throw new Error('Could not get canvas context');

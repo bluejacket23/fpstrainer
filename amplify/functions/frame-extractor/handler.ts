@@ -164,10 +164,10 @@ export const handler = async (event: any) => {
               ExpressionAttributeValues: {
                 ':t': thumbnailUrl,
                 ':s': 'PROCESSING',
-                ':d': Math.round(videoDuration) || null,
+                ':d': Math.floor(videoDuration) || null,
               },
             }));
-            console.log('Database updated with thumbnail URL and duration:', Math.round(videoDuration));
+            console.log('Database updated with thumbnail URL and duration:', Math.floor(videoDuration));
           } catch (dbError) {
             console.error('Error updating database with thumbnail:', dbError);
           }

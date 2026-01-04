@@ -493,7 +493,7 @@ function ReportCard({ report }: any) {
 
         <div className="flex-1">
           <h3 className="text-lg font-bold text-white mb-2">
-            Analysis {report.timestamp ? new Date(report.timestamp).toLocaleDateString() : 'N/A'}
+            Coaching Feedback {report.timestamp ? new Date(report.timestamp).toLocaleDateString() : 'N/A'}
           </h3>
           <p className="text-sm text-gray-400">
             {report.timestamp ? new Date(report.timestamp).toLocaleTimeString() : ''}

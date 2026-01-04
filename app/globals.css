@@ -405,3 +405,74 @@ body {
 [data-amplify-authenticator] .amplify-divider--label {
   display: none !important;
 }
+
+/* Print Styles for PDF Export */
+@media print {
+  /* Reset background colors for better printing */
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Hide navigation, buttons, and non-essential elements */
+  nav,
+  header,
+  .no-print,
+  button:not(.print-visible),
+  [title="Export to PDF"],
+  [title="Share Scorecard"],
+  [title="Personalized 8-Week Training Program"] {
+    display: none !important;
+  }
+  
+  /* Full width layout */
+  .container,
+  .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove sticky positioning */
+  .sticky {
+    position: relative !important;
+  }
+  
+  /* Page breaks */
+  .page-break-before {
+    page-break-before: always;
+  }
+  
+  /* Better contrast for scores */
+  .bg-surface {
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+  }
+  
+  /* Ensure text is visible */
+  .text-white {
+    color: #1a1a1a !important;
+  }
+  
+  .text-gray-400,
+  .text-gray-500 {
+    color: #666 !important;
+  }
+  
+  /* Keep neon color for scores */
+  .text-neon {
+    color: #00cc7d !important;
+  }
+  
+  /* Scorecard grid single column for print */
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Add header for print */
+  @page {
+    margin: 1cm;
+    size: A4;
+  }
+}

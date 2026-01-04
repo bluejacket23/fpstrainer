@@ -1025,7 +1025,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "45e45272ecdda2a9b68b073a901cf750202efb8eddb89595e8a59a0f7b21b8d2.zip"
+     "S3Key": "af4fa8c8c1d7e8e75c505f760f1b043c7542a8318eaac9cbeeb0b66b6bc2833e.zip"
     },
     "Environment": {
      "Variables": {
@@ -1067,7 +1067,7 @@
    "DeletionPolicy": "Delete",
    "Metadata": {
     "aws:cdk:path": "amplify-opscoach-lukec-sandbox-a38e0e22ed/function/frame-extractor-lambda/Resource",
-    "aws:asset:path": "asset.45e45272ecdda2a9b68b073a901cf750202efb8eddb89595e8a59a0f7b21b8d2",
+    "aws:asset:path": "asset.af4fa8c8c1d7e8e75c505f760f1b043c7542a8318eaac9cbeeb0b66b6bc2833e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
