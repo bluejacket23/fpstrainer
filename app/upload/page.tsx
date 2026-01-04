@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Authenticator } from "@aws-amplify/ui-react";
+import { useState, useEffect } from "react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import { useRouter } from "next/navigation";
@@ -22,14 +22,32 @@ const GAME_OPTIONS = [
 ];
 
 export default function UploadPage() {
-  return (
-    <Authenticator>
-      {({ user }) => (
-        <div className="min-h-screen flex items-center justify-center p-4">
-          <UploadComponent user={user} />
+  const { user, authStatus } = useAuthenticator((context) => [context.user, context.authStatus]);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to login if not authenticated
+    if (authStatus === 'unauthenticated') {
+      router.push('/login?redirect=/upload');
+    }
+  }, [authStatus, router]);
+
+  // Show loading while checking auth
+  if (authStatus === 'configuring' || authStatus === 'unauthenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-neon mx-auto mb-4" />
+          <p className="text-gray-400">Loading...</p>
         </div>
-      )}
-    </Authenticator>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <UploadComponent user={user} />
+    </div>
   );
 }
 

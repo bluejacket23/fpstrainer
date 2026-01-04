@@ -1,21 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Authenticator } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Play, Clock, CheckCircle, AlertTriangle, Loader2, Target, Activity, Map, Brain, Swords, Shield, Info, Download } from "lucide-react";
 
 const client = generateClient<Schema>();
 
 export default function DashboardPage() {
-  return (
-    <Authenticator>
-      <DashboardContent />
-    </Authenticator>
-  );
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authStatus === 'unauthenticated') {
+      router.push('/login?redirect=/dashboard');
+    }
+  }, [authStatus, router]);
+
+  if (authStatus === 'configuring' || authStatus === 'unauthenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-neon" />
+      </div>
+    );
+  }
+
+  return <DashboardContent />;
 }
 
 function DashboardContent() {

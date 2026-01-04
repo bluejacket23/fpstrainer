@@ -1,22 +1,34 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Authenticator } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import { CreditCard, X, Check, AlertCircle, Disc, Loader2, ExternalLink, Calendar, Settings } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const client = generateClient<Schema>();
 
 export default function AccountPage() {
-  return (
-    <Authenticator>
-      <AccountContent />
-    </Authenticator>
-  );
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authStatus === 'unauthenticated') {
+      router.push('/login?redirect=/account');
+    }
+  }, [authStatus, router]);
+
+  if (authStatus === 'configuring' || authStatus === 'unauthenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-neon" />
+      </div>
+    );
+  }
+
+  return <AccountContent />;
 }
 
 function AccountContent() {

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Authenticator } from "@aws-amplify/ui-react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { Loader2, AlertTriangle, CheckCircle, Target, Activity, Map, Brain, Swords, Shield, Share2, Sparkles, X, Calendar, Dumbbell, ChevronRight, Lock, Printer, Copy, Download } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
@@ -34,11 +34,25 @@ const PROCESSING_MESSAGES = [
 ];
 
 export default function ReportPage() {
-  return (
-    <Authenticator>
-      {({ user }) => <ReportContent user={user} />}
-    </Authenticator>
-  );
+  const { user, authStatus } = useAuthenticator((context) => [context.user, context.authStatus]);
+  const router = useRouter();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (authStatus === 'unauthenticated') {
+      router.push(`/login?redirect=/report/${id}`);
+    }
+  }, [authStatus, router, id]);
+
+  if (authStatus === 'configuring' || authStatus === 'unauthenticated') {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-neon" />
+      </div>
+    );
+  }
+
+  return <ReportContent user={user} />;
 }
 
 function ReportContent({ user }: { user: any }) {
