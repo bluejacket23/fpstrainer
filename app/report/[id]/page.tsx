@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { Loader2, AlertTriangle, CheckCircle, Target, Activity, Map, Brain, Swords, Shield, Share2, Sparkles, X, Calendar, Dumbbell, ChevronRight, Lock, Printer, Copy, Download } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
@@ -43,6 +43,8 @@ export default function ReportPage() {
 
 function ReportContent({ user }: { user: any }) {
   const { id } = useParams();
+  const searchParams = useSearchParams();
+  const shouldPrint = searchParams.get('print') === 'true';
   const [report, setReport] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
@@ -855,6 +857,17 @@ function ReportContent({ user }: { user: any }) {
         console.error('Error fetching user plan:', error);
       }
     };
+
+  // Auto-print when opened with ?print=true query param (from dashboard)
+  useEffect(() => {
+    if (shouldPrint && report && report.processingStatus === 'COMPLETED' && !loading) {
+      // Small delay to ensure page is fully rendered
+      const printTimeout = setTimeout(() => {
+        window.print();
+      }, 500);
+      return () => clearTimeout(printTimeout);
+    }
+  }, [shouldPrint, report, loading]);
     fetchUserPlan();
   }, [user]);
 
@@ -1030,7 +1043,16 @@ function ReportContent({ user }: { user: any }) {
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-surface p-8 rounded-2xl border border-white/10">
             <div className="flex justify-between items-center mb-6">
-              <h1 className="text-3xl font-bold text-white">Coaching Report</h1>
+              <div className="flex items-center gap-4">
+                <h1 className="text-3xl font-bold text-white">Coaching Report</h1>
+                <button
+                  onClick={() => window.print()}
+                  className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
+                  title="Export to PDF"
+                >
+                  <Download size={20} />
+                </button>
+              </div>
               {/* Only show training program button for Elite+ users */}
               {['ELITE', 'PRO', 'GOD'].includes(userPlan) && (
                 <button
@@ -1068,34 +1090,25 @@ function ReportContent({ user }: { user: any }) {
             <div className="bg-surface p-6 rounded-2xl border border-white/10 sticky top-4">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-white">Performance Scorecard</h2>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => window.print()}
-                    className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
-                    title="Export to PDF"
-                  >
-                    <Download size={20} />
-                  </button>
-                  <button
-                    onClick={async () => {
-                      try {
-                        const scorecard = report.aiReportJson || {};
-                        if (!scorecard || Object.keys(scorecard).length === 0) {
-                          alert('No scorecard data available to generate graphic.');
-                          return;
-                        }
-                        await generateShareableGraphic(scorecard);
-                      } catch (error: any) {
-                        console.error('Error generating graphic:', error);
-                        alert('Failed to generate graphic: ' + error.message);
+                <button
+                  onClick={async () => {
+                    try {
+                      const scorecard = report.aiReportJson || {};
+                      if (!scorecard || Object.keys(scorecard).length === 0) {
+                        alert('No scorecard data available to generate graphic.');
+                        return;
                       }
-                    }}
-                    className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
-                    title="Share Scorecard"
-                  >
-                    <Share2 size={20} />
-                  </button>
-                </div>
+                      await generateShareableGraphic(scorecard);
+                    } catch (error: any) {
+                      console.error('Error generating graphic:', error);
+                      alert('Failed to generate graphic: ' + error.message);
+                    }
+                  }}
+                  className="p-2 hover:bg-white/10 rounded transition-colors text-gray-400 hover:text-neon"
+                  title="Share Scorecard"
+                >
+                  <Share2 size={20} />
+                </button>
               </div>
               
               <div className="space-y-3 grid grid-cols-2 gap-3">

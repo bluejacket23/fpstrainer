@@ -6,7 +6,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import Link from "next/link";
-import { Play, Clock, CheckCircle, AlertTriangle, Loader2, Target, Activity, Map, Brain, Swords, Shield, Info } from "lucide-react";
+import { Play, Clock, CheckCircle, AlertTriangle, Loader2, Target, Activity, Map, Brain, Swords, Shield, Info, Download } from "lucide-react";
 
 const client = generateClient<Schema>();
 
@@ -460,6 +460,13 @@ function StatCard({ label, value, icon, tier, score, isHighlighted }: any) {
 }
 
 function ReportCard({ report }: any) {
+  const handleDownloadClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Open report in new tab for printing
+    window.open(`/report/${report.reportId}?print=true`, '_blank');
+  };
+
   return (
     <Link href={`/report/${report.reportId}`}>
       <div className="bg-surface p-6 rounded-xl border border-white/10 hover:border-neon/50 transition-all cursor-pointer group h-full flex flex-col">
@@ -467,7 +474,18 @@ function ReportCard({ report }: any) {
           <div className="p-3 bg-white/5 rounded-lg group-hover:bg-neon/10 transition-colors">
             <Play className="text-neon" size={24} />
           </div>
-          <StatusBadge status={report.processingStatus || 'UNKNOWN'} />
+          <div className="flex items-center gap-2">
+            {report.processingStatus === 'COMPLETED' && (
+              <button
+                onClick={handleDownloadClick}
+                className="p-1.5 hover:bg-white/10 rounded transition-colors text-gray-500 hover:text-neon"
+                title="Export to PDF"
+              >
+                <Download size={16} />
+              </button>
+            )}
+            <StatusBadge status={report.processingStatus || 'UNKNOWN'} />
+          </div>
         </div>
 
         {/* Thumbnail */}
@@ -492,11 +510,11 @@ function ReportCard({ report }: any) {
         )}
 
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-white mb-2">
-            Coaching Feedback {report.timestamp ? new Date(report.timestamp).toLocaleDateString() : 'N/A'}
+          <h3 className="text-lg font-bold text-white mb-1">
+            Coaching Feedback - {report.timestamp ? new Date(report.timestamp).toLocaleDateString() : 'N/A'}
           </h3>
           <p className="text-sm text-gray-400">
-            {report.timestamp ? new Date(report.timestamp).toLocaleTimeString() : ''}
+            {report.timestamp ? new Date(report.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
           </p>
         </div>
 
