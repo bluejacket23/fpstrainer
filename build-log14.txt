@@ -1,0 +1,141 @@
+2026-01-04T23:23:42.813Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2026-01-04T23:23:43.276Z [INFO]: # Cloning repository: git@github.com:bluejacket23/fpstrainer.git
+2026-01-04T23:23:45.883Z [INFO]: 
+2026-01-04T23:23:45.883Z [INFO]: Cloning into 'fpstrainer'...
+2026-01-04T23:23:45.883Z [INFO]: # Switching to commit: fdc6a0889c54d6772b2ff01d119aab129daab3c6
+2026-01-04T23:23:46.425Z [INFO]: Note: switching to 'fdc6a0889c54d6772b2ff01d119aab129daab3c6'.
+                                 You are in 'detached HEAD' state. You can look around, make experimental
+                                 changes and commit them, and you can discard any commits you make in this
+                                 state without impacting any branches by switching back to a branch.
+                                 If you want to create a new branch to retain commits you create, you may
+                                 do so (now or later) by using -c with the switch command. Example:
+                                 git switch -c <new-branch-name>
+                                 Or undo this operation with:
+                                 git switch -
+                                 Turn off this advice by setting config variable advice.detachedHead to false
+                                 HEAD is now at fdc6a08 Fix Stripe API version and type errors, simplify auth to email-only for initial deployment
+2026-01-04T23:23:46.546Z [INFO]: Successfully cleaned up Git credentials
+2026-01-04T23:23:46.546Z [INFO]: # Checking for Git submodules at: /codebuild/output/src1261174548/src/fpstrainer/.gitmodules
+2026-01-04T23:23:46.554Z [INFO]: # Retrieving environment cache...
+2026-01-04T23:23:46.595Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2026-01-04T23:23:46.596Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-01-04T23:23:46.596Z [INFO]: SSM params {"Path":"/amplify/d2aaycu993lg4k/production/","WithDecryption":true}
+2026-01-04T23:23:47.436Z [INFO]: # No package override configuration found.
+2026-01-04T23:23:47.439Z [INFO]: # Retrieving cache...
+2026-01-04T23:23:47.462Z [INFO]: # Retrieved cache
+2026-01-04T23:23:49.746Z [INFO]: ## Starting Backend Build
+                                 # Starting phase: build
+                                 # Executing command: npm ci --cache .npm --prefer-offline
+2026-01-04T23:24:04.746Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-04T23:24:04.751Z [WARNING]: npm warn While resolving: @xstate/react@3.2.2
+                                    npm warn Found: react@19.2.0
+                                    npm warn node_modules/react
+                                    npm warn   react@"19.2.0" from the root project
+                                    npm warn   43 more (@aws-amplify/ui-react, @aws-amplify/ui-react-core, ...)
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn node_modules/@aws-amplify/ui-react-core/node_modules/@xstate/react
+                                    npm warn   @xstate/react@"^3.2.2" from @aws-amplify/ui-react-core@3.4.6
+                                    npm warn   node_modules/@aws-amplify/ui-react-core
+                                    npm warn
+                                    npm warn Conflicting peer dependency: react@18.3.1
+                                    npm warn node_modules/react
+                                    npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn   node_modules/@aws-amplify/ui-react-core/node_modules/@xstate/react
+                                    npm warn     @xstate/react@"^3.2.2" from @aws-amplify/ui-react-core@3.4.6
+                                    npm warn     node_modules/@aws-amplify/ui-react-core
+2026-01-04T23:24:04.759Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-04T23:24:04.759Z [WARNING]: npm warn While resolving: @xstate/react@3.2.2
+                                    npm warn Found: react@19.2.0
+                                    npm warn node_modules/react
+                                    npm warn   react@"19.2.0" from the root project
+                                    npm warn   43 more (@aws-amplify/ui-react, @aws-amplify/ui-react-core, ...)
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn node_modules/@aws-amplify/ui-react/node_modules/@xstate/react
+                                    npm warn   @xstate/react@"^3.2.2" from @aws-amplify/ui-react@6.13.1
+                                    npm warn   node_modules/@aws-amplify/ui-react
+                                    npm warn
+                                    npm warn Conflicting peer dependency: react@18.3.1
+                                    npm warn node_modules/react
+                                    npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn   node_modules/@aws-amplify/ui-react/node_modules/@xstate/react
+                                    npm warn     @xstate/react@"^3.2.2" from @aws-amplify/ui-react@6.13.1
+                                    npm warn     node_modules/@aws-amplify/ui-react
+2026-01-04T23:24:04.797Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-04T23:24:04.797Z [WARNING]: npm warn While resolving: @aws-amplify/plugin-types@1.10.1
+                                    npm warn Found: @aws-sdk/types@3.821.0
+                                    npm warn node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types/node_modules/@aws-sdk/types
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer @aws-sdk/types@"^3.734.0" from @aws-amplify/plugin-types@1.10.1
+                                    npm warn node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types
+                                    npm warn   @aws-amplify/plugin-types@"^1.10.1" from @aws-amplify/ai-constructs@1.5.3
+                                    npm warn   node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/ai-constructs
+2026-01-04T23:24:04.888Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-04T23:24:04.888Z [WARNING]: npm warn While resolving: @aws-amplify/plugin-types@1.10.1
+                                    npm warn Found: @aws-sdk/types@3.821.0
+                                    npm warn node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types/node_modules/@aws-sdk/types
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer @aws-sdk/types@"^3.734.0" from @aws-amplify/plugin-types@1.10.1
+                                    npm warn node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types
+                                    npm warn   @aws-amplify/plugin-types@"^1.10.1" from @aws-amplify/ai-constructs@1.5.3
+                                    npm warn   node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/ai-constructs
+2026-01-04T23:25:04.006Z [WARNING]: npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-01-04T23:25:04.811Z [WARNING]: npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-01-04T23:25:04.879Z [WARNING]: npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2026-01-04T23:25:06.660Z [WARNING]: npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+2026-01-04T23:25:06.672Z [WARNING]: npm warn deprecated @babel/plugin-proposal-object-rest-spread@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
+2026-01-04T23:25:08.086Z [WARNING]: npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-01-04T23:25:11.823Z [WARNING]: npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-01-04T23:25:16.220Z [WARNING]: npm warn deprecated fluent-ffmpeg@2.1.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2026-01-04T23:25:19.256Z [WARNING]: npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+2026-01-04T23:25:35.864Z [INFO]: added 1963 packages, and audited 2817 packages in 2m
+2026-01-04T23:25:35.869Z [INFO]: 316 packages are looking for funding
+                                 run `npm fund` for details
+2026-01-04T23:25:35.912Z [INFO]: 2 vulnerabilities (1 moderate, 1 critical)
+                                 To address issues that do not require attention, run:
+                                 npm audit fix
+                                 To address all issues, run:
+                                 npm audit fix --force
+                                 Run `npm audit` for details.
+2026-01-04T23:25:35.940Z [INFO]: # Executing command: npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+2026-01-04T23:25:38.772Z [INFO]: 11:25:38 PM Synthesizing backend...
+2026-01-04T23:25:38.772Z [INFO]: 
+2026-01-04T23:25:39.185Z [INFO]: 11:25:39 PM ✔ Backend synthesized in 0.48 seconds
+2026-01-04T23:25:39.191Z [INFO]: 11:25:39 PM Running type checks...
+2026-01-04T23:25:39.700Z [INFO]: 11:25:39 PM ✔ Type checks completed in 0.51 seconds
+2026-01-04T23:25:39.700Z [INFO]: 
+2026-01-04T23:25:39.856Z [INFO]: 
+2026-01-04T23:25:39.857Z [INFO]: [BackendBuildError] Unable to deploy due to CDK Assembly Error
+                                 ∟ Caused by: [AssemblyError] Assembly builder failed
+                                 ∟ Caused by: [Error] Cannot find module '/codebuild/output/src1261174548/src/fpstrainer/amplify/auth/resource' imported from /codebuild/output/src1261174548/src/fpstrainer/amplify/backend.ts
+                                 Resolution: Check the Caused by error and fix any issues in your backend code
+2026-01-04T23:25:39.857Z [WARNING]: ampx pipeline-deploy
+                                    Command to deploy backends in a custom CI/CD pipeline. This command is not inten
+                                    ded to be used locally.
+                                    Options:
+                                    --debug            Print debug logs to the console
+                                    [boolean] [default: false]
+                                    --branch           Name of the git branch being deployed
+                                    [string] [required]
+                                    --app-id           The app id of the target Amplify app[string] [required]
+                                    --outputs-out-dir  A path to directory where amplify_outputs is written. I
+                                    f not provided defaults to current process working dire
+                                    ctory.                                         [string]
+                                    --outputs-version  Version of the configuration. Version 0 represents clas
+                                    sic amplify-cli config file amplify-configuration and 1
+                                    represents newer config file amplify_outputs
+                                    [string] [choices: "0", "1", "1.1", "1.2", "1.3", "1.4"] [default: "1.4"]
+                                    --outputs-format   amplify_outputs file format
+                                    [string] [choices: "mjs", "json", "json-mobile", "ts", "dart"]
+                                    -h, --help             Show help                                     [boolean]
+2026-01-04T23:25:39.917Z [ERROR]: !!! Build failed
+2026-01-04T23:25:39.917Z [INFO]: Please read more about Amplify Hosting's support for SSR frameworks to find if your build failure is related to an unsupported feature: https://docs.aws.amazon.com/amplify/latest/userguide/amplify-ssr-framework-support.html. You may also find this troubleshooting guide useful: https://docs.aws.amazon.com/amplify/latest/userguide/troubleshooting-ssr-deployment.html
+2026-01-04T23:25:39.917Z [ERROR]: !!! Error: Command failed with exit code 1
+2026-01-04T23:25:39.918Z [INFO]: # Starting environment caching...
+2026-01-04T23:25:39.918Z [INFO]: # Environment caching completed
+
