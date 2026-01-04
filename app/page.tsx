@@ -693,7 +693,7 @@ export default function Home() {
             />
             <FAQItem 
               question="How do clips per month work?"
-              answer="Each plan includes a monthly clip allowance. Clips reset at the start of each month based on when you first uploaded a clip or created your account. Unused clips do not carry over. You can upgrade your plan at any time to get more clips."
+              answer="Each plan includes a monthly clip allowance. Clips reset every 30 days from your first upload, creating a rolling window. For example, if you upload your first clip on January 15th, your clips reset on February 14th. Unused clips do not carry over. You can upgrade your plan at any time to get more clips."
             />
             <FAQItem 
               question="What is the 8-Week Training Program?"
