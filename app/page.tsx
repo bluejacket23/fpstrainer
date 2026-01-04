@@ -58,37 +58,81 @@ export default function Home() {
         <div className="scanlines absolute inset-0 z-10 opacity-10 pointer-events-none" />
 
         {/* LEFT SIDE ACCENT */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 hidden lg:flex flex-col justify-center items-center z-10 pointer-events-none">
-          {/* Vertical gradient bar */}
-          <div className="w-px h-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-          
-          {/* Floating accent elements */}
-          <div className="my-8 flex flex-col items-center gap-4">
-            <div className="w-1 h-1 bg-white/40 rounded-full" />
-            <div className="w-6 h-px bg-white/20" />
-            <div className="w-1.5 h-1.5 border border-white/30 rotate-45" />
-            <div className="w-6 h-px bg-white/20" />
-            <div className="w-1 h-1 bg-white/40 rounded-full" />
+        <div className="absolute left-4 lg:left-8 top-0 bottom-0 w-20 lg:w-32 hidden lg:flex flex-col justify-between items-center py-24 z-10 pointer-events-none">
+          {/* Top section */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-px h-16 bg-gradient-to-b from-transparent to-white/20" />
+            <div className="w-2 h-2 border border-white/30 rotate-45" />
+            <div className="font-mono text-[10px] text-white/20 tracking-widest rotate-90 origin-center">SYS</div>
           </div>
           
-          <div className="w-px h-1/2 bg-gradient-to-t from-transparent via-white/20 to-transparent" />
+          {/* Middle section */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-px h-20 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-1 h-1 bg-white/50 rounded-full" />
+              <div className="w-8 h-px bg-white/20" />
+              <div className="w-3 h-3 border border-white/20 rounded-full" />
+              <div className="w-8 h-px bg-white/20" />
+              <div className="w-1 h-1 bg-white/50 rounded-full" />
+            </div>
+            <div className="w-px h-20 bg-gradient-to-t from-transparent via-white/30 to-transparent" />
+            
+            {/* Small data readout */}
+            <div className="flex flex-col items-center gap-1 font-mono text-[8px] text-white/20">
+              <span>00</span>
+              <span>01</span>
+              <span>02</span>
+            </div>
+            
+            <div className="w-px h-16 bg-gradient-to-t from-transparent via-white/20 to-transparent" />
+          </div>
+          
+          {/* Bottom section */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="font-mono text-[10px] text-white/20 tracking-widest rotate-90 origin-center">001</div>
+            <div className="w-2 h-2 border border-white/30 rotate-45" />
+            <div className="w-px h-16 bg-gradient-to-t from-transparent to-white/20" />
+          </div>
         </div>
         
         {/* RIGHT SIDE ACCENT */}
-        <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 hidden lg:flex flex-col justify-center items-center z-10 pointer-events-none">
-          {/* Vertical gradient bar */}
-          <div className="w-px h-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-          
-          {/* Floating accent elements */}
-          <div className="my-8 flex flex-col items-center gap-4">
-            <div className="w-1 h-1 bg-white/40 rounded-full" />
-            <div className="w-6 h-px bg-white/20" />
-            <div className="w-1.5 h-1.5 border border-white/30 rotate-45" />
-            <div className="w-6 h-px bg-white/20" />
-            <div className="w-1 h-1 bg-white/40 rounded-full" />
+        <div className="absolute right-4 lg:right-8 top-0 bottom-0 w-20 lg:w-32 hidden lg:flex flex-col justify-between items-center py-24 z-10 pointer-events-none">
+          {/* Top section */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-px h-16 bg-gradient-to-b from-transparent to-white/20" />
+            <div className="w-2 h-2 border border-white/30 rotate-45" />
+            <div className="font-mono text-[10px] text-white/20 tracking-widest -rotate-90 origin-center">NET</div>
           </div>
           
-          <div className="w-px h-1/2 bg-gradient-to-t from-transparent via-white/20 to-transparent" />
+          {/* Middle section */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-px h-20 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-1 h-1 bg-white/50 rounded-full" />
+              <div className="w-8 h-px bg-white/20" />
+              <div className="w-3 h-3 border border-white/20 rounded-full" />
+              <div className="w-8 h-px bg-white/20" />
+              <div className="w-1 h-1 bg-white/50 rounded-full" />
+            </div>
+            <div className="w-px h-20 bg-gradient-to-t from-transparent via-white/30 to-transparent" />
+            
+            {/* Small data readout */}
+            <div className="flex flex-col items-center gap-1 font-mono text-[8px] text-white/20">
+              <span>FF</span>
+              <span>0A</span>
+              <span>7C</span>
+            </div>
+            
+            <div className="w-px h-16 bg-gradient-to-t from-transparent via-white/20 to-transparent" />
+          </div>
+          
+          {/* Bottom section */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="font-mono text-[10px] text-white/20 tracking-widest -rotate-90 origin-center">002</div>
+            <div className="w-2 h-2 border border-white/30 rotate-45" />
+            <div className="w-px h-16 bg-gradient-to-t from-transparent to-white/20" />
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-20 text-center">
