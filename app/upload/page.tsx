@@ -5,7 +5,8 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import { useRouter } from "next/navigation";
-import { UploadCloud, Loader2, ChevronDown, Gamepad2 } from "lucide-react";
+import { UploadCloud, Loader2, ChevronDown, Gamepad2, AlertTriangle, Zap, X } from "lucide-react";
+import Link from "next/link";
 
 const client = generateClient<Schema>();
 
@@ -55,6 +56,7 @@ function UploadComponent({ user }: any) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [selectedGame, setSelectedGame] = useState('auto');
+  const [showLimitModal, setShowLimitModal] = useState(false);
   const router = useRouter();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,8 +129,8 @@ function UploadComponent({ user }: any) {
         const errorMessage = errors[0]?.message || JSON.stringify(errors);
         
         // Check if it's a clip limit error
-        if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining')) {
-          alert('You have no clips remaining for this month. Please upgrade your plan to continue.');
+        if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining') || errorMessage.includes('used all your clips')) {
+          setShowLimitModal(true);
           setUploading(false);
           return;
         }
@@ -177,8 +179,8 @@ function UploadComponent({ user }: any) {
       const errorMessage = error?.message || 'Error uploading file';
       
       // Check if it's a clip limit error
-      if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining')) {
-        alert('You have no clips remaining for this month. Please upgrade your plan to continue.');
+      if (errorMessage.includes('clips remaining') || errorMessage.includes('No clips remaining') || errorMessage.includes('used all your clips')) {
+        setShowLimitModal(true);
       } else {
         alert(errorMessage);
       }
@@ -188,62 +190,113 @@ function UploadComponent({ user }: any) {
   };
 
   return (
-    <div className="w-full max-w-xl bg-surface p-8 rounded-2xl border border-white/10 text-center">
-      <h1 className="text-3xl font-bold text-white mb-2">Upload Gameplay</h1>
-      <p className="text-gray-400 mb-6">Max 60 seconds. MP4 format.</p>
-
-      {/* Game Selector */}
-      <div className="mb-6">
-        <label className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-2">
-          <Gamepad2 size={16} />
-          Select Game (Optional)
-        </label>
-        <div className="relative">
-          <select
-            value={selectedGame}
-            onChange={(e) => setSelectedGame(e.target.value)}
-            disabled={uploading}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white 
-                       appearance-none cursor-pointer hover:border-neon/50 transition-colors
-                       focus:outline-none focus:border-neon disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {GAME_OPTIONS.map((game) => (
-              <option key={game.value} value={game.value} className="bg-gray-900">
-                {game.label} — {game.description}
-              </option>
-            ))}
-          </select>
-          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={20} />
-        </div>
-        <p className="text-xs text-gray-500 mt-1">
-          Helps AI provide game-specific coaching tips
-        </p>
-      </div>
-
-      {!uploading ? (
-        <div className="border-2 border-dashed border-white/20 rounded-xl p-12 hover:border-neon/50 transition-colors relative">
-          <input 
-            type="file" 
-            accept="video/mp4" 
-            onChange={handleFileChange}
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          />
-          <UploadCloud className="mx-auto text-neon mb-4" size={48} />
-          <p className="text-white font-bold">Click or Drag to Upload</p>
-        </div>
-      ) : (
-        <div className="py-12">
-          <Loader2 className="mx-auto text-neon animate-spin mb-4" size={48} />
-          <p className="text-white font-bold mb-2">Uploading... {Math.round(progress)}%</p>
-          <div className="w-full bg-white/10 rounded-full h-2">
-            <div 
-              className="bg-neon h-2 rounded-full transition-all duration-300" 
-              style={{ width: `${progress}%` }}
-            />
+    <>
+      {/* Clip Limit Reached Modal */}
+      {showLimitModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-surface border border-white/10 rounded-2xl p-8 max-w-md w-full text-center relative">
+            {/* Close button */}
+            <button 
+              onClick={() => setShowLimitModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+            >
+              <X size={20} />
+            </button>
+            
+            {/* Icon */}
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-yellow-500/10 flex items-center justify-center">
+              <AlertTriangle className="w-8 h-8 text-yellow-500" />
+            </div>
+            
+            {/* Content */}
+            <h2 className="text-2xl font-bold text-white mb-2">Clip Limit Reached</h2>
+            <p className="text-gray-400 mb-6">
+              You've used all your clips for this month. Upgrade your plan to continue analyzing your gameplay and improving your skills.
+            </p>
+            
+            {/* Buttons */}
+            <div className="flex flex-col gap-3">
+              <Link href="/#pricing">
+                <button className="w-full py-3 px-6 bg-gradient-to-r from-neon to-cyan-400 text-black font-bold rounded-lg 
+                                   hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                  <Zap size={18} />
+                  Upgrade Plan
+                </button>
+              </Link>
+              <Link href="/account">
+                <button className="w-full py-3 px-6 border border-white/20 text-white font-medium rounded-lg 
+                                   hover:bg-white/5 transition-all">
+                  View Account
+                </button>
+              </Link>
+              <button 
+                onClick={() => setShowLimitModal(false)}
+                className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
+              >
+                Maybe Later
+              </button>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    
+      <div className="w-full max-w-xl bg-surface p-8 rounded-2xl border border-white/10 text-center">
+        <h1 className="text-3xl font-bold text-white mb-2">Upload Gameplay</h1>
+        <p className="text-gray-400 mb-6">Max 60 seconds. MP4 format.</p>
+
+        {/* Game Selector */}
+        <div className="mb-6">
+          <label className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-2">
+            <Gamepad2 size={16} />
+            Select Game (Optional)
+          </label>
+          <div className="relative">
+            <select
+              value={selectedGame}
+              onChange={(e) => setSelectedGame(e.target.value)}
+              disabled={uploading}
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white 
+                         appearance-none cursor-pointer hover:border-neon/50 transition-colors
+                         focus:outline-none focus:border-neon disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {GAME_OPTIONS.map((game) => (
+                <option key={game.value} value={game.value} className="bg-gray-900">
+                  {game.label} — {game.description}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={20} />
+          </div>
+          <p className="text-xs text-gray-500 mt-1">
+            Helps AI provide game-specific coaching tips
+          </p>
+        </div>
+
+        {!uploading ? (
+          <div className="border-2 border-dashed border-white/20 rounded-xl p-12 hover:border-neon/50 transition-colors relative">
+            <input 
+              type="file" 
+              accept="video/mp4" 
+              onChange={handleFileChange}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            <UploadCloud className="mx-auto text-neon mb-4" size={48} />
+            <p className="text-white font-bold">Click or Drag to Upload</p>
+          </div>
+        ) : (
+          <div className="py-12">
+            <Loader2 className="mx-auto text-neon animate-spin mb-4" size={48} />
+            <p className="text-white font-bold mb-2">Uploading... {Math.round(progress)}%</p>
+            <div className="w-full bg-white/10 rounded-full h-2">
+              <div 
+                className="bg-neon h-2 rounded-full transition-all duration-300" 
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
