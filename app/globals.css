@@ -138,40 +138,236 @@ body {
   );
 }
 
-/* Amplify UI Custom Styling */
+/* Amplify UI Custom Styling - FPSTrainer Theme */
 [data-amplify-authenticator] {
-  --amplify-primary-color: #00ff9d;
-  --amplify-primary-tint: #00ff9d;
-  --amplify-primary-shade: #00cc7d;
-  --amplify-background-color: #050505;
-  --amplify-font-family: var(--font-inter);
+  --amplify-colors-brand-primary-10: rgba(0, 255, 157, 0.1);
+  --amplify-colors-brand-primary-20: rgba(0, 255, 157, 0.2);
+  --amplify-colors-brand-primary-40: rgba(0, 255, 157, 0.4);
+  --amplify-colors-brand-primary-60: rgba(0, 255, 157, 0.6);
+  --amplify-colors-brand-primary-80: #00ff9d;
+  --amplify-colors-brand-primary-90: #00cc7d;
+  --amplify-colors-brand-primary-100: #00ff9d;
+  --amplify-colors-background-primary: #0a0a0a;
+  --amplify-colors-background-secondary: #111111;
+  --amplify-colors-background-tertiary: #1a1a1a;
+  --amplify-colors-border-primary: rgba(0, 255, 157, 0.3);
+  --amplify-colors-border-secondary: rgba(255, 255, 255, 0.1);
+  --amplify-colors-font-primary: #ffffff;
+  --amplify-colors-font-secondary: #a0a0a0;
+  --amplify-colors-font-interactive: #00ff9d;
+  --amplify-colors-font-hover: #00cc7d;
+  --amplify-components-tabs-item-active-color: #00ff9d;
+  --amplify-components-tabs-item-active-border-color: #00ff9d;
+  --amplify-components-button-primary-background-color: #00ff9d;
+  --amplify-components-button-primary-color: #000000;
+  --amplify-components-button-primary-hover-background-color: #00cc7d;
+  --amplify-components-fieldcontrol-border-color: rgba(255, 255, 255, 0.15);
+  --amplify-components-fieldcontrol-focus-border-color: #00ff9d;
+  --amplify-radii-small: 8px;
+  --amplify-radii-medium: 12px;
+  --amplify-space-medium: 1rem;
 }
 
 [data-amplify-authenticator] [data-amplify-container] {
-  background: #050505;
-  border: 1px solid rgba(0, 255, 157, 0.3);
-  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(15, 15, 15, 0.98) 100%);
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  border-radius: 16px;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 157, 0.08),
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
 }
 
-[data-amplify-authenticator] button[type="submit"] {
-  background: #00ff9d;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  transition: all 0.2s;
+/* Header/Title styling */
+[data-amplify-authenticator] [data-amplify-router-content] h2,
+[data-amplify-authenticator] h2 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.75rem !important;
+  text-align: center;
+  margin-bottom: 0.5rem !important;
 }
 
-[data-amplify-authenticator] button[type="submit"]:hover {
-  background: #00cc7d;
+/* Tabs styling */
+[data-amplify-authenticator] [data-amplify-container] [role="tablist"] {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-[data-amplify-authenticator] input {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+[data-amplify-authenticator] [role="tab"] {
+  color: #888 !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: transparent !important;
+  transition: all 0.2s ease !important;
 }
 
-[data-amplify-authenticator] input:focus {
-  border-color: #00ff9d;
-  box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.2);
+[data-amplify-authenticator] [role="tab"]:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-amplify-authenticator] [role="tab"][aria-selected="true"] {
+  color: #000 !important;
+  background: #00ff9d !important;
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.3) !important;
+}
+
+/* Form field labels */
+[data-amplify-authenticator] label,
+[data-amplify-authenticator] .amplify-label {
+  color: #a0a0a0 !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Input fields - CRITICAL: Make text visible */
+[data-amplify-authenticator] input,
+[data-amplify-authenticator] .amplify-input,
+[data-amplify-authenticator] [data-amplify-container] input {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  padding: 0.875rem 1rem !important;
+  transition: all 0.2s ease !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[data-amplify-authenticator] input::placeholder,
+[data-amplify-authenticator] .amplify-input::placeholder {
+  color: #666666 !important;
+  -webkit-text-fill-color: #666666 !important;
+}
+
+[data-amplify-authenticator] input:focus,
+[data-amplify-authenticator] .amplify-input:focus {
+  border-color: #00ff9d !important;
+  box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.15), 0 0 20px rgba(0, 255, 157, 0.1) !important;
+  outline: none !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Autofill fix for dark mode */
+[data-amplify-authenticator] input:-webkit-autofill,
+[data-amplify-authenticator] input:-webkit-autofill:hover,
+[data-amplify-authenticator] input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #0a0a0a inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border: 1px solid rgba(0, 255, 157, 0.3) !important;
+  caret-color: #ffffff !important;
+}
+
+/* Primary button (Sign In/Sign Up) */
+[data-amplify-authenticator] button[type="submit"],
+[data-amplify-authenticator] .amplify-button--primary {
+  background: linear-gradient(135deg, #00ff9d 0%, #00cc7d 100%) !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 0.875rem 1.5rem !important;
+  border: none !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 15px rgba(0, 255, 157, 0.3) !important;
+  margin-top: 0.5rem !important;
+}
+
+[data-amplify-authenticator] button[type="submit"]:hover,
+[data-amplify-authenticator] .amplify-button--primary:hover {
+  background: linear-gradient(135deg, #00cc7d 0%, #00aa6a 100%) !important;
+  box-shadow: 0 6px 25px rgba(0, 255, 157, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-amplify-authenticator] button[type="submit"]:active,
+[data-amplify-authenticator] .amplify-button--primary:active {
+  transform: translateY(0) !important;
+}
+
+/* Secondary/Link buttons */
+[data-amplify-authenticator] .amplify-button--link,
+[data-amplify-authenticator] button:not([type="submit"]):not([role="tab"]) {
+  color: #00ff9d !important;
+  background: transparent !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+}
+
+[data-amplify-authenticator] .amplify-button--link:hover,
+[data-amplify-authenticator] button:not([type="submit"]):not([role="tab"]):hover {
+  color: #00cc7d !important;
+  text-decoration: underline !important;
+}
+
+/* Error messages */
+[data-amplify-authenticator] [data-amplify-container] .amplify-alert--error,
+[data-amplify-authenticator] .amplify-alert {
+  background: rgba(255, 59, 48, 0.15) !important;
+  border: 1px solid rgba(255, 59, 48, 0.3) !important;
+  color: #ff6b6b !important;
+  border-radius: 10px !important;
+  padding: 0.875rem 1rem !important;
+}
+
+/* Footer text */
+[data-amplify-authenticator] [data-amplify-container] footer,
+[data-amplify-authenticator] .amplify-text {
+  color: #888888 !important;
+}
+
+/* Divider */
+[data-amplify-authenticator] .amplify-divider {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Social provider buttons */
+[data-amplify-authenticator] .amplify-button--social {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 0.875rem 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-amplify-authenticator] .amplify-button--social:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Field container spacing */
+[data-amplify-authenticator] .amplify-field {
+  margin-bottom: 1rem !important;
+}
+
+/* Password visibility toggle */
+[data-amplify-authenticator] .amplify-field__show-password {
+  color: #888 !important;
+}
+
+[data-amplify-authenticator] .amplify-field__show-password:hover {
+  color: #00ff9d !important;
+}
+
+/* Loading state */
+[data-amplify-authenticator] .amplify-loader {
+  border-color: rgba(0, 255, 157, 0.2) !important;
+  border-top-color: #00ff9d !important;
 }
