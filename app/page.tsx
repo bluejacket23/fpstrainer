@@ -427,7 +427,7 @@ export default function Home() {
               number="02"
               icon={<Brain className="w-12 h-12" />}
               title="AI Analysis"
-              description="Advanced AI analyzes every frame of your gameplay, evaluating aim precision, positioning, movement mechanics, game sense, and decision-making. Our GPT-4o powered system provides professional-level coaching insights with 20+ detailed metrics."
+              description="Advanced AI analyzes every frame of your gameplay, evaluating aim precision, positioning, movement mechanics, game sense, and decision-making. Our advanced LLM powered system provides professional-level coaching insights with 60+ detailed metrics."
             />
             <HowItWorksStep
               number="03"
@@ -445,7 +445,7 @@ export default function Home() {
                   <Check className="text-neon mt-1 flex-shrink-0" size={20} />
                   <div>
                     <h4 className="font-bold text-white mb-1">Comprehensive Scorecard</h4>
-                    <p className="text-sm text-gray-400">20+ metrics including aim accuracy, movement mechanics, positioning, game sense, engagement quality, and more.</p>
+                    <p className="text-sm text-gray-400">60+ metrics including aim accuracy, movement mechanics, positioning, game sense, engagement quality, and more.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -560,7 +560,7 @@ export default function Home() {
               features={[
                 "No card required",
                 "Basic AI analysis",
-                "20+ metric scorecard",
+                "60+ metric scorecard",
                 "Key moments breakdown",
                 "Personalized coaching feedback"
               ]}
@@ -637,11 +637,10 @@ export default function Home() {
               features={[
                 "Everything in Pro +",
                 "Personalized 8-Week Training Program",
-                "No rate limits",
-                "Personalized Branded Reports",
+                "Our most advanced LLM",
+                "Personalized Reports",
                 "Exclusive customization requests",
                 "Advanced comparison analytics",
-                "Export reports to PDF"
               ]}
               color="border-yellow-500"
               glow="shadow-[0_0_40px_rgba(255,215,0,0.3)]"
@@ -697,7 +696,7 @@ export default function Home() {
             />
             <FAQItem 
               question="What is the 8-Week Training Program?"
-              answer="Available for Elite plan and above, this feature generates a personalized 8-week training program based on your gameplay analysis. It includes detailed step-by-step drills, setup instructions, and a structured improvement plan tailored to your specific weaknesses."
+              answer="Available for Elite plan and above, this feature generates a personalized 8-week training program based on your gameplay analysis. It includes a structured improvement plan tailored to your specific weaknesses."
             />
             <FAQItem 
               question="Can I share my reports?"
@@ -713,7 +712,7 @@ export default function Home() {
             />
             <FAQItem 
               question="What if I'm not satisfied with my analysis?"
-              answer="We're constantly improving our AI analysis. If you have feedback or concerns about a specific report, please contact us at fpstrainer@email.com. We take quality seriously and want to ensure you get valuable insights."
+              answer="We're constantly improving our AI analysis. If you have feedback or concerns about a specific report, please contact us at fpstrainer.help@gmail.com. We take quality seriously and want to ensure you get valuable insights."
             />
           </motion.div>
         </div>
@@ -730,7 +729,7 @@ export default function Home() {
             <span>|</span>
             <Link href="/privacy" className="hover:text-neon transition-colors">Privacy Policy</Link>
             <span>|</span>
-            <a href="mailto:fpstrainer@email.com" className="hover:text-neon transition-colors">Contact Us</a>
+            <a href="mailto:fpstrainer.help@gmail.com" className="hover:text-neon transition-colors">Contact Us</a>
           </div>
           <div className="font-mono text-xs text-gray-600">
             SYSTEM STATUS: ONLINE
