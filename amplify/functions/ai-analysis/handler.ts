@@ -152,42 +152,30 @@ You analyze gameplay like a professional esports coach reviewing VODs. Be TECHNI
 Analyze the ${frameCount} frames from this ${actualDuration}-second gameplay clip.
 Provide a deeply detailed, pro-level coaching breakdown in the EXACT order specified below:
 
-**1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST - THIS IS THE MOST IMPORTANT SECTION)
-
-Analyze each significant moment with PRECISION. For each key moment, provide:
-1. **WHAT** - What exactly happened (be specific about player actions)
-2. **WHY** - Why it was good/bad tactically 
-3. **IMPACT** - How it affected the engagement outcome
-4. **FIX** - What should have been done differently (if mistake) OR what made it work (if good play)
+**1. KEY MOMENTS BREAKDOWN** (MUST BE FIRST)
+Identify SIGNIFICANT gameplay moments you ACTUALLY SEE in the frames - engagements, kills, deaths, positioning decisions.
 
 **TIMESTAMP ACCURACY:** Each frame has a label [FRAME X = Ys]. USE THE Ys VALUE as your timestamp.
-- [FRAME 5 = 8s] = timestamp 0:08s
-- [FRAME 10 = 18s] = timestamp 0:18s
+- [FRAME 5 = 8s] means the timestamp is 0:08s
+- [FRAME 10 = 18s] means the timestamp is 0:18s
+- [FRAME 15 = 28s] means the timestamp is 0:28s
 - MAXIMUM allowed timestamp: ${actualDuration - 1}s
 
-**CRITICAL: TIMESTAMPS MUST BE EVEN NUMBERS ONLY!**
-Because frames are sampled every 2 seconds, valid timestamps are: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42...
-You CANNOT output odd-second timestamps like 0:05s, 0:11s, 0:31s, 0:37s - these are INVALID.
-If you see action, find the nearest EVEN timestamp from the frame label.
+**ONLY REPORT WHAT YOU SEE:** Do not invent events. If you see a kill feed, report it. If you see the player taking damage, report it. If you see crosshair on an enemy, report it. Do NOT hallucinate events.
 
-**ANALYSIS DEPTH:** Use precise FPS terminology:
-- Crosshair placement (head height, pre-aim, micro-adjustments)
-- Movement (counter-strafe, wide swing, jiggle peek, over-peek)
-- Positioning (off-angle, exposed, tradeable, isolated)
-- Timing (early rotate, late peek, reload timing, re-peek timing)
+**BE TECHNICAL AND SPECIFIC:** Use FPS terminology - crosshair placement, strafe direction, peek timing, angle isolation.
 
-**FORMAT (follow exactly):**
-> 0:08s - **Engagement initiated from weak angle.** Player pushed into open sightline without clearing right corner. Crosshair was chest-level, requiring vertical adjustment mid-fight. The 200ms delay to acquire headshot allowed enemy to land first shot. Should have pre-aimed head height and shoulder-peeked to gather info before committing.
+Format:
+> 0:08s - Engaged from a covered angle but with crosshair placement slightly low. Required vertical adjustment mid-fight, delaying first shot. Pre-aiming at head height would reduce time-to-kill.
 
-> 0:18s - **Clean trade secured.** Player held off-angle with crosshair at head height. Counter-strafed into the peek, minimizing exposure time. First bullet connected due to pre-aim positioning. Strong trigger discipline - no spray, clean 2-tap.
+> 0:18s - Strong positioning using cover while pushing objective. Movement was unpredictable, making it harder for enemies to track. Good use of available cover.
 
 REQUIREMENTS:
-- 6-10 key moments covering the full clip timeline
-- Mix of positive plays AND mistakes (be balanced)
-- Each moment should teach something actionable
-- Be SPECIFIC - reference exact positioning, angles, timing
-- NO generic observations - every point should be unique to THIS clip
+- READ the timestamp from [FRAME X = Ys] labels
 - ONLY describe what you can ACTUALLY SEE in the frames
+- Max timestamp is ${actualDuration - 1}s
+- 5-10 key moments based on VISIBLE events
+- Be technical but concise - explain what happened and why it matters
 
 **2. AIM & ACCURACY PERFORMANCE**
 For each aspect, provide DETAILED analysis with:
