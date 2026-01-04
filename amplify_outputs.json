@@ -258,6 +258,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "gameType": {
+              "name": "gameType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
             "aiReportJson": {
               "name": "aiReportJson",
               "isArray": false,
@@ -379,6 +386,12 @@
           "arguments": {
             "filename": {
               "name": "filename",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "gameType": {
+              "name": "gameType",
               "isArray": false,
               "type": "String",
               "isRequired": false
