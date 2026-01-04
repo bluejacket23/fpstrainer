@@ -36,7 +36,7 @@ export const handler = async (event: any) => {
   }
   
   try {
-    const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2025-04-30.basil' });
+    const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2025-12-15.clover' });
     
     // Get user from database
     const userResult = await docClient.send(new GetCommand({
@@ -85,14 +85,17 @@ export const handler = async (event: any) => {
     // The webhook will handle this when the subscription actually ends
     // This allows the user to keep their plan until the billing period ends
     
+    // Cast to access subscription properties
+    const sub = canceledSubscription as unknown as { cancel_at?: number; current_period_end?: number };
+    
     return {
       success: true,
       message: 'Subscription will be cancelled at the end of your current billing period.',
-      cancelAt: canceledSubscription.cancel_at 
-        ? new Date(canceledSubscription.cancel_at * 1000).toISOString() 
+      cancelAt: sub.cancel_at 
+        ? new Date(sub.cancel_at * 1000).toISOString() 
         : null,
-      currentPeriodEnd: canceledSubscription.current_period_end 
-        ? new Date(canceledSubscription.current_period_end * 1000).toISOString() 
+      currentPeriodEnd: sub.current_period_end 
+        ? new Date(sub.current_period_end * 1000).toISOString() 
         : null,
     };
   } catch (error: any) {

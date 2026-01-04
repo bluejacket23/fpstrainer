@@ -77,7 +77,7 @@ export const handler = async (event: any) => {
   }
   
   try {
-    const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2025-04-30.basil' });
+    const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2025-12-15.clover' });
     
     // Get user from database
     const userResult = await docClient.send(new GetCommand({

@@ -60,7 +60,7 @@ export const handler = async (event: any) => {
     return { statusCode: 500, body: JSON.stringify({ error: 'Server configuration error' }) };
   }
   
-  const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2025-04-30.basil' });
+  const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: '2025-12-15.clover' });
   
   // Get the raw body and signature
   const body = event.body;
@@ -282,7 +282,8 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice, stripe: St
   }
   
   const customerId = invoice.customer as string;
-  const subscriptionId = invoice.subscription as string;
+  const invoiceData = invoice as unknown as { subscription?: string };
+  const subscriptionId = invoiceData.subscription;
   
   // Find user by customer ID
   const user = await findUserByStripeCustomerId(customerId);
