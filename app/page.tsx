@@ -58,33 +58,33 @@ export default function Home() {
         <div className="scanlines absolute inset-0 z-10 opacity-10 pointer-events-none" />
 
         {/* CORNER BRACKET FRAME - Minimalist Tech Aesthetic */}
-        <div className="absolute inset-8 lg:inset-16 xl:inset-24 z-20 pointer-events-none hidden lg:block">
+        <div className="absolute inset-4 md:inset-8 lg:inset-12 z-20 pointer-events-none hidden md:block">
           {/* Top Left Corner */}
           <div className="absolute top-0 left-0">
-            <div className="w-16 h-px bg-gradient-to-r from-neon/60 to-transparent" />
-            <div className="w-px h-16 bg-gradient-to-b from-neon/60 to-transparent" />
-            <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-neon/80 rounded-full shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-r from-neon to-transparent" />
+            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-b from-neon to-transparent" />
+            <div className="absolute top-0 left-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
           </div>
           
           {/* Top Right Corner */}
           <div className="absolute top-0 right-0">
-            <div className="w-16 h-px bg-gradient-to-l from-neon/60 to-transparent ml-auto" />
-            <div className="w-px h-16 bg-gradient-to-b from-neon/60 to-transparent ml-auto" />
-            <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-neon/80 rounded-full shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-l from-neon to-transparent ml-auto" />
+            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-b from-neon to-transparent ml-auto" />
+            <div className="absolute top-0 right-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
           </div>
           
           {/* Bottom Left Corner */}
           <div className="absolute bottom-0 left-0">
-            <div className="w-px h-16 bg-gradient-to-t from-neon/60 to-transparent" />
-            <div className="w-16 h-px bg-gradient-to-r from-neon/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 w-1.5 h-1.5 bg-neon/80 rounded-full shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-t from-neon to-transparent" />
+            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-r from-neon to-transparent" />
+            <div className="absolute bottom-0 left-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
           </div>
           
           {/* Bottom Right Corner */}
           <div className="absolute bottom-0 right-0">
-            <div className="w-px h-16 bg-gradient-to-t from-neon/60 to-transparent ml-auto" />
-            <div className="w-16 h-px bg-gradient-to-l from-neon/60 to-transparent ml-auto" />
-            <div className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-neon/80 rounded-full shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-t from-neon to-transparent ml-auto" />
+            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-l from-neon to-transparent ml-auto" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
           </div>
         </div>
 
