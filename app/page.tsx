@@ -234,7 +234,7 @@ export default function Home() {
               <Link href="/upload">
                 <button className="relative group px-10 py-5 font-bold text-xl transition-all duration-200 hover:scale-105 border-2 border-neon bg-neon/10 text-neon hover:bg-neon/20 hover:border-neon/80 font-display tracking-widest">
                   <span className="relative z-10 flex items-center gap-2">
-                    INITIATE ANALYSIS <ArrowRight size={20} />
+                    TRY FREE <ArrowRight size={20} />
                   </span>
                 </button>
               </Link>
