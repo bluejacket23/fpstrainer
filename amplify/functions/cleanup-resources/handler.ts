@@ -1,4 +1,4 @@
-import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, DeleteObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 
@@ -11,6 +11,11 @@ const TABLE_NAME = process.env.TABLE_NAME || '';
 
 /**
  * Cleanup Lambda - Deletes videos and frames after report is generated
+ * KEEPS: thumbnails (thumbnails/{userId}/{reportId}.jpg)
+ * DELETES: 
+ *   - Original video (uploads/{userId}/{reportId}.mp4)
+ *   - All frames (frames/{userId}/{reportId}/*.jpg)
+ * 
  * Should be invoked after ai-analysis completes successfully
  */
 export const handler = async (event: any) => {
@@ -26,90 +31,99 @@ export const handler = async (event: any) => {
     return { success: false, error: 'Missing required parameters' };
   }
   
-  if (!BUCKET_NAME || !TABLE_NAME) {
-    console.error('Missing environment variables');
-    return { success: false, error: 'Missing environment variables' };
+  if (!BUCKET_NAME) {
+    console.error('Missing BUCKET_NAME environment variable');
+    return { success: false, error: 'Missing BUCKET_NAME' };
   }
   
+  let deletedCount = 0;
+  
   try {
-    // Get report to find video and frame URLs
-    const reportResult = await docClient.send(new GetCommand({
-      TableName: TABLE_NAME,
-      Key: { userId, reportId },
-    }));
-    
-    if (!reportResult.Item) {
-      console.log('Report not found, skipping cleanup');
-      return { success: false, error: 'Report not found' };
-    }
-    
-    const report = reportResult.Item;
-    const videoUrl = report.videoUrl;
-    const frameUrls = report.frameUrls || [];
-    
-    // Extract S3 keys from URLs
-    const keysToDelete: string[] = [];
-    
-    // Add video key
-    if (videoUrl) {
-      // Extract key from s3://bucket/key or full URL
-      const videoKey = videoUrl.includes('s3://') 
-        ? videoUrl.replace(`s3://${BUCKET_NAME}/`, '')
-        : videoUrl.split('/').slice(-2).join('/'); // Get last 2 parts (userId/reportId.mp4)
-      keysToDelete.push(videoKey);
-    }
-    
-    // Add frame keys
-    if (Array.isArray(frameUrls)) {
-      frameUrls.forEach((frameUrl: string) => {
-        if (frameUrl) {
-          const frameKey = frameUrl.includes('s3://')
-            ? frameUrl.replace(`s3://${BUCKET_NAME}/`, '')
-            : frameUrl;
-          keysToDelete.push(frameKey);
-        }
-      });
-    }
-    
-    // Delete all objects from S3
-    const deletePromises = keysToDelete.map(async (key: string) => {
-      try {
-        await s3.send(new DeleteObjectCommand({
-          Bucket: BUCKET_NAME,
-          Key: key,
-        }));
-        console.log(`Deleted: ${key}`);
-      } catch (error: any) {
-        console.error(`Error deleting ${key}:`, error.message);
-        // Don't throw - continue with other deletions
-      }
-    });
-    
-    await Promise.all(deletePromises);
-    
-    // Update report to mark cleanup as done (optional - for tracking)
+    // 1. Delete the original uploaded video
+    const videoKey = `uploads/${userId}/${reportId}.mp4`;
     try {
-      await docClient.send(new UpdateCommand({
-        TableName: TABLE_NAME,
-        Key: { userId, reportId },
-        UpdateExpression: 'SET #cleanup = :cleanup',
-        ExpressionAttributeNames: {
-          '#cleanup': 'cleanupCompleted',
-        },
-        ExpressionAttributeValues: {
-          ':cleanup': true,
-        },
+      await s3.send(new DeleteObjectCommand({
+        Bucket: BUCKET_NAME,
+        Key: videoKey,
       }));
-    } catch (error) {
-      console.warn('Could not update cleanup flag:', error);
+      console.log(`Deleted original video: ${videoKey}`);
+      deletedCount++;
+    } catch (error: any) {
+      console.warn(`Could not delete video ${videoKey}:`, error.message);
     }
     
-    console.log(`Cleanup completed for report ${reportId}. Deleted ${keysToDelete.length} objects.`);
+    // 2. Delete ALL frames in the frames/{userId}/{reportId}/ folder
+    const framesPrefix = `frames/${userId}/${reportId}/`;
+    try {
+      // List all objects with the prefix
+      let continuationToken: string | undefined;
+      let totalFramesDeleted = 0;
+      
+      do {
+        const listResult = await s3.send(new ListObjectsV2Command({
+          Bucket: BUCKET_NAME,
+          Prefix: framesPrefix,
+          ContinuationToken: continuationToken,
+        }));
+        
+        if (listResult.Contents && listResult.Contents.length > 0) {
+          // Delete each frame
+          const deletePromises = listResult.Contents.map(async (obj) => {
+            if (obj.Key) {
+              try {
+                await s3.send(new DeleteObjectCommand({
+                  Bucket: BUCKET_NAME,
+                  Key: obj.Key,
+                }));
+                totalFramesDeleted++;
+              } catch (deleteError: any) {
+                console.warn(`Failed to delete frame ${obj.Key}:`, deleteError.message);
+              }
+            }
+          });
+          
+          await Promise.all(deletePromises);
+        }
+        
+        continuationToken = listResult.NextContinuationToken;
+      } while (continuationToken);
+      
+      console.log(`Deleted ${totalFramesDeleted} frames from ${framesPrefix}`);
+      deletedCount += totalFramesDeleted;
+    } catch (error: any) {
+      console.warn(`Could not delete frames for ${framesPrefix}:`, error.message);
+    }
+    
+    // 3. Clear frameUrls from DynamoDB to save storage (but keep other data)
+    // NOTE: We keep thumbnailUrl because we didn't delete the thumbnail
+    if (TABLE_NAME) {
+      try {
+        await docClient.send(new UpdateCommand({
+          TableName: TABLE_NAME,
+          Key: { userId, reportId },
+          UpdateExpression: 'SET #cleanup = :cleanup, frameUrls = :empty, videoUrl = :empty',
+          ExpressionAttributeNames: {
+            '#cleanup': 'cleanupCompleted',
+          },
+          ExpressionAttributeValues: {
+            ':cleanup': true,
+            ':empty': null, // Clear the URLs since files are deleted
+          },
+        }));
+        console.log('Cleared frameUrls and videoUrl from database');
+      } catch (error: any) {
+        console.warn('Could not update database:', error.message);
+      }
+    }
+    
+    console.log(`Cleanup completed for report ${reportId}. Deleted ${deletedCount} objects.`);
+    console.log(`KEPT: thumbnails/${userId}/${reportId}.jpg (thumbnail preserved)`);
     
     return {
       success: true,
-      deletedCount: keysToDelete.length,
+      deletedCount,
       reportId,
+      kept: `thumbnails/${userId}/${reportId}.jpg`,
     };
   } catch (error: any) {
     console.error('Cleanup error:', error);
@@ -119,4 +133,3 @@ export const handler = async (event: any) => {
     };
   }
 };
-
