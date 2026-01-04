@@ -26,64 +26,75 @@ export const handler = async (event: any) => {
   
   // Get userId from Cognito identity (AppSync resolver)
   const userId = event.identity?.sub;
-  const { reportId } = event.arguments || event;
+  const reportId = event.arguments?.reportId;
+  
+  console.log('User ID:', userId, 'Report ID:', reportId);
   
   if (!userId) {
-    return JSON.stringify({
+    return {
       success: false,
       error: 'User not authenticated',
-    });
+    };
   }
   
   if (!reportId) {
-    return JSON.stringify({
+    return {
       success: false,
       error: 'Missing reportId',
-    });
+    };
   }
   
   if (!OPENAI_API_KEY) {
-    return JSON.stringify({
+    console.error('OPENAI_API_KEY not configured');
+    return {
       success: false,
       error: 'OpenAI API key not configured',
-    });
+    };
   }
   
   try {
     // Check user's subscription plan
     if (USER_TABLE_NAME) {
+      console.log('Checking user plan in table:', USER_TABLE_NAME);
       const userResult = await docClient.send(new GetCommand({
         TableName: USER_TABLE_NAME,
         Key: { userId },
       }));
       
+      console.log('User data:', userResult.Item);
       const userPlan = userResult.Item?.subscriptionPlan || 'RECRUIT';
       
       if (!ELIGIBLE_PLANS.includes(userPlan)) {
-        return JSON.stringify({
+        return {
           success: false,
           error: 'This feature requires Elite plan or higher. Please upgrade to access personalized training programs.',
           requiresUpgrade: true,
           currentPlan: userPlan,
-        });
+        };
       }
+    } else {
+      console.warn('USER_TABLE_NAME not configured, skipping plan check');
     }
     
     // Get report
+    console.log('Fetching report from table:', TABLE_NAME);
     const result = await docClient.send(new GetCommand({
       TableName: TABLE_NAME,
       Key: { userId, reportId },
     }));
     
     if (!result.Item || !result.Item.aiReportMarkdown) {
-      return JSON.stringify({
+      console.error('Report not found:', { userId, reportId, item: result.Item });
+      return {
         success: false,
         error: 'Report not found or incomplete',
-      });
+      };
     }
     
     const reportMarkdown = result.Item.aiReportMarkdown;
     const scorecard = result.Item.aiReportJson || {};
+    
+    console.log('Report found, generating training program...');
     
     // Initialize OpenAI
     const openai = new OpenAI({
@@ -201,15 +212,15 @@ Make it SPECIFIC to this player's analysis. Reference their actual scores and id
         'unknown',
     });
     
-    return JSON.stringify({
+    return {
       success: true,
       program: programJson,
-    });
+    };
   } catch (error: any) {
     console.error('Error generating training program:', error);
-    return JSON.stringify({
+    return {
       success: false,
       error: error.message || 'Failed to generate training program',
-    });
+    };
   }
 };
