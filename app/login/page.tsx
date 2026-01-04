@@ -63,7 +63,32 @@ function LoginContent() {
             </span>
           </Link>
           <h1 className="text-2xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-400 text-sm">Sign in to access your AI coaching dashboard</p>
+          <p className="text-gray-400 text-sm mb-6">Sign in to access your AI coaching dashboard</p>
+          
+          {/* Google Sign-In Button - Single prominent button */}
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-full flex items-center justify-center gap-4 px-6 py-4 rounded-xl 
+                       bg-white hover:bg-gray-50 text-gray-800 font-bold text-lg
+                       transition-all duration-200
+                       shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
+                       hover:shadow-[0_6px_30px_rgba(255,255,255,0.25)] 
+                       hover:-translate-y-1 active:translate-y-0
+                       border-2 border-white/50"
+          >
+            <GoogleIcon />
+            <span>Continue with Google</span>
+          </button>
+          
+          {/* Divider */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/10"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-[#0a0a0a] text-gray-600 text-xs">or use email</span>
+            </div>
+          </div>
         </div>
       );
     },
@@ -78,86 +103,6 @@ function LoginContent() {
           </p>
         </div>
       );
-    },
-    SignIn: {
-      Header() {
-        return (
-          <div className="mb-6">
-            {/* Recommended Badge */}
-            <div className="flex justify-center mb-3">
-              <span className="px-3 py-1 text-xs font-semibold bg-[#00ff9d]/10 text-[#00ff9d] rounded-full border border-[#00ff9d]/20">
-                ⚡ Fastest Way to Sign In
-              </span>
-            </div>
-            
-            {/* Google Sign-In Button - PROMINENT */}
-            <button
-              onClick={handleGoogleSignIn}
-              className="w-full flex items-center justify-center gap-4 px-6 py-4 rounded-xl 
-                         bg-white hover:bg-gray-50 text-gray-800 font-bold text-lg
-                         transition-all duration-200 mb-2
-                         shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
-                         hover:shadow-[0_6px_30px_rgba(255,255,255,0.25)] 
-                         hover:-translate-y-1 active:translate-y-0
-                         border-2 border-white/50"
-            >
-              <GoogleIcon />
-              <span>Sign in with Google</span>
-            </button>
-            <p className="text-center text-gray-500 text-xs mb-6">No password needed • Instant access</p>
-            
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/10"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-[#0a0a0a] text-gray-600 text-xs">or use email</span>
-              </div>
-            </div>
-          </div>
-        );
-      },
-    },
-    SignUp: {
-      Header() {
-        return (
-          <div className="mb-6">
-            {/* Recommended Badge */}
-            <div className="flex justify-center mb-3">
-              <span className="px-3 py-1 text-xs font-semibold bg-[#00ff9d]/10 text-[#00ff9d] rounded-full border border-[#00ff9d]/20">
-                ⚡ Fastest Way to Sign Up
-              </span>
-            </div>
-            
-            {/* Google Sign-Up Button - PROMINENT */}
-            <button
-              onClick={handleGoogleSignIn}
-              className="w-full flex items-center justify-center gap-4 px-6 py-4 rounded-xl 
-                         bg-white hover:bg-gray-50 text-gray-800 font-bold text-lg
-                         transition-all duration-200 mb-2
-                         shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
-                         hover:shadow-[0_6px_30px_rgba(255,255,255,0.25)] 
-                         hover:-translate-y-1 active:translate-y-0
-                         border-2 border-white/50"
-            >
-              <GoogleIcon />
-              <span>Sign up with Google</span>
-            </button>
-            <p className="text-center text-gray-500 text-xs mb-6">No password needed • Instant account</p>
-            
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/10"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-[#0a0a0a] text-gray-600 text-xs">or use email</span>
-              </div>
-            </div>
-          </div>
-        );
-      },
     },
   };
 

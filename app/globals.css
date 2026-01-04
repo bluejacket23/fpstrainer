@@ -371,3 +371,10 @@ body {
   border-color: rgba(0, 255, 157, 0.2) !important;
   border-top-color: #00ff9d !important;
 }
+
+/* Hide Amplify's default social provider buttons - we use our own custom one */
+[data-amplify-authenticator] .amplify-button--social,
+[data-amplify-authenticator] [data-amplify-container] .federated-sign-in-container,
+[data-amplify-authenticator] .amplify-divider--label {
+  display: none !important;
+}
