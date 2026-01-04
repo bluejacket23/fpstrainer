@@ -57,6 +57,237 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] bg-hero-glow blur-[150px] opacity-20 animate-pulse-slow" />
         <div className="scanlines absolute inset-0 z-10 opacity-10 pointer-events-none" />
 
+        {/* LEFT SIDE HUD PANEL */}
+        <div className="absolute left-4 lg:left-8 xl:left-16 top-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col gap-6 opacity-60 hover:opacity-100 transition-opacity duration-500">
+          {/* Rotating Target Reticle */}
+          <div className="relative w-32 h-32">
+            <div className="absolute inset-0 border-2 border-neon/30 rounded-full animate-spin-slow" />
+            <div className="absolute inset-2 border border-neon/20 rounded-full animate-reverse-spin" />
+            <div className="absolute inset-4 border border-dashed border-neon/40 rounded-full animate-spin-slow" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Crosshair className="w-8 h-8 text-neon animate-pulse" />
+            </div>
+            {/* Crosshair lines */}
+            <div className="absolute top-0 left-1/2 w-px h-4 bg-gradient-to-b from-neon to-transparent" />
+            <div className="absolute bottom-0 left-1/2 w-px h-4 bg-gradient-to-t from-neon to-transparent" />
+            <div className="absolute left-0 top-1/2 h-px w-4 bg-gradient-to-r from-neon to-transparent" />
+            <div className="absolute right-0 top-1/2 h-px w-4 bg-gradient-to-l from-neon to-transparent" />
+          </div>
+
+          {/* Data Panel */}
+          <div className="w-48 bg-black/40 backdrop-blur-sm border border-neon/20 p-3 font-mono text-xs space-y-2">
+            <div className="flex items-center justify-between text-neon/70">
+              <span>SYS.STATUS</span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-neon rounded-full animate-pulse" />
+                ONLINE
+              </span>
+            </div>
+            <div className="h-px bg-gradient-to-r from-neon/50 via-neon/20 to-transparent" />
+            <div className="space-y-1.5">
+              <div className="flex justify-between text-gray-500">
+                <span>CPU.LOAD</span>
+                <span className="text-neon/80">87%</span>
+              </div>
+              <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-neon/60 to-neon"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "87%" }}
+                  transition={{ duration: 2, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <div className="flex justify-between text-gray-500">
+                <span>MEM.ALLOC</span>
+                <span className="text-neon/80">64%</span>
+              </div>
+              <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-cyan-500/60 to-cyan-400"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "64%" }}
+                  transition={{ duration: 2.5, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <div className="flex justify-between text-gray-500">
+                <span>AI.MODEL</span>
+                <span className="text-neon/80">GPT-4o</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Vertical Tech Line */}
+          <div className="w-px h-32 mx-auto bg-gradient-to-b from-transparent via-neon/40 to-transparent relative">
+            <motion.div 
+              className="absolute w-1.5 h-1.5 bg-neon rounded-full -left-[2px]"
+              animate={{ top: ["0%", "100%", "0%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+
+          {/* Mini Stats */}
+          <div className="flex flex-col gap-1 font-mono text-[10px] text-gray-600">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 border border-neon/40 rotate-45" />
+              <span>LATENCY: <span className="text-neon/60">12ms</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 border border-neon/40 rotate-45" />
+              <span>FRAMES: <span className="text-neon/60">30 FPS</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 border border-neon/40 rotate-45" />
+              <span>ANALYSIS: <span className="text-neon/60">READY</span></span>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE HUD PANEL */}
+        <div className="absolute right-4 lg:right-8 xl:right-16 top-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col items-end gap-6 opacity-60 hover:opacity-100 transition-opacity duration-500">
+          {/* Hexagon Grid Pattern */}
+          <div className="relative w-36 h-36">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              {/* Hexagon pattern */}
+              <motion.polygon 
+                points="50,5 90,25 90,75 50,95 10,75 10,25" 
+                fill="none" 
+                stroke="rgba(0,255,157,0.2)" 
+                strokeWidth="1"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+              />
+              <motion.polygon 
+                points="50,15 80,30 80,70 50,85 20,70 20,30" 
+                fill="none" 
+                stroke="rgba(0,255,157,0.3)" 
+                strokeWidth="1"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.2 }}
+              />
+              <motion.polygon 
+                points="50,25 70,35 70,65 50,75 30,65 30,35" 
+                fill="none" 
+                stroke="rgba(0,255,157,0.4)" 
+                strokeWidth="1"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.4 }}
+              />
+              <motion.circle 
+                cx="50" cy="50" r="8" 
+                fill="rgba(0,255,157,0.1)" 
+                stroke="rgba(0,255,157,0.6)"
+                strokeWidth="1"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              {/* Corner markers */}
+              <circle cx="50" cy="5" r="2" fill="#00ff9d" className="animate-pulse" />
+              <circle cx="90" cy="25" r="2" fill="#00ff9d" opacity="0.5" />
+              <circle cx="90" cy="75" r="2" fill="#00ff9d" opacity="0.5" />
+              <circle cx="50" cy="95" r="2" fill="#00ff9d" className="animate-pulse" />
+              <circle cx="10" cy="75" r="2" fill="#00ff9d" opacity="0.5" />
+              <circle cx="10" cy="25" r="2" fill="#00ff9d" opacity="0.5" />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="font-mono text-neon text-lg font-bold">AI</span>
+            </div>
+          </div>
+
+          {/* Performance Metrics Panel */}
+          <div className="w-52 bg-black/40 backdrop-blur-sm border border-neon/20 p-3 font-mono text-xs">
+            <div className="flex items-center justify-between text-neon/70 mb-2">
+              <span>METRICS.PREVIEW</span>
+              <Activity className="w-3 h-3" />
+            </div>
+            <div className="h-px bg-gradient-to-r from-transparent via-neon/20 to-neon/50 mb-3" />
+            
+            {/* Mini radar chart representation */}
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-500">
+              <div className="flex items-center justify-between">
+                <span>AIM</span>
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className={`w-1.5 h-3 ${i <= 4 ? 'bg-neon/70' : 'bg-white/10'}`} />
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>MOVE</span>
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className={`w-1.5 h-3 ${i <= 3 ? 'bg-cyan-400/70' : 'bg-white/10'}`} />
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>POS</span>
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className={`w-1.5 h-3 ${i <= 4 ? 'bg-purple-400/70' : 'bg-white/10'}`} />
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>IQ</span>
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <div key={i} className={`w-1.5 h-3 ${i <= 5 ? 'bg-yellow-400/70' : 'bg-white/10'}`} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Animated Waveform */}
+          <div className="w-48 h-12 flex items-end justify-center gap-0.5">
+            {[...Array(24)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="w-1 bg-gradient-to-t from-neon/30 to-neon/80 rounded-full"
+                animate={{ 
+                  height: [
+                    `${20 + Math.sin(i * 0.5) * 15}px`,
+                    `${35 + Math.cos(i * 0.5) * 20}px`,
+                    `${20 + Math.sin(i * 0.5) * 15}px`
+                  ]
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity, 
+                  delay: i * 0.05,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Connection Status */}
+          <div className="flex flex-col items-end gap-1 font-mono text-[10px] text-gray-600">
+            <div className="flex items-center gap-2">
+              <span>NEURAL.LINK</span>
+              <span className="text-neon/60">ACTIVE</span>
+              <div className="w-2 h-2 bg-neon/60 rounded-full animate-pulse" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span>VISION.AI</span>
+              <span className="text-neon/60">READY</span>
+              <div className="w-2 h-2 bg-neon/40 rounded-full" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span>ANALYSIS.ENG</span>
+              <span className="text-neon/60">STANDBY</span>
+              <div className="w-2 h-2 bg-yellow-500/60 rounded-full animate-pulse" />
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 relative z-20 text-center">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}

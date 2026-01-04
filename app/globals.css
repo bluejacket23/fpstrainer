@@ -96,6 +96,33 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
 }
 
+/* Slow spin animation for HUD elements */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 8s linear infinite;
+}
+
 /* Scrolling text animation - seamless loop (Ferris wheel effect) */
 @keyframes scroll-up {
   0% {

@@ -244,6 +244,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "videoDuration": {
+              "name": "videoDuration",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
             "aiReportJson": {
               "name": "aiReportJson",
               "isArray": false,
