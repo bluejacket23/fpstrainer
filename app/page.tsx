@@ -57,35 +57,38 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] bg-hero-glow blur-[150px] opacity-20 animate-pulse-slow" />
         <div className="scanlines absolute inset-0 z-10 opacity-10 pointer-events-none" />
 
-        {/* CORNER BRACKET FRAME - Minimalist Tech Aesthetic */}
-        <div className="absolute inset-4 md:inset-8 lg:inset-12 z-20 pointer-events-none hidden md:block">
-          {/* Top Left Corner */}
-          <div className="absolute top-0 left-0">
-            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-r from-neon to-transparent" />
-            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-b from-neon to-transparent" />
-            <div className="absolute top-0 left-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
+        {/* LEFT SIDE ACCENT */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 hidden lg:flex flex-col justify-center items-center z-10 pointer-events-none">
+          {/* Vertical gradient bar */}
+          <div className="w-px h-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+          
+          {/* Floating accent elements */}
+          <div className="my-8 flex flex-col items-center gap-4">
+            <div className="w-1 h-1 bg-white/40 rounded-full" />
+            <div className="w-6 h-px bg-white/20" />
+            <div className="w-1.5 h-1.5 border border-white/30 rotate-45" />
+            <div className="w-6 h-px bg-white/20" />
+            <div className="w-1 h-1 bg-white/40 rounded-full" />
           </div>
           
-          {/* Top Right Corner */}
-          <div className="absolute top-0 right-0">
-            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-l from-neon to-transparent ml-auto" />
-            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-b from-neon to-transparent ml-auto" />
-            <div className="absolute top-0 right-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
+          <div className="w-px h-1/2 bg-gradient-to-t from-transparent via-white/20 to-transparent" />
+        </div>
+        
+        {/* RIGHT SIDE ACCENT */}
+        <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 hidden lg:flex flex-col justify-center items-center z-10 pointer-events-none">
+          {/* Vertical gradient bar */}
+          <div className="w-px h-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+          
+          {/* Floating accent elements */}
+          <div className="my-8 flex flex-col items-center gap-4">
+            <div className="w-1 h-1 bg-white/40 rounded-full" />
+            <div className="w-6 h-px bg-white/20" />
+            <div className="w-1.5 h-1.5 border border-white/30 rotate-45" />
+            <div className="w-6 h-px bg-white/20" />
+            <div className="w-1 h-1 bg-white/40 rounded-full" />
           </div>
           
-          {/* Bottom Left Corner */}
-          <div className="absolute bottom-0 left-0">
-            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-t from-neon to-transparent" />
-            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-r from-neon to-transparent" />
-            <div className="absolute bottom-0 left-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
-          </div>
-          
-          {/* Bottom Right Corner */}
-          <div className="absolute bottom-0 right-0">
-            <div className="w-[2px] h-24 lg:h-32 bg-gradient-to-t from-neon to-transparent ml-auto" />
-            <div className="w-24 lg:w-32 h-[2px] bg-gradient-to-l from-neon to-transparent ml-auto" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 bg-neon rounded-full shadow-[0_0_12px_rgba(0,255,157,0.8)]" />
-          </div>
+          <div className="w-px h-1/2 bg-gradient-to-t from-transparent via-white/20 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-20 text-center">
