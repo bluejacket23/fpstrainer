@@ -171,10 +171,10 @@ Analyze each significant moment with PRECISION. For each key moment, provide:
 - Positioning (off-angle, exposed, tradeable, isolated)
 - Timing (early rotate, late peek, reload timing, re-peek timing)
 
-**FORMAT (follow exactly):**
-> 0:08s - **Engagement initiated from weak angle.** Player pushed into open sightline without clearing right corner. Crosshair was chest-level, requiring vertical adjustment mid-fight. The 200ms delay to acquire headshot allowed enemy to land first shot. Should have pre-aimed head height and shoulder-peeked to gather info before committing.
+**FORMAT (follow exactly - NO asterisks/stars in output):**
+> 0:08s - Engagement initiated from weak angle. Player pushed into open sightline without clearing right corner. Crosshair was chest-level, requiring vertical adjustment mid-fight. The 200ms delay to acquire headshot allowed enemy to land first shot. Should have pre-aimed head height and shoulder-peeked to gather info before committing.
 
-> 0:18s - **Clean trade secured.** Player held off-angle with crosshair at head height. Counter-strafed into the peek, minimizing exposure time. First bullet connected due to pre-aim positioning. Strong trigger discipline - no spray, clean 2-tap.
+> 0:18s - Clean trade secured. Player held off-angle with crosshair at head height. Counter-strafed into the peek, minimizing exposure time. First bullet connected due to pre-aim positioning. Strong trigger discipline - no spray, clean 2-tap.
 
 REQUIREMENTS:
 - 6-10 key moments covering the full clip timeline
@@ -254,7 +254,7 @@ You must output a JSON object containing a "scorecard" with decimal ratings out 
 
 IMPORTANT: Provide scores for ALL categories listed below. Each metric should be evaluated independently based on what you observed. Scores should vary significantly - don't cluster them around the same value. Aim for at least 15-20 point variance between your highest and lowest individual scores.
 
-The markdownReport MUST follow this EXACT format and order. Use ">" for ALL bullet points (NO dashes, NO asterisks, ONLY ">"), NO emojis anywhere, and include a blank line between each major section:
+The markdownReport MUST follow this EXACT format and order. Use ">" for ALL bullet points (NO dashes, ONLY ">"), NO emojis anywhere, NO asterisks/stars (**) for bold text - just plain text, and include a blank line between each major section:
 
 > PERFORMANCE ANALYSIS REPORT
 
