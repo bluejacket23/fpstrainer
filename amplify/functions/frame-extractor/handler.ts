@@ -154,19 +154,20 @@ export const handler = async (event: any) => {
         
         console.log('Thumbnail uploaded and URL generated');
         
-        // Update database with thumbnail URL
+        // Update database with thumbnail URL and video duration
         if (TABLE_NAME) {
           try {
             await docClient.send(new UpdateCommand({
               TableName: TABLE_NAME,
               Key: { userId, reportId },
-              UpdateExpression: 'SET thumbnailUrl = :t, processingStatus = :s',
+              UpdateExpression: 'SET thumbnailUrl = :t, processingStatus = :s, videoDuration = :d',
               ExpressionAttributeValues: {
                 ':t': thumbnailUrl,
                 ':s': 'PROCESSING',
+                ':d': Math.round(videoDuration) || null,
               },
             }));
-            console.log('Database updated with thumbnail URL');
+            console.log('Database updated with thumbnail URL and duration:', Math.round(videoDuration));
           } catch (dbError) {
             console.error('Error updating database with thumbnail:', dbError);
           }

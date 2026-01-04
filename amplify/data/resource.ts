@@ -37,6 +37,7 @@ const schema = a.schema({
       videoUrl: a.string(),
       frameUrls: a.string().array(),
       thumbnailUrl: a.string(),
+      videoDuration: a.integer(), // Duration in seconds
       aiReportJson: a.json(),
       aiReportMarkdown: a.string(),
       processingStatus: a.string(), // 'UPLOADING', 'PROCESSING', 'COMPLETED', 'FAILED'

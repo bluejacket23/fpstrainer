@@ -1,0 +1,28 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:DeleteObject",
+        "s3:ListBucket",
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::amplify-opscoach-lukec-sa-opscoachstoragebucket512-m7jbdrv5wfkw",
+        "arn:aws:s3:::amplify-opscoach-lukec-sa-opscoachstoragebucket512-m7jbdrv5wfkw/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:UpdateItem"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-east-2:954976304902:table/OpsCoachReport-mthlpx7ub5c4bpv25fxza4jf2e-NONE"
+      ]
+    }
+  ]
+}
+
