@@ -396,27 +396,30 @@ function ReportContent({ user }: { user: any }) {
           <div className="bg-surface p-8 rounded-2xl border border-white/10">
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-3xl font-bold text-white">Coaching Report</h1>
-              <button
-                onClick={handleGenerateTrainingProgram}
-                className="relative group px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300
-                           bg-gradient-to-r from-purple-600 to-pink-600 
-                           hover:from-purple-500 hover:to-pink-500
-                           shadow-[0_0_20px_rgba(168,85,247,0.4)]
-                           hover:shadow-[0_0_30px_rgba(168,85,247,0.6)]
-                           hover:-translate-y-0.5"
-              >
-                {/* Star icon in top right */}
-                <Sparkles 
-                  size={14} 
-                  className="absolute -top-1.5 -right-1.5 text-yellow-400 
-                             drop-shadow-[0_0_4px_rgba(250,204,21,0.8)]
-                             animate-pulse" 
-                />
-                <span className="flex items-center gap-2 text-white">
-                  <Calendar size={16} />
-                  Personalized 8-Week Training Program
-                </span>
-              </button>
+              {/* Only show training program button for Elite+ users */}
+              {['ELITE', 'PRO', 'GOD'].includes(userPlan) && (
+                <button
+                  onClick={handleGenerateTrainingProgram}
+                  className="relative group px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300
+                             bg-gradient-to-r from-purple-600 to-pink-600 
+                             hover:from-purple-500 hover:to-pink-500
+                             shadow-[0_0_20px_rgba(168,85,247,0.4)]
+                             hover:shadow-[0_0_30px_rgba(168,85,247,0.6)]
+                             hover:-translate-y-0.5"
+                >
+                  {/* Star icon in top right */}
+                  <Sparkles 
+                    size={14} 
+                    className="absolute -top-1.5 -right-1.5 text-yellow-400 
+                               drop-shadow-[0_0_4px_rgba(250,204,21,0.8)]
+                               animate-pulse" 
+                  />
+                  <span className="flex items-center gap-2 text-white">
+                    <Calendar size={16} />
+                    Personalized 8-Week Training Program
+                  </span>
+                </button>
+              )}
             </div>
             <div className="prose prose-invert max-w-none whitespace-pre-wrap">
               {renderMarkdown(report.aiReportMarkdown || 'No report content available.')}
