@@ -12,7 +12,7 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "FpsTrainer.ai | Master Your Gameplay",
+  title: "FPSTrainer.io | Master Your Gameplay",
   description: "AI-Powered FPS Coaching. Analyze Aim, Positioning, and Game Sense.",
 };
 
