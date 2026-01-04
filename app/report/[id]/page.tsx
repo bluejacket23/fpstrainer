@@ -130,26 +130,563 @@ function ReportContent({ user }: { user: any }) {
     }
   };
 
+  // Escape HTML to prevent XSS and ensure proper display
+  const escapeHtml = (text: string) => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  };
+
+  const formatProgramAsHTML = () => {
+    if (!trainingProgram) return '';
+    
+    let html = `
+      <div class="header">
+        <div class="logo-section">
+          <h1 class="title">${escapeHtml(trainingProgram.title || '8-Week Training Program')}</h1>
+          <p class="subtitle">Personalized Training Program by FPSTrainer</p>
+        </div>
+      </div>
+      
+      <div class="overview-section">
+        <p class="overview-text">${escapeHtml(trainingProgram.overview || '')}</p>
+      </div>
+    `;
+    
+    if (trainingProgram.playerProfile) {
+      html += `
+        <div class="profile-section">
+          <h2 class="section-title">Player Profile</h2>
+          <div class="profile-grid">
+      `;
+      
+      if (trainingProgram.playerProfile.weaknesses?.length) {
+        html += `
+          <div class="profile-card weakness">
+            <h3 class="card-title">Primary Weaknesses</h3>
+            <ul class="card-list">
+              ${trainingProgram.playerProfile.weaknesses.map((w: string) => `<li>${escapeHtml(w)}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+      
+      if (trainingProgram.playerProfile.strengths?.length) {
+        html += `
+          <div class="profile-card strength">
+            <h3 class="card-title">Key Strengths</h3>
+            <ul class="card-list">
+              ${trainingProgram.playerProfile.strengths.map((s: string) => `<li>${escapeHtml(s)}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+      
+      if (trainingProgram.playerProfile.priorityFocus?.length) {
+        html += `
+          <div class="profile-card focus">
+            <h3 class="card-title">Priority Focus</h3>
+            <ul class="card-list">
+              ${trainingProgram.playerProfile.priorityFocus.map((f: string) => `<li>${escapeHtml(f)}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+      
+      html += `
+          </div>
+        </div>
+      `;
+    }
+    
+    if (trainingProgram.weeks) {
+      trainingProgram.weeks.forEach((week: any) => {
+        const schedule = week.days || week.schedule;
+        
+        html += `
+          <div class="week-section">
+            <div class="week-header">
+              <h2 class="week-title">Week ${week.weekNumber}: ${escapeHtml(week.focus || week.theme || '')}</h2>
+              <p class="week-overview">${escapeHtml(week.overview || '')}</p>
+            </div>
+            
+            ${week.goals?.length ? `
+              <div class="goals-box">
+                <h3 class="goals-title">Weekly Goals</h3>
+                <ul class="goals-list">
+                  ${week.goals.map((goal: string) => `<li>${escapeHtml(goal)}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+            
+            ${schedule ? `
+              <div class="schedule-section">
+                <h3 class="schedule-title">Daily Schedule</h3>
+                <div class="schedule-grid">
+                  ${Object.entries(schedule).map(([day, details]: [string, any]) => {
+                    const isRest = details?.type === 'rest' || day.toLowerCase() === 'sunday';
+                    const isLight = details?.type === 'light';
+                    
+                    return `
+                      <div class="day-card ${isRest ? 'rest' : isLight ? 'light' : 'training'}">
+                        <div class="day-header">
+                          <span class="day-name">${day.charAt(0).toUpperCase() + day.slice(1)}</span>
+                          <span class="day-type">${isRest ? 'Rest' : isLight ? 'Light' : 'Training'}</span>
+                        </div>
+                        ${details?.focus ? `<p class="day-focus">${escapeHtml(details.focus)}</p>` : ''}
+                        ${details?.drills?.length ? `
+                          <ul class="day-drills">
+                            ${details.drills.map((drill: any) => `<li>${escapeHtml(typeof drill === 'string' ? drill : drill?.name || drill || '')}</li>`).join('')}
+                          </ul>
+                        ` : ''}
+                        ${details?.duration ? `<p class="day-duration">Duration: ${escapeHtml(details.duration)}</p>` : ''}
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+            ` : ''}
+            
+            ${week.tracking ? `
+              <div class="tracking-box">
+                <h4 class="tracking-title">Progress Tracking</h4>
+                <p>${escapeHtml(week.tracking)}</p>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      });
+    }
+    
+    if (trainingProgram.warmupRoutine) {
+      const warmupText = typeof trainingProgram.warmupRoutine === 'string' 
+        ? trainingProgram.warmupRoutine 
+        : trainingProgram.warmupRoutine.duration || '';
+      html += `
+        <div class="info-section warmup">
+          <h2 class="section-title">Daily Warmup Routine</h2>
+          <p class="info-text">${escapeHtml(warmupText)}</p>
+        </div>
+      `;
+    }
+    
+    if (trainingProgram.restDays) {
+      html += `
+        <div class="info-section rest">
+          <h2 class="section-title">Rest Days</h2>
+          <p class="info-text">${escapeHtml(trainingProgram.restDays)}</p>
+        </div>
+      `;
+    }
+    
+    if (trainingProgram.finalAssessment) {
+      html += `
+        <div class="info-section assessment">
+          <h2 class="section-title">Final Assessment</h2>
+          <p class="info-text">${escapeHtml(trainingProgram.finalAssessment)}</p>
+        </div>
+      `;
+    }
+    
+    html += `
+      <div class="footer">
+        <p>Generated by <strong>FPSTrainer</strong> on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+    `;
+    
+    return html;
+  };
+
   const handlePrintProgram = () => {
-    const text = formatProgramAsText();
+    const html = formatProgramAsHTML();
     const printWindow = window.open('', '_blank');
     if (printWindow) {
       printWindow.document.write(`
+        <!DOCTYPE html>
         <html>
           <head>
             <title>8-Week Training Program - FPSTrainer</title>
+            <meta charset="UTF-8">
             <style>
-              body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-              pre { white-space: pre-wrap; word-wrap: break-word; font-family: inherit; }
+              * { margin: 0; padding: 0; box-sizing: border-box; }
+              
+              @page {
+                size: letter;
+                margin: 0.5in;
+              }
+              
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                line-height: 1.6;
+                color: #1a1a1a;
+                background: #ffffff;
+                padding: 20px;
+                max-width: 900px;
+                margin: 0 auto;
+              }
+              
+              .header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 30px;
+                border-radius: 12px;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+              }
+              
+              .title {
+                font-size: 32px;
+                font-weight: 800;
+                margin-bottom: 8px;
+                letter-spacing: -0.5px;
+              }
+              
+              .subtitle {
+                font-size: 14px;
+                opacity: 0.9;
+                font-weight: 500;
+              }
+              
+              .overview-section {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+                border-left: 4px solid #667eea;
+              }
+              
+              .overview-text {
+                font-size: 16px;
+                color: #333;
+                line-height: 1.7;
+              }
+              
+              .section-title {
+                font-size: 24px;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid #667eea;
+              }
+              
+              .profile-section {
+                margin-bottom: 40px;
+              }
+              
+              .profile-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 20px;
+              }
+              
+              .profile-card {
+                padding: 20px;
+                border-radius: 8px;
+                border: 2px solid;
+              }
+              
+              .profile-card.weakness {
+                background: #fff5f5;
+                border-color: #fc8181;
+              }
+              
+              .profile-card.strength {
+                background: #f0fff4;
+                border-color: #68d391;
+              }
+              
+              .profile-card.focus {
+                background: #faf5ff;
+                border-color: #b794f4;
+              }
+              
+              .card-title {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              }
+              
+              .profile-card.weakness .card-title { color: #c53030; }
+              .profile-card.strength .card-title { color: #22543d; }
+              .profile-card.focus .card-title { color: #553c9a; }
+              
+              .card-list {
+                list-style: none;
+                padding: 0;
+              }
+              
+              .card-list li {
+                padding: 8px 0;
+                padding-left: 20px;
+                position: relative;
+                font-size: 14px;
+                color: #4a5568;
+              }
+              
+              .card-list li:before {
+                content: "▸";
+                position: absolute;
+                left: 0;
+                color: #667eea;
+                font-weight: bold;
+              }
+              
+              .week-section {
+                margin-bottom: 50px;
+                page-break-inside: avoid;
+              }
+              
+              .week-header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+              }
+              
+              .week-title {
+                font-size: 22px;
+                font-weight: 700;
+                margin-bottom: 8px;
+              }
+              
+              .week-overview {
+                font-size: 14px;
+                opacity: 0.95;
+              }
+              
+              .goals-box {
+                background: #fff9e6;
+                border-left: 4px solid #fbbf24;
+                padding: 16px;
+                border-radius: 6px;
+                margin-bottom: 20px;
+              }
+              
+              .goals-title {
+                font-size: 14px;
+                font-weight: 700;
+                color: #92400e;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              }
+              
+              .goals-list {
+                list-style: none;
+                padding: 0;
+              }
+              
+              .goals-list li {
+                padding: 6px 0;
+                padding-left: 24px;
+                position: relative;
+                color: #78350f;
+              }
+              
+              .goals-list li:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: #f59e0b;
+                font-weight: bold;
+                font-size: 16px;
+              }
+              
+              .schedule-section {
+                margin-bottom: 20px;
+              }
+              
+              .schedule-title {
+                font-size: 18px;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin-bottom: 15px;
+              }
+              
+              .schedule-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 12px;
+              }
+              
+              .day-card {
+                padding: 14px;
+                border-radius: 6px;
+                border: 2px solid;
+                background: white;
+              }
+              
+              .day-card.training {
+                border-color: #48bb78;
+                background: #f0fff4;
+              }
+              
+              .day-card.light {
+                border-color: #ed8936;
+                background: #fffaf0;
+              }
+              
+              .day-card.rest {
+                border-color: #4299e1;
+                background: #ebf8ff;
+              }
+              
+              .day-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+              }
+              
+              .day-name {
+                font-weight: 700;
+                font-size: 14px;
+                color: #1a1a1a;
+              }
+              
+              .day-type {
+                font-size: 11px;
+                font-weight: 600;
+                padding: 4px 8px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              }
+              
+              .day-card.training .day-type {
+                background: #48bb78;
+                color: white;
+              }
+              
+              .day-card.light .day-type {
+                background: #ed8936;
+                color: white;
+              }
+              
+              .day-card.rest .day-type {
+                background: #4299e1;
+                color: white;
+              }
+              
+              .day-focus {
+                font-size: 13px;
+                color: #4a5568;
+                margin-bottom: 8px;
+                font-weight: 500;
+              }
+              
+              .day-drills {
+                list-style: none;
+                padding: 0;
+                margin: 8px 0;
+              }
+              
+              .day-drills li {
+                font-size: 12px;
+                color: #718096;
+                padding: 4px 0;
+                padding-left: 16px;
+                position: relative;
+              }
+              
+              .day-drills li:before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #667eea;
+                font-weight: bold;
+              }
+              
+              .day-duration {
+                font-size: 11px;
+                color: #a0aec0;
+                margin-top: 8px;
+                font-weight: 600;
+              }
+              
+              .tracking-box {
+                background: #f7fafc;
+                border-left: 4px solid #667eea;
+                padding: 14px;
+                border-radius: 6px;
+                margin-top: 15px;
+              }
+              
+              .tracking-title {
+                font-size: 13px;
+                font-weight: 700;
+                color: #2d3748;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              }
+              
+              .tracking-box p {
+                font-size: 13px;
+                color: #4a5568;
+              }
+              
+              .info-section {
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+                border-left: 4px solid;
+              }
+              
+              .info-section.warmup {
+                background: #f0fff4;
+                border-color: #48bb78;
+              }
+              
+              .info-section.rest {
+                background: #ebf8ff;
+                border-color: #4299e1;
+              }
+              
+              .info-section.assessment {
+                background: #faf5ff;
+                border-color: #b794f4;
+              }
+              
+              .info-text {
+                font-size: 15px;
+                color: #2d3748;
+                line-height: 1.7;
+              }
+              
+              .footer {
+                margin-top: 50px;
+                padding-top: 20px;
+                border-top: 2px solid #e2e8f0;
+                text-align: center;
+                color: #718096;
+                font-size: 12px;
+              }
+              
+              .footer strong {
+                color: #667eea;
+                font-weight: 700;
+              }
+              
+              @media print {
+                body { padding: 0; }
+                .week-section { page-break-inside: avoid; }
+                .day-card { page-break-inside: avoid; }
+              }
             </style>
           </head>
           <body>
-            <pre>${text}</pre>
+            ${html}
           </body>
         </html>
       `);
       printWindow.document.close();
-      printWindow.print();
+      setTimeout(() => printWindow.print(), 250);
     }
   };
 
