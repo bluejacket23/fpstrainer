@@ -5,7 +5,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/data";
 import { type Schema } from "@/amplify/data/resource";
 import { useParams } from "next/navigation";
-import { Loader2, AlertTriangle, CheckCircle, Target, Activity, Map, Brain, Swords, Shield, Share2 } from "lucide-react";
+import { Loader2, AlertTriangle, CheckCircle, Target, Activity, Map, Brain, Swords, Shield, Share2, Sparkles, X, Calendar, Dumbbell, ChevronRight, Lock } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 const client = generateClient<Schema>();
@@ -46,6 +46,14 @@ function ReportContent({ user }: { user: any }) {
   const [report, setReport] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  
+  // Training program state
+  const [showTrainingProgram, setShowTrainingProgram] = useState(false);
+  const [trainingProgram, setTrainingProgram] = useState<any>(null);
+  const [generatingProgram, setGeneratingProgram] = useState(false);
+  const [programError, setProgramError] = useState<string | null>(null);
+  const [userPlan, setUserPlan] = useState<string>('RECRUIT');
+  const [selectedWeek, setSelectedWeek] = useState(0);
 
   useEffect(() => {
     if (!id || !user) return;
@@ -198,6 +206,62 @@ function ReportContent({ user }: { user: any }) {
     return () => clearInterval(messageInterval);
   }, []);
 
+  // Fetch user plan for training program access check
+  useEffect(() => {
+    if (!user) return;
+    const fetchUserPlan = async () => {
+      try {
+        const userId = user.userId || user.sub;
+        const result = await client.models.User.get({ userId });
+        if (result.data) {
+          setUserPlan(result.data.subscriptionPlan || 'RECRUIT');
+        }
+      } catch (error) {
+        console.error('Error fetching user plan:', error);
+      }
+    };
+    fetchUserPlan();
+  }, [user]);
+
+  // Generate training program
+  const handleGenerateTrainingProgram = async () => {
+    const eligiblePlans = ['ELITE', 'PRO', 'GOD'];
+    
+    if (!eligiblePlans.includes(userPlan)) {
+      setProgramError('This feature requires Elite plan or higher. Upgrade to unlock personalized training programs!');
+      setShowTrainingProgram(true);
+      return;
+    }
+    
+    setGeneratingProgram(true);
+    setProgramError(null);
+    setShowTrainingProgram(true);
+    
+    try {
+      const result = await client.mutations.generateTrainingProgram({
+        reportId: id as string,
+      });
+      
+      let data = result.data as any;
+      if (typeof data === 'string') {
+        data = JSON.parse(data);
+      }
+      
+      if (data?.success && data?.program) {
+        setTrainingProgram(data.program);
+      } else if (data?.requiresUpgrade) {
+        setProgramError(data.error || 'This feature requires Elite plan or higher.');
+      } else {
+        setProgramError(data?.error || 'Failed to generate training program');
+      }
+    } catch (error: any) {
+      console.error('Error generating training program:', error);
+      setProgramError(error.message || 'An error occurred');
+    } finally {
+      setGeneratingProgram(false);
+    }
+  };
+
   // Only show loading state if we don't have a report yet
   // If we have a report but it's loading, check the status
   if (loading && !report) {
@@ -333,13 +397,25 @@ function ReportContent({ user }: { user: any }) {
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-3xl font-bold text-white">Coaching Report</h1>
               <button
-                onClick={() => {
-                  // TODO: Check user plan and implement 8-week program
-                  alert('8-Week Training Program feature coming soon! Available for Elite plan and above.');
-                }}
-                className="px-4 py-2 bg-purple-500/20 border border-purple-500 text-purple-400 rounded font-bold hover:bg-purple-500/30 transition-colors text-sm"
+                onClick={handleGenerateTrainingProgram}
+                className="relative group px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300
+                           bg-gradient-to-r from-purple-600 to-pink-600 
+                           hover:from-purple-500 hover:to-pink-500
+                           shadow-[0_0_20px_rgba(168,85,247,0.4)]
+                           hover:shadow-[0_0_30px_rgba(168,85,247,0.6)]
+                           hover:-translate-y-0.5"
               >
-                8-Week Program
+                {/* Star icon in top right */}
+                <Sparkles 
+                  size={14} 
+                  className="absolute -top-1.5 -right-1.5 text-yellow-400 
+                             drop-shadow-[0_0_4px_rgba(250,204,21,0.8)]
+                             animate-pulse" 
+                />
+                <span className="flex items-center gap-2 text-white">
+                  <Calendar size={16} />
+                  Personalized 8-Week Training Program
+                </span>
               </button>
             </div>
             <div className="prose prose-invert max-w-none whitespace-pre-wrap">
@@ -590,6 +666,218 @@ function ReportContent({ user }: { user: any }) {
         </div>
       )}
       </div>
+
+      {/* Training Program Modal */}
+      {showTrainingProgram && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#0a0a0a] border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+            {/* Header */}
+            <div className="flex justify-between items-center p-6 border-b border-white/10 bg-gradient-to-r from-purple-900/30 to-pink-900/30">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-purple-500/20 rounded-lg">
+                  <Dumbbell className="w-6 h-6 text-purple-400" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white">Personalized 8-Week Training Program</h2>
+                  <p className="text-sm text-gray-400">AI-generated based on your gameplay analysis</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowTrainingProgram(false)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-400" />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-6">
+              {/* Loading State */}
+              {generatingProgram && (
+                <div className="text-center py-16">
+                  <Loader2 className="w-12 h-12 mx-auto mb-4 text-purple-400 animate-spin" />
+                  <p className="text-white font-semibold mb-2">Generating Your Personalized Program...</p>
+                  <p className="text-gray-400 text-sm">This takes about 10-15 seconds</p>
+                </div>
+              )}
+
+              {/* Error State - Plan Required */}
+              {programError && !generatingProgram && (
+                <div className="text-center py-16">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-yellow-500/10 rounded-full flex items-center justify-center">
+                    <Lock className="w-8 h-8 text-yellow-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Premium Feature</h3>
+                  <p className="text-gray-400 mb-6 max-w-md mx-auto">{programError}</p>
+                  <a 
+                    href="/account"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 
+                               text-white font-bold rounded-lg hover:from-purple-500 hover:to-pink-500 transition-all"
+                  >
+                    <Sparkles size={18} />
+                    Upgrade to Elite
+                  </a>
+                </div>
+              )}
+
+              {/* Program Content */}
+              {trainingProgram && !generatingProgram && (
+                <div className="space-y-6">
+                  {/* Overview */}
+                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                    <h3 className="text-lg font-bold text-white mb-3">{trainingProgram.title || 'Your Training Program'}</h3>
+                    <p className="text-gray-300">{trainingProgram.overview}</p>
+                    
+                    {trainingProgram.playerProfile && (
+                      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-red-500/10 rounded-lg p-3 border border-red-500/20">
+                          <p className="text-xs text-red-400 font-semibold mb-2">Primary Weaknesses</p>
+                          <ul className="text-sm text-gray-300 space-y-1">
+                            {trainingProgram.playerProfile.primaryWeaknesses?.map((w: string, i: number) => (
+                              <li key={i}>• {w}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-green-500/10 rounded-lg p-3 border border-green-500/20">
+                          <p className="text-xs text-green-400 font-semibold mb-2">Strengths</p>
+                          <ul className="text-sm text-gray-300 space-y-1">
+                            {trainingProgram.playerProfile.strengths?.map((s: string, i: number) => (
+                              <li key={i}>• {s}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                          <p className="text-xs text-purple-400 font-semibold mb-2">Focus Areas</p>
+                          <ul className="text-sm text-gray-300 space-y-1">
+                            {trainingProgram.playerProfile.focusAreas?.map((f: string, i: number) => (
+                              <li key={i}>• {f}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Week Selector */}
+                  {trainingProgram.weeks && trainingProgram.weeks.length > 0 && (
+                    <div>
+                      <div className="flex gap-2 overflow-x-auto pb-2 mb-4">
+                        {trainingProgram.weeks.map((week: any, index: number) => (
+                          <button
+                            key={index}
+                            onClick={() => setSelectedWeek(index)}
+                            className={`px-4 py-2 rounded-lg font-semibold text-sm whitespace-nowrap transition-all ${
+                              selectedWeek === index
+                                ? 'bg-purple-500 text-white'
+                                : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                            }`}
+                          >
+                            Week {week.weekNumber || index + 1}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Selected Week Details */}
+                      <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                        <div className="mb-4">
+                          <h4 className="text-lg font-bold text-purple-400">
+                            Week {trainingProgram.weeks[selectedWeek]?.weekNumber || selectedWeek + 1}: {trainingProgram.weeks[selectedWeek]?.theme || trainingProgram.weeks[selectedWeek]?.focus}
+                          </h4>
+                          <p className="text-gray-400 text-sm mt-1">{trainingProgram.weeks[selectedWeek]?.focus}</p>
+                        </div>
+
+                        {/* Goals */}
+                        {trainingProgram.weeks[selectedWeek]?.goals && (
+                          <div className="mb-4">
+                            <p className="text-xs text-gray-500 font-semibold mb-2">WEEKLY GOALS</p>
+                            <ul className="space-y-1">
+                              {trainingProgram.weeks[selectedWeek].goals.map((goal: string, i: number) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                                  <CheckCircle size={14} className="text-green-400 mt-0.5 flex-shrink-0" />
+                                  {goal}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* Daily Schedule */}
+                        {(trainingProgram.weeks[selectedWeek]?.days || trainingProgram.weeks[selectedWeek]?.schedule) && (
+                          <div>
+                            <p className="text-xs text-gray-500 font-semibold mb-2">DAILY SCHEDULE</p>
+                            <div className="grid gap-2">
+                              {Object.entries(trainingProgram.weeks[selectedWeek]?.days || trainingProgram.weeks[selectedWeek]?.schedule || {}).map(([day, details]: [string, any]) => (
+                                <div key={day} className="bg-black/30 rounded-lg p-3">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="font-semibold text-white capitalize">{day}</span>
+                                    <span className={`text-xs px-2 py-0.5 rounded ${
+                                      details?.type === 'rest' ? 'bg-blue-500/20 text-blue-400' :
+                                      details?.type === 'light' ? 'bg-yellow-500/20 text-yellow-400' :
+                                      'bg-green-500/20 text-green-400'
+                                    }`}>
+                                      {details?.type || 'training'}
+                                    </span>
+                                  </div>
+                                  {details?.focus && <p className="text-sm text-gray-300 mb-1">{details.focus}</p>}
+                                  {details?.drills && details.drills.length > 0 && (
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                      {details.drills.slice(0, 3).map((drill: any, i: number) => (
+                                        <li key={i}>• {typeof drill === 'string' ? drill : drill?.name || drill}</li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                  {details?.totalTime && (
+                                    <p className="text-xs text-purple-400 mt-1">{details.totalTime}</p>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Progress Check */}
+                        {trainingProgram.weeks[selectedWeek]?.progressCheck && (
+                          <div className="mt-4 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                            <p className="text-xs text-purple-400 font-semibold mb-1">PROGRESS CHECK</p>
+                            <p className="text-sm text-gray-300">{trainingProgram.weeks[selectedWeek].progressCheck}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Warmup & Mental Tips */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {trainingProgram.warmupRoutine && (
+                      <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                        <h4 className="font-bold text-white mb-2">Daily Warmup</h4>
+                        <p className="text-sm text-gray-400 mb-2">{trainingProgram.warmupRoutine.duration}</p>
+                        {trainingProgram.warmupRoutine.steps && (
+                          <ol className="text-sm text-gray-300 space-y-1">
+                            {trainingProgram.warmupRoutine.steps.map((step: string, i: number) => (
+                              <li key={i}>{i + 1}. {step}</li>
+                            ))}
+                          </ol>
+                        )}
+                      </div>
+                    )}
+                    {trainingProgram.mentalTips && (
+                      <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                        <h4 className="font-bold text-white mb-2">Mental Tips</h4>
+                        <ul className="text-sm text-gray-300 space-y-1">
+                          {trainingProgram.mentalTips.map((tip: string, i: number) => (
+                            <li key={i}>• {tip}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

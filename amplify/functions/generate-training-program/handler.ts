@@ -6,33 +6,69 @@ const ddb = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(ddb);
 
 const TABLE_NAME = process.env.TABLE_NAME;
+const USER_TABLE_NAME = process.env.USER_TABLE_NAME;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+// Elite and above plans that can access this feature
+const ELIGIBLE_PLANS = ['ELITE', 'PRO', 'GOD'];
+
 /**
- * Generate 8-Week Training Program Lambda
- * Creates a detailed training program based on report analysis
- * Available for Elite plan and above
+ * Generate Personalized 8-Week Training Program Lambda
+ * 
+ * Uses gpt-4o-mini for cost efficiency (no vision needed, just text analysis)
+ * - gpt-4o-mini: ~$0.15/1M input, ~$0.60/1M output tokens
+ * - Estimated cost per program: ~$0.002-0.005 (very cheap!)
+ * 
+ * Available for Elite plan and above only
  */
 export const handler = async (event: any) => {
   console.log('Generate training program event:', JSON.stringify(event, null, 2));
   
-  const { userId, reportId } = event;
+  // Get userId from Cognito identity (AppSync resolver)
+  const userId = event.identity?.sub;
+  const { reportId } = event.arguments || event;
   
-  if (!userId || !reportId) {
-    return {
+  if (!userId) {
+    return JSON.stringify({
       success: false,
-      error: 'Missing userId or reportId',
-    };
+      error: 'User not authenticated',
+    });
+  }
+  
+  if (!reportId) {
+    return JSON.stringify({
+      success: false,
+      error: 'Missing reportId',
+    });
   }
   
   if (!OPENAI_API_KEY) {
-    return {
+    return JSON.stringify({
       success: false,
       error: 'OpenAI API key not configured',
-    };
+    });
   }
   
   try {
+    // Check user's subscription plan
+    if (USER_TABLE_NAME) {
+      const userResult = await docClient.send(new GetCommand({
+        TableName: USER_TABLE_NAME,
+        Key: { userId },
+      }));
+      
+      const userPlan = userResult.Item?.subscriptionPlan || 'RECRUIT';
+      
+      if (!ELIGIBLE_PLANS.includes(userPlan)) {
+        return JSON.stringify({
+          success: false,
+          error: 'This feature requires Elite plan or higher. Please upgrade to access personalized training programs.',
+          requiresUpgrade: true,
+          currentPlan: userPlan,
+        });
+      }
+    }
+    
     // Get report
     const result = await docClient.send(new GetCommand({
       TableName: TABLE_NAME,
@@ -40,10 +76,10 @@ export const handler = async (event: any) => {
     }));
     
     if (!result.Item || !result.Item.aiReportMarkdown) {
-      return {
+      return JSON.stringify({
         success: false,
         error: 'Report not found or incomplete',
-      };
+      });
     }
     
     const reportMarkdown = result.Item.aiReportMarkdown;
@@ -54,75 +90,126 @@ export const handler = async (event: any) => {
       apiKey: OPENAI_API_KEY,
     });
     
-    const prompt = `You are an elite FPS training coach. Based on the following gameplay analysis report, create a detailed 8-week personalized training program.
+    // Using gpt-4o-mini for cost efficiency
+    // This is a text-only task (no vision needed) so mini is perfect
+    const prompt = `You are an elite FPS esports coach creating a personalized training program.
 
-REPORT ANALYSIS:
+Based on this gameplay analysis report, create a detailed 8-week training program tailored to this player's specific weaknesses and strengths.
+
+=== PLAYER ANALYSIS REPORT ===
 ${reportMarkdown}
 
-SCORECARD:
+=== SCORECARD DATA ===
 ${JSON.stringify(scorecard, null, 2)}
 
-Create a comprehensive 8-week training program that includes:
+=== YOUR TASK ===
+Create a comprehensive, personalized 8-week training program that:
 
-1. **Week-by-Week Breakdown**: Each week should have specific focus areas
-2. **Daily Training Schedule**: What to practice each day
-3. **Specific Drills**: Step-by-step instructions for each drill
-4. **Setup Instructions**: How to configure training modes, maps, settings
-5. **Progression Tracking**: How to measure improvement each week
-6. **Rest Days**: When to take breaks
-7. **Warm-up Routines**: Pre-training warm-up exercises
-8. **Goal Setting**: Specific targets for each week
+1. Prioritizes the player's WEAKEST areas first (lowest scores)
+2. Maintains and builds on their STRENGTHS
+3. Provides specific, actionable drills they can do in-game
+4. Includes progressive difficulty (each week builds on the last)
+5. Has clear daily schedules with time estimates
+6. Includes rest days to prevent burnout
 
-Format the response as detailed markdown with clear sections. Be specific, actionable, and tailored to the weaknesses identified in the report.
-
-Output the training program as a JSON object with this structure:
+Output as a JSON object with this exact structure:
 {
-  "title": "8-Week Training Program",
-  "overview": "Brief overview of the program",
+  "title": "Your Personalized 8-Week Training Program",
+  "playerProfile": {
+    "primaryWeaknesses": ["weakness1", "weakness2", "weakness3"],
+    "strengths": ["strength1", "strength2"],
+    "focusAreas": ["area1", "area2", "area3"]
+  },
+  "overview": "2-3 sentence overview of what this program will achieve",
   "weeks": [
     {
       "weekNumber": 1,
-      "focus": "Main focus area for this week",
-      "goals": ["Goal 1", "Goal 2"],
-      "schedule": {
-        "monday": { "focus": "...", "drills": ["..."], "duration": "..." },
+      "theme": "Week theme/focus",
+      "focus": "Primary focus area",
+      "goals": ["Specific goal 1", "Specific goal 2", "Specific goal 3"],
+      "days": {
+        "monday": {
+          "type": "training",
+          "focus": "Specific focus",
+          "warmup": "5-10 min warmup routine",
+          "drills": [
+            {
+              "name": "Drill name",
+              "duration": "15 min",
+              "instructions": "Step by step instructions",
+              "targetMetric": "What to measure"
+            }
+          ],
+          "cooldown": "What to do after",
+          "totalTime": "45 min"
+        },
         "tuesday": { ... },
-        // ... for each day
+        "wednesday": { ... },
+        "thursday": { ... },
+        "friday": { ... },
+        "saturday": { "type": "light" or "rest", ... },
+        "sunday": { "type": "rest", "activities": "Optional VOD review" }
       },
-      "setup": "How to configure for this week's training",
-      "tracking": "How to measure progress"
+      "weeklyGoal": "What success looks like this week",
+      "progressCheck": "How to measure improvement"
     }
-    // ... for 8 weeks
+    // ... weeks 2-8, with progressive difficulty
   ],
-  "warmupRoutine": "Daily warm-up instructions",
-  "restDays": "When and why to rest",
-  "finalAssessment": "How to evaluate progress after 8 weeks"
-}`;
+  "warmupRoutine": {
+    "duration": "10 min",
+    "steps": ["Step 1", "Step 2", "Step 3"]
+  },
+  "mentalTips": ["Tip 1", "Tip 2", "Tip 3"],
+  "equipmentSetup": {
+    "sensitivity": "Recommended sens adjustments if needed",
+    "crosshair": "Crosshair recommendations",
+    "otherSettings": "Any other recommended settings"
+  },
+  "finalAssessment": "How to evaluate overall progress after 8 weeks"
+}
+
+Make it SPECIFIC to this player's analysis. Reference their actual scores and identified issues.`;
     
     const response = await openai.chat.completions.create({
-      model: 'gpt-4o',
+      model: 'gpt-4o-mini', // Cost-effective for text processing (~90% cheaper than gpt-4o)
       messages: [
+        {
+          role: 'system',
+          content: 'You are an elite FPS esports coach with years of experience training professional players. You create detailed, personalized training programs that produce real results. Always output valid JSON.',
+        },
         {
           role: 'user',
           content: prompt,
         },
       ],
-      max_tokens: 4000,
+      max_tokens: 8000, // Allow for comprehensive program
+      temperature: 0.7, // Some creativity but consistent
       response_format: { type: 'json_object' },
     });
     
     const programJson = JSON.parse(response.choices[0].message.content || '{}');
     
-    return {
+    // Log token usage for cost tracking
+    const usage = response.usage;
+    console.log('Token usage:', {
+      promptTokens: usage?.prompt_tokens,
+      completionTokens: usage?.completion_tokens,
+      totalTokens: usage?.total_tokens,
+      // gpt-4o-mini costs: $0.15/1M input, $0.60/1M output
+      estimatedCost: usage ? 
+        ((usage.prompt_tokens * 0.00000015) + (usage.completion_tokens * 0.0000006)).toFixed(6) : 
+        'unknown',
+    });
+    
+    return JSON.stringify({
       success: true,
       program: programJson,
-    };
+    });
   } catch (error: any) {
     console.error('Error generating training program:', error);
-    return {
+    return JSON.stringify({
       success: false,
-      error: error.message,
-    };
+      error: error.message || 'Failed to generate training program',
+    });
   }
 };
-
