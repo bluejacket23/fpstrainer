@@ -38,6 +38,7 @@ const schema = a.schema({
       frameUrls: a.string().array(),
       thumbnailUrl: a.string(),
       videoDuration: a.integer(), // Duration in seconds
+      originalFilename: a.string(), // Original filename from upload
       aiReportJson: a.json(),
       aiReportMarkdown: a.string(),
       processingStatus: a.string(), // 'UPLOADING', 'PROCESSING', 'COMPLETED', 'FAILED'

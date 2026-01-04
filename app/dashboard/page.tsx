@@ -518,15 +518,23 @@ function ReportCard({ report }: any) {
           </p>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between text-sm text-gray-400">
-          <div className="flex items-center gap-2">
-            <Clock size={14} /> Video Clip
-          </div>
-          {report.videoDuration && (
-            <span className="font-mono text-neon font-bold">
-              {report.videoDuration}s
-            </span>
+        <div className="mt-4 pt-4 border-t border-white/5">
+          {/* Original filename - small and faint */}
+          {report.originalFilename && (
+            <p className="text-xs text-gray-600 mb-2 truncate" title={report.originalFilename}>
+              {report.originalFilename}
+            </p>
           )}
+          <div className="flex items-center justify-between text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <Clock size={14} /> Video Clip
+            </div>
+            {report.videoDuration && (
+              <span className="font-mono text-neon font-bold">
+                {report.videoDuration}s
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Link>
