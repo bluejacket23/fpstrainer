@@ -164,8 +164,10 @@ function DashboardContent() {
           setReports(sortedReports);
 
           // Calculate statistics
+          // Support both: aiReportJson.scorecard.X (old) and aiReportJson.X (new)
           const completedReports = normalizedReports.filter(
-            (r: any) => r.processingStatus === 'COMPLETED' && r.aiReportJson?.scorecard
+            (r: any) => r.processingStatus === 'COMPLETED' && 
+              (r.aiReportJson?.scorecard || r.aiReportJson?.overallScore !== undefined)
           );
 
           if (completedReports.length > 0) {
@@ -181,7 +183,8 @@ function DashboardContent() {
             let highScore = 0;
 
             completedReports.forEach((report: any) => {
-              const scorecard = report.aiReportJson.scorecard;
+              // Support both scorecard wrapper and direct fields
+              const scorecard = report.aiReportJson.scorecard || report.aiReportJson;
               if (scorecard) {
                 const overall = scorecard.overallScore || 0;
                 if (overall > highScore) {

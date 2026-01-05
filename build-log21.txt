@@ -1,0 +1,324 @@
+2026-01-05T01:18:09.916Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2026-01-05T01:18:10.353Z [INFO]: # Cloning repository: git@github.com:bluejacket23/fpstrainer.git
+2026-01-05T01:18:12.620Z [INFO]: 
+2026-01-05T01:18:12.621Z [INFO]: Cloning into 'fpstrainer'...
+2026-01-05T01:18:12.621Z [INFO]: # Switching to commit: 1b77d09f131d269e43d6c697316d721f46007dbb
+2026-01-05T01:18:12.745Z [INFO]: Note: switching to '1b77d09f131d269e43d6c697316d721f46007dbb'.
+                                 You are in 'detached HEAD' state. You can look around, make experimental
+                                 changes and commit them, and you can discard any commits you make in this
+                                 state without impacting any branches by switching back to a branch.
+                                 If you want to create a new branch to retain commits you create, you may
+                                 do so (now or later) by using -c with the switch command. Example:
+                                 git switch -c <new-branch-name>
+                                 Or undo this operation with:
+                                 git switch -
+                                 Turn off this advice by setting config variable advice.detachedHead to false
+                                 HEAD is now at 1b77d09 Enable Google OAuth for production
+2026-01-05T01:18:12.781Z [INFO]: Successfully cleaned up Git credentials
+2026-01-05T01:18:12.782Z [INFO]: # Checking for Git submodules at: /codebuild/output/src464981154/src/fpstrainer/.gitmodules
+2026-01-05T01:18:12.790Z [INFO]: # Retrieving environment cache...
+2026-01-05T01:18:12.919Z [INFO]: # Retrieved environment cache
+2026-01-05T01:18:12.919Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-01-05T01:18:12.919Z [INFO]: SSM params {"Path":"/amplify/d2aaycu993lg4k/production/","WithDecryption":true}
+2026-01-05T01:18:13.720Z [INFO]: # No package override configuration found.
+2026-01-05T01:18:13.805Z [INFO]: # Retrieving cache...
+2026-01-05T01:18:18.459Z [INFO]: # Extracting cache...
+2026-01-05T01:18:19.786Z [INFO]: # Extraction completed
+2026-01-05T01:18:19.824Z [INFO]: # Retrieved cache
+2026-01-05T01:18:22.964Z [INFO]: ## Starting Backend Build
+                                 # Starting phase: build
+                                 # Executing command: npm ci --cache .npm --prefer-offline
+2026-01-05T01:18:38.293Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-05T01:18:38.297Z [WARNING]: npm warn While resolving: @xstate/react@3.2.2
+                                    npm warn Found: react@19.2.0
+                                    npm warn node_modules/react
+                                    npm warn   react@"19.2.0" from the root project
+                                    npm warn   43 more (@aws-amplify/ui-react, @aws-amplify/ui-react-core, ...)
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn node_modules/@aws-amplify/ui-react-core/node_modules/@xstate/react
+                                    npm warn   @xstate/react@"^3.2.2" from @aws-amplify/ui-react-core@3.4.6
+                                    npm warn   node_modules/@aws-amplify/ui-react-core
+                                    npm warn
+                                    npm warn Conflicting peer dependency: react@18.3.1
+                                    npm warn node_modules/react
+                                    npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn   node_modules/@aws-amplify/ui-react-core/node_modules/@xstate/react
+                                    npm warn     @xstate/react@"^3.2.2" from @aws-amplify/ui-react-core@3.4.6
+                                    npm warn     node_modules/@aws-amplify/ui-react-core
+2026-01-05T01:18:38.304Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+                                    npm warn While resolving: @xstate/react@3.2.2
+                                    npm warn Found: react@19.2.0
+                                    npm warn node_modules/react
+                                    npm warn   react@"19.2.0" from the root project
+                                    npm warn   43 more (@aws-amplify/ui-react, @aws-amplify/ui-react-core, ...)
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn node_modules/@aws-amplify/ui-react/node_modules/@xstate/react
+                                    npm warn   @xstate/react@"^3.2.2" from @aws-amplify/ui-react@6.13.1
+                                    npm warn   node_modules/@aws-amplify/ui-react
+                                    npm warn
+                                    npm warn Conflicting peer dependency: react@18.3.1
+                                    npm warn node_modules/react
+                                    npm warn   peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from @xstate/react@3.2.2
+                                    npm warn   node_modules/@aws-amplify/ui-react/node_modules/@xstate/react
+                                    npm warn     @xstate/react@"^3.2.2" from @aws-amplify/ui-react@6.13.1
+                                    npm warn     node_modules/@aws-amplify/ui-react
+2026-01-05T01:18:38.310Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-05T01:18:38.310Z [WARNING]: npm warn While resolving: @aws-amplify/plugin-types@1.10.1
+                                    npm warn Found: @aws-sdk/types@3.821.0
+                                    npm warn node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types/node_modules/@aws-sdk/types
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer @aws-sdk/types@"^3.734.0" from @aws-amplify/plugin-types@1.10.1
+                                    npm warn node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types
+                                    npm warn   @aws-amplify/plugin-types@"^1.10.1" from @aws-amplify/ai-constructs@1.5.3
+                                    npm warn   node_modules/@aws-amplify/data-construct/node_modules/@aws-amplify/ai-constructs
+2026-01-05T01:18:38.411Z [WARNING]: npm warn ERESOLVE overriding peer dependency
+2026-01-05T01:18:38.411Z [WARNING]: npm warn While resolving: @aws-amplify/plugin-types@1.10.1
+                                    npm warn Found: @aws-sdk/types@3.821.0
+                                    npm warn node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types/node_modules/@aws-sdk/types
+                                    npm warn
+                                    npm warn Could not resolve dependency:
+                                    npm warn peer @aws-sdk/types@"^3.734.0" from @aws-amplify/plugin-types@1.10.1
+                                    npm warn node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/ai-constructs/node_modules/@aws-amplify/plugin-types
+                                    npm warn   @aws-amplify/plugin-types@"^1.10.1" from @aws-amplify/ai-constructs@1.5.3
+                                    npm warn   node_modules/@aws-amplify/graphql-api-construct/node_modules/@aws-amplify/ai-constructs
+2026-01-05T01:19:44.976Z [WARNING]: npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-01-05T01:19:45.062Z [WARNING]: npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+2026-01-05T01:19:45.236Z [WARNING]: npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-01-05T01:19:45.440Z [WARNING]: npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-01-05T01:19:45.468Z [WARNING]: npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2026-01-05T01:19:45.494Z [WARNING]: npm warn deprecated @babel/plugin-proposal-object-rest-spread@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
+2026-01-05T01:19:47.240Z [WARNING]: npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+2026-01-05T01:19:52.103Z [WARNING]: npm warn deprecated fluent-ffmpeg@2.1.3: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2026-01-05T01:19:56.384Z [WARNING]: npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+2026-01-05T01:20:22.016Z [INFO]: added 1963 packages, and audited 2817 packages in 2m
+2026-01-05T01:20:22.022Z [INFO]: 316 packages are looking for funding
+                                 run `npm fund` for details
+2026-01-05T01:20:22.065Z [INFO]: 2 vulnerabilities (1 moderate, 1 critical)
+                                 To address issues that do not require attention, run:
+                                 npm audit fix
+                                 To address all issues, run:
+                                 npm audit fix --force
+                                 Run `npm audit` for details.
+2026-01-05T01:20:22.132Z [INFO]: # Executing command: npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+2026-01-05T01:20:25.400Z [INFO]: 1:20:25 AM Synthesizing backend...
+2026-01-05T01:20:25.404Z [INFO]: 
+2026-01-05T01:20:26.395Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/AmplifyBranchLinker/CustomResourceLambda/Code/Stage...
+2026-01-05T01:20:26.655Z [WARNING]: ...06f71771ac76d8f818765625817e9f12cddffb3c765b48-building/index.js  920.9kb
+                                    ⚡ Done in 54ms
+2026-01-05T01:20:26.751Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/auth/AmplifySecretFetcherResourceProviderLambda/Code/Stage...
+2026-01-05T01:20:26.999Z [WARNING]: ...7efac3f3911cd2620120e11f80c9fefdc8af534b03176b-building/index.js  716.7kb
+                                    ⚡ Done in 39ms
+2026-01-05T01:20:27.039Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:27.040Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:27.042Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/upload-init-lambda/Code/Stage...
+2026-01-05T01:20:27.399Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:27.399Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:27.403Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/get-report-lambda/Code/Stage...
+2026-01-05T01:20:27.716Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:27.717Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:27.718Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/list-reports-lambda/Code/Stage...
+2026-01-05T01:20:28.059Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:28.059Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:28.060Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/generate-shareable-graphic-lambda/Code/Stage...
+2026-01-05T01:20:28.372Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:28.372Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:28.373Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/generate-training-program-lambda/Code/Stage...
+2026-01-05T01:20:28.690Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:28.695Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+                                    Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/create-checkout-session-lambda/Code/Stage...
+2026-01-05T01:20:29.031Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:29.032Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:29.033Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/cancel-subscription-lambda/Code/Stage...
+2026-01-05T01:20:29.415Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:29.416Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:29.417Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/customer-portal-lambda/Code/Stage...
+2026-01-05T01:20:29.817Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.817Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.818Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.818Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.818Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.818Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.818Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.819Z [WARNING]: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+2026-01-05T01:20:29.971Z [WARNING]: WARNING: owners may reassign ownership for the following model(s) and role(s): User: [owner], OpsCoachReport: [owner]. If this is not intentional, you may want to apply field-level authorization rules to these fields. To read more: https://docs.amplify.aws/cli/graphql/authorization-rules/#per-user--owner-based-data-access.
+2026-01-05T01:20:30.012Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:30.013Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:30.013Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/ai-analysis-lambda/Code/Stage...
+2026-01-05T01:20:30.402Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:30.403Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:30.403Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/frame-extractor-lambda/Code/Stage...
+2026-01-05T01:20:30.765Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:30.766Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:30.766Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/get-thumbnail-url-lambda/Code/Stage...
+2026-01-05T01:20:31.103Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:31.104Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:31.104Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/cleanup-resources-lambda/Code/Stage...
+2026-01-05T01:20:31.457Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:31.457Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:31.457Z [WARNING]: Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/stripe-webhook-lambda/Code/Stage...
+2026-01-05T01:20:31.795Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+2026-01-05T01:20:31.801Z [WARNING]: [WARNING] aws-cdk-lib.aws_lambda.FunctionOptions#logRetention is deprecated.
+                                    use `logGroup` instead
+                                    This API will be removed in the next major release.
+                                    Bundling asset amplify-d2aaycu993lg4k-production-branch-3529e30cd5/function/handle-referral-lambda/Code/Stage...
+2026-01-05T01:20:32.746Z [INFO]: 1:20:32 AM ✔ Backend synthesized in 7.6 seconds
+2026-01-05T01:20:32.747Z [INFO]: 1:20:32 AM Running type checks...
+2026-01-05T01:20:41.486Z [INFO]: 1:20:41 AM ✔ Type checks completed in 8.73 seconds
+2026-01-05T01:20:41.505Z [INFO]: 1:20:41 AM Building and publishing assets...
+2026-01-05T01:20:42.909Z [INFO]: 1:20:42 AM ✔ Built and published assets
+2026-01-05T01:20:45.683Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   0 | 1:20:43 AM | UPDATE_IN_PROGRESS | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5 User Initiated
+2026-01-05T01:20:47.843Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   0 | 1:20:46 AM | UPDATE_IN_PROGRESS | AWS::CloudFormation::Stack | auth.NestedStack/auth.NestedStackResource (auth179371D7)
+2026-01-05T01:20:47.844Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   0 | 1:20:46 AM | UPDATE_IN_PROGRESS | AWS::CloudFormation::Stack | function.NestedStack/function.NestedStackResource (function1351588B)
+2026-01-05T01:20:47.844Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   0 | 1:20:47 AM | UPDATE_IN_PROGRESS | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC User Initiated
+2026-01-05T01:20:47.844Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   1 | 1:20:47 AM | UPDATE_COMPLETE | AWS::CloudFormation::Stack | function.NestedStack/function.NestedStackResource (function1351588B)
+2026-01-05T01:20:52.157Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   1 | 1:20:50 AM | CREATE_IN_PROGRESS | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole (AmplifySecretFetcherResourceProviderLambdaServiceRole3F02FB0D)
+2026-01-05T01:20:52.162Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   1 | 1:20:50 AM | CREATE_IN_PROGRESS | AWS::Cognito::UserPoolDomain | auth/amplifyAuth/UserPool/UserPoolDomain (amplifyAuthUserPoolUserPoolDomain1F688B5B)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   1 | 1:20:50 AM | CREATE_IN_PROGRESS | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole (AmplifySecretFetcherResourceProviderframeworkonEventServiceRole0941C6B4)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   1 | 1:20:50 AM | UPDATE_IN_PROGRESS | AWS::CDK::Metadata | auth/CDKMetadata/Default (CDKMetadata)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   1 | 1:20:51 AM | CREATE_IN_PROGRESS | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole (AmplifySecretFetcherResourceProviderLambdaServiceRole3F02FB0D) Resource creation Initiated
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   1 | 1:20:51 AM | CREATE_IN_PROGRESS | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole (AmplifySecretFetcherResourceProviderframeworkonEventServiceRole0941C6B4) Resource creation Initiated
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   2 | 1:20:51 AM | UPDATE_COMPLETE | AWS::CDK::Metadata | auth/CDKMetadata/Default (CDKMetadata)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   2 | 1:20:51 AM | CREATE_IN_PROGRESS | AWS::Cognito::UserPoolDomain | auth/amplifyAuth/UserPool/UserPoolDomain (amplifyAuthUserPoolUserPoolDomain1F688B5B) Resource creation Initiated
+2026-01-05T01:20:54.307Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   3 | 1:20:52 AM | CREATE_COMPLETE | AWS::Cognito::UserPoolDomain | auth/amplifyAuth/UserPool/UserPoolDomain (amplifyAuthUserPoolUserPoolDomain1F688B5B)
+2026-01-05T01:21:09.353Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   4 | 1:21:07 AM | CREATE_COMPLETE | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole (AmplifySecretFetcherResourceProviderLambdaServiceRole3F02FB0D)
+2026-01-05T01:21:09.358Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   5 | 1:21:07 AM | CREATE_COMPLETE | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole (AmplifySecretFetcherResourceProviderframeworkonEventServiceRole0941C6B4)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   5 | 1:21:08 AM | CREATE_IN_PROGRESS | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderLambdaServiceRoleDefaultPolicy080657DD)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   5 | 1:21:08 AM | CREATE_IN_PROGRESS | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderLambdaServiceRoleDefaultPolicy080657DD) Resource creation Initiated
+2026-01-05T01:21:26.497Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   6 | 1:21:24 AM | CREATE_COMPLETE | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderLambdaServiceRoleDefaultPolicy080657DD)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   6 | 1:21:25 AM | CREATE_IN_PROGRESS | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProviderLambda (AmplifySecretFetcherResourceProviderLambda27823B35)
+2026-01-05T01:21:28.648Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   6 | 1:21:26 AM | CREATE_IN_PROGRESS | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProviderLambda (AmplifySecretFetcherResourceProviderLambda27823B35) Resource creation Initiated
+2026-01-05T01:21:32.931Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   7 | 1:21:32 AM | CREATE_COMPLETE | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProviderLambda (AmplifySecretFetcherResourceProviderLambda27823B35)
+2026-01-05T01:21:35.064Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   7 | 1:21:33 AM | CREATE_IN_PROGRESS | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderframeworkonEventServiceRoleDefaultPolicy749EBE05)
+2026-01-05T01:21:35.064Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   7 | 1:21:34 AM | CREATE_IN_PROGRESS | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderframeworkonEventServiceRoleDefaultPolicy749EBE05) Resource creation Initiated
+2026-01-05T01:21:50.117Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:21:49 AM | CREATE_COMPLETE | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderframeworkonEventServiceRoleDefaultPolicy749EBE05)
+2026-01-05T01:21:52.275Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:21:50 AM | CREATE_IN_PROGRESS | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProvider/framework-onEvent (AmplifySecretFetcherResourceProviderframeworkonEventA62AE3A8)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:21:51 AM | CREATE_IN_PROGRESS | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProvider/framework-onEvent (AmplifySecretFetcherResourceProviderframeworkonEventA62AE3A8) Resource creation Initiated
+2026-01-05T01:21:52.275Z [INFO]: 
+2026-01-05T01:21:58.708Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:21:58 AM | CREATE_COMPLETE | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProvider/framework-onEvent (AmplifySecretFetcherResourceProviderframeworkonEventA62AE3A8)
+2026-01-05T01:22:00.843Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:21:58 AM | CREATE_IN_PROGRESS | Custom::AmplifySecretFetcherResource | auth/AmplifySecretFetcherResource/Default (AmplifySecretFetcherResource)
+2026-01-05T01:22:05.125Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:03 AM | CREATE_IN_PROGRESS | Custom::AmplifySecretFetcherResource | auth/AmplifySecretFetcherResource/Default (AmplifySecretFetcherResource) Resource creation Initiated
+2026-01-05T01:22:05.129Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:03 AM | CREATE_FAILED | Custom::AmplifySecretFetcherResource | auth/AmplifySecretFetcherResource/Default (AmplifySecretFetcherResource) Received response status [FAILED] from custom resource. Message returned: Failed to retrieve backend secret 'GOOGLE_CLIENT_ID' for 'd2aaycu993lg4k'. Reason: {"cause":{"name":"ParameterNotFound","$fault":"client","$metadata":{"httpStatusCode":400,"requestId":"6d1f9943-c125-4fb5-846b-1c260d171d94","attempts":1,"totalRetryDelay":0},"__type":"ParameterNotFound","message":"UnknownError"},"httpStatusCode":400,"name":"SecretError"}
+                                 Logs: /aws/lambda/amplify-d2aaycu993lg4k-pr-AmplifySecretFetcherReso-hPLctz4tJoY7
+                                 at handleCreateUpdateEvent (/var/task/index.js:17905:15)
+                                 at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+                                 at async Runtime.handler (/var/task/index.js:17863:23) (RequestId: facaf3ec-4d4a-4bc6-825d-2f5aaf077f6f)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:03 AM | UPDATE_ROLLBACK_IN_PROGRESS | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC The following resource(s) failed to create: [AmplifySecretFetcherResource].
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   9 | 1:22:04 AM | UPDATE_FAILED | AWS::CloudFormation::Stack | auth.NestedStack/auth.NestedStackResource (auth179371D7) Embedded stack arn:aws:cloudformation:us-east-2:954976304902:stack/amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC/a5b06980-e9c0-11f0-943b-069474327aef was not successfully updated. Currently in UPDATE_ROLLBACK_IN_PROGRESS with reason: The following resource(s) failed to create: [AmplifySecretFetcherResource].
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   9 | 1:22:04 AM | UPDATE_ROLLBACK_IN_PROGRESS | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5 The following resource(s) failed to update: [auth179371D7].
+2026-01-05T01:22:07.269Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   9 | 1:22:06 AM | UPDATE_IN_PROGRESS | AWS::CloudFormation::Stack | auth.NestedStack/auth.NestedStackResource (auth179371D7)
+2026-01-05T01:22:07.270Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   9 | 1:22:06 AM | UPDATE_IN_PROGRESS | AWS::CloudFormation::Stack | function.NestedStack/function.NestedStackResource (function1351588B)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   8 | 1:22:06 AM | UPDATE_COMPLETE | AWS::CloudFormation::Stack | function.NestedStack/function.NestedStackResource (function1351588B)
+2026-01-05T01:22:26.597Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:22:24 AM | UPDATE_IN_PROGRESS | AWS::CDK::Metadata | auth/CDKMetadata/Default (CDKMetadata)
+2026-01-05T01:22:26.602Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   7 | 1:22:25 AM | UPDATE_COMPLETE | AWS::CDK::Metadata | auth/CDKMetadata/Default (CDKMetadata)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:22:26 AM | UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC
+2026-01-05T01:22:28.737Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   9 | 1:22:28 AM | UPDATE_COMPLETE | AWS::CloudFormation::Stack | auth.NestedStack/auth.NestedStackResource (auth179371D7)
+2026-01-05T01:22:30.878Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |  10 | 1:22:28 AM | UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5
+2026-01-05T01:22:30.882Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   9 | 1:22:29 AM | UPDATE_COMPLETE | AWS::CloudFormation::Stack | function.NestedStack/function.NestedStackResource (function1351588B)
+2026-01-05T01:22:33.014Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:30 AM | DELETE_IN_PROGRESS | AWS::CloudFormation::CustomResource | auth/AmplifySecretFetcherResource/Default (AmplifySecretFetcherResource)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:31 AM | DELETE_IN_PROGRESS | AWS::Cognito::UserPoolDomain | auth/amplifyAuth/UserPool/UserPoolDomain (amplifyAuthUserPoolUserPoolDomain1F688B5B)
+2026-01-05T01:22:33.014Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |  10 | 1:22:32 AM | DELETE_COMPLETE | AWS::CloudFormation::CustomResource | auth/AmplifySecretFetcherResource/Default (AmplifySecretFetcherResource)
+2026-01-05T01:22:35.157Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |  10 | 1:22:32 AM | DELETE_IN_PROGRESS | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProvider/framework-onEvent (AmplifySecretFetcherResourceProviderframeworkonEventA62AE3A8)
+2026-01-05T01:22:37.306Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:36 AM | DELETE_COMPLETE | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProvider/framework-onEvent (AmplifySecretFetcherResourceProviderframeworkonEventA62AE3A8)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   9 | 1:22:36 AM | DELETE_IN_PROGRESS | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderframeworkonEventServiceRoleDefaultPolicy749EBE05)
+2026-01-05T01:22:39.474Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:22:37 AM | DELETE_COMPLETE | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderframeworkonEventServiceRoleDefaultPolicy749EBE05)
+2026-01-05T01:22:39.478Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:22:38 AM | DELETE_IN_PROGRESS | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole (AmplifySecretFetcherResourceProviderframeworkonEventServiceRole0941C6B4)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   8 | 1:22:38 AM | DELETE_IN_PROGRESS | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProviderLambda (AmplifySecretFetcherResourceProviderLambda27823B35)
+2026-01-05T01:22:41.630Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   7 | 1:22:41 AM | DELETE_COMPLETE | AWS::Lambda::Function | auth/AmplifySecretFetcherResourceProviderLambda (AmplifySecretFetcherResourceProviderLambda27823B35)
+2026-01-05T01:22:43.786Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   7 | 1:22:41 AM | DELETE_IN_PROGRESS | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderLambdaServiceRoleDefaultPolicy080657DD)
+2026-01-05T01:22:43.791Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   6 | 1:22:42 AM | DELETE_COMPLETE | AWS::IAM::Policy | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole/DefaultPolicy (AmplifySecretFetcherResourceProviderLambdaServiceRoleDefaultPolicy080657DD)
+                                 amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   6 | 1:22:42 AM | DELETE_IN_PROGRESS | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole (AmplifySecretFetcherResourceProviderLambdaServiceRole3F02FB0D)
+2026-01-05T01:22:50.260Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   5 | 1:22:47 AM | DELETE_COMPLETE | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProvider/framework-onEvent/ServiceRole (AmplifySecretFetcherResourceProviderframeworkonEventServiceRole0941C6B4)
+2026-01-05T01:22:52.432Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   4 | 1:22:52 AM | DELETE_COMPLETE | AWS::Cognito::UserPoolDomain | auth/amplifyAuth/UserPool/UserPoolDomain (amplifyAuthUserPoolUserPoolDomain1F688B5B)
+2026-01-05T01:22:58.892Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   3 | 1:22:56 AM | DELETE_COMPLETE | AWS::IAM::Role | auth/AmplifySecretFetcherResourceProviderLambda/ServiceRole (AmplifySecretFetcherResourceProviderLambdaServiceRole3F02FB0D)
+2026-01-05T01:22:58.896Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC |   4 | 1:22:56 AM | UPDATE_ROLLBACK_COMPLETE | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5-auth179371D7-1WV5LVSQ38KGC
+2026-01-05T01:23:04.641Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   3 | 1:23:03 AM | UPDATE_COMPLETE | AWS::CloudFormation::Stack | auth.NestedStack/auth.NestedStackResource (auth179371D7)
+2026-01-05T01:23:04.645Z [INFO]: amplify-d2aaycu993lg4k-production-branch-3529e30cd5 |   4 | 1:23:03 AM | UPDATE_ROLLBACK_COMPLETE | AWS::CloudFormation::Stack | amplify-d2aaycu993lg4k-production-branch-3529e30cd5
+2026-01-05T01:23:04.771Z [INFO]: 
+2026-01-05T01:23:04.771Z [INFO]: [SecretNotSetError] The secret 'GOOGLE_CLIENT_ID' specified in the backend does not exist.
+                                 Resolution: Create secrets using the command npx ampx sandbox secret set. For more information, see https://docs.amplify.aws/gen2/deploy-and-host/sandbox-environments/features/#set-secrets
+2026-01-05T01:23:04.771Z [WARNING]: ampx pipeline-deploy
+                                    Command to deploy backends in a custom CI/CD pipeline. This command is not inten
+                                    ded to be used locally.
+                                    Options:
+                                    --debug            Print debug logs to the console
+                                    [boolean] [default: false]
+                                    --branch           Name of the git branch being deployed
+                                    [string] [required]
+                                    --app-id           The app id of the target Amplify app[string] [required]
+                                    --outputs-out-dir  A path to directory where amplify_outputs is written. I
+                                    f not provided defaults to current process working dire
+                                    ctory.                                         [string]
+                                    --outputs-version  Version of the configuration. Version 0 represents clas
+                                    sic amplify-cli config file amplify-configuration and 1
+                                    represents newer config file amplify_outputs
+                                    [string] [choices: "0", "1", "1.1", "1.2", "1.3", "1.4"] [default: "1.4"]
+                                    --outputs-format   amplify_outputs file format
+                                    [string] [choices: "mjs", "json", "json-mobile", "ts", "dart"]
+                                    -h, --help             Show help                                     [boolean]
+2026-01-05T01:23:04.848Z [ERROR]: !!! Build failed
+2026-01-05T01:23:04.848Z [INFO]: Please read more about Amplify Hosting's support for SSR frameworks to find if your build failure is related to an unsupported feature: https://docs.aws.amazon.com/amplify/latest/userguide/amplify-ssr-framework-support.html. You may also find this troubleshooting guide useful: https://docs.aws.amazon.com/amplify/latest/userguide/troubleshooting-ssr-deployment.html
+2026-01-05T01:23:04.848Z [ERROR]: !!! Error: Command failed with exit code 1
+2026-01-05T01:23:04.848Z [INFO]: # Starting environment caching...
+2026-01-05T01:23:04.848Z [INFO]: # Uploading environment cache artifact...
+2026-01-05T01:23:04.919Z [INFO]: # Uploaded environment cache artifact
+2026-01-05T01:23:04.919Z [INFO]: # Environment caching completed
+
