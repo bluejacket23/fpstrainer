@@ -709,7 +709,7 @@ function ReportContent({ user }: { user: any }) {
   useEffect(() => {
     if (!id || !user) return;
     
-    const userId = user.userId || user.sub;
+    const userId = user.userId;
     if (!userId) {
       console.error('No userId found in user object', user);
       setLoading(false);
@@ -862,7 +862,7 @@ function ReportContent({ user }: { user: any }) {
     if (!user) return;
     const fetchUserPlan = async () => {
       try {
-        const userId = user.userId || user.sub;
+        const userId = user.userId;
         const result = await client.models.User.get({ userId });
         if (result.data) {
           setUserPlan(result.data.subscriptionPlan || 'RECRUIT');
@@ -1693,10 +1693,10 @@ function getScoreColor(score: number): string {
   return '#3b82f6'; // Blue
 }
 
-function renderMarkdown(markdown: string): JSX.Element {
+function renderMarkdown(markdown: string): React.ReactNode {
   // Pre-process markdown to handle ">" bullets properly
   const lines = markdown.split('\n');
-  const processedLines: JSX.Element[] = [];
+  const processedLines: React.ReactNode[] = [];
   
   lines.forEach((line: string, index: number) => {
     const trimmed = line.trim();

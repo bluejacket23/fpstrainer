@@ -87,7 +87,8 @@ function AccountContent() {
     
     const fetchUserData = async () => {
       try {
-        const userId = user.userId || user.sub;
+        const userId = user.userId;
+        if (!userId) return;
         const userResult = await client.models.User.get({ userId });
         if (userResult.data) {
           setClipsRemaining(userResult.data.clipsRemaining ?? 0);
@@ -225,7 +226,8 @@ function AccountContent() {
         setShowCancelConfirm(false);
         
         // Refresh user data
-        const userId = user?.userId || user?.sub;
+        const userId = user?.userId;
+        if (!userId) return;
         const userResult = await client.models.User.get({ userId });
         if (userResult.data) {
           setClipsRemaining(userResult.data.clipsRemaining ?? 0);

@@ -43,7 +43,7 @@ function DashboardContent() {
     
     const fetchReports = async () => {
       try {
-        const userId = user.userId || user.sub;
+        const userId = user.userId;
         
         // Fetch reports
         let reportsData = null;
@@ -234,7 +234,7 @@ function DashboardContent() {
     // Fetch clips remaining from User model
     const fetchClipsRemaining = async () => {
       try {
-        const userId = user.userId || user.sub;
+        const userId = user.userId;
         const userResult = await client.models.User.get({ userId });
         if (userResult.data) {
           setClipsRemaining(userResult.data.clipsRemaining ?? 0);
